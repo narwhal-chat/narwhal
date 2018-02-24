@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/narwhal-chat/narwhal/issues"
   },
-  "homepage": "https://github.com/narwhal-chat/narwhal#readme"
+  "homepage": "https://github.com/narwhal-chat/narwhal#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "nodemon": "^1.15.1",
+    "passport": "^0.4.0",
+    "sequelize": "^4.33.4"
+  }
 }
