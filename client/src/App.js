@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Register from './Components/Register/Register'
+import Login from './containers/Login/Login'
 
 class App extends Component {
   render() {
     return (
-      <Register />
+      <Login />
     );
   }
 }

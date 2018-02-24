@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Register.css';
+import './Login.css';
 import axios from 'axios';
 
-class register extends Component {
+class login extends Component {
     state = {
         username: '',
         email: '',
@@ -83,4 +83,4 @@ class register extends Component {
     }
 }
 
-export default register;
+export default login;
