@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Login from './containers/Login/Login'
+import Signup from './containers/Signup/Signup'
 
 class App extends Component {
   render() {
     return (
-      <Login />
+      <Signup />
     );
   }
 }

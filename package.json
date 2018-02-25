@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/narwhal-chat/narwhal#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
