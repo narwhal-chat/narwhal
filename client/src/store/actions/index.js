@@ -1,3 +1,3 @@
 export {
     auth
-} from './signup'
+} from './auth'

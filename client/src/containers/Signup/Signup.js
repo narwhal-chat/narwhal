@@ -118,8 +118,17 @@ class Signup extends Component {
                 changed={(event) => this.inputChangedHandler(event, formElement.id)} />
         ));
 
+        let errorMessage = null;
+
+        if (this.props.error) {
+            errorMessage = (
+            <p>{ this.props.error.message }</p >
+            )
+    }
+
         return (
             <div className={classes.Auth}>
+                {errorMessage}
                 <form onSubmit={this.submitHandler}>
                     {form}
                     <Button btnType="Success">SUBMIT</Button>
@@ -132,10 +141,16 @@ class Signup extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        error: state.auth.error
+    };
+}
+
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password))
+        onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
