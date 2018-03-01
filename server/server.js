@@ -1,15 +1,19 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const app = express();
-const passport = require('passport');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
+const db = require('./queries')
+ 
 
 // Routes
-const user = require('./routes/User')
+const user = require('./routes/User/index.js')
 
 const PORT = 5000;
-const SALT_WORK_FACTOR = 12;
-require('dotenv').config();
 
 // Body Parser Middleware
 app.use(bodyParser.json());
@@ -24,9 +28,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-app.post('/register', function(req, res) {
-    console.log(req.body)
-});
+app.post('/register', db.createUser);
 
 // Listening to port
 app.listen(PORT);
