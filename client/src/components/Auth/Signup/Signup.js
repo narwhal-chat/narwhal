@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Button from '../../components/UI/Button/Button'
-import classes from './Signup.css'
-import Input from '../../components/UI/Input/Input'
-import * as actions from '../../store/actions/index'
+import Button from '../../UI/Button/Button';
+import classes from './Signup.css';
+import Input from '../../UI/Input/Input';
+import * as actions from '../../../store/actions/index';
 
 class Signup extends Component {
     state = {
