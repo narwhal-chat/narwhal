@@ -1,8 +1,8 @@
 import React from 'react';
-import './LogoSplash.css';
+import './LogoAuth.css';
 import logo from './logo.png'
 
-const LogoSplash = props => (
+const LogoAuth = props => (
 
         <div className="background">
             <img className="logo" src={logo} alt="Logo" />
@@ -10,4 +10,4 @@ const LogoSplash = props => (
 
 );
 
-export default LogoSplash;
+export default LogoAuth;
