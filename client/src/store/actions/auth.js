@@ -40,27 +40,50 @@ export const checkAuthTimeout = (expirationTime) => {
     }
 }
 
-export const auth = (email, password, isSignup) => {
+export const auth = (email, password, username, isSignup) => {
     return dispatch => {
         dispatch(authStart());
+        let currentDate = new Date(Date.now()).toLocaleString();;
         const authData = {
-            email: email,
+            username: username,
             password: password,
+            email_address: email,
+            avatar: 'avatar',
+            create_date: currentDate,
             returnSecureToken: true
         };
-        let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyD6IdRW9yIKJ14lreX9fk_uv1-kQJstQbE'
-        if (!isSignup) {
-            url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyD6IdRW9yIKJ14lreX9fk_uv1-kQJstQbE';
-        }
-        axios.post(url, authData)
+        console.log(authData);
+        // let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyD6IdRW9yIKJ14lreX9fk_uv1-kQJstQbE'
+        // if (!isSignup) {
+        //     url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyD6IdRW9yIKJ14lreX9fk_uv1-kQJstQbE';
+        // }
+        axios.post('/register', authData)
             .then(response => {
-                console.log(response);
-                dispatch(authSuccess(response.data.idToken));
+                console.log('this is the response', response);
+                dispatch(authSuccess(response.data.token));
             })
             .catch(err => {
                 console.log(err);
                 dispatch(authFail(err.response.data.error));
             })
 
+    }
+}
+
+export const login = (password, username) => {
+    return dispatch => {
+        dispatch(authStart());
+        axios.post('/login', {
+            username: username,
+            password: password
+        })
+        .then(response => {
+            console.log('this is the response in login', response)
+            dispatch(authSuccess(response.data.token));
+        })
+        .catch(err => {
+            console.log('error in login', err)
+            dispatch(authFail(err.response.data.error))
+        })
     }
 }

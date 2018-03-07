@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import Signup from './components/Auth/Signup/Signup';
+import Auth from './containers/Auth/Auth'
 
 class App extends Component {
   render() {
     return (
-      <Signup />
+      <div>
+        <Auth />
+      </div>
     );
   }
 }
