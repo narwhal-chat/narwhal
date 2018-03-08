@@ -1,0 +1,20 @@
+.Topics {
+  width: 76%;
+  color: #FFFFFF;
+  font-size: 16px;
+}
+
+.Topics-title {
+  padding-left: 2px;
+  padding-top: 2px;
+  float: left;
+}
+
+.Topics-add-container {
+  float: right;
+}
+
+.Topics-add {
+  width: 14px;
+  height: 14px;
+}

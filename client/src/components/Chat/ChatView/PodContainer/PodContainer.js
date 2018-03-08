@@ -9,7 +9,7 @@ class PodContainer extends Component {
   render () {
     return (
       <div className="PodContainer">
-        <img className="PodContainer-logo" src={narwhalLogo} />
+        <img className="PodContainer-logo" src={narwhalLogo} alt="Discover"/>
         <div className="PodContainer-discover">DISCOVER</div>
         <div className="PodContainer-discover-line"></div>
         <Pods />

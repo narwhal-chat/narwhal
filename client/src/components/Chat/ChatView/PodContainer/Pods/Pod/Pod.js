@@ -5,7 +5,7 @@ import kitten from '../../../../../../assets/images/kitten.jpeg';
 
 const pod = (props) => {
   return (
-    <img className="Pod" src={kitten} />
+    <img className="Pod" src={kitten} alt="Pod"/>
   );
 };
 
