@@ -7,8 +7,12 @@ import Logo from './LogoAuth/LogoAuth'
 
 const Auth = props => (
 	<div className="container">
-		<div className="signup"/>
-        <div className="logo"/>
+		<div className="signup">
+			<Signup />
+		</div>
+        <div className="logo">
+			<Logo />
+		</div>
 	</div>
 );
 
