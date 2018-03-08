@@ -1,0 +1,14 @@
+.AddPod {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: #C4C4C4;
+}
+
+.AddPod-plus-thin {
+  width: 34px;
+  height: 34px;
+}

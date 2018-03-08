@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import './PodContainer.css';
 import narwhalLogo from '../../../../assets/images/narwhal.png';
+import Pods from './Pods/Pods';
+import AddPod from './AddPod/AddPod';
 
 class PodContainer extends Component {
   render () {
@@ -10,6 +12,8 @@ class PodContainer extends Component {
         <img className="PodContainer-logo" src={narwhalLogo} />
         <div className="PodContainer-discover">DISCOVER</div>
         <div className="PodContainer-discover-line"></div>
+        <Pods />
+        <AddPod />
       </div>
     );
   }
