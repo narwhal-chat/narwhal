@@ -5,8 +5,6 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const app = express();
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt');
 const db = require('./queries')
 const util = require('./shared/utility')
  

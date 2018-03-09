@@ -1,9 +1,16 @@
-.background {
-    fill: Solid;
-    color: #505AB2
+.authText {
+    color: #f2f2f2;
+    text-align: center;
+    line-height: normal;
 }
 
-.logo {
-    height: 302px;
-    width: 267px;
+.logoText {
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.logoImage {
+    margin-top: 130px;
+    margin-left: 250px;
+    margin-bottom: 20px;
 }
