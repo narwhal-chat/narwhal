@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon server/server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
@@ -27,6 +27,10 @@
     "jsonwebtoken": "^8.1.1",
     "nodemon": "^1.15.1",
     "pg": "^7.4.1",
-    "pg-promise": "^8.1.1"
+    "pg-promise": "^8.1.1",
+    "sequelize": "^4.33.4"
+  },
+  "engines": {
+    "node": "7.9.0"
   }
 }
