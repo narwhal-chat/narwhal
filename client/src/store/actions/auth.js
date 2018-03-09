@@ -25,18 +25,18 @@ export const authFail = (error) => {
 
 // For logging out
 
-export const logout = () => {
-    return {
-        type: actionTypes.AUTH_LOGOUT
-    }
-}
-export const checkAuthTimeout = (expirationTime) => {
-    return dispatch => {
-        setTimeout(() => {
-            dispatch(logout());
-        }, expirationTime * 1000) // it was in ms.
-    }
-}
+// export const logout = () => {
+//     return {
+//         type: actionTypes.AUTH_LOGOUT
+//     }
+// }
+// export const checkAuthTimeout = (expirationTime) => {
+//     return dispatch => {
+//         setTimeout(() => {
+//             dispatch(logout());
+//         }, expirationTime * 1000) // it was in ms.
+//     }
+// }
 
 export const auth = (email, password, username, isSignup) => {
     return dispatch => {
@@ -58,7 +58,12 @@ export const auth = (email, password, username, isSignup) => {
         axios.post('/register', authData)
             .then(response => {
                 console.log('this is the response', response);
-                dispatch(authSuccess(response.data.token));
+                const expirationDate = new Date(new Date().getTime() + 86400);
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('userId', response.data.user);
+                dispatch(authSuccess(response.data.token, response.data.user));
+                // dispatch(checkAuthTimeout(response.data.expiresIn))
             })
             .catch(err => {
                 console.log(err);
@@ -76,11 +81,15 @@ export const login = (password, username) => {
             password: password
         })
         .then(response => {
-            console.log('this is the response in login', response)
-            dispatch(authSuccess(response.data.token));
+            const expirationDate = new Date(new Date().getTime() + 86400)
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('expirationDate', expirationDate);
+            localStorage.setItem('userId', response.data.user);
+            dispatch(authSuccess(response.data.token, response.data.user));
         })
         .catch(err => {
             console.log('error in login', err)
+            debugger;
             dispatch(authFail(err.response.data.error))
         })
     }

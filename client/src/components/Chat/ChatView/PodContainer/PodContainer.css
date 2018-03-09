@@ -1,0 +1,32 @@
+.PodContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  width: 8%;
+  height: 100vh;
+  background-color: #2B316B;
+}
+
+.PodContainer-logo {
+  margin-top: 24px;
+  margin-bottom: 14px;
+  width: 70px;
+  height: 79.18px;
+}
+
+.PodContainer-discover {
+  margin-bottom: 2px;
+  font-family: 'Source Sans Pro';
+  font-size: 10.5px;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+}
+
+.PodContainer-discover-line {
+  width: 34px;
+  border: 0.5px solid #FFFFFF;
+}

@@ -5,6 +5,8 @@ import Button from '../../../components/UI/Button/Button';
 import classes from './Login.css';
 import Input from '../../../components/UI/Input/Input';
 import * as actions from '../../../store/actions/index';
+import { NavLink } from 'react-router-dom';
+import LogoAuth from '../LogoAuth/LogoAuth';
 
 class Login extends Component {
 	state = {
@@ -130,18 +132,25 @@ class Login extends Component {
 			errorMessage = <p>{this.props.error.message}</p>;
 		}
 
-		return (
-			<div className={classes.Auth}>
-				{errorMessage}
-				<form onSubmit={this.submitHandler}>
-					{form}
-					<Button btnType="Success">SUBMIT</Button>
-				</form>
-				<Button clicked={this.switchAuthModeHandler} btnType="Danger">
-					SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}
-				</Button>
-			</div>
-		);
+		return <div className="authContainer">
+				<div className="signUp">
+					{errorMessage}
+					<form className="signupForm" onSubmit={this.submitHandler}>
+						<p className="authHeader">SIGN IN</p>
+						{form}
+						<Button btnType="Success">Continue</Button>
+						<p>
+							Need an account? <NavLink to="/register">Register</NavLink>
+						</p>
+					</form>
+					{/* <Button clicked={this.switchAuthModeHandler} btnType="Danger">
+						SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}
+					</Button> */}
+				</div>
+				<div className="logo">
+					<LogoAuth />
+				</div>
+			</div>;
 	}
 }
 

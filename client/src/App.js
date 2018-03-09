@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
-import './App.css';
-import Signup from './components/Auth/Signup/Signup'
 
+import './App.css';
+import Auth from './components/Auth/Signup/Signup';
+import Login from './components/Auth/Login/Login'
+import ChatView from './components/Chat/ChatView/ChatView';
+
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Signup />
-      </div>
+      <React.Fragment>
+        <Switch>
+          <Route path="/register" component={Auth} />
+          <Route path="/login"  component={Login} />
+          <Route path="/chat" exact component={ChatView} />
+        </Switch>
+        {/* <ChatView /> */}
+      </React.Fragment>
     );
   }
 }
