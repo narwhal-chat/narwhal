@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Button from '../../../components/UI/Button/Button';
 import classes from './Login.css';
@@ -104,6 +105,7 @@ class Login extends Component {
 		return isValid;
 	};
 
+
 	render() {
 		const formElementsArray = [];
 		for (let key in this.state.controls) {
@@ -132,8 +134,14 @@ class Login extends Component {
 			errorMessage = <p>{this.props.error.message}</p>;
 		}
 
+		let authRedirect = null;
+		if (this.props.isAuthenticated) {
+			authRedirect = <Redirect to="/"/>
+		}
+
 		return <div className="authContainer">
 				<div className="signUp">
+					{authRedirect}
 					{errorMessage}
 					<form className="signupForm" onSubmit={this.submitHandler}>
 						<p className="authHeader">SIGN IN</p>
@@ -155,14 +163,19 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
+	console.log('state in login', state)
+	debugger;
 	return {
 		error: state.auth.error,
+		isAuthenticated: state.auth.token !== null,
+		authRedirectPath: state.authRedirectPath
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
 		onLogin: (password, username, isSignup) => dispatch(actions.login(password, username, isSignup)),
+		onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
 	};
 };
 

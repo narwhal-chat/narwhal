@@ -22,14 +22,19 @@ function createUser(req, res, next) {
     
     db.none('insert into users(username, password, email_address, avatar, create_date)' +
         'values(${username}, ${password}, ${email_address}, ${avatar}, ${create_date})', user)
-        .then(function () {
+        .then(() => {
             var token = utils.generateToken(user)
-            console.log('successfully entered user', token)
-            res.status(200)
-                .json({
-                    token: token,
-                    userId: user.username
-                });
+            db.one(`SELECT * FROM users WHERE username = '${user.username}'`,
+                {
+                    username: user.username
+                })
+                .then(data => {
+                    res.status(200)
+                        .json({
+                            token: token,
+                            user: data,
+                        });
+                })
         })
         .catch(function (err) {
             console.log(err);
