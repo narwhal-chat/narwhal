@@ -141,7 +141,7 @@ class Signup extends Component {
 					touched={formElement.config.touched}
 					changed={event => this.inputChangedHandler(event, formElement.id)}
 				/>
-				<p className="authFormText">{formElement.config.name}</p>
+				<p className={styles.AuthFormText}>{formElement.config.name}</p>
 			</div>
 		));
 
@@ -161,19 +161,19 @@ class Signup extends Component {
 				<div className={styles.SignUp}>
 					{authRedirect}
 					{errorMessage}
-					<form className={styles.signupForm} onSubmit={this.submitHandler}>
-						<p className={styles.authHeader}>CREATE AN ACCOUNT</p>
+					<form className={styles.SignupForm} onSubmit={this.submitHandler}>
+						<p className={styles.AuthHeader}>CREATE AN ACCOUNT</p>
 						{form}
 						<Button btnType="Success">CONTINUE</Button>
-						<p className="authInfo">
+						<p className={styles.AuthInfo}>
 							{' '}
-							Already have an account? <NavLink className="authLink" to="/login">
+							Already have an account? <NavLink className={styles.AuthLink} to="/login">
 								<strong>Login</strong>
 							</NavLink>
 						</p>
 					</form>
 				</div>
-				<div className="logo">
+				<div className={styles.Logo}>
 					<LogoAuth />
 				</div>
 			</React.Fragment>

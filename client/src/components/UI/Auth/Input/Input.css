@@ -1,10 +1,10 @@
-.authInput {
+.AuthInput {
     width: 100%;
     box-sizing: border-box;
     background: #2B316B;
 }
 
-.authInputForm {
+.AuthInputForm {
     width: 100%;
     box-sizing: border-box;
     background: #2B316B;
@@ -13,7 +13,7 @@
     font-size: 150%;
 }
 
-.authInput:after {
+.AuthInput:after {
     margin-top: 5px;
     display: block;
     height: 2px;

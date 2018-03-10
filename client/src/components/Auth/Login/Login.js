@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import Button from '../../../components/UI/Auth/Button/Button';
-import './Login.css';
+import styles from './Login.css';
 import Input from '../../../components/UI/Auth/Input/Input';
 import * as actions from '../../../store/actions/index';
 import { NavLink } from 'react-router-dom';
@@ -127,7 +127,7 @@ class Login extends Component {
 					touched={formElement.config.touched}
 					changed={event => this.inputChangedHandler(event, formElement.id)}
 				/>
-				<p className="authFormText">{formElement.config.name}</p>
+				<p className={styles.AuthFormText}>{formElement.config.name}</p>
 			</div>
 		));
 
@@ -142,23 +142,25 @@ class Login extends Component {
 			authRedirect = <Redirect to="/"/>
 		}
 
-		return <div className="authContainer">
-				<div className="signUp">
+		return(
+			<React.Fragment>
+				<div className={styles.Login}>
 					{authRedirect}
 					{errorMessage}
-					<form className="signupForm" onSubmit={this.submitHandler}>
-						<p className="authHeader">SIGN IN</p>
+					<form className={styles.LoginForm} onSubmit={this.submitHandler}>
+						<p className={styles.AuthHeader}>SIGN IN</p>
 						{form}
 						<Button btnType="Success">Continue</Button>
-						<p className="authInfo">
-							Need an account? <NavLink className="authLink" to="/register">Register</NavLink>
+						<p className={styles.AuthInfo}>
+							Need an account? <NavLink className={styles.AuthLink} to="/register">Register</NavLink>
 						</p>
 					</form>
 				</div>
-				<div className="logo">
+				<div className={styles.Logo}>
 					<LogoAuth />
 				</div>
-			</div>;
+			</React.Fragment>
+		)
 	}
 }
 

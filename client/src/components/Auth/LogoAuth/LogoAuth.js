@@ -1,13 +1,13 @@
 import React from 'react';
-import './LogoAuth.css';
+import styles from './LogoAuth.css';
 import logo from './logo.png'
 
 const LogoAuth = props => (
 
-        <div className="logoContainer">
-            <img className="logoImage-lrg" src={logo} alt="Logo" />
-            <div className="authText">
-                <p className="logoText">narwhal</p>
+        <div className={styles.LogoContainer}>
+            <img className={styles.LogoImageLrg} src={logo} alt="Logo" />
+            <div className={styles.AuthText}>
+                <p className={styles.LogoText}>narwhal</p>
                 <p>get to the point</p>
             </div>
         </div>

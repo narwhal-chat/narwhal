@@ -1,20 +1,20 @@
 import React from 'react';
 
-import './Input.css';
+import styles from './Input.css';
 
 const input = (props) => {
     let inputElement = null;
 
 
     inputElement = <input
-        className="authInputForm"
+        className={styles.AuthInputForm}
         {...props.elementConfig}
         value={props.value}
         onChange={props.changed} />;
 
  
     return (
-        <div className="authInput">
+        <div className={styles.AuthInput}>
             {inputElement}
         </div>
     );

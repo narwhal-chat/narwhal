@@ -1,4 +1,4 @@
-.authBtn {
+.AuthBtn {
     margin: 30px 0;
     display: inline-block;
     padding: 10px 165px;
@@ -10,6 +10,6 @@
     -webkit-transition: background-color 0.5s;
 }
 
-.authBtn:hover {
+.AuthBtn:hover {
     background-color: rgb(56, 176, 154);
 }

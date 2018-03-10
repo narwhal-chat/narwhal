@@ -1,10 +1,10 @@
 import React from 'react';
-import './Button.css';
+import styles from './Button.css';
 
 const button = (props) => (
     <button
         disabled={props.disabled}
-        className='authBtn'
+        className={styles.AuthBtn}
         onClick={props.clicked}>{props.children}</button>
 );
 
