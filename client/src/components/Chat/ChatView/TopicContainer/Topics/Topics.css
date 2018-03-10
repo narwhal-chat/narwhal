@@ -1,7 +1,7 @@
 .Topics {
   width: 76%;
   color: #FFFFFF;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .Topics-title {
@@ -9,6 +9,8 @@
   padding-left: 2px;
   padding-top: 2px;
   float: left;
+  font-weight: 600;
+  letter-spacing: .5px;
 }
 
 .Topics-add-container {

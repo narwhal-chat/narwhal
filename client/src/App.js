@@ -11,12 +11,12 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Switch>
+        {/* <Switch>
           <Route path="/register" component={Auth} />
           <Route path="/login"  component={Login} />
           <Route path="/chat" exact component={ChatView} />
-        </Switch>
-        {/* <ChatView /> */}
+        </Switch> */}
+        <ChatView />
       </React.Fragment>
     );
   }
