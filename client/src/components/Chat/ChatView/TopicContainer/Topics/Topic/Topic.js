@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './Topic.css';
+import styles from './Topic.css';
 
 const topic = (props) => {
   return (
-    <div className="Topic"># general</div>
+    <div className={styles.Topic}># general</div>
   );
 };
 

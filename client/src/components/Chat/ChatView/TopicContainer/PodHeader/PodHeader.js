@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './PodHeader.css';
+import styles from './PodHeader.css';
 
 const podHeader = (props) => {
   return (
-    <div className="PodHeader">Dream Team</div>
+    <div className={styles.PodHeader}>Dream Team</div>
   );
 };
 

@@ -4,7 +4,7 @@
   font-size: 18px;
 }
 
-.Topics-title {
+.Topics .Title {
   margin-bottom: 10px;
   padding-left: 2px;
   padding-top: 2px;
@@ -13,16 +13,16 @@
   letter-spacing: .5px;
 }
 
-.Topics-add-container {
+.Topics .AddTopicContainer {
   float: right;
 }
 
-.Topics-add {
+.Topics .AddTopic {
   width: 14px;
   height: 14px;
 }
 
-.Topics-clearfix::after {
+.Topics .Clearfix::after {
   content: "";
   clear: both;
   display: table;

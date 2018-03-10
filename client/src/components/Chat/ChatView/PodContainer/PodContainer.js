@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 
-import './PodContainer.css';
+import styles from './PodContainer.css';
 import narwhalLogo from '../../../../assets/images/narwhal.png';
 import Pods from './Pods/Pods';
 import AddPod from './AddPod/AddPod';
 
 class PodContainer extends Component {
+  
   render () {
     return (
-      <div className="PodContainer">
-        <img className="PodContainer-logo" src={narwhalLogo} alt="Discover"/>
-        <div className="PodContainer-discover">DISCOVER</div>
-        <div className="PodContainer-discover-line"></div>
+      <div className={styles.PodContainer}>
+        <img className={styles.Logo} src={narwhalLogo} alt="Discover"/>
+        <div className={styles.Discover}>DISCOVER</div>
+        <div className={styles.DiscoverSeparator}></div>
         <Pods />
         <AddPod />
       </div>

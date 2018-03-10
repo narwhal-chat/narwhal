@@ -1,11 +1,11 @@
 import React from 'react';
 
-import './Pod.css';
+import styles from './Pod.css';
 import kitten from '../../../../../../assets/images/kitten.jpeg';
 
 const pod = (props) => {
   return (
-    <img className="Pod" src={kitten} alt="Pod"/>
+    <img className={styles.Pod} src={kitten} alt="Pod"/>
   );
 };
 
