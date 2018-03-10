@@ -98,6 +98,5 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "style-loader": "^0.20.3"
   }
 }
