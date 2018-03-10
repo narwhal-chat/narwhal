@@ -1,0 +1,19 @@
+.signup {
+    float: left;
+    width: 50%;
+    height: 100vh;
+    background-color: #2B316B;
+}
+
+.logo {
+    float: left;
+    width: 50%;
+    height: 100vh;
+    background-color: #505AB2;
+}
+
+.container {
+    width: 100%;
+    min-width: 1000px;
+    max-width: 4000px;
+}

@@ -16,8 +16,8 @@ class App extends Component {
           <Route path="/register" component={Auth} />
           <Route path="/login"  component={Login} />
           <Route path="/" exact component={ChatView} />
-          <Route path="/logout" component={Logout} />
         </Switch>
+        {/* <ChatView /> */}
       </React.Fragment>
     );
   }

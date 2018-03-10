@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import Button from '../../../components/UI/Auth/Button/Button'
-import './Signup.css'
+import styles from './Signup.css'
 import Input from '../../../components/UI/Auth/Input/Input'
 import * as actions from '../../../store/actions/index'
 import LogoAuth from '../LogoAuth/LogoAuth'
@@ -59,7 +59,7 @@ class Signup extends Component {
 	};
 
 	componentDidMount() {
-		console.log('this.props in signup', this.props)
+		console.log('styles', styles);
 	}
 
 	submitHandler = event => {
@@ -156,12 +156,13 @@ class Signup extends Component {
 			authRedirect = <Redirect to="/" />;
 		}
 
-		return <div className="authContainer">
-				<div className="signUp">
+		return (
+			<React.Fragment>
+				<div className={styles.SignUp}>
 					{authRedirect}
 					{errorMessage}
-					<form className="signupForm" onSubmit={this.submitHandler}>
-						<p className="authHeader">CREATE AN ACCOUNT</p>
+					<form className={styles.signupForm} onSubmit={this.submitHandler}>
+						<p className={styles.authHeader}>CREATE AN ACCOUNT</p>
 						{form}
 						<Button btnType="Success">CONTINUE</Button>
 						<p className="authInfo">
@@ -175,7 +176,8 @@ class Signup extends Component {
 				<div className="logo">
 					<LogoAuth />
 				</div>
-			</div>;
+			</React.Fragment>
+			)
 	}
 }
 
