@@ -1,7 +1,6 @@
 .Topics {
   width: 76%;
   color: #FFFFFF;
-  font-size: 18px;
 }
 
 .Topics .Title {
@@ -9,7 +8,7 @@
   padding-left: 2px;
   padding-top: 2px;
   float: left;
-  font-weight: 600;
+  font-size: 18px;
   letter-spacing: .5px;
 }
 

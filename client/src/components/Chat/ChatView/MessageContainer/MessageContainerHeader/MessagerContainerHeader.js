@@ -1,9 +1,11 @@
 import React from 'react';
 
+import styles from './MessageContainerHeader.css';
+
 const messageContainerHeader = (props) => {
   return (
-    <div>
-
+    <div className={styles.MessageContainerHeader}>
+      hi
     </div>
   );
 };
