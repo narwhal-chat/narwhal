@@ -1,0 +1,28 @@
+.Topics {
+  width: 76%;
+  color: #FFFFFF;
+}
+
+.Topics .Title {
+  margin-bottom: 10px;
+  padding-left: 2px;
+  padding-top: 2px;
+  float: left;
+  font-size: 18px;
+  letter-spacing: .5px;
+}
+
+.Topics .AddTopicContainer {
+  float: right;
+}
+
+.Topics .AddTopic {
+  width: 14px;
+  height: 14px;
+}
+
+.Topics .Clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
