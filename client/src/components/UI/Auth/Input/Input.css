@@ -1,0 +1,23 @@
+.authInput {
+    width: 100%;
+    box-sizing: border-box;
+    background: #2B316B;
+}
+
+.authInputForm {
+    width: 100%;
+    box-sizing: border-box;
+    background: #2B316B;
+    border: none;
+    color: #fff;
+    font-size: 150%;
+}
+
+.authInput:after {
+    margin-top: 5px;
+    display: block;
+    height: 2px;
+    background-color: #fff;
+    content: " ";
+    width: 400px;
+}

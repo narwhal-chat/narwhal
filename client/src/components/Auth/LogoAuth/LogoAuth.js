@@ -4,8 +4,8 @@ import logo from './logo.png'
 
 const LogoAuth = props => (
 
-        <div className="background">
-            <img className="logoImage" src={logo} alt="Logo" />
+        <div className="logoContainer">
+            <img className="logoImage-lrg" src={logo} alt="Logo" />
             <div className="authText">
                 <p className="logoText">narwhal</p>
                 <p>get to the point</p>

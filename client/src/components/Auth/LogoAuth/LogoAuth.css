@@ -2,15 +2,23 @@
     color: #f2f2f2;
     text-align: center;
     line-height: normal;
+    margin-top: 30px;
 }
 
 .logoText {
-    font-weight: bold;
-    font-size: 36px;
+    font-weight: 600;
+    font-size: 325%;
 }
 
-.logoImage {
-    margin-top: 130px;
-    margin-left: 250px;
-    margin-bottom: 20px;
+.logoImage-lrg {
+    width: 90%;
+    height: auto;
+    margin-left: 30px;
+}
+
+.logoContainer {
+    position: absolute;
+    top: 45%;
+    left: 75%;
+    transform: translate(-50%, -50%)
 }

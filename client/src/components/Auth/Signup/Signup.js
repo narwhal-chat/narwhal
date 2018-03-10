@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import Button from '../../../components/UI/Button/Button'
+import Button from '../../../components/UI/Auth/Button/Button'
 import './Signup.css'
-import Input from '../../../components/UI/Input/Input'
+import Input from '../../../components/UI/Auth/Input/Input'
 import * as actions from '../../../store/actions/index'
 import LogoAuth from '../LogoAuth/LogoAuth'
 import { NavLink } from 'react-router-dom';
@@ -16,9 +16,9 @@ class Signup extends Component {
 			username: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'username',
-					placeholder: 'Username',
+					type: 'username'
 				},
+				name: 'USERNAME',
 				value: '',
 				validation: {
 					required: true,
@@ -29,9 +29,9 @@ class Signup extends Component {
 			email: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'email',
-					placeholder: 'E-mail Address',
+					type: 'email'
 				},
+				name: 'EMAIL',
 				value: '',
 				validation: {
 					required: true,
@@ -43,9 +43,9 @@ class Signup extends Component {
 			password: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'password',
-					placeholder: 'Password',
+					type: 'password'
 				},
+				name: 'PASSWORD',
 				value: '',
 				validation: {
 					required: true,
@@ -130,16 +130,19 @@ class Signup extends Component {
 		}
 
 		let form = formElementsArray.map(formElement => (
-			<Input
-				key={formElement.id}
-				elementType={formElement.config.elementType}
-				elementConfig={formElement.config.elementConfig}
-				value={formElement.config.value}
-				invalid={!formElement.config.valid}
-				shouldValidate={formElement.config.validation}
-				touched={formElement.config.touched}
-				changed={event => this.inputChangedHandler(event, formElement.id)}
-			/>
+			<div>
+				<Input
+					key={formElement.id}
+					elementType={formElement.config.elementType}
+					elementConfig={formElement.config.elementConfig}
+					value={formElement.config.value}
+					invalid={!formElement.config.valid}
+					shouldValidate={formElement.config.validation}
+					touched={formElement.config.touched}
+					changed={event => this.inputChangedHandler(event, formElement.id)}
+				/>
+				<p className="authFormText">{formElement.config.name}</p>
+			</div>
 		));
 
 		let errorMessage = null;
@@ -153,8 +156,7 @@ class Signup extends Component {
 			authRedirect = <Redirect to="/" />;
 		}
 
-		return (
-			<div className="authContainer">
+		return <div className="authContainer">
 				<div className="signUp">
 					{authRedirect}
 					{errorMessage}
@@ -162,17 +164,18 @@ class Signup extends Component {
 						<p className="authHeader">CREATE AN ACCOUNT</p>
 						{form}
 						<Button btnType="Success">CONTINUE</Button>
-						<p> Already have an account? <NavLink to='/login'>Login</NavLink></p>
+						<p className="authInfo">
+							{' '}
+							Already have an account? <NavLink className="authLink" to="/login">
+								<strong>Login</strong>
+							</NavLink>
+						</p>
 					</form>
-					{/* <Button clicked={this.switchAuthModeHandler} btnType="Danger">
-						SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}
-					</Button> */}
 				</div>
 				<div className="logo">
 					<LogoAuth />
 				</div>
-			</div>
-		);
+			</div>;
 	}
 }
 
