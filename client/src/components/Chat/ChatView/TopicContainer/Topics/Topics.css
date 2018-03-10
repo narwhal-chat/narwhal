@@ -5,6 +5,7 @@
 }
 
 .Topics-title {
+  margin-bottom: 10px;
   padding-left: 2px;
   padding-top: 2px;
   float: left;
@@ -17,4 +18,10 @@
 .Topics-add {
   width: 14px;
   height: 14px;
+}
+
+.Topics-clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
