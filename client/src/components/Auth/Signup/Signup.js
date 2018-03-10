@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-import Button from '../../../components/UI/Button/Button'
-import './Signup.css'
-import Input from '../../../components/UI/Input/Input'
+import Button from '../../../components/UI/Auth/Button/Button'
+import styles from './Signup.css'
+import Input from '../../../components/UI/Auth/Input/Input'
 import * as actions from '../../../store/actions/index'
 import LogoAuth from '../LogoAuth/LogoAuth'
 import { NavLink } from 'react-router-dom';
@@ -15,9 +16,9 @@ class Signup extends Component {
 			username: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'username',
-					placeholder: 'Username',
+					type: 'username'
 				},
+				name: 'USERNAME',
 				value: '',
 				validation: {
 					required: true,
@@ -28,9 +29,9 @@ class Signup extends Component {
 			email: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'email',
-					placeholder: 'E-mail Address',
+					type: 'email'
 				},
+				name: 'EMAIL',
 				value: '',
 				validation: {
 					required: true,
@@ -42,9 +43,9 @@ class Signup extends Component {
 			password: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'password',
-					placeholder: 'Password',
+					type: 'password'
 				},
+				name: 'PASSWORD',
 				value: '',
 				validation: {
 					required: true,
@@ -58,7 +59,7 @@ class Signup extends Component {
 	};
 
 	componentDidMount() {
-		console.log('this.props in signup', this.props)
+		console.log('styles', styles);
 	}
 
 	submitHandler = event => {
@@ -129,16 +130,19 @@ class Signup extends Component {
 		}
 
 		let form = formElementsArray.map(formElement => (
-			<Input
-				key={formElement.id}
-				elementType={formElement.config.elementType}
-				elementConfig={formElement.config.elementConfig}
-				value={formElement.config.value}
-				invalid={!formElement.config.valid}
-				shouldValidate={formElement.config.validation}
-				touched={formElement.config.touched}
-				changed={event => this.inputChangedHandler(event, formElement.id)}
-			/>
+			<div>
+				<Input
+					key={formElement.id}
+					elementType={formElement.config.elementType}
+					elementConfig={formElement.config.elementConfig}
+					value={formElement.config.value}
+					invalid={!formElement.config.valid}
+					shouldValidate={formElement.config.validation}
+					touched={formElement.config.touched}
+					changed={event => this.inputChangedHandler(event, formElement.id)}
+				/>
+				<p className={styles.AuthFormText}>{formElement.config.name}</p>
+			</div>
 		));
 
 		let errorMessage = null;
@@ -147,25 +151,33 @@ class Signup extends Component {
 			errorMessage = <p>{this.props.error.message}</p>;
 		}
 
+		let authRedirect = null;
+		if (this.props.isAuthenticated) {
+			authRedirect = <Redirect to="/" />;
+		}
+
 		return (
-			<div className="authContainer">
-				<div className="signUp">
+			<React.Fragment>
+				<div className={styles.SignUp}>
+					{authRedirect}
 					{errorMessage}
-					<form className="signupForm" onSubmit={this.submitHandler}>
-						<p className="authHeader">CREATE AN ACCOUNT</p>
+					<form className={styles.SignupForm} onSubmit={this.submitHandler}>
+						<p className={styles.AuthHeader}>CREATE AN ACCOUNT</p>
 						{form}
 						<Button btnType="Success">CONTINUE</Button>
-						<p> Already have an account? <NavLink to='/login'>Login</NavLink></p>
+						<p className={styles.AuthInfo}>
+							{' '}
+							Already have an account? <NavLink className={styles.AuthLink} to="/login">
+								<strong>Login</strong>
+							</NavLink>
+						</p>
 					</form>
-					{/* <Button clicked={this.switchAuthModeHandler} btnType="Danger">
-						SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}
-					</Button> */}
 				</div>
-				<div className="logo">
+				<div className={styles.Logo}>
 					<LogoAuth />
 				</div>
-			</div>
-		);
+			</React.Fragment>
+			)
 	}
 }
 
@@ -173,7 +185,8 @@ const mapStateToProps = state => {
 	console.log('mapstatetoprops state', state)
     return {
 		error: state.auth.error,
-		token: state.auth.token
+		token: state.auth.token,
+		isAuthenticated: state.auth.token !== null
     };
 }
 

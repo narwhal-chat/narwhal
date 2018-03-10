@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-import Button from '../../../components/UI/Button/Button';
-import classes from './Login.css';
-import Input from '../../../components/UI/Input/Input';
+import Button from '../../../components/UI/Auth/Button/Button';
+import styles from './Login.css';
+import Input from '../../../components/UI/Auth/Input/Input';
 import * as actions from '../../../store/actions/index';
 import { NavLink } from 'react-router-dom';
 import LogoAuth from '../LogoAuth/LogoAuth';
@@ -15,9 +16,9 @@ class Login extends Component {
 			username: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'username',
-					placeholder: 'Username',
+					type: 'username'
 				},
+				name: 'USERNAME',
 				value: '',
 				validation: {
 					required: true,
@@ -28,9 +29,9 @@ class Login extends Component {
 			password: {
 				elementType: 'input',
 				elementConfig: {
-					type: 'password',
-					placeholder: 'Password',
+					type: 'password'
 				},
+				name: 'PASSWORD',
 				value: '',
 				validation: {
 					required: true,
@@ -104,6 +105,7 @@ class Login extends Component {
 		return isValid;
 	};
 
+
 	render() {
 		const formElementsArray = [];
 		for (let key in this.state.controls) {
@@ -114,16 +116,19 @@ class Login extends Component {
 		}
 
 		let form = formElementsArray.map(formElement => (
-			<Input
-				key={formElement.id}
-				elementType={formElement.config.elementType}
-				elementConfig={formElement.config.elementConfig}
-				value={formElement.config.value}
-				invalid={!formElement.config.valid}
-				shouldValidate={formElement.config.validation}
-				touched={formElement.config.touched}
-				changed={event => this.inputChangedHandler(event, formElement.id)}
-			/>
+			<div>
+				<Input
+					key={formElement.id}
+					elementType={formElement.config.elementType}
+					elementConfig={formElement.config.elementConfig}
+					value={formElement.config.value}
+					invalid={!formElement.config.valid}
+					shouldValidate={formElement.config.validation}
+					touched={formElement.config.touched}
+					changed={event => this.inputChangedHandler(event, formElement.id)}
+				/>
+				<p className={styles.AuthFormText}>{formElement.config.name}</p>
+			</div>
 		));
 
 		let errorMessage = null;
@@ -132,37 +137,47 @@ class Login extends Component {
 			errorMessage = <p>{this.props.error.message}</p>;
 		}
 
-		return <div className="authContainer">
-				<div className="signUp">
+		let authRedirect = null;
+		if (this.props.isAuthenticated) {
+			authRedirect = <Redirect to="/"/>
+		}
+
+		return(
+			<React.Fragment>
+				<div className={styles.Login}>
+					{authRedirect}
 					{errorMessage}
-					<form className="signupForm" onSubmit={this.submitHandler}>
-						<p className="authHeader">SIGN IN</p>
+					<form className={styles.LoginForm} onSubmit={this.submitHandler}>
+						<p className={styles.AuthHeader}>SIGN IN</p>
 						{form}
 						<Button btnType="Success">Continue</Button>
-						<p>
-							Need an account? <NavLink to="/register">Register</NavLink>
+						<p className={styles.AuthInfo}>
+							Need an account? <NavLink className={styles.AuthLink} to="/register">Register</NavLink>
 						</p>
 					</form>
-					{/* <Button clicked={this.switchAuthModeHandler} btnType="Danger">
-						SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}
-					</Button> */}
 				</div>
-				<div className="logo">
+				<div className={styles.Logo}>
 					<LogoAuth />
 				</div>
-			</div>;
+			</React.Fragment>
+		)
 	}
 }
 
 const mapStateToProps = state => {
+	console.log('state in login', state)
+	debugger;
 	return {
 		error: state.auth.error,
+		isAuthenticated: state.auth.token !== null,
+		authRedirectPath: state.authRedirectPath
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
 		onLogin: (password, username, isSignup) => dispatch(actions.login(password, username, isSignup)),
+		onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
 	};
 };
 

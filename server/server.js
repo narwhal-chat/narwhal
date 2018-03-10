@@ -4,9 +4,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const app = express();
-const bcrypt = require('bcrypt');
-const db = require('./queries')
-const util = require('./shared/utility')
+const axios = require('axios')
  
 
 const PORT = 5000;
@@ -24,23 +22,31 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.post('/register', (req, res, next) => {
-    var body = req.body;
-    console.log('body in register post', body)
-
-    var hash = bcrypt.hashSync(body.password.trim(), 10);
-    var user = { 
-        username: body.username,
-        password: hash,
-        email_address: body.email_address,
-        avatar: body.avatar,
-        create_date: body.create_date
-    };
-
-    db.createUser(user, res, next)
+    axios.post('http://localhost:3033/register', req.body)
+    .then(user => {
+        console.log('successfully posted in register', user)
+        res.status(200).json({
+            token: user.data.token,
+            user: user.data.user
+        })
+    })
+    .catch(err => {
+        console.log('Error registering', err)
+    });
 })
 
 app.post('/login', (req, res, next) => {
-    db.loginUser({username: req.body.username, password: req.body.password}, res, next);
+    axios.post('http://localhost:3033/login', req.body)
+    .then(user => {
+        console.log('successfully posted in login', user)
+        res.status(200).json({
+            token: user.data.token,
+            user: user.data.user
+        })
+    })
+    .catch(err => {
+        console.log('Error registering', err)
+    });
 })
 
 // Listening to port

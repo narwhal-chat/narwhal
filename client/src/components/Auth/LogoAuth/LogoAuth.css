@@ -1,16 +1,24 @@
-.authText {
+.AuthText {
     color: #f2f2f2;
     text-align: center;
     line-height: normal;
+    margin-top: 30px;
 }
 
-.logoText {
-    font-weight: bold;
-    font-size: 36px;
+.LogoText {
+    font-weight: 600;
+    font-size: 325%;
 }
 
-.logoImage {
-    margin-top: 130px;
-    margin-left: 250px;
-    margin-bottom: 20px;
+.LogoImageLrg {
+    width: 90%;
+    height: auto;
+    margin-left: 30px;
+}
+
+.LogoContainer {
+    position: absolute;
+    top: 45%;
+    left: 75%;
+    transform: translate(-50%, -50%)
 }
