@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import styles from './MessageContainer.css';
 import MessageContainerHeader from './MessageContainerHeader/MessagerContainerHeader';
 import Messages from './Messages/Messages';
+import MessageBar from './MessageBar/MessageBar';
 
 class MessageContainer extends Component {
   render() {
@@ -10,9 +11,7 @@ class MessageContainer extends Component {
       <div className={styles.MessageContainer}>
         <MessageContainerHeader />
         <Messages />
-        <Messages />
-        <Messages />
-        <Messages />
+        <MessageBar />
       </div>
     );
   }

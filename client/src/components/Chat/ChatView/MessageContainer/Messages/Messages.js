@@ -5,7 +5,27 @@ import Message from './Message/Message';
 
 const messages = (props) => {
   return (
-    <div className={styles.messages}>
+    <div className={styles.Messages}>
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
       <Message />
     </div>
   );

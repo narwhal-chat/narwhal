@@ -1,20 +1,20 @@
 .Topics {
-  width: 76%;
   color: #FFFFFF;
 }
 
 .Topics .Title {
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   padding-left: 2px;
   padding-top: 2px;
   float: left;
-  font-size: 18px;
+  font-size: 1em;
   font-weight: 600;
   letter-spacing: .5px;
 }
 
 .Topics .AddTopicContainer {
   float: right;
+  padding-top: 1px;
 }
 
 .Topics .AddTopic {

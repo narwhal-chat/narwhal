@@ -17,7 +17,6 @@ class App extends Component {
           <Route path="/login"  component={Login} />
           <Route path="/" exact component={ChatView} />
         </Switch>
-        {/* <ChatView /> */}
       </React.Fragment>
     );
   }

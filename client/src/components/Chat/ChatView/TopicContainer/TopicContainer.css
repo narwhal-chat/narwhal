@@ -1,9 +1,9 @@
 .TopicContainer {
-  width: 12%;
+  width: 10%;
   height: 100vh;
   background-color: #505AB2;
 }
 
 .TopicContainer .Content {
-  margin-left: 40px;
+  margin: 0 18px;
 }
