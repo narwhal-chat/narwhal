@@ -4,4 +4,5 @@
   flex-direction: column;
   height: 85%;
   overflow: auto;
+  overflow-x: hidden;
 }
