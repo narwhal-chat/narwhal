@@ -10,9 +10,6 @@ class MessageContainer extends Component {
       <div className={styles.MessageContainer}>
         <MessageContainerHeader />
         <Messages />
-        <Messages />
-        <Messages />
-        <Messages />
       </div>
     );
   }

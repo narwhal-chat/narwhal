@@ -1,0 +1,21 @@
+.User {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 4px;
+  margin-bottom: 30px;
+}
+
+.User .StatusIcon {
+  margin-right: 5px;
+  width: 0.5em;
+  height: 0.5em;
+  background-color: #44DBC0;
+  border-radius: 50%;
+}
+
+.User .Username {
+  display: inline;
+  font-size: 0.8em;
+  color: #979CCC;
+}

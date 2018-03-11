@@ -19,22 +19,25 @@
 
 .Message .MessageContent {
   padding-left: 16px;
+  padding-right: 10px;
 }
 
 .Message .Username {
   display: inline;
   padding-right: 40px;
+  font-size: .8em;
   font-weight: 600;
   color: #000000;
 }
 
 .Message .Time {
   display: inline;
-  font-size: 14px;
+  font-size: 0.8em;
   font-weight: 300;
   color: #525252;
 }
 
 .Message .MessageText {
+  font-size: 0.9em;
   color: #000000;
 }

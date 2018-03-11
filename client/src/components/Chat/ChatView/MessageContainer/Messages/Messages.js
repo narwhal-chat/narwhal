@@ -7,6 +7,10 @@ const messages = (props) => {
   return (
     <div className={styles.messages}>
       <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
     </div>
   );
 };
