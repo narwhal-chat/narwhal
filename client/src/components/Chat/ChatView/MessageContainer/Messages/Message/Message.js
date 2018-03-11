@@ -10,7 +10,7 @@ const message = (props) => {
       </div>
       <div className={styles.MessageContent}>
         <div className={styles.Username}>
-          narwhal_user1
+          {'narwhal_user1' + +Math.random(4)}
         </div>
         <div className={styles.Time}>
           6:30pm
