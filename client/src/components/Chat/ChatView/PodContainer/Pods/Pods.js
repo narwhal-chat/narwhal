@@ -10,6 +10,7 @@ const pods = (props) => {
       <Pod />
       <Pod />
       <Pod />
+      <Pod />
     </React.Fragment>
   );
 };
