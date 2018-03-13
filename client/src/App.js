@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Auth from './components/Auth/Signup/Signup';
 import Login from './components/Auth/Login/Login'
-import Logout from './components/Auth/Logout/Logout'
+// import Logout from './components/Auth/Logout/Logout'
 import ChatView from './components/Chat/ChatView/ChatView';
 
 import { Route, Switch } from 'react-router-dom';

@@ -1,0 +1,13 @@
+.DiscoverCategoriesContainer {
+  width: 12%;
+  height: 100vh;
+  background-color: #505AB2;
+}
+
+.DiscoverCategoriesContainer .Content {
+  margin-left: 40px;
+}
+
+.DiscoverCategoriesContainer .Categories {
+    margin-left: 40px;
+}

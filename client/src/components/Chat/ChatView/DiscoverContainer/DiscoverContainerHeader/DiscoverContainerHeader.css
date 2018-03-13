@@ -1,0 +1,9 @@
+.DiscoverContainerHeader {
+  width: 100%;
+  height: 7%;
+  background-color: #FAFAFA;
+}
+
+.DiscoverContainerHeader .HeadingText {
+  padding: 20px 0px;
+}
