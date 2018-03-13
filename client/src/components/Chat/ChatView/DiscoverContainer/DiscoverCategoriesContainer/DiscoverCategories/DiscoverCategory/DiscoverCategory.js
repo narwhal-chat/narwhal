@@ -2,10 +2,10 @@ import React from 'react';
 
 import styles from './DiscoverCategory.css';
 
-const discoverCategory = props => {
+const DiscoverCategory = props => {
 	return(
     <div className={styles.Category}># general</div>
   )
 };
 
-export default discoverCategory;
+export default DiscoverCategory;

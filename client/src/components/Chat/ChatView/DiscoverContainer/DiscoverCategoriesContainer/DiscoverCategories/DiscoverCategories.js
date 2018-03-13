@@ -1,17 +1,17 @@
 import React from 'react';
 
 import styles from './DiscoverCategories.css';
-import discoverCategory from './DiscoverCategory/DiscoverCategory';
+import DiscoverCategory from './DiscoverCategory/DiscoverCategory';
 
 
-const DiscoverCategories = props => {
-	return(
-          <div className={styles.Categories}>
-            <div className={styles.Header}>Discover</div>
-            <p>hello</p>
-            <discoverCategory />
-          </div>
-        ) 
+const DiscoverCategories = (props) => {
+	return <div className={styles.Categories}>
+			<DiscoverCategory />
+			<DiscoverCategory />
+			<DiscoverCategory />
+			<DiscoverCategory />
+			<DiscoverCategory />
+		</div>; 
 };
 
 export default DiscoverCategories;

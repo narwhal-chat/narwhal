@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styles from './DiscoverSearch.css';
-import discoverButton from './DiscoverButton/DiscoverButton'
 
 class DiscoverSearch extends Component {
   render() {
