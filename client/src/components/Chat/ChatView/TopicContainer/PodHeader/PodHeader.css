@@ -1,6 +1,7 @@
 .PodHeader {
-  margin: 14px 0 10px 0;
+  margin: 14px 0 0 0;
   color: #FFFFFF;
-  font-size: 24px;
-  letter-spacing: .5px;
+  font-size: 1.3em;
+  font-weight: 600;
+  letter-spacing: 0.8px;
 }

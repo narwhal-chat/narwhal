@@ -4,7 +4,7 @@
   justify-content: flex-start;
   align-items: center;
   margin: 0;
-  width: 5%;
+  width: 4%;
   height: 100vh;
   background-color: #2B316B;
 }
@@ -12,15 +12,14 @@
 .PodContainer .Logo {
   margin-top: 24px;
   margin-bottom: 14px;
-  width: 70px;
-  height: 79.18px;
+  width: 3.53em;
+  height: 4em;
 }
 
-.PodContainer .Discover {
+.PodContainer .DiscoverTitle {
   margin-bottom: 2px;
   font-family: 'Source Sans Pro';
-  font-size: 10.5px;
-  font-weight: 300;
+  font-size: .75em;
   text-align: center;
   letter-spacing: 0.5px;
   color: #FFFFFF;
@@ -28,6 +27,6 @@
 
 .PodContainer .DiscoverSeparator {
   margin-bottom: 24px;
-  width: 34px;
+  width: 2.6em;
   border: 0.5px solid #FFFFFF;
 }
