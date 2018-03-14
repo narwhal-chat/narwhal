@@ -6,16 +6,20 @@ import TopicContainer from './TopicContainer/TopicContainer';
 import MessageContainer from './MessageContainer/MessageContainer';
 import DiscoverContainer from './DiscoverContainer/DiscoverContainer';
 import DiscoverCategoriesContainer from './DiscoverContainer/DiscoverCategoriesContainer/DiscoverCategoriesContainer';
+import ProfileContainer from './ProfileContainer/ProfileContainer';
+import EditPodContainer from './EditPodContainer/EditPodContainer';
 
 class ChatView extends Component {
   render() {
     return (
       <div className={styles.ChatView}>
-        <PodContainer />
-        <DiscoverCategoriesContainer />
+        {/* <PodContainer />
+        <DiscoverCategoriesContainer /> */}
         {/* <TopicContainer /> */}
         {/* <MessageContainer /> */}
-        <DiscoverContainer />
+        {/* <DiscoverContainer /> */}
+        {/* <ProfileContainer /> */}
+        <EditPodContainer />
       </div>
     );
   };

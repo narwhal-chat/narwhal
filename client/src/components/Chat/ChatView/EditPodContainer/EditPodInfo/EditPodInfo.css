@@ -1,0 +1,76 @@
+.PodProfile {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  box-sizing: border-box;
+}
+
+.PodProfile .PodInfo {
+  display: flex;
+  flex-direction: row;
+  margin-left: 50px;
+  margin-top: 35px;
+}
+
+.PodProfile .ProfileText {
+  font-weight: 600;
+  font-size: 120%;
+  width: 40%
+}
+
+.PodProfile .ProfileInput {
+  width: 60%;
+  height: 50px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  border:solid 1px #d2d2d2;
+  padding:5px;
+}
+
+.PodProfile .ProfileInputDescription {
+  height: 150px;
+  width: 60%;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  border:solid 1px #d2d2d2;
+  padding:5px;
+}
+
+.PodProfile .Buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 35px;
+}
+.PodProfile .ButtonUpdate {
+    width: 25%;
+    display: inline-block;
+    padding: 10px 80px;
+    background-color: #44DBC0;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 3%;
+    border: none;
+    -webkit-transition: background-color 0.5s;
+}
+
+.PodProfile .ButtonCancel {
+    width: 25%;
+    display: inline-block;
+    padding: 10px 80px;
+    background-color: #FFF;
+    color: #555555;
+    font-weight: 700;
+    border-radius: 3%;
+    border-color: #555555;
+    -webkit-transition: background-color 0.5s;
+    margin-left: 50px;
+}
+
+.PodProfile .ButtonUpdate:hover {
+  background-color: #38b09a;
+}
+
+.PodProfile .ButtonCancel:hover {
+  color: #38b09a;
+}
