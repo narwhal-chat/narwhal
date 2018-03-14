@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styles from './ProfileInfo.css';
+import * as actions from '../../../../../store/actions/index';
 
 class ProfileInfo extends Component {
   state = {
@@ -11,7 +13,9 @@ class ProfileInfo extends Component {
 
   submitHandler = event => {
     event.preventDefault();
-    this.props.editProfile(this.state.username, this.state.email, this.state.password, this.state.confirmpw);
+    console.log('this.props', this.props);
+    console.log('this.state', this.state)
+    this.props.editProfile(this.props.user.username, this.state.username, this.state.email, this.state.password, this.props.token);
   }
 
   inputChangeHandler = (event) => {
@@ -52,4 +56,19 @@ class ProfileInfo extends Component {
   }
 }
 
-export default ProfileInfo;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    error: state.auth.error,
+    token: state.auth.token,
+    user: state.auth.userId
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    editProfile: (username, newUsername, email, password, token) => dispatch(actions.editProfile(username, newUsername, email, password, token))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileInfo);

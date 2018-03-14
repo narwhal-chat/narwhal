@@ -51,7 +51,9 @@ app.post('/login', (req, res, next) => {
 })
 
 app.use((req, res, next) => {
+    console.log('request body', req.body)
     let token = req.body.token || req.query.token || req.headers['x-access-token'];
+    console.log(token);
     if (token) {
         jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
             if (err) {
@@ -69,6 +71,22 @@ app.use((req, res, next) => {
         });
     }
 })
+
+app.post('/editProfile', (req, res, next) => {
+    axios.post('http://localhost:3033/editProfile', req.body)
+    .then(user => {
+        console.log('successfully edited profile', user);
+        res.status(200).json({
+            token: user.data.token,
+            user: user.data.user
+        })
+    })
+    .catch(err => {
+        console.log('Error editing profile', err);
+    })
+})
+
+
 
 // Listening to port
 app.listen(PORT);

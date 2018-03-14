@@ -57,14 +57,9 @@ export const auth = (email, password, username, isSignup) => {
             create_date: currentDate,
             returnSecureToken: true
         };
-        console.log(authData);
-        // let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyD6IdRW9yIKJ14lreX9fk_uv1-kQJstQbE'
-        // if (!isSignup) {
-        //     url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyD6IdRW9yIKJ14lreX9fk_uv1-kQJstQbE';
-        // }
+
         axios.post('/register', authData)
             .then(response => {
-                console.log('this is the response', response);
                 const expirationDate = new Date(new Date().getTime() + 86400);
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('expirationDate', expirationDate);
@@ -96,7 +91,6 @@ export const login = (password, username) => {
         })
         .catch(err => {
             console.log('error in login', err)
-            debugger;
             dispatch(authFail(err.response.data.error))
         })
     }
