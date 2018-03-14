@@ -58,10 +58,6 @@ class Signup extends Component {
 		isSignup: true,
 	};
 
-	componentDidMount() {
-		console.log('styles', styles);
-	}
-
 	submitHandler = event => {
 		event.preventDefault();
 		this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.controls.username.value, this.state.isSignup);
@@ -182,7 +178,6 @@ class Signup extends Component {
 }
 
 const mapStateToProps = state => {
-	console.log('mapstatetoprops state', state)
     return {
 		error: state.auth.error,
 		token: state.auth.token,

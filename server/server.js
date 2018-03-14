@@ -4,7 +4,8 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const app = express();
-const axios = require('axios')
+const axios = require('axios');
+const jwt = require('jsonwebtoken');
  
 
 const PORT = process.env.PORT || 5000;
@@ -47,6 +48,26 @@ app.post('/login', (req, res, next) => {
     .catch(err => {
         console.log('Error registering', err)
     });
+})
+
+app.use((req, res, next) => {
+    let token = req.body.token || req.query.token || req.headers['x-access-token'];
+    if (token) {
+        jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
+            if (err) {
+                res.status(403).json({
+                    message:"Wrong Token"
+                });
+            } else {
+                req.decoded=decod;
+                next();
+            }
+        });
+    } else {
+        res.status(403).json({
+            message:"No Token"
+        });
+    }
 })
 
 // Listening to port
