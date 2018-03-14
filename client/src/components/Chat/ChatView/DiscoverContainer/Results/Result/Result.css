@@ -1,0 +1,58 @@
+.Result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 20px 30px
+}
+
+.Result .PodAvatar {
+  width: 3.8em;
+  height: 3.8em;
+  border-radius: 50%;
+  background-color: rgb(99, 99, 99);
+}
+
+.Result .Pod {
+  display: flex;
+  flex-direction: row;
+}
+
+.Result .PodInfo {
+  margin: 5px 15px;
+}
+
+.Result .PodName {
+  font-weight: 600;
+}
+
+.Result .PodCategory {
+  font-size: 90%
+}
+
+.Result .PodDescription {
+  width: 720px;
+  margin-top: 5px;
+}
+
+.Result .UserCount {
+ margin-top: 5px;
+ margin-left: 40px;
+}
+
+.Result .Button {
+    width: 15%;
+    height: 40px;
+    margin-left: 15px;
+    display: inline-block;
+    background-color: #44DBC0;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    -webkit-transition: background-color 0.5s;
+
+}
+
+.Result .Button:hover {
+    background-color: rgb(56, 176, 154);
+}

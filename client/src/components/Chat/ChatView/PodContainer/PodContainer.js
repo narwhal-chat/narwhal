@@ -11,7 +11,7 @@ class PodContainer extends Component {
     return (
       <div className={styles.PodContainer}>
         <img className={styles.Logo} src={narwhalLogo} alt="Discover"/>
-        <div className={styles.Discover}>DISCOVER</div>
+        <div className={styles.DiscoverTitle}>DISCOVER</div>
         <div className={styles.DiscoverSeparator}></div>
         <Pods />
         <AddPod />

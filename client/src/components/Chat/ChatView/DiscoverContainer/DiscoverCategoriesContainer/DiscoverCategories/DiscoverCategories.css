@@ -1,0 +1,12 @@
+.Categories {
+  width: 76%;
+  color: #FFFFFF;
+}
+
+.Categories .Header {
+  margin: 14px 0 10px 0;
+  color: #FFFFFF;
+  font-size: 24px;
+  letter-spacing: .5px;
+  font-weight: 600;
+}

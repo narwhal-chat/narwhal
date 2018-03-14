@@ -1,0 +1,44 @@
+.Message {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  justify-content: space-evenly;
+  margin: 20px 30px 100px 30px;
+}
+
+.Message .AvatarContainer {
+}
+
+.Message .Avatar {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+}
+
+.Message .MessageContent {
+  padding-left: 16px;
+  padding-right: 10px;
+}
+
+.Message .Username {
+  display: inline;
+  padding-right: 40px;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #000000;
+}
+
+.Message .Time {
+  display: inline;
+  font-size: 0.9em;
+  font-weight: 300;
+  color: #525252;
+}
+
+.Message .MessageText {
+  font-size: 0.9em;
+  color: #000000;
+}

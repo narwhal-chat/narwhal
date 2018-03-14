@@ -1,0 +1,30 @@
+.DiscoverSearch {
+  width: 100%;
+}
+
+.DiscoverSearch .SearchBar {
+  margin-left: 30px;
+  margin-top: 15px;
+  width: 35%;
+  height: 50px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.DiscoverSearch .Button {
+    width: 15%;
+    height: 50px;
+    margin-left: 15px;
+    display: inline-block;
+    background-color: #44DBC0;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    -webkit-transition: background-color 0.5s;
+}
+
+.DiscoverSearch .Button:hover {
+    background-color: rgb(56, 176, 154);
+}
