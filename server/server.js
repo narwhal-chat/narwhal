@@ -4,23 +4,26 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const app = express();
-const axios = require('axios')
+const axios = require('axios');
  
-
 const PORT = process.env.PORT || 5000;
 
-// Body Parser Middleware
+const pods = require('./routes/pods');
+
+// body-parser middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
-
-// Set Static Path
+// Set static path
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
 } else {
     app.use(express.static(__dirname + '/../client/build'));
 }
 
+/// ROUTES ///
+
+// AUTH //
 app.post('/register', (req, res, next) => {
     axios.post('http://localhost:3033/register', req.body)
     .then(user => {
@@ -48,6 +51,9 @@ app.post('/login', (req, res, next) => {
         console.log('Error registering', err)
     });
 })
+
+// PODS //
+app.use('/pods', pods);
 
 // Listening to port
 app.listen(PORT);
