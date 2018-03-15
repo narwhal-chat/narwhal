@@ -21,7 +21,8 @@ class Login extends Component {
 				name: 'USERNAME',
 				value: '',
 				validation: {
-					required: true,
+					minLength: 6,
+					maxLength: 28
 				},
 				valid: false,
 				touched: false,
@@ -34,23 +35,26 @@ class Login extends Component {
 				name: 'PASSWORD',
 				value: '',
 				validation: {
-					required: true,
 					minLength: 6,
 				},
 				valid: false,
 				touched: false,
 			},
 		},
-		isSignup: true,
+		isValid: true
 	};
 
 	submitHandler = event => {
 		event.preventDefault();
+		if (!this.state.controls.username.valid || !this.state.controls.password.valid) {
+			this.setState({ isValid: false });
+		}
 		this.props.onLogin(
 			this.state.controls.password.value,
 			this.state.controls.username.value,
 			this.state.isSignup
 		);
+
 	};
 
 	//updating the form fields for each input form.
@@ -65,12 +69,6 @@ class Login extends Component {
 			},
 		};
 		this.setState({ controls: updatedControl });
-	};
-
-	switchAuthModeHandler = () => {
-		this.setState(prevState => {
-			return { isSignup: !prevState.isSignup };
-		});
 	};
 
 	//Making sure that the form has valid rules for username, password and email
@@ -131,42 +129,50 @@ class Login extends Component {
 			</div>
 		));
 
+
+		//Checks to see if we get an error message back from the server.
 		let errorMessage = null;
 
 		if (this.props.error) {
-			errorMessage = <p>{this.props.error.message}</p>;
+			errorMessage = <p className={styles.ErrorMessage}>Username or Password does not match</p>;
 		}
 
+		let invalidMessage = null;
+		if (!this.state.isValid && this.props.error === null) {
+			invalidMessage = <p className={styles.ErrorMessage}>Username does not exist</p>;
+		}
+
+		//If we become authenticated, it will redirect us to the main page.
 		let authRedirect = null;
 		if (this.props.isAuthenticated) {
 			authRedirect = <Redirect to="/"/>
 		}
 
-		return(
-			<React.Fragment>
+		return <React.Fragment>
 				<div className={styles.Login}>
 					{authRedirect}
-					{errorMessage}
 					<form className={styles.LoginForm} onSubmit={this.submitHandler}>
 						<p className={styles.AuthHeader}>SIGN IN</p>
+						{errorMessage}
+						{invalidMessage}
 						{form}
 						<Button btnType="Success">Continue</Button>
 						<p className={styles.AuthInfo}>
-							Need an account? <NavLink className={styles.AuthLink} to="/register">Register</NavLink>
+							Need an account? <NavLink className={styles.AuthLink} to="/register">
+								Register
+							</NavLink>
 						</p>
 					</form>
 				</div>
 				<div className={styles.Logo}>
 					<LogoAuth />
 				</div>
-			</React.Fragment>
-		)
+			</React.Fragment>;
 	}
 }
 
 const mapStateToProps = state => {
-	console.log('state in login', state)
-	debugger;
+	console.log(state.auth);
 	return {
 		error: state.auth.error,
 		isAuthenticated: state.auth.token !== null,

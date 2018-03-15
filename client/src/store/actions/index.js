@@ -4,3 +4,7 @@ export {
     setAuthRedirectPath,
     logout
 } from './auth'
+
+export {
+    editProfile
+} from './user'
