@@ -45,7 +45,7 @@ export const setAuthRedirectPath = (path) => {
     }
 }
 
-export const auth = (email, password, username, isSignup) => {
+export const auth = (email, password, username) => {
     return dispatch => {
         dispatch(authStart());
         let currentDate = new Date(Date.now()).toLocaleString();;
@@ -68,8 +68,8 @@ export const auth = (email, password, username, isSignup) => {
                 // dispatch(checkAuthTimeout(response.data.expiresIn))
             })
             .catch(err => {
-                console.log(err);
-                dispatch(authFail(err.response.data.error));
+                console.log('ERROR REGISTERING', err.response.data);
+                dispatch(authFail(err.response.data));
             })
 
     }
@@ -89,8 +89,7 @@ export const login = (password, username) => {
             localStorage.setItem('userId', response.data.user);
             dispatch(authSuccess(response.data.token, response.data.user));
         })
-        .catch(err => {
-            console.log('error in login', err)
+        .catch((err, res) => {
             dispatch(authFail(err.response.data.error))
         })
     }

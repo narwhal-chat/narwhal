@@ -25,35 +25,38 @@ if (process.env.NODE_ENV === 'production') {
 app.post('/register', (req, res, next) => {
     axios.post('http://localhost:3033/register', req.body)
     .then(user => {
-        console.log('successfully posted in register', user)
         res.status(200).json({
             token: user.data.token,
             user: user.data.user
         })
     })
     .catch(err => {
-        console.log('Error registering', err)
+        res.status(404).json({
+            error: err.response.data.error,
+            message: err.response.data.message
+        })
     });
 })
 
 app.post('/login', (req, res, next) => {
     axios.post('http://localhost:3033/login', req.body)
     .then(user => {
-        console.log('successfully posted in login', user)
         res.status(200).json({
             token: user.data.token,
             user: user.data.user
         })
     })
     .catch(err => {
-        console.log('Error registering', err)
+        console.log('Error logging in', err)
+        res.status(404).json({
+            error: err.response.data.error,
+            message: err.response.data.message
+        })
     });
 })
 
 app.use((req, res, next) => {
-    console.log('request body', req.body)
     let token = req.body.token || req.query.token || req.headers['x-access-token'];
-    console.log(token);
     if (token) {
         jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
             if (err) {
@@ -75,7 +78,7 @@ app.use((req, res, next) => {
 app.post('/editProfile', (req, res, next) => {
     axios.post('http://localhost:3033/editProfile', req.body)
     .then(user => {
-        console.log('successfully edited profile', user);
+
         res.status(200).json({
             token: user.data.token,
             user: user.data.user

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import styles from './ProfileInfo.css';
 import * as actions from '../../../../../store/actions/index';
 
@@ -29,8 +30,15 @@ class ProfileInfo extends Component {
   }
 
   render() {
+  let authRedirect = null;
+
+  if (!this.props.isAuthenticated) {
+    authRedirect = <Redirect to="/register" />;
+  }
+
   return(
           <form className={styles.Profile}>
+          {authRedirect}
             <div className={styles.ProfileInfo}>
               <div className={styles.ProfileText}>Username</div>
               <input type="text" name="username" value={this.state.username} onChange={(e) => this.inputChangeHandler(e)} className={styles.ProfileInput} />
@@ -61,7 +69,8 @@ const mapStateToProps = state => {
   return {
     error: state.auth.error,
     token: state.auth.token,
-    user: state.auth.userId
+    user: state.auth.userId,
+    isAuthenticated: state.auth.token !== null
   }
 }
 
