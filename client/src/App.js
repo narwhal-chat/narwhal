@@ -16,7 +16,7 @@ class App extends Component {
           <Route path="/register" component={Auth} />
           <Route path="/login"  component={Login} />
           <Route path="/" exact component={ChatView} />
-          <Route path="/profile" component={ProfileContainer} />
+          <Route path="/profile" component={ProfileContainer}/>
         </Switch>
       </React.Fragment>
     );

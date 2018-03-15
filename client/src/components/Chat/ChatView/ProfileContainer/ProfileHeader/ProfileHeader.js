@@ -1,17 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './ProfileHeader.css';
+import { connect } from 'react-redux';
+import * as actionTypes from '../../../../../store/actions/index';
+import  { BrowserRouter as Router, Link } from 'react-router-dom';
 
-const ProfileHeader = () => {
-	return(
-    <div className={styles.ProfileHeader}>
-      <div className={styles.ProfileTitle}>
-        EDIT PROFILE
-      </div>
-      <div className={styles.Logout}>
-        LOG OUT
-      </div>
-    </div>
-  )
+class ProfileHeader extends Component {
+
+  logout = (e) => {
+    e.preventDefault();
+    this.props.logout();
+  }
+
+  render() {
+    return(
+      <Router>
+        <div className={styles.ProfileHeader}>
+          <div className={styles.ProfileTitle}>
+            EDIT PROFILE
+          </div>
+          <Link to='/login' onClick={this.logout} className={styles.Logout}>
+            LOG OUT
+          </Link>
+        </div>
+      </Router>
+    )
+  }
 };
 
-export default ProfileHeader;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    error: state.auth.error,
+    token: state.auth.token,
+    user: state.auth.userId,
+    isAuthenticated: state.auth.token !== null
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return{
+    logout: () => dispatch(actionTypes.logout())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader);

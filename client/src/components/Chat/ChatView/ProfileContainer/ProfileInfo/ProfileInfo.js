@@ -33,7 +33,7 @@ class ProfileInfo extends Component {
   let authRedirect = null;
 
   if (!this.props.isAuthenticated) {
-    authRedirect = <Redirect to="/register" />;
+    authRedirect = <Redirect to="/login" />;
   }
 
   return(
