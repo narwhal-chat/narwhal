@@ -5,6 +5,15 @@ import plusSmall from '../../../../../assets/images/plus_small.svg';
 import Topic from './Topic/Topic';
 
 const topics = (props) => {
+  let topics = props.topics.map((topic) => {
+    return (
+      <Topic
+        key={topic.id}
+        topic={topic}
+      />
+    );
+  });
+
   return (
     <div className={styles.Topics}>
       <div>
@@ -14,10 +23,7 @@ const topics = (props) => {
         </div>
         <div className={styles.Clearfix}></div>
       </div>
-      <Topic />
-      <Topic />
-      <Topic />
-      <Topic />
+      {topics}
     </div>
   );
 };

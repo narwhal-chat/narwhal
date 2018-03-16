@@ -39,7 +39,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // Initialize the Saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(persistedReducer, composeEnhancers(
+const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk, sagaMiddleware)
 ));
 
@@ -54,11 +54,11 @@ sagaMiddleware.run(watchChat);
 
 ReactDOM.render(
 	<Provider store={store}>
-		<PersistGate loading={null} persistor={persistor}>
+		{/* <PersistGate loading={null} persistor={persistor}> */}
             <BrowserRouter>
                 <App />
             </BrowserRouter>
-		</PersistGate>
+		{/* </PersistGate> */}
 	</Provider>,
 	document.getElementById('root')
 );

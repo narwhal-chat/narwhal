@@ -9,7 +9,7 @@ import * as actions from '../../../../store/actions/index';
 
 class PodContainer extends Component {
   componentDidMount() {
-    this.props.onFetchPods(1);
+    this.props.onFetchPods();
   }
   
   render() {

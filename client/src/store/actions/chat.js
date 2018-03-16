@@ -20,3 +20,24 @@ export const fetchPodsFail = (error) => {
       error: error
   };
 };
+
+export const fetchTopics = (podId) => {
+  return {
+      type: actionTypes.FETCH_TOPICS,
+      podId: podId
+  };
+};
+
+export const fetchTopicsSuccess = (topics) => {
+  return {
+      type: actionTypes.FETCH_TOPICS_SUCCESS,
+      topics: topics
+  };
+};
+
+export const fetchTopicsFail = (error) => {
+  return {
+      type: actionTypes.FETCH_TOPICS_FAIL,
+      error: error
+  };
+};
