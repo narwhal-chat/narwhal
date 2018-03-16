@@ -58,7 +58,7 @@ app.post('/login', (req, res, next) => {
     });
 })
 
-// Enable authentication middleware
+// Enable authentication middleware 
 app.use((req, res, next) => {
     let token = req.body.token || req.query.token || req.headers['x-access-token'];
     if (token) {
@@ -79,11 +79,13 @@ app.use((req, res, next) => {
     }
 })
 
+//PUT ALL PROTECTED ROUTES BELOW HERE
+
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
     axios.post('http://localhost:3033/editProfile', req.body)
     .then(user => {
-
+        console.log('succesfully edited the profile');
         res.status(200).json({
             token: user.data.token,
             user: user.data.user
