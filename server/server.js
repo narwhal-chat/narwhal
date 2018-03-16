@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Import routes set up by Express Router
+// Import routes handled by Express Router
 const pods = require('./routes/pods');
 
 // Set static path
@@ -58,26 +58,26 @@ app.post('/login', (req, res, next) => {
     });
 })
 
-// Enable authentication middleware
-app.use((req, res, next) => {
-    let token = req.body.token || req.query.token || req.headers['x-access-token'];
-    if (token) {
-        jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
-            if (err) {
-                res.status(403).json({
-                    message:"Wrong Token"
-                });
-            } else {
-                req.decoded=decod;
-                next();
-            }
-        });
-    } else {
-        res.status(403).json({
-            message:"No Token"
-        });
-    }
-})
+// // Enable authentication middleware
+// app.use((req, res, next) => {
+//     let token = req.body.token || req.query.token || req.headers['x-access-token'];
+//     if (token) {
+//         jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
+//             if (err) {
+//                 res.status(403).json({
+//                     message:"Wrong Token"
+//                 });
+//             } else {
+//                 req.decoded=decod;
+//                 next();
+//             }
+//         });
+//     } else {
+//         res.status(403).json({
+//             message:"No Token"
+//         });
+//     }
+// })
 
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
@@ -97,5 +97,5 @@ app.post('/editProfile', (req, res, next) => {
 // Pods route
 app.use('/pods', pods);
 
-// Start app
+// Start server
 app.listen(PORT);

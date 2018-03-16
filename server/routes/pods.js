@@ -3,26 +3,27 @@ const router = express.Router();
 const axios = require('axios');
 
 router.get('/:userid', async (req, res, next) => {
-  console.log(req.params);
+  console.log('we in the get', req.params);
   try {
     const response = await axios.get('http://localhost:3334/pods/' + req.params.userid);
-    console.log('response', response.data);
+    console.log('response data', response.data);
+    return res.json(response.data);
   } catch (e) {
     console.log(e);
     res.send(e);
   }
 });
 
-router.post('/create', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const response = await axios.post('http://localhost:3334/pods',
       {
-        referenceName: 'dream-team4',
+        referenceName: 'dream-teamz1',
         displayName: 'Dream Team',
         description: 'This is a test description',
         avatar: 'fake avatar',
         podCategoryId: 2,
-        userId: 555
+        userId: 1
       });
     console.log(response.data);
     res.send(response.data);
