@@ -7,6 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 // testing redux-persist
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -14,6 +15,9 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 
 import authReducer from './store/reducers/auth'
 import userReducer from './store/reducers/user'
+import chatReducer from './store/reducers/chat';
+
+import { watchChat } from './store/sagas/index';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
@@ -25,24 +29,28 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    user: userReducer
+    user: userReducer,
+    chat: chatReducer
 });
 
 // testing redux-persist
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+// Initialize the Saga middleware
+const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(persistedReducer, composeEnhancers(
-    applyMiddleware(thunk)
+    applyMiddleware(thunk, sagaMiddleware)
 ));
 
 const persistor = persistStore(store);
+
+sagaMiddleware.run(watchChat);
 
 // testing redux-persist
 // const store = createStore(rootReducer, composeEnhancers(
 //     applyMiddleware(thunk)
 // ));
-
-
 
 ReactDOM.render(
 	<Provider store={store}>
