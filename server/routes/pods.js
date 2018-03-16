@@ -15,7 +15,7 @@ router.get('/:userid', async (req, res, next) => {
 
 router.post('/create', async (req, res, next) => {
   try {
-    const response = await axios.post('http://localhost:3334/pods', 
+    const response = await axios.post('http://localhost:3334/pods',
       {
         referenceName: 'dream-team4',
         displayName: 'Dream Team',
@@ -29,6 +29,33 @@ router.post('/create', async (req, res, next) => {
   } catch (e) {
       console.log(e);
       res.send(e);
+  }
+});
+
+router.get('/:podid/topics', async (req, res, next) => {
+  console.log(req.params);
+  try {
+    const response = await axios.get('http://localhost:3334/pods/' + req.params.podid + '/topics');
+    console.log('response', response.data);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(404);
+  }
+});
+
+router.post('/:podid/topics', async (req, res, next) => {
+  console.log(req.params);
+  try {
+    const response = await axios.post('http://localhost:3334/pods/' + req.params.podid + '/topics',
+      {
+        name: 'database',
+        podId: req.params.podid,
+        userId: 1
+      });
+    console.log('response', response.data);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(404);
   }
 });
 
