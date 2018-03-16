@@ -3,7 +3,8 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
 	token: null,
 	userId: null,
-	error: null
+  error: null,
+  message: null
 };
 
 const updateObject = (oldObject, updatedProperties) => {
@@ -17,7 +18,8 @@ const editProfileSuccess = (state, action) => {
 	return updateObject(state, {
 		token: action.idToken,
 		userId: action.userId,
-		error: null
+    error: null,
+    message: null
 	});
 };
 

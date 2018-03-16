@@ -33,7 +33,7 @@ app.post('/register', (req, res, next) => {
         })
     })
     .catch(err => {
-        res.status(404).json({
+        return res.status(404).json({
             error: err.response.data.error,
             message: err.response.data.message
         })
@@ -51,7 +51,7 @@ app.post('/login', (req, res, next) => {
     })
     .catch(err => {
         console.log('Error logging in', err)
-        res.status(404).json({
+        return res.status(404).json({
             error: err.response.data.error,
             message: err.response.data.message
         })
@@ -90,7 +90,11 @@ app.post('/editProfile', (req, res, next) => {
         })
     })
     .catch(err => {
-        console.log('Error editing profile', err);
+        console.log('ERROR IN EDIT PROFILE', err.response.data)
+        return res.status(404).json({
+            error: err.response.data.error,
+            message: err.response.data.message
+        })
     })
 })
 

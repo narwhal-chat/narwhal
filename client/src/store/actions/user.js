@@ -33,7 +33,7 @@ export const editProfile = (username, newUsername, email, password, token) => {
         dispatch(editProfileSuccess(response.data.token, response.data.user));
       })
       .catch(err => {
-        dispatch(editProfileFail(err.data.message))
+        dispatch(editProfileFail(err.response.data))
       })
 
 
