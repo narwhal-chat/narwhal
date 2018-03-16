@@ -1,0 +1,20 @@
+.DiscoverCategoriesContainer {
+  width: 12%;
+  height: 100vh;
+  background-color: #505AB2;
+  display: flex;
+  flex-direction: column;
+}
+
+.DiscoverCategoriesContainer .Content {
+  margin-left: 40px;
+}
+
+.DiscoverCategoriesContainer .Header {
+  margin: 14px 0 10px 0;
+  color: #FFFFFF;
+  font-size: 24px;
+  letter-spacing: .5px;
+  font-weight: 600;
+
+}

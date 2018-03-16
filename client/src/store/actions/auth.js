@@ -25,11 +25,17 @@ export const authFail = (error) => {
 
 // For logging out
 
-// export const logout = () => {
-//     return {
-//         type: actionTypes.AUTH_LOGOUT
-//     }
-// }
+export const authLogout = () => {
+    return { type: actionTypes.AUTH_LOGOUT };
+}
+
+export const logout = () => {
+    return dispatch => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        dispatch(authLogout())
+    }
+}
 // export const checkAuthTimeout = (expirationTime) => {
 //     return dispatch => {
 //         setTimeout(() => {
@@ -38,7 +44,14 @@ export const authFail = (error) => {
 //     }
 // }
 
-export const auth = (email, password, username, isSignup) => {
+export const setAuthRedirectPath = (path) => {
+    return {
+        type: actionTypes.SET_AUTH_REDIRECT_PATH,
+        path: path
+    }
+}
+
+export const auth = (email, password, username) => {
     return dispatch => {
         dispatch(authStart());
         let currentDate = new Date(Date.now()).toLocaleString();;
@@ -50,24 +63,19 @@ export const auth = (email, password, username, isSignup) => {
             create_date: currentDate,
             returnSecureToken: true
         };
-        console.log(authData);
-        // let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyD6IdRW9yIKJ14lreX9fk_uv1-kQJstQbE'
-        // if (!isSignup) {
-        //     url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyD6IdRW9yIKJ14lreX9fk_uv1-kQJstQbE';
-        // }
+
         axios.post('/register', authData)
             .then(response => {
-                console.log('this is the response', response);
-                const expirationDate = new Date(new Date().getTime() + 86400);
+                // const expirationDate = new Date(new Date().getTime() + 86400);
                 localStorage.setItem('token', response.data.token);
-                localStorage.setItem('expirationDate', expirationDate);
+                // localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userId', response.data.user);
                 dispatch(authSuccess(response.data.token, response.data.user));
                 // dispatch(checkAuthTimeout(response.data.expiresIn))
             })
             .catch(err => {
-                console.log(err);
-                dispatch(authFail(err.response.data.error));
+                console.log('ERROR REGISTERING', err.response.data);
+                dispatch(authFail(err.response.data));
             })
 
     }
@@ -81,15 +89,11 @@ export const login = (password, username) => {
             password: password
         })
         .then(response => {
-            const expirationDate = new Date(new Date().getTime() + 86400)
             localStorage.setItem('token', response.data.token);
-            localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('userId', response.data.user);
             dispatch(authSuccess(response.data.token, response.data.user));
         })
-        .catch(err => {
-            console.log('error in login', err)
-            debugger;
+        .catch((err, res) => {
             dispatch(authFail(err.response.data.error))
         })
     }

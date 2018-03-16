@@ -10,7 +10,8 @@ const input = (props) => {
         className={styles.AuthInputForm}
         {...props.elementConfig}
         value={props.value}
-        onChange={props.changed} />;
+        onChange={props.changed}
+        required/>;
 
  
     return (
