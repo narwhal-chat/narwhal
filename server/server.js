@@ -33,7 +33,7 @@ app.post('/register', (req, res, next) => {
         })
     })
     .catch(err => {
-        res.status(404).json({
+        return res.status(404).json({
             error: err.response.data.error,
             message: err.response.data.message
         })
@@ -51,14 +51,14 @@ app.post('/login', (req, res, next) => {
     })
     .catch(err => {
         console.log('Error logging in', err)
-        res.status(404).json({
+        return res.status(404).json({
             error: err.response.data.error,
             message: err.response.data.message
         })
     });
 })
 
-// Enable authentication middleware
+// Enable authentication middleware 
 app.use((req, res, next) => {
     let token = req.body.token || req.query.token || req.headers['x-access-token'];
     if (token) {
@@ -79,18 +79,24 @@ app.use((req, res, next) => {
     }
 })
 
+//PUT ALL PROTECTED ROUTES BELOW HERE
+
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
     axios.post('http://localhost:3033/editProfile', req.body)
     .then(user => {
-
+        console.log('succesfully edited the profile');
         res.status(200).json({
             token: user.data.token,
             user: user.data.user
         })
     })
     .catch(err => {
-        console.log('Error editing profile', err);
+        console.log('ERROR IN EDIT PROFILE', err.response.data)
+        return res.status(404).json({
+            error: err.response.data.error,
+            message: err.response.data.message
+        })
     })
 })
 
