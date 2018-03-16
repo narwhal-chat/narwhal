@@ -97,4 +97,5 @@ app.post('/editProfile', (req, res, next) => {
 // Pods route
 app.use('/pods', pods);
 
+// Start app
 app.listen(PORT);
