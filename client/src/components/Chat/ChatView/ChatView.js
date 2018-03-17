@@ -13,12 +13,12 @@ class ChatView extends Component {
   render() {
     return (
       <div className={styles.ChatView}>
-        {/* <PodContainer />
-        <DiscoverCategoriesContainer /> */}
+        <PodContainer /> 
+        <DiscoverCategoriesContainer />
         {/* <TopicContainer /> */}
         {/* <MessageContainer /> */}
-        {/* <DiscoverContainer /> */}
-        <ProfileContainer />
+        <DiscoverContainer />
+        {/* <ProfileContainer /> */}
         {/* <EditPodContainer /> */}
       </div>
     );
