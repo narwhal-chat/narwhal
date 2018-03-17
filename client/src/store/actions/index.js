@@ -2,9 +2,6 @@ export {
     auth,
     login,
     setAuthRedirectPath,
-    logout
-} from './auth'
-
-export {
+    logout,
     editProfile
-} from './user'
+} from './auth'
