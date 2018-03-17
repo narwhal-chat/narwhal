@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import './App.css';
 import Auth from './components/Auth/Signup/Signup';
 import Login from './components/Auth/Login/Login'
-import ProfileContainer from './components/Chat/ChatView/ProfileContainer/ProfileContainer';
 import ChatView from './components/Chat/ChatView/ChatView';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
@@ -43,4 +43,4 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);

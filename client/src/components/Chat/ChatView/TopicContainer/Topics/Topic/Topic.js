@@ -4,7 +4,7 @@ import styles from './Topic.css';
 
 const topic = (props) => {
   return (
-    <div className={styles.Topic}># general</div>
+    <div className={styles.Topic}># {props.topic.name}</div>
   );
 };
 
