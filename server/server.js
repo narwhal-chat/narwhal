@@ -8,13 +8,18 @@ const axios = require('axios');
 const jwt = require('jsonwebtoken');
  
 const PORT = process.env.PORT || 5000;
-
+const USER_MICROSERVICE_URL = process.env.USER_MICROSERVICE_URL || 'http://localhost:3033'
 // body-parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Import routes set up by Express Router
 const pods = require('./routes/pods');
+const routes = {
+    'register': USER_MICROSERVICE_URL + '/register',
+    'login': USER_MICROSERVICE_URL + '/login',
+    'editProfile': USER_MICROSERVICE_URL + '/editProfile'
+}
 
 // Set static path
 if (process.env.NODE_ENV === 'production') {
@@ -24,8 +29,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Register account route
+
+
 app.post('/register', (req, res, next) => {
-    axios.post('http://localhost:3033/register', req.body)
+    axios.post(routes.register, req.body)
     .then(user => {
         res.status(200).json({
             token: user.data.token,
@@ -42,7 +49,7 @@ app.post('/register', (req, res, next) => {
 
 // Login route
 app.post('/login', (req, res, next) => {
-    axios.post('http://localhost:3033/login', req.body)
+    axios.post(routes.login, req.body)
     .then(user => {
         res.status(200).json({
             token: user.data.token,
@@ -83,7 +90,7 @@ app.use((req, res, next) => {
 
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
-    axios.post('http://localhost:3033/editProfile', req.body)
+    axios.post(routes.editProfile, req.body)
     .then(user => {
         console.log('succesfully edited the profile');
         res.status(200).json({
