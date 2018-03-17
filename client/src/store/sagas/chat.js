@@ -10,7 +10,16 @@ export function* fetchPods(action) {
   } catch (e) {
     yield put(actions.fetchPodsFail());
   }
-}
+};
+
+export function* createPod(action) {
+  try {
+    yield axios.post('/pods');
+    yield put(actions.fetchPods(action.userId));
+  } catch (e) {
+    yield put(actions.createPodFail());
+  }
+};
 
 export function* fetchTopics(action) {
   try {
@@ -19,4 +28,13 @@ export function* fetchTopics(action) {
   } catch (e) {
     yield put(actions.fetchTopicsFail());
   }
-}
+};
+
+export function* createTopic(action) {
+  try {
+    yield axios.post('/pods/' + action.podId + '/topics');
+    yield put(actions.fetchTopics(action.podId));
+  } catch (e) {
+    yield put(actions.createTopicFail());
+  }
+};

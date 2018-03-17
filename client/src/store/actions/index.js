@@ -13,7 +13,11 @@ export {
   fetchPods,
   fetchPodsSuccess,
   fetchPodsFail,
+  createPod,
+  createPodFail,
   fetchTopics,
   fetchTopicsSuccess,
-  fetchTopicsFail
+  fetchTopicsFail,
+  createTopic,
+  createTopicFail
 } from './chat';

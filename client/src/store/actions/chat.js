@@ -21,6 +21,20 @@ export const fetchPodsFail = (error) => {
   };
 };
 
+export const createPod = (userId) => {
+  return {
+      type: actionTypes.CREATE_POD,
+      userId: userId
+  };
+};
+
+export const createPodFail = (error) => {
+  return {
+      type: actionTypes.CREATE_POD_FAIL,
+      error: error
+  };
+};
+
 export const fetchTopics = (podId) => {
   return {
       type: actionTypes.FETCH_TOPICS,
@@ -38,6 +52,21 @@ export const fetchTopicsSuccess = (topics) => {
 export const fetchTopicsFail = (error) => {
   return {
       type: actionTypes.FETCH_TOPICS_FAIL,
+      error: error
+  };
+};
+
+export const createTopic = (podId, userId) => {
+  return {
+      type: actionTypes.CREATE_TOPIC,
+      podId: podId,
+      userId: userId
+  };
+};
+
+export const createTopicFail = (error) => {
+  return {
+      type: actionTypes.CREATE_TOPIC_FAIL,
       error: error
   };
 };

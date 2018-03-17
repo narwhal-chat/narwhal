@@ -20,6 +20,7 @@ class TopicContainer extends Component {
           <User />
           <Topics
             topics={this.props.topics}
+            clickedAddTopic={this.props.onCreateTopic}
           />
         </div>
       </div>
@@ -35,7 +36,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-      onFetchTopics: () => dispatch(actions.fetchTopics(1))
+      onFetchTopics: () => dispatch(actions.fetchTopics(1)),
+      onCreateTopic: () => dispatch(actions.createTopic(1, 1))
   }
 }
 

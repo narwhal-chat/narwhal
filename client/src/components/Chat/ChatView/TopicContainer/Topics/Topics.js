@@ -19,7 +19,12 @@ const topics = (props) => {
       <div>
         <div className={styles.Title}>TOPICS</div>
         <div className={styles.AddTopicContainer}>
-          <img className={styles.AddTopic} src={plusSmall} alt="Create Topic" />
+          <img
+            className={styles.AddTopic}
+            src={plusSmall}
+            alt="Create Topic"
+            onClick={props.clickedAddTopic}
+          />
         </div>
         <div className={styles.Clearfix}></div>
       </div>
