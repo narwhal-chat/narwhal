@@ -13,15 +13,13 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 
-import authReducer from './store/reducers/auth'
-import userReducer from './store/reducers/user'
+import authReducer from './store/reducers/auth';
 import chatReducer from './store/reducers/chat';
 
 import { watchChat } from './store/sagas/index';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
-// testing redux-persist
 const persistConfig = {
     key: 'root',
     storage: storage
@@ -29,11 +27,9 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    user: userReducer,
     chat: chatReducer
 });
 
-// testing redux-persist
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // Initialize the Saga middleware
