@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === 'production') {
 // Register account route
 
 
-app.post(routes.register, (req, res, next) => {
+app.post('/register', (req, res, next) => {
     axios.post(routes.register, req.body)
     .then(user => {
         res.status(200).json({
@@ -48,7 +48,7 @@ app.post(routes.register, (req, res, next) => {
 })
 
 // Login route
-app.post(routes.login, (req, res, next) => {
+app.post('/login', (req, res, next) => {
     axios.post(routes.login, req.body)
     .then(user => {
         res.status(200).json({
@@ -89,7 +89,7 @@ app.post(routes.login, (req, res, next) => {
 //PUT ALL PROTECTED ROUTES BELOW HERE
 
 // Edit profile route
-app.post(routes.editProfile, (req, res, next) => {
+app.post('/editProfile', (req, res, next) => {
     axios.post(routes.editProfile, req.body)
     .then(user => {
         console.log('succesfully edited the profile');
