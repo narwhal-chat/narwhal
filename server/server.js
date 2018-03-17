@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === 'production') {
 
 
 app.post('/register', (req, res, next) => {
-    axios.post(routes.register, req.body)
+    axios.post(routes.register, req)
     .then(user => {
         res.status(200).json({
             token: user.data.token,
