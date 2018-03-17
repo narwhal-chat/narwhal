@@ -18,8 +18,8 @@ class ChatView extends Component {
         {/* <TopicContainer /> */}
         {/* <MessageContainer /> */}
         {/* <DiscoverContainer /> */}
-        {/* <ProfileContainer /> */}
-        <EditPodContainer />
+        <ProfileContainer />
+        {/* <EditPodContainer /> */}
       </div>
     );
   };
