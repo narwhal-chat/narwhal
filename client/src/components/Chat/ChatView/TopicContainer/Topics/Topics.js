@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './Topics.css';
-import plusSmall from '../../../../../assets/images/plus_small.svg';
+import PlusIcon from 'react-icons/lib/io/android-add';
 import Topic from './Topic/Topic';
 
 const topics = (props) => {
@@ -19,12 +19,16 @@ const topics = (props) => {
       <div>
         <div className={styles.Title}>TOPICS</div>
         <div className={styles.AddTopicContainer}>
-          <img
+          <PlusIcon
+            className={styles.AddTopicIcon}
+            onClick={props.clickedAddTopic}
+          />
+          {/* <img
             className={styles.AddTopic}
             src={plusSmall}
             alt="Create Topic"
             onClick={props.clickedAddTopic}
-          />
+          /> */}
         </div>
         <div className={styles.Clearfix}></div>
       </div>
