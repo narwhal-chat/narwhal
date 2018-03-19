@@ -1,9 +1,14 @@
 .ChatModal {
-  width: 100%;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100vh;
 }
 
 .Overlay {
   position: fixed;
-  background-color: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
 }

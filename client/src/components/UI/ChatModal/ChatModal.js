@@ -11,7 +11,7 @@ const chatModal = (props) => {
     <div>
       <Modal
         className={styles.ChatModal}
-        // overlayClassName={styles.Overlay}
+        overlayClassName={styles.Overlay}
         isOpen={props.showModal}>
         <ChatForm />
       </Modal>

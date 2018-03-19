@@ -1,8 +1,11 @@
 .ChatForm {
-  display: grid;
+  display: subgrid;
   grid-template-columns: 1fr;
   grid-template-rows: 2;
-  width: 100%;
-  height: 100%;
+  align-self: center;
+  justify-self: center;
+  width: 440px;
+  height: 480px;
+  border-radius: 3px;
   background-color: #FFFFFF;
 }

@@ -31,9 +31,9 @@ class ChatView extends Component {
         {/* <DiscoverCategoriesContainer /> */}
         <TopicContainer />
         <MessageContainer />
-        <ChatModal
+        {/* <ChatModal
           showModal={this.state.showModal}
-        />
+        /> */}
         {/* <DiscoverContainer /> */}
         {/* <ProfileContainer /> */}
         {/* <EditPodContainer /> */}
