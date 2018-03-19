@@ -15,12 +15,12 @@ class App extends Component {
   }
   render() {
     let routes = (
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Auth} />
-          <Redirect to="/login" />
-        </Switch>
-      )
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Auth} />
+        <Redirect to="/login" />
+      </Switch>
+    )
 
     if (this.props.isAuthenticated) {
         routes = (        
