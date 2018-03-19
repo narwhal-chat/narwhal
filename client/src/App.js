@@ -13,8 +13,7 @@ class App extends Component {
     // let routes = (
     //   <Switch>
     //     <Route path="/login" component={Login} />
-    //     <Route path="/Register" component={Auth} />
-    //     <Redirect to="/login" />
+    //     <Route path="/register" component={Auth} />
     //   </Switch>
     // )
 
@@ -22,13 +21,13 @@ class App extends Component {
     //     routes = (        
     //     <Switch>
 		// 			<Route path="/" exact component={ChatView} />
-    //       <Redirect to="/" />
     //     </Switch>
     //     );
     // }
 
     return(
       <React.Fragment>
+        {/* {routes} */}
         <Switch>
           <Route path="/register" component={Auth} />
           <Route path="/login" component={Login} />
