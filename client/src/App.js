@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -7,26 +8,25 @@ import Login from './components/Auth/Login/Login'
 import ChatView from './components/Chat/ChatView/ChatView';
 import * as actions from './store/actions/index';
 
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
-
 class App extends Component {
   componentDidMount() {
     this.props.authCheckState();
   }
+  
   render() {
     let routes = (
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Auth} />
-          <Redirect to="/login" />
-        </Switch>
-      )
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Auth} />
+        <Redirect to="/login" />
+      </Switch>
+    )
 
     if (this.props.isAuthenticated) {
         routes = (        
         <Switch>
-					<Route path="/" exact component={ChatView} />
-          <Redirect to="/" />
+					<Route path="/pods/@me" exact component={ChatView} />
+          <Redirect to="/pods/@me" />
         </Switch>
         );
     }
@@ -34,21 +34,10 @@ class App extends Component {
     return(
       <React.Fragment>
         {routes}
-        {/* <Switch>
-          <Route path="/register" component={Auth} />
-          <Route path="/login" component={Login} />
-          <Route path="/" exact component={ChatView} />
-        </Switch> */}
       </React.Fragment>
     )
   }
 }
-
-const mapDispatchToProps = dispatch => {
-	return {
-		authCheckState: () => dispatch(actions.authCheckState()),
-	};
-};
 
 const mapStateToProps = state => {
 	return { 
@@ -56,7 +45,12 @@ const mapStateToProps = state => {
     token: state.auth.token, 
     isAuthenticated: state.auth.token !== null 
   };
-}
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		authCheckState: () => dispatch(actions.authCheckState()),
+	};
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
-// export default App;

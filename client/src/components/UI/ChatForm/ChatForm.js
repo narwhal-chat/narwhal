@@ -1,10 +1,10 @@
 import React from 'react';
 
-import styles from './Form.css';
+import styles from './ChatForm.css';
 
 const form = (props) => {
   return (
-    <div className={styles.Form}>
+    <div className={styles.ChatForm}>
       <div>Header</div>
       <div>...</div>
     </div>
