@@ -3,7 +3,9 @@ export {
   login,
   setAuthRedirectPath,
   logout,
-  editProfile
+  editProfile,
+  authSuccess,
+  authCheckState
 } from './auth';
 
 export {

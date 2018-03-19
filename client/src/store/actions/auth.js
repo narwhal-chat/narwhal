@@ -22,6 +22,12 @@ export const authFail = (error) => {
     };
 };
 
+export const authCheckState = () => {
+    return {
+        type: actionTypes.AUTH_CHECK_STATE
+    }
+}
+
 
 // For logging out
 
