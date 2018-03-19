@@ -10,29 +10,37 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 class App extends Component {
   render() {
-    let routes = (
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/Register" component={Auth} />
-        <Redirect to="/login" />
-      </Switch>
-    )
+    // let routes = (
+    //   <Switch>
+    //     <Route path="/login" component={Login} />
+    //     <Route path="/Register" component={Auth} />
+    //     <Redirect to="/login" />
+    //   </Switch>
+    // )
 
-    if (this.props.isAuthenticated) {
-        routes = (        
-        <Switch>
-					<Route path="/" exact component={ChatView} />
-          <Redirect to="/" />
-        </Switch>
-        );
-    }
+    // if (this.props.isAuthenticated) {
+    //     routes = (        
+    //     <Switch>
+		// 			<Route path="/" exact component={ChatView} />
+    //       <Redirect to="/" />
+    //     </Switch>
+    //     );
+    // }
 
-    return (
+    return(
       <React.Fragment>
-        {routes}
+        <Switch>
+          <Route path="/register" component={Auth} />
+          <Route path="/login" component={Login} />
+          <Route path="/" exact component={ChatView} />
+        </Switch>
       </React.Fragment>
-    );
+    )
   }
+}
+
+const mapDispatchToProps = dispatch => {
+
 }
 
 const mapStateToProps = state => {
@@ -43,4 +51,5 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default App
