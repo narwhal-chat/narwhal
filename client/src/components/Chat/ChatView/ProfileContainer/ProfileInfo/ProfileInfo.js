@@ -30,15 +30,15 @@ class ProfileInfo extends Component {
   }
 
   render() {
-  let authRedirect = null;
+  // let authRedirect = null;
 
-  if (!this.props.isAuthenticated) {
-    authRedirect = <Redirect to="/login" />;
-  }
+  // if (!this.props.isAuthenticated) {
+  //   authRedirect = <Redirect to="/login" />;
+  // }
 
   return(
           <form className={styles.Profile}>
-          {authRedirect}
+          {/* {authRedirect} */}
             <div className={styles.ProfileInfo}>
               <div className={styles.ProfileText}>Username</div>
               <input type="text" name="username" value={this.state.username} onChange={(e) => this.inputChangeHandler(e)} className={styles.ProfileInput} />

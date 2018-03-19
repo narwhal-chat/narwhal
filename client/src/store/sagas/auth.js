@@ -4,7 +4,7 @@ import axios from 'axios';
 import * as actions from '../actions/index';
 
 export function* authCheckState(action) {
-	const token = yield localStorage.getItem('token');
+  const token = yield localStorage.getItem('token');
 	if (!token) {
 		yield put(actions.logout);
 	} else {

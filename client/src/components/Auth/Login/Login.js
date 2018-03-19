@@ -143,14 +143,14 @@ class Login extends Component {
 		}
 
 		//If we become authenticated, it will redirect us to the main page.
-		let authRedirect = null;
-		if (this.props.isAuthenticated) {
-			authRedirect = <Redirect to="/"/>
-		}
+		// let authRedirect = null;
+		// if (this.props.isAuthenticated) {
+		// 	authRedirect = <Redirect to="/"/>
+		// }
 
 		return <React.Fragment>
 				<div className={styles.Login}>
-					{authRedirect}
+					{/* {authRedirect} */}
 					<form className={styles.LoginForm} onSubmit={this.submitHandler}>
 						<p className={styles.AuthHeader}>SIGN IN</p>
 						{errorMessage}

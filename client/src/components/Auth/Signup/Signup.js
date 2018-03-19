@@ -162,14 +162,14 @@ class Signup extends Component {
 			errorMessage = <p className={styles.ErrorMessage}>{this.state.errorMessages}</p>;
 		}
 
-		let authRedirect = null;
-		if (this.props.isAuthenticated) {
-			authRedirect = <Redirect to="/" />;
-		}
+		// let authRedirect = null;
+		// if (this.props.isAuthenticated) {
+		// 	authRedirect = <Redirect to="/" />;
+		// }
 
 		return <React.Fragment>
 				<div className={styles.SignUp}>
-					{authRedirect}
+					{/* {authRedirect} */}
 					<form className={styles.SignupForm} onSubmit={this.submitHandler}>
 						<p className={styles.AuthHeader}>CREATE AN ACCOUNT</p>
 						{errorMessage}
