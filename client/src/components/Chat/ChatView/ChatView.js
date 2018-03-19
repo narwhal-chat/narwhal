@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 
 import styles from "./ChatView.css";
 import PodContainer from "./PodContainer/PodContainer";
@@ -13,16 +14,24 @@ class ChatView extends Component {
   render() {
     return (
       <div className={styles.ChatView}>
-        {/* <PodContainer /> */}
+        <PodContainer />
         {/* <DiscoverCategoriesContainer /> */}
-        {/* <TopicContainer /> */}
-        {/* <MessageContainer /> */}
+        <TopicContainer />
+        <MessageContainer />
         {/* <DiscoverContainer /> */}
-        <ProfileContainer />
+        {/* <ProfileContainer /> */}
         {/* <EditPodContainer /> */}
       </div>
     );
   }
 }
 
-export default ChatView;
+const mapStateToProps = state => {
+	return { 
+    error: state.auth.error, 
+    token: state.auth.token, 
+    isAuthenticated: state.auth.token !== null 
+  };
+};
+
+export default connect(mapStateToProps)(ChatView);

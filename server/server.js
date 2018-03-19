@@ -70,6 +70,7 @@ app.post('/login', (req, res, next) => {
 // Enable authentication middleware
 app.use((req, res, next) => {
     let token = req.body.token || req.query.token || req.headers['x-access-token'];
+    console.log(token);
     if (token) {
         jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
             if (err) {
