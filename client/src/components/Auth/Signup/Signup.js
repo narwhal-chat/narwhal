@@ -22,9 +22,10 @@ class Signup extends Component {
 				value: '',
 				validation: {
 					required: true,
+					minLength: 4,
+					maxLength: 28
 				},
-				valid: false,
-				touched: false,
+				valid: false
 			},
 			email: {
 				elementType: 'input',
@@ -37,8 +38,7 @@ class Signup extends Component {
 					required: true,
 					isEmail: true,
 				},
-				valid: false,
-				touched: false,
+				valid: false
 			},
 			password: {
 				elementType: 'input',
@@ -50,22 +50,39 @@ class Signup extends Component {
 				validation: {
 					required: true,
 					minLength: 6,
+					maxLength: 48
 				},
-				valid: false,
-				touched: false,
+				valid: false
 			},
 		},
-		isSignup: true,
+		errorMessages: null
 	};
-
-	componentDidMount() {
-		console.log('styles', styles);
-	}
 
 	submitHandler = event => {
 		event.preventDefault();
-		this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.controls.username.value, this.state.isSignup);
-    };
+		if (!this.checkErrorMessages()) {
+			this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.controls.username.value);
+		}
+		// this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.controls.username.value);
+		};
+	
+	checkErrorMessages = () => {
+		let newErrorMessage = null;
+		if (!this.state.controls.username.valid || !this.state.controls.email.valid || !this.state.controls.password.valid) {
+			if (!this.state.controls.username.valid) {
+				newErrorMessage = `Please make sure your username is 4-20 characters long`
+			} else if (!this.state.controls.email.valid) {
+				newErrorMessage = `Please make sure to input a valid e-mail address`
+			} else if (!this.state.controls.password.valid) {
+				newErrorMessage = `Please make sure your password is 6-20 characters long`
+			}
+			this.setState({ errorMessages: newErrorMessage });
+			return true;
+		} else {
+			this.setState({ errorMessages: null });
+			return false;
+		}
+	}
     
 	//updating the form fields for each input form.
 	inputChangedHandler = (event, controlName) => {
@@ -74,19 +91,11 @@ class Signup extends Component {
 			[controlName]: {
 				...this.state.controls[controlName],
 				value: event.target.value,
-				valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
-				touched: true,
+				valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation)
 			},
 		};
 		this.setState({ controls: updatedControl });
     };
-    
-
-	switchAuthModeHandler = () => {
-		this.setState(prevState => {
-			return { isSignup: !prevState.isSignup };
-		});
-	};
 
 	//Making sure that the form has valid rules for username, password and email
 	checkValidity = (value, rules) => {
@@ -137,32 +146,34 @@ class Signup extends Component {
 					elementConfig={formElement.config.elementConfig}
 					value={formElement.config.value}
 					invalid={!formElement.config.valid}
-					shouldValidate={formElement.config.validation}
-					touched={formElement.config.touched}
 					changed={event => this.inputChangedHandler(event, formElement.id)}
 				/>
 				<p className={styles.AuthFormText}>{formElement.config.name}</p>
 			</div>
 		));
 
+		let duplicateUserMessage = null;
+		if (this.props.error && this.state.controls.username.valid && this.state.controls.email.valid && this.state.controls.password.valid) {
+			duplicateUserMessage = <p className={styles.ErrorMessage}>{this.props.error.message}</p>;
+		}
+
 		let errorMessage = null;
-
-		if (this.props.error) {
-			errorMessage = <p>{this.props.error.message}</p>;
+		if (this.state.errorMessages !== null) {
+			errorMessage = <p className={styles.ErrorMessage}>{this.state.errorMessages}</p>;
 		}
 
-		let authRedirect = null;
-		if (this.props.isAuthenticated) {
-			authRedirect = <Redirect to="/" />;
-		}
+		// let authRedirect = null;
+		// if (this.props.isAuthenticated) {
+		// 	authRedirect = <Redirect to="/" />;
+		// }
 
-		return (
-			<React.Fragment>
+		return <React.Fragment>
 				<div className={styles.SignUp}>
-					{authRedirect}
-					{errorMessage}
+					{/* {authRedirect} */}
 					<form className={styles.SignupForm} onSubmit={this.submitHandler}>
 						<p className={styles.AuthHeader}>CREATE AN ACCOUNT</p>
+						{errorMessage}
+						{duplicateUserMessage}
 						{form}
 						<Button btnType="Success">CONTINUE</Button>
 						<p className={styles.AuthInfo}>
@@ -176,13 +187,12 @@ class Signup extends Component {
 				<div className={styles.Logo}>
 					<LogoAuth />
 				</div>
-			</React.Fragment>
-			)
+			</React.Fragment>;
 	}
 }
 
 const mapStateToProps = state => {
-	console.log('mapstatetoprops state', state)
+	console.log('state in signup', state.auth.error)
     return {
 		error: state.auth.error,
 		token: state.auth.token,
@@ -192,7 +202,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password, username, isSignup) => dispatch(actions.auth(email, password, username, isSignup))
+        onAuth: (email, password, username) => dispatch(actions.auth(email, password, username))
     }
 }
 

@@ -1,0 +1,14 @@
+.EditPodHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 7%;
+  background-color: #FAFAFA;
+}
+
+.EditPodHeader .ProfileTitle {
+  font-weight: 600;
+  margin-left: 50px;
+  font-size: 150%;
+}

@@ -6,3 +6,26 @@ export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 // Redirect after Authentication
 export const SET_AUTH_REDIRECT_PATH = 'SET_AUTH_REDIRECT_PATH';
+export const AUTH_CHECK_STATE = 'AUTH_CHECK_STATE';
+
+// Edit the profile
+export const EDIT_PROFILE_START = 'EDIT_PROFILE_START';
+export const EDIT_PROFILE_SUCCESS = 'EDIT_PROFILE_SUCCESS';
+export const EDIT_PROFILE_FAIL = 'EDIT_PROFILE_FAIL';
+// Edit the pods
+
+
+// Chat
+export const FETCH_PODS = 'FETCH_PODS';
+export const FETCH_PODS_SUCCESS = 'FETCH_PODS_SUCCESS';
+export const FETCH_PODS_FAIL = 'FETCH_PODS_FAIL';
+
+export const CREATE_POD = 'CREATE_POD';
+export const CREATE_POD_FAIL = 'CREATE_POD_FAIL';
+
+export const FETCH_TOPICS = 'FETCH_TOPICS';
+export const FETCH_TOPICS_SUCCESS = 'FETCH_TOPICS_SUCCESS';
+export const FETCH_TOPICS_FAIL = 'FETCH_TOPICS_FAIL';
+
+export const CREATE_TOPIC = 'CREATE_TOPIC';
+export const CREATE_TOPIC_FAIL = 'CREATE_TOPIC_FAIL';

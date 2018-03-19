@@ -1,0 +1,28 @@
+.ProfileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 7%;
+  background-color: #FAFAFA;
+}
+
+.ProfileHeader .ProfileTitle {
+  font-weight: 600;
+  margin-left: 50px;
+  font-size: 150%;
+}
+
+.ProfileHeader .Logout {
+  margin-right: 50px;
+  font-weight: 600;
+  font-size: 110%;
+}
+
+.ProfileHeader .Logout:hover {
+  margin-right: 50px;
+  font-weight: 600;
+  font-size: 110%;
+  text-decoration: underline #44DBC0;
+  -webkit-transition: text-decoration 0.5s;
+}
