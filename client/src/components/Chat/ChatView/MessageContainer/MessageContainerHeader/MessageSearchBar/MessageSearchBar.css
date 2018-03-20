@@ -2,6 +2,12 @@
   margin-right: 18px;
   padding: 4px 4px 4px 12px;
   width: 330px;
+  height: 26px;
   border: 2px solid #525252;
-  font-size: .9em;
+  font-size: 75%;
+}
+
+.MessageSearchBar::placeholder {
+  font-weight: 300;
+  color: rgb(122, 122, 122);
 }
