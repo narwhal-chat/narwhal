@@ -46,16 +46,6 @@ class ChatView extends Component {
     return (
       <div className={styles.ChatView}>
         {currentView}
-        {/* <PodContainer /> */}
-        {/* <DiscoverCategoriesContainer /> */}
-        {/* <TopicContainer />
-        <MessageContainer /> */}
-        {/* <ChatModal
-          showModal={this.state.showModal}
-        /> */}
-        {/* <DiscoverContainer /> */}
-        {/* <ProfileContainer /> */}
-        {/* <EditPodContainer /> */}
       </div>
     );
   }

@@ -5,13 +5,35 @@ import PlusIcon from 'react-icons/lib/io/android-add';
 import Topic from './Topic/Topic';
 
 const topics = (props) => {
+  let activeTopic = null;
+
+  if (props.activeTopic === null) {
+    activeTopic = props.topics[0];
+    console.log('huh', activeTopic);
+  } else {
+    activeTopic = props.activeTopic;
+  }
+
   let topics = props.topics.map((topic) => {
-    return (
-      <Topic
-        key={topic.id}
-        topic={topic}
-      />
-    );
+    if (activeTopic.id === topic.id) {
+      return (
+        <Topic
+          key={topic.id}
+          topic={topic}
+          isActiveTopic={true}
+          clicked={props.clickedTopic}
+        />
+      );
+    } else {
+      return (
+        <Topic
+          key={topic.id}
+          topic={topic}
+          isActiveTopic={false}
+          clicked={props.clickedTopic}
+        />
+      );
+    }
   });
 
   return (
@@ -23,12 +45,6 @@ const topics = (props) => {
             className={styles.AddTopicIcon}
             onClick={props.clickedAddTopic}
           />
-          {/* <img
-            className={styles.AddTopic}
-            src={plusSmall}
-            alt="Create Topic"
-            onClick={props.clickedAddTopic}
-          /> */}
         </div>
         <div className={styles.Clearfix}></div>
       </div>

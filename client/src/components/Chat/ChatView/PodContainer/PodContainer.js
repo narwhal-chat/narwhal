@@ -35,14 +35,13 @@ class PodContainer extends Component {
     return (
       <div className={styles.PodContainer}>
         <StyleRoot>
-          {/* <div className="TEST" style={animationStyles.headShake}>test</div> */}
           <img className={styles.Logo} style={narwhalLogoAnimation} src={narwhalLogo} alt="Discover" onClick={this.onLogoClick}/>
         </StyleRoot>
         <div className={styles.DiscoverTitle}>DISCOVER</div>
         <div className={styles.DiscoverSeparator}></div>
         <Pods
           pods={this.props.pods}
-          onPodClicked={this.props.onPodClicked}
+          podClicked={this.props.onPodClicked}
           activePod={this.props.activePod}
         />
         <AddPod />

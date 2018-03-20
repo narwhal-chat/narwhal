@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './Pod.css';
 
 const pod = (props) => {
+  // Default inactive pod styling
   let podStyle = [styles.Avatar, styles.Inactive].join(' ');
 
   // If the pod is currently selected

@@ -7,9 +7,12 @@ import MessageBar from './MessageBar/MessageBar';
 
 class MessageContainer extends Component {
   render() {
+    console.log('is this going on');
     return (
       <div className={styles.MessageContainer}>
-        <MessageContainerHeader />
+        <MessageContainerHeader
+          name={this.props.podName}
+        />
         <Messages />
         <MessageBar />
       </div>

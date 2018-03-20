@@ -46,6 +46,12 @@ const updateActivePod = (state, action) => {
   });
 };
 
+const updateActiveTopic = (state, action) => {
+  return updateObject(state, {
+    activeTopic: action.topic
+  });
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PODS_SUCCESS: return fetchPodsSuccess(state, action);
@@ -55,6 +61,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_TOPICS_FAIL: return fetchTopicsFail(state, action);
     case actionTypes.CREATE_TOPIC_FAIL: return createTopicFail(state, action);
     case actionTypes.UPDATE_ACTIVE_POD: return updateActivePod(state, action);
+    case actionTypes.UPDATE_ACTIVE_TOPIC: return updateActiveTopic(state, action);
     default: return state;
   }
 };

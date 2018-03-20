@@ -82,3 +82,17 @@ export const updateActivePod = (pod) => {
     pod: pod
   }
 };
+
+export const topicClicked = (topic) => {
+  return {
+    type: actionTypes.TOPIC_CLICKED,
+    topic: topic
+  };
+};
+
+export const updateActiveTopic = (topic) => {
+  return  {
+    type: actionTypes.UPDATE_ACTIVE_TOPIC,
+    topic: topic
+  }
+};

@@ -18,6 +18,7 @@
 }
 
 .Pod .Active {
+  border-radius: 36%;
   opacity: 1;
 }
 

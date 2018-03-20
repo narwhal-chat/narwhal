@@ -8,7 +8,7 @@ const pods = (props) => {
       <Pod
         key={pod.id}
         pod={pod}
-        clicked={props.onPodClicked}
+        clicked={props.podClicked}
         activePod={props.activePod}
       />
     );

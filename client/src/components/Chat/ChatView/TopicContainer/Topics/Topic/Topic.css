@@ -8,3 +8,11 @@
 .Topic:hover {
   background-color: rgba(41, 41, 41, 0.2);
 }
+
+.Active {
+  background-color: #44DBC0;
+}
+
+.Active:hover {
+  background-color: #44DBC0;
+}
