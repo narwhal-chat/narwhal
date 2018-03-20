@@ -175,15 +175,13 @@ const mapStateToProps = state => {
 	console.log(state.auth);
 	return {
 		error: state.auth.error,
-		isAuthenticated: state.auth.token !== null,
-		authRedirectPath: state.authRedirectPath
+		isAuthenticated: state.auth.token !== null
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onLogin: (password, username, isSignup) => dispatch(actions.login(password, username, isSignup)),
-		onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
+		onLogin: (password, username, isSignup) => dispatch(actions.login(password, username, isSignup))
 	};
 };
 

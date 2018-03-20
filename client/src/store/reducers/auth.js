@@ -3,7 +3,7 @@ import { updateObject } from '../../shared/utility';
 
 const initialState = {
     token: null,
-    userId: null,
+    userData: null,
     error: null,
     loading: false,
     authRedirectPath: '/'
@@ -16,7 +16,7 @@ const authStart = (state, action) => {
 const authSuccess = (state, action) => {
     return updateObject(state, {
         token: action.idToken,
-        userId: action.userId,
+        userData: action.userData,
         error: null,
         loading: false
     });
@@ -30,17 +30,17 @@ const authFail = (state, action) => {
 };
 
 const authLogout = (state, action) => {
-    return updateObject(state, { token: null, userId: null });
+    return updateObject(state, { token: null, userData: null });
 };
 
-const setAuthRedirectPath = (state, action) => {
-    return updateObject(state, { authRedirectPath: action.path })
+const authCheckToken = (state, action) => {
+    return updateObject(state, { token: null, userData: null })
 }
 
 const editProfileSuccess = (state, action) => {
 	return updateObject(state, {
 		token: action.idToken,
-		userId: action.userId,
+		userData: action.userData,
 		error: null,
 		message: null,
 	});
@@ -62,8 +62,6 @@ const reducer = (state = initialState, action) => {
 			return authFail(state, action);
 		case actionTypes.AUTH_LOGOUT:
 			return authLogout(state, action);
-		case actionTypes.SET_AUTH_REDIRECT_PATH:
-			return setAuthRedirectPath(state, action);
 		case actionTypes.EDIT_PROFILE_FAIL:
 			return editProfileFail(state, action);
 		case actionTypes.EDIT_PROFILE_SUCCESS:

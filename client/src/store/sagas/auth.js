@@ -7,7 +7,7 @@ export function* authCheckState(action) {
 	if (!token) {
 		yield put(actions.logout);
 	} else {
-    const userId = localStorage.getItem('userId');
-    yield put(actions.authSuccess(token, userId));
+    const userData = localStorage.getItem('userData');
+    yield put(actions.authSuccess(token, userData));
 	}
 };

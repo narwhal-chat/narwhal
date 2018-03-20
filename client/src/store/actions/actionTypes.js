@@ -5,7 +5,6 @@ export const AUTH_FAIL = 'AUTH_FAIL';
 // Logging out
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 // Redirect after Authentication
-export const SET_AUTH_REDIRECT_PATH = 'SET_AUTH_REDIRECT_PATH';
 export const AUTH_CHECK_STATE = 'AUTH_CHECK_STATE';
 
 // Edit the profile

@@ -75,14 +75,16 @@ app.use((req, res, next) => {
         jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
             if (err) {
                 res.status(403).json({
-                    message:"Wrong Token"
+                    message:"Token Expired"
                 });
+                // res.status(403).render('/login');
             } else {
                 req.decoded=decod;
                 next();
             }
         });
     } else {
+        console.log('token expired');
         res.status(403).json({
             message:"No Token"
         });

@@ -7,11 +7,11 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (token, userId) => {
+export const authSuccess = (token, userData) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         idToken: token,
-        userId: userId
+        userData: userData
     };
 };
 
@@ -38,7 +38,7 @@ export const authLogout = () => {
 export const logout = () => {
     return dispatch => {
         localStorage.removeItem('token');
-        localStorage.removeItem('userId');
+        localStorage.removeItem('userData');
         dispatch(authLogout())
     }
 }
@@ -50,13 +50,6 @@ export const logout = () => {
 //         }, expirationTime * 1000) // it was in ms.
 //     }
 // }
-
-export const setAuthRedirectPath = (path) => {
-    return {
-        type: actionTypes.SET_AUTH_REDIRECT_PATH,
-        path: path
-    }
-}
 
 export const auth = (email, password, username) => {
     return dispatch => {
@@ -76,7 +69,7 @@ export const auth = (email, password, username) => {
                 // const expirationDate = new Date(new Date().getTime() + 86400);
                 localStorage.setItem('token', response.data.token);
                 // localStorage.setItem('expirationDate', expirationDate);
-                localStorage.setItem('userId', response.data.user);
+                localStorage.setItem('userData', response.data.user);
                 dispatch(authSuccess(response.data.token, response.data.user));
                 // dispatch(checkAuthTimeout(response.data.expiresIn))
             })
@@ -97,7 +90,7 @@ export const login = (password, username) => {
         })
         .then(response => {
             localStorage.setItem('token', response.data.token);
-            localStorage.setItem('userId', response.data.user);
+            localStorage.setItem('userData', response.data.user);
             dispatch(authSuccess(response.data.token, response.data.user));
         })
         .catch((err, res) => {
@@ -108,11 +101,11 @@ export const login = (password, username) => {
 
 // Editing a user profile
 
-export const editProfileSuccess = (token, userId) => {
+export const editProfileSuccess = (token, userData) => {
 	return {
 		type: actionTypes.EDIT_PROFILE_SUCCESS,
 		idToken: token,
-		userId: userId,
+		userData: userData,
 	};
 };
 
