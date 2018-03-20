@@ -9,10 +9,11 @@ import * as actions from '../../../../store/actions/index';
 
 class TopicContainer extends Component {
   componentDidMount() {
-    this.props.onFetchTopics();
+    // this.props.onFetchTopics(this.props.activePod.id);
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className={styles.TopicContainer}>
         <div className={styles.Content}>
@@ -30,14 +31,15 @@ class TopicContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    topics: state.chat.topics
+    topics: state.chat.topics,
+    activePod: state.chat.activePod
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-      onFetchTopics: () => dispatch(actions.fetchTopics(1)),
-      onCreateTopic: () => dispatch(actions.createTopic(1, 1))
+      onFetchTopics: (podId) => dispatch(actions.fetchTopics(podId)),
+      onCreateTopic: () => dispatch(actions.createTopic())
   }
 }
 

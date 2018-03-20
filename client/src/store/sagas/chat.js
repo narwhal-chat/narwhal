@@ -47,11 +47,23 @@ export function* fetchTopics(action) {
 export function* createTopic(action) {
   try {
     const token = yield select(selectors.token);
-    yield axios.post('/pods/' + action.podId + '/topics', {
+    const pod = yield select(selectors.activePod);
+    const userId = 1;
+    console.log('pod', pod)
+    yield axios.post('/pods/' + pod.id + '/topics', {
         token: token
     });
-    yield put(actions.fetchTopics(action.podId));
+    yield put(actions.fetchTopics(pod.id));
   } catch (e) {
     yield put(actions.createTopicFail());
+  }
+};
+
+export function* podClicked(action) {
+  try {
+    yield put(actions.updateActivePod(action.pod));
+    yield put(actions.fetchTopics(action.pod.id));
+  } catch (e) {
+
   }
 };

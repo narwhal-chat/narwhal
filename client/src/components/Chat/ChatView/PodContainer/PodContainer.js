@@ -42,6 +42,8 @@ class PodContainer extends Component {
         <div className={styles.DiscoverSeparator}></div>
         <Pods
           pods={this.props.pods}
+          onPodClicked={this.props.onPodClicked}
+          activePod={this.props.activePod}
         />
         <AddPod />
       </div>
@@ -51,13 +53,15 @@ class PodContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    pods: state.chat.pods
+    pods: state.chat.pods,
+    activePod: state.chat.activePod
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-      onFetchPods: () => dispatch(actions.fetchPods(1))
+      onFetchPods: () => dispatch(actions.fetchPods(1)),
+      onPodClicked: (pod) => dispatch(actions.podClicked(pod))
   }
 }
 

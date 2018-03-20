@@ -25,12 +25,31 @@ class ChatView extends Component {
   }
 
   render() {
-    return (
+    let currentView = (
       <div className={styles.ChatView}>
         <PodContainer />
+        <DiscoverCategoriesContainer />
+        <DiscoverContainer />
+      </div>
+    );
+
+    if (!this.props.isDiscoverActive) {
+      currentView = (
+        <div className={styles.ChatView}>
+          <PodContainer />
+          <TopicContainer />
+          <MessageContainer />
+        </div>
+      );
+    }
+
+    return (
+      <div className={styles.ChatView}>
+        {currentView}
+        {/* <PodContainer /> */}
         {/* <DiscoverCategoriesContainer /> */}
-        <TopicContainer />
-        <MessageContainer />
+        {/* <TopicContainer />
+        <MessageContainer /> */}
         {/* <ChatModal
           showModal={this.state.showModal}
         /> */}
@@ -44,9 +63,7 @@ class ChatView extends Component {
 
 const mapStateToProps = state => {
 	return { 
-    error: state.auth.error, 
-    token: state.auth.token, 
-    isAuthenticated: state.auth.token !== null 
+    isDiscoverActive: state.chat.isDiscoverActive
   };
 };
 

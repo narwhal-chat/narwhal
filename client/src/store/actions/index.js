@@ -18,5 +18,7 @@ export {
   fetchTopicsSuccess,
   fetchTopicsFail,
   createTopic,
-  createTopicFail
+  createTopicFail,
+  podClicked,
+  updateActivePod
 } from './chat';
