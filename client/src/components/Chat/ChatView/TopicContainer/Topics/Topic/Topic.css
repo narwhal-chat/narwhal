@@ -1,5 +1,18 @@
 .Topic {
-  margin-bottom: 16px;
-  font-size: 1em;
-  letter-spacing: 0.3px;
+  padding: 3px 0 3px 18px;
+  font-size: 80%;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+}
+
+.Topic:hover {
+  background-color: rgba(41, 41, 41, 0.2);
+}
+
+.Active {
+  background-color: #44DBC0;
+}
+
+.Active:hover {
+  background-color: #44DBC0;
 }

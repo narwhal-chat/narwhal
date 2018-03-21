@@ -8,20 +8,28 @@ import Topics from './Topics/Topics';
 import * as actions from '../../../../store/actions/index';
 
 class TopicContainer extends Component {
-  componentDidMount() {
-    this.props.onFetchTopics();
-  }
-
   render() {
+    let topics = null;
+
+    if (this.props.topics) {
+      topics = (
+        <Topics
+          topics={this.props.topics}
+          activeTopic={this.props.activeTopic}
+          clickedTopic={this.props.onTopicClicked}
+          clickedAddTopic={this.props.onCreateTopic}
+        />
+      );
+    }
+
     return (
       <div className={styles.TopicContainer}>
         <div className={styles.Content}>
-          <PodHeader />
-          <User />
-          <Topics
-            topics={this.props.topics}
-            clickedAddTopic={this.props.onCreateTopic}
+          <PodHeader
+            name={this.props.activePod.display_name}
           />
+          <User />
+          {topics}
         </div>
       </div>
     );
@@ -30,14 +38,17 @@ class TopicContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    topics: state.chat.topics
+    topics: state.chat.topics,
+    activePod: state.chat.activePod,
+    activeTopic: state.chat.activeTopic
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-      onFetchTopics: () => dispatch(actions.fetchTopics(1)),
-      onCreateTopic: () => dispatch(actions.createTopic(1, 1))
+      onFetchTopics: (podId) => dispatch(actions.fetchTopics(podId)),
+      onCreateTopic: () => dispatch(actions.createTopic()),
+      onTopicClicked: (topic) => dispatch(actions.topicClicked(topic))
   }
 }
 

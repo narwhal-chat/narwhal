@@ -3,26 +3,27 @@
 }
 
 .Topics .Title {
-  margin-bottom: 14px;
-  padding-left: 2px;
-  padding-top: 2px;
+  margin-bottom: 8px;
+  padding: 4px 0 0px 18px;
   float: left;
-  font-size: 1.2em;
+  font-size: 90%;
+  font-weight: 600;
   letter-spacing: 0.3px;
 }
 
 .Topics .AddTopicContainer {
   float: right;
-  padding-top: 1px;
+  padding-right: 18px;
 }
 
-.Topics .AddTopic {
-  width: 14px;
-  height: 14px;
+.Topics .AddTopicIcon {
+  cursor: pointer;
+  font-size: 110%;
+  color: #FFFFFF;
 }
 
 .Topics .Clearfix::after {
-  content: "";
+  content: '';
   clear: both;
   display: table;
 }

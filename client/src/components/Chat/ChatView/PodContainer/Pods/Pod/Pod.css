@@ -1,11 +1,27 @@
 .Pod {
-  margin-bottom: 18px;
-  width: 3.8em;
-  height: 3.8em;
+  margin-bottom: 8px;
+  width: 62px;
+  height: 62px;
 }
 
 .Pod .Avatar {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 50%;
+  transition: 0.15s;
+  cursor: pointer;
+}
+
+.Avatar:hover {
+  border-radius: 36%;
+  transition: 0.15s;
+}
+
+.Pod .Active {
+  border-radius: 36%;
+  opacity: 1;
+}
+
+.Pod .Inactive {
+  opacity: 0.5;
 }

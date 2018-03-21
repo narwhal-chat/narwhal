@@ -33,10 +33,9 @@ router.post('/', async (req, res, next) => {
 });
 
 router.get('/:podid/topics', async (req, res, next) => {
-  console.log(req.params);
+  console.log('getting topics', req.params);
   try {
     const results = await axios.get('http://localhost:3334/pods/' + req.params.podid + '/topics');
-    console.log('topics', results);
     res.json(results.data);
   } catch (e) {
     console.log(e);

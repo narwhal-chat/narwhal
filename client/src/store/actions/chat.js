@@ -56,11 +56,9 @@ export const fetchTopicsFail = (error) => {
   };
 };
 
-export const createTopic = (podId, userId) => {
+export const createTopic = () => {
   return {
-      type: actionTypes.CREATE_TOPIC,
-      podId: podId,
-      userId: userId
+      type: actionTypes.CREATE_TOPIC
   };
 };
 
@@ -69,4 +67,32 @@ export const createTopicFail = (error) => {
       type: actionTypes.CREATE_TOPIC_FAIL,
       error: error
   };
+};
+
+export const podClicked = (pod) => {
+  return {
+    type: actionTypes.POD_CLICKED,
+    pod: pod
+  };
+};
+
+export const updateActivePod = (pod) => {
+  return  {
+    type: actionTypes.UPDATE_ACTIVE_POD,
+    pod: pod
+  }
+};
+
+export const topicClicked = (topic) => {
+  return {
+    type: actionTypes.TOPIC_CLICKED,
+    topic: topic
+  };
+};
+
+export const updateActiveTopic = (topic) => {
+  return  {
+    type: actionTypes.UPDATE_ACTIVE_TOPIC,
+    topic: topic
+  }
 };

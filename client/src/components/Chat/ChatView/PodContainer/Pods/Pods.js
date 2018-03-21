@@ -8,6 +8,8 @@ const pods = (props) => {
       <Pod
         key={pod.id}
         pod={pod}
+        clicked={props.podClicked}
+        activePod={props.activePod}
       />
     );
   });
