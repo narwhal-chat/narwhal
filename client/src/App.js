@@ -25,8 +25,8 @@ class App extends Component {
     if (this.props.isAuthenticated) {
         routes = (        
         <Switch>
-					<Route path="/pods/@me" exact component={ChatView} />
-          <Redirect to="/pods/@me" />
+					<Route path="/pods/@discover" exact component={ChatView} />
+          <Redirect to="/pods/@discover" />
         </Switch>
         );
     }

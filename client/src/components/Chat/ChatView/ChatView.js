@@ -43,11 +43,7 @@ class ChatView extends Component {
       );
     }
 
-    return (
-      <div className={styles.ChatView}>
-        {currentView}
-      </div>
-    );
+    return currentView;
   }
 }
 
