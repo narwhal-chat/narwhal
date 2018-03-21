@@ -172,7 +172,6 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-	console.log(state.auth);
 	return {
 		error: state.auth.error,
 		isAuthenticated: state.auth.token !== null
@@ -181,7 +180,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onLogin: (password, username, isSignup) => dispatch(actions.login(password, username, isSignup))
+		onLogin: (password, username) => dispatch(actions.login(password, username))
 	};
 };
 

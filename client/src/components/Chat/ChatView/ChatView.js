@@ -6,7 +6,7 @@ import PodContainer from './PodContainer/PodContainer';
 import TopicContainer from './TopicContainer/TopicContainer';
 import MessageContainer from './MessageContainer/MessageContainer';
 import DiscoverContainer from './DiscoverContainer/DiscoverContainer';
-import DiscoverCategoriesContainer from './DiscoverContainer/DiscoverCategoriesContainer/DiscoverCategoriesContainer';
+import DiscoverCategoriesContainer from './DiscoverCategoriesContainer/DiscoverCategoriesContainer';
 import ProfileContainer from './ProfileContainer/ProfileContainer';
 import EditPodContainer from './EditPodContainer/EditPodContainer';
 import ChatModal from '../../UI/ChatModal/ChatModal';

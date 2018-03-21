@@ -7,7 +7,7 @@ import styles from './User.css';
 
 class User extends Component {
   render() {
-    console.log(Object.keys(this.props.userData));
+    console.log((this.props.userData.username));
     return (
       <div className={styles.User}>
         <div className={styles.StatusIcon}></div>

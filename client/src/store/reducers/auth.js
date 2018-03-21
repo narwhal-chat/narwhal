@@ -5,8 +5,7 @@ const initialState = {
     token: null,
     userData: null,
     error: null,
-    loading: false,
-    authRedirectPath: '/'
+    loading: false
 };
 
 const authStart = (state, action) => {
@@ -14,6 +13,7 @@ const authStart = (state, action) => {
 };
 
 const authSuccess = (state, action) => {
+	console.log('action in authsuccess', action)
     return updateObject(state, {
         token: action.idToken,
         userData: action.userData,

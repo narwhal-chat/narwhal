@@ -14,8 +14,6 @@ class ProfileInfo extends Component {
 
   submitHandler = event => {
     event.preventDefault();
-    console.log('this.props', this.props);
-    console.log('this.state', this.state)
     this.props.editProfile(this.props.user.username, this.state.username, this.state.email, this.state.password, this.props.token);
   }
 
@@ -30,15 +28,8 @@ class ProfileInfo extends Component {
   }
 
   render() {
-  // let authRedirect = null;
-
-  // if (!this.props.isAuthenticated) {
-  //   authRedirect = <Redirect to="/login" />;
-  // }
-
   return(
           <form className={styles.Profile}>
-          {/* {authRedirect} */}
             <div className={styles.ProfileInfo}>
               <div className={styles.ProfileText}>Username</div>
               <input type="text" name="username" value={this.state.username} onChange={(e) => this.inputChangeHandler(e)} className={styles.ProfileInput} />
@@ -69,7 +60,7 @@ const mapStateToProps = state => {
   return {
     error: state.auth.error,
     token: state.auth.token,
-    user: state.auth.userId,
+    userData: state.auth.userData,
     isAuthenticated: state.auth.token !== null
   }
 }

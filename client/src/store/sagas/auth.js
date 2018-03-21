@@ -7,7 +7,14 @@ export function* authCheckState(action) {
 	if (!token) {
 		yield put(actions.logout);
 	} else {
-    const userData = localStorage.getItem('userData');
+		const userData = JSON.parse(localStorage.getItem('userData'));
     yield put(actions.authSuccess(token, userData));
 	}
 };
+
+export function* authLogout(action) {
+			yield localStorage.removeItem('token');
+			yield localStorage.removeItem('userData');
+			yield put(actions.authLogout());
+}
+

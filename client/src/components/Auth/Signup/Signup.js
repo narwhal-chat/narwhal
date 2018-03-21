@@ -192,7 +192,6 @@ class Signup extends Component {
 }
 
 const mapStateToProps = state => {
-	console.log('state in signup', state.auth.error)
     return {
 		error: state.auth.error,
 		token: state.auth.token,

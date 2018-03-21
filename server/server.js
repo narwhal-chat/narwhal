@@ -54,6 +54,7 @@ app.post('/register', (req, res, next) => {
 app.post('/login', (req, res, next) => {
     axios.post(routes.login, req.body)
     .then(user => {
+        console.log('USER DTA IN SERV', user.data)
         res.status(200).json({
             token: user.data.token,
             user: user.data.user

@@ -28,39 +28,19 @@ export const authCheckState = () => {
     }
 }
 
-
 // For logging out
-
 export const authLogout = () => {
     return { type: actionTypes.AUTH_LOGOUT };
 }
 
-export const logout = () => {
-    return dispatch => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('userData');
-        dispatch(authLogout())
-    }
-}
-
-// export const checkAuthTimeout = (expirationTime) => {
-//     return dispatch => {
-//         setTimeout(() => {
-//             dispatch(logout());
-//         }, expirationTime * 1000) // it was in ms.
-//     }
-// }
-
 export const auth = (email, password, username) => {
     return dispatch => {
         dispatch(authStart());
-        let currentDate = new Date(Date.now()).toLocaleString();;
         const authData = {
             username: username,
             password: password,
             email_address: email,
             avatar: 'avatar',
-            create_date: currentDate,
             returnSecureToken: true
         };
 
@@ -89,8 +69,9 @@ export const login = (password, username) => {
             password: password
         })
         .then(response => {
+            console.log('LOCALSTORAGE SET ITEM', response.data)
             localStorage.setItem('token', response.data.token);
-            localStorage.setItem('userData', response.data.user);
+            localStorage.setItem('userData', JSON.stringify(response.data.user));
             dispatch(authSuccess(response.data.token, response.data.user));
         })
         .catch((err, res) => {
