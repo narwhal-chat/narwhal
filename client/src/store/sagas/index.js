@@ -2,7 +2,7 @@ import { takeEvery, all } from 'redux-saga/effects';
 
 import * as actionTypes from '../actions/actionTypes';
 import { fetchPods, createPod, fetchTopics, createTopic, podClicked, topicClicked } from './chat';
-import { authCheckState } from './auth';
+import { authCheckState, authLogout } from './auth';
 
 export function* watchChat() {
   yield all([
@@ -17,6 +17,7 @@ export function* watchChat() {
 
 export function* watchAuth() {
   yield all([
-    takeEvery(actionTypes.AUTH_CHECK_STATE, authCheckState)
+    takeEvery(actionTypes.AUTH_CHECK_STATE, authCheckState),
+    takeEvery(actionTypes.AUTH_LOGOUT, authLogout)
   ]);
 };

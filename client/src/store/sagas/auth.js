@@ -8,7 +8,13 @@ export function* authCheckState(action) {
 		yield put(actions.logout);
 	} else {
 		const userData = JSON.parse(localStorage.getItem('userData'));
-		console.log('userData in sagas', userData)
     yield put(actions.authSuccess(token, userData));
 	}
 };
+
+export function* authLogout(action) {
+			yield localStorage.removeItem('token');
+			yield localStorage.removeItem('userData');
+			yield put(actions.authLogout());
+}
+

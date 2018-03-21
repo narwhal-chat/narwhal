@@ -28,28 +28,10 @@ export const authCheckState = () => {
     }
 }
 
-
 // For logging out
-
 export const authLogout = () => {
     return { type: actionTypes.AUTH_LOGOUT };
 }
-
-export const logout = () => {
-    return dispatch => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('userData');
-        dispatch(authLogout())
-    }
-}
-
-// export const checkAuthTimeout = (expirationTime) => {
-//     return dispatch => {
-//         setTimeout(() => {
-//             dispatch(logout());
-//         }, expirationTime * 1000) // it was in ms.
-//     }
-// }
 
 export const auth = (email, password, username) => {
     return dispatch => {

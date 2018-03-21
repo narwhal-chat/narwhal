@@ -1,11 +1,11 @@
 export {
   auth,
   login,
-  setAuthRedirectPath,
-  logout,
   editProfile,
   authSuccess,
-  authCheckState
+  authCheckState,
+  authLogout,
+  logout
 } from './auth';
 
 export {

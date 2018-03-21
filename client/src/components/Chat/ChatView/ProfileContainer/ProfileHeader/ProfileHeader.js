@@ -8,7 +8,7 @@ class ProfileHeader extends Component {
 
   logout = (e) => {
     e.preventDefault();
-    this.props.logout();
+    this.props.authLogout();
   }
 
   render() {
@@ -39,7 +39,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    logout: () => dispatch(actionTypes.logout())
+    authLogout: () => dispatch(actionTypes.authLogout())
   }
 }
 
