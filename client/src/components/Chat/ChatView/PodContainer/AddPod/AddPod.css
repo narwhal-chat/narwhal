@@ -6,13 +6,13 @@
   width: 62px;
   height: 62px;
   color: rgba(153, 153, 153, 0.50);
-  border: 1px solid rgba(153, 153, 153, 0.50);
+  border: 1.25px solid rgba(153, 153, 153, 0.50);
   transition: 0.15s;
   cursor: pointer;
 }
 
 .AddPod:hover {
   color: rgb(255, 255, 255);
-  border: 1px solid rgb(255, 255, 255);
+  border: 1.25px solid rgb(255, 255, 255);
   transition: 0.15s;
 }
