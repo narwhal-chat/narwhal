@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { headShake } from 'react-animations';
 import Radium, { StyleRoot } from 'radium';
@@ -66,4 +67,4 @@ const mapDispatchToProps = dispatch => {
 
 PodContainer = Radium(PodContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(PodContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PodContainer));

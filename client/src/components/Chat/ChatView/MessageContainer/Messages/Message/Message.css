@@ -4,7 +4,7 @@
   justify-content: flex-start;
   align-items: stretch;
   justify-content: space-evenly;
-  padding: 20px 30px 80px 30px;
+  padding: 20px 0 80px 0;
 }
 
 .Message .AvatarContainer {
@@ -13,7 +13,6 @@
 .Message .Avatar {
   width: 44px;
   height: 44px;
-  border: 2px solid #000000;
   border-radius: 50%;
   background-color: #FFFFFF;
 }
