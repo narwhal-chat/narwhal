@@ -1,5 +1,5 @@
 .ChatView {
   display: grid;
-  grid-template-columns: 80px 195px 1fr;
+  grid-template-columns: 80px 210px 1fr;
   grid-template-rows: 100vh;
 }
