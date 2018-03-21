@@ -19,7 +19,9 @@ class MessageContainer extends Component {
             topicName={this.props.activeTopic.name}
           />
           <Messages />
-          <MessageBar />
+          <MessageBar
+            topicName={this.props.activeTopic.name}
+          />
         </div>
       );
     }
