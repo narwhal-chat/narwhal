@@ -35,14 +35,11 @@ const mapStateToProps = state => {
     messages: state.chat.messages,
     activeTopic: state.chat.activeTopic
   };
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-      onFetchTopics: (podId) => dispatch(actions.fetchTopics(podId)),
-      onCreateTopic: () => dispatch(actions.createTopic()),
-      onTopicClicked: (topic) => dispatch(actions.topicClicked(topic))
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageContainer);

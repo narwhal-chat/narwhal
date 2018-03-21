@@ -9,7 +9,6 @@ const topics = (props) => {
 
   if (props.activeTopic === null) {
     activeTopic = props.topics[0];
-    console.log('huh', activeTopic);
   } else {
     activeTopic = props.activeTopic;
   }
