@@ -60,7 +60,7 @@ const mapStateToProps = state => {
   return {
     error: state.auth.error,
     token: state.auth.token,
-    user: state.auth.userId,
+    userData: state.auth.userData,
     isAuthenticated: state.auth.token !== null
   }
 }

@@ -10,6 +10,7 @@ import * as actions from './store/actions/index';
 
 class App extends Component {
   componentDidMount() {
+    console.log('this props in app.js', this.props)
     this.props.authCheckState();
   }
   
@@ -40,10 +41,12 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log('state in app.js', state)
 	return { 
     error: state.auth.error, 
     token: state.auth.token, 
-    isAuthenticated: state.auth.token !== null 
+    isAuthenticated: state.auth.token !== null,
+    userData: state.auth.userData
   };
 };
 

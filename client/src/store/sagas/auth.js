@@ -7,7 +7,8 @@ export function* authCheckState(action) {
 	if (!token) {
 		yield put(actions.logout);
 	} else {
-    const userData = localStorage.getItem('userData');
+		const userData = JSON.parse(localStorage.getItem('userData'));
+		console.log('userData in sagas', userData)
     yield put(actions.authSuccess(token, userData));
 	}
 };
