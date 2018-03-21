@@ -11,7 +11,7 @@ class User extends Component {
     return (
       <div className={styles.User}>
         <div className={styles.StatusIcon}></div>
-        <div className={styles.Username}>{this.props.userData.username}</div>
+        <div className={styles.Username}>rorywell</div>
       </div>
     );
   }
