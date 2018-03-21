@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
-const POD_MICROSERVICE_URL = process.env.POD_MICROSERVICE_URL || 'http://localhost:3334/pods';
+const POD_MICROSERVICE_URL = process.env.POD_MICROSERVICE_URL + '/pods' || 'http://localhost:3334/pods';
 
 router.get('/:userid', async (req, res, next) => {
   console.log('we in the get', req.params);
