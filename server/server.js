@@ -19,9 +19,10 @@ const pods = require('./routes/pods');
 
 // Define a single source of route paths
 const routes = {
-    'register': USER_MICROSERVICE_URL + '/register',
-    'login': USER_MICROSERVICE_URL + '/login',
-    'editProfile': USER_MICROSERVICE_URL + '/editProfile'
+    register: USER_MICROSERVICE_URL + '/register',
+    login: USER_MICROSERVICE_URL + '/login',
+    editProfile: USER_MICROSERVICE_URL + '/editProfile',
+    pods: '/pods'
 };
 
 // Set static path
@@ -70,7 +71,6 @@ app.post('/login', (req, res, next) => {
 // Enable authentication middleware
 app.use((req, res, next) => {
     let token = req.body.token || req.query.token || req.headers['x-access-token'];
-    console.log(token);
     if (token) {
         jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
             if (err) {
@@ -113,7 +113,7 @@ app.post('/editProfile', (req, res, next) => {
 })
 
 // Pods route
-app.use('/pods', pods);
+app.use(routes.pods, pods);
 
 // Start server
 app.listen(PORT);
