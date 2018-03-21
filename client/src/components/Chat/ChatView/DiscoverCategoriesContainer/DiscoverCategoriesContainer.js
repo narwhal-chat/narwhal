@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import styles from './DiscoverCategoriesContainer.css';
 import DiscoverCategories from './DiscoverCategories/DiscoverCategories';
-import User from '../../../../Shared/User/User';
+import User from '../../../Shared/User/User';
 
 class DiscoverCategoriesContainer extends Component {
 	render() {
