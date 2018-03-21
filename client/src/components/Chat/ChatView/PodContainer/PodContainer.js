@@ -55,14 +55,14 @@ const mapStateToProps = state => {
     pods: state.chat.pods,
     activePod: state.chat.activePod
   };
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return {
       onFetchPods: () => dispatch(actions.fetchPods(1)),
       onPodClicked: (pod) => dispatch(actions.podClicked(pod))
-  }
-}
+  };
+};
 
 PodContainer = Radium(PodContainer);
 

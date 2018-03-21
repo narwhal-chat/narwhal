@@ -70,7 +70,6 @@ export function* podClicked(action) {
 };
 
 export function* topicClicked(action) {
-  console.log(action.topic);
   try {
     yield put(actions.updateActiveTopic(action.topic));
   } catch (e) {

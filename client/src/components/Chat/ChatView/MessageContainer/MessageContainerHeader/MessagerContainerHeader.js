@@ -7,7 +7,9 @@ import MessageSearchBar from './MessageSearchBar/MessageSearchBar';
 const messageContainerHeader = (props) => {
   return (
     <div className={styles.MessageContainerHeader}>
-      <TopicHeader />
+      <TopicHeader
+        topicName={props.topicName}
+      />
       <MessageSearchBar />
     </div>
   );
