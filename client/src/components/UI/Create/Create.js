@@ -1,64 +1,112 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styles from './Create.css';
+import ChooseCategory from '../ChooseCategory/ChooseCategory';
+import * as actions from '../../../store/actions/index';
 
-class form extends Component {
-  state = {
-    showModal: false
+class create extends Component {
+	state = {
+		showModal: false,
+		podName: '',
+		category: '',
+    description: ''
+	};
+
+	componentDidMount() {
+		console.log('this from create', this);
+	}
+
+	categoryClick = () => {
+		this.setState({ showModal: true });
+  };
+
+  chooseCategory = (event) => {
+    this.setState({ 
+      category: event.target.id,
+      showModal: false
+     })
+  }
+  
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value })
   }
 
-  render() {
-    return(
-      <div className={styles.Create}>
-        <div className={styles.Header}>CREATE A POD</div>
-        <div className={styles.PodInfo}>
-          <div className={styles.PodLeft}>
-            <div>
-              <div>POD NAME</div>
-              <form className={styles.PodForm}>
-                <input className={styles.PodInputForm} type="text" placeholder="Enter pod name here" name="pod_name"/>
-                <hr/>
-              </form>
-            </div>
-            <div>
-              <div>POD CATEGORY</div>
-              <select className={styles.PodCategory}>
-                <option value="" selected disabled hidden />
-                <option className={styles.DropdownValue} value="technology">
-                  Technology
-                </option>
-                <option className={styles.DropdownValue} value="business">
-                  Business
-                </option>
-                <option className={styles.DropdownValue} value="gaming">
-                  Gaming
-                </option>
-                <option className={styles.DropdownValue} value="television">
-                  Television
-                </option>
-                <option className={styles.DropdownValue} value="design">
-                  Design
-                </option>
-                <option className={styles.DropdownValue} value="movies">
-                  Movies
-                </option>
-                <option className={styles.DropdownValue} value="music">
-                  Music
-                </option>
-                <option className={styles.DropdownValue} value="social">
-                  Social
-                </option>
-              </select>
-            </div>
-          </div>
-        <div className={styles.Avatar}>Image Here</div>
-        </div>
-        <div className={styles.Footer}>
-          <div className={styles.BackButton}>BACK</div>
-          <button className={styles.CreateButton}>Create</button>
-        </div>
-      </div>
-    )
-  }
+	render() {
+		if (this.state.showModal) {
+			return <ChooseCategory chooseCategory={this.chooseCategory} />;
+    }
+
+    let category = 'SELECT A CATEGORY';
+    if (this.state.category !== '') {
+      category = this.state.category
+    }
+
+    let avatar = '';
+    if (this.state.podName !== '') {
+      avatar = this.state.podName.charAt(0)
+    }
+
+		return (
+			<div className={styles.Create}>
+				<div className={styles.Header}>CREATE A POD</div>
+				<div className={styles.PodInfo}>
+					<div className={styles.PodLeft}>
+						<div>
+							<label>POD NAME</label>
+							<form className={styles.PodForm}>
+								<input
+									className={styles.PodInputForm}
+									type="text"
+									placeholder="Enter pod name here"
+                  name="podName"
+                  value={this.state.podName}
+                  onChange={this.handleChange}
+								/>
+								<hr />
+							</form>
+						</div>
+						<div>
+							<label>POD CATEGORY</label>
+							<div>
+								<button className={styles.CategoryButton} onClick={this.categoryClick}>
+									{category}
+								</button>
+							</div>
+						</div>
+						<div>
+							<label>POD DESCRIPTION</label>
+							<input
+								className={styles.DescriptionInputForm}
+								type="text"
+								placeholder="Enter description here"
+                name="description"
+                value={this.state.description}
+                onChange={this.handleChange}
+							/>
+							<hr />
+						</div>
+					</div>
+					<div className={styles.Avatar}>{avatar}</div>
+				</div>
+				<div className={styles.Footer}>
+					<div onClick={this.props.onRequestClose} className={styles.BackButton}>
+						BACK
+					</div>
+					<button className={styles.CreateButton}>Create</button>
+				</div>
+			</div>
+		);
+	}
 };
 
-export default form;
+const mapStateToProps = state => {
+  return {
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(create);

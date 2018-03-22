@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { reducer as formReducer } from 'redux-form';
 
 import authReducer from './store/reducers/auth';
 import chatReducer from './store/reducers/chat';
@@ -18,7 +19,8 @@ const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    chat: chatReducer
+    chat: chatReducer,
+    form: formReducer
 });
 
 
