@@ -33,9 +33,9 @@ const authLogout = (state, action) => {
     return updateObject(state, { token: null, userData: null });
 };
 
-const authCheckToken = (state, action) => {
-    return updateObject(state, { token: null, userData: null })
-}
+// const authCheckToken = (state, action) => {
+//     return updateObject(state, { token: null, userData: null })
+// }
 
 const editProfileSuccess = (state, action) => {
 	return updateObject(state, {

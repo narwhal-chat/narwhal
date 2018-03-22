@@ -34,51 +34,39 @@ export const authLogout = () => {
 }
 
 export const auth = (email, password, username) => {
-    return dispatch => {
-        dispatch(authStart());
-        const authData = {
-            username: username,
-            password: password,
-            email_address: email,
-            avatar: 'avatar',
-            returnSecureToken: true
-        };
-
-        axios.post('/register', authData)
-            .then(response => {
-                // const expirationDate = new Date(new Date().getTime() + 86400);
-                localStorage.setItem('token', response.data.token);
-                // localStorage.setItem('expirationDate', expirationDate);
-                localStorage.setItem('userData', response.data.user);
-                dispatch(authSuccess(response.data.token, response.data.user));
-                // dispatch(checkAuthTimeout(response.data.expiresIn))
-            })
-            .catch(err => {
-                console.log('ERROR REGISTERING', err.response.data);
-                dispatch(authFail(err.response.data));
-            })
-
-    }
+    return { 
+        type: actionTypes.AUTH,
+        email: email,
+        password: password,
+        username: username
+    };
 }
 
 export const login = (password, username) => {
-    return dispatch => {
-        dispatch(authStart());
-        axios.post('/login', {
-            username: username,
-            password: password
-        })
-        .then(response => {
-            console.log('LOCALSTORAGE SET ITEM', response.data)
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('userData', JSON.stringify(response.data.user));
-            dispatch(authSuccess(response.data.token, response.data.user));
-        })
-        .catch((err, res) => {
-            dispatch(authFail(err.response.data.error))
-        })
+    return {
+        type: actionTypes.LOGIN,
+        password: password,
+        username: username
     }
 }
+
+// export const login = (password, username) => {
+//     return dispatch => {
+//         dispatch(authStart());
+//         axios.post('/login', {
+//             username: username,
+//             password: password
+//         })
+//         .then(response => {
+//             localStorage.setItem('token', response.data.token);
+//             localStorage.setItem('userData', JSON.stringify(response.data.user));
+//             dispatch(authSuccess(response.data.token, response.data.user));
+//         })
+//         .catch((err, res) => {
+//             dispatch(authFail(err.response.data.error))
+//         })
+//     }
+// }
 
 // Editing a user profile
 

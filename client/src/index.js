@@ -19,8 +19,7 @@ const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    chat: chatReducer,
-    form: formReducer
+    chat: chatReducer
 });
 
 
