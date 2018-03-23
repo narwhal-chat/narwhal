@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './Create.css';
 import ChooseCategory from '../ChooseCategory/ChooseCategory';
+import { Form, Text } from 'react-form';
 import * as actions from '../../../store/actions/index';
 
-class create extends Component {
+class Create extends Component {
 	state = {
 		showModal: false,
 		podName: '',
@@ -109,4 +110,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(create);
+export default connect(mapStateToProps, mapDispatchToProps)(Create);

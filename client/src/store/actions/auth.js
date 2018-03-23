@@ -50,24 +50,6 @@ export const login = (password, username) => {
     }
 }
 
-// export const login = (password, username) => {
-//     return dispatch => {
-//         dispatch(authStart());
-//         axios.post('/login', {
-//             username: username,
-//             password: password
-//         })
-//         .then(response => {
-//             localStorage.setItem('token', response.data.token);
-//             localStorage.setItem('userData', JSON.stringify(response.data.user));
-//             dispatch(authSuccess(response.data.token, response.data.user));
-//         })
-//         .catch((err, res) => {
-//             dispatch(authFail(err.response.data.error))
-//         })
-//     }
-// }
-
 // Editing a user profile
 
 export const editProfileSuccess = (token, userData) => {
@@ -86,22 +68,12 @@ export const editProfileFail = error => {
 };
 
 export const editProfile = (username, newUsername, email, password, token) => {
-	return dispatch => {
-		let editProfile = {
-			username: username,
-			newUsername: newUsername,
-			email: email,
-			password: password,
-			token: token,
-		};
-
-		axios
-			.post('/editProfile', editProfile)
-			.then(response => {
-				dispatch(editProfileSuccess(response.data.token, response.data.user));
-			})
-			.catch(err => {
-				dispatch(editProfileFail(err.response.data));
-			});
-	};
-};
+    return {
+        type: actionTypes.EDIT_PROFILE_START,
+        username: username,
+        newUsername: newUsername,
+        email: email,
+        password: password,
+        token: token
+    }
+}
