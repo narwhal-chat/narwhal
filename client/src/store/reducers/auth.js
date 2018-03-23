@@ -13,7 +13,6 @@ const authStart = (state, action) => {
 };
 
 const authSuccess = (state, action) => {
-	console.log('action in authsuccess', action)
     return updateObject(state, {
         token: action.idToken,
         userData: action.userData,
@@ -32,10 +31,6 @@ const authFail = (state, action) => {
 const authLogout = (state, action) => {
     return updateObject(state, { token: null, userData: null });
 };
-
-const authCheckToken = (state, action) => {
-    return updateObject(state, { token: null, userData: null })
-}
 
 const editProfileSuccess = (state, action) => {
 	return updateObject(state, {

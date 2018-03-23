@@ -2,6 +2,8 @@
 export const AUTH_START = 'AUTH_START';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
+export const AUTH = 'AUTH';
+export const LOGIN = 'LOGIN';
 // Logging out
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 // Redirect after Authentication
@@ -34,3 +36,7 @@ export const UPDATE_ACTIVE_POD = 'UPDATE_ACTTIVE_POD';
 
 export const TOPIC_CLICKED = 'TOPIC_CLICKED';
 export const UPDATE_ACTIVE_TOPIC = 'UPDATE_ACTIVE_TOPIC';
+
+
+// Modals
+export const CHOOSE_CATEGORY = 'CHOOSE_CATEGORY';

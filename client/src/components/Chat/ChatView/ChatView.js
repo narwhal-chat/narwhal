@@ -10,6 +10,7 @@ import DiscoverCategoriesContainer from './DiscoverCategoriesContainer/DiscoverC
 import ProfileContainer from './ProfileContainer/ProfileContainer';
 import EditPodContainer from './EditPodContainer/EditPodContainer';
 import ChatModal from '../../UI/ChatModal/ChatModal';
+import CreateJoinModal from '../../UI/CreateJoinModal/CreateJoinModal';
 
 class ChatView extends Component {
   state = {
@@ -25,13 +26,12 @@ class ChatView extends Component {
   }
 
   render() {
-    let currentView = (
-      <div className={styles.ChatView}>
-        <PodContainer />
-        <DiscoverCategoriesContainer />
-        <DiscoverContainer />
-      </div>
-    );
+    let currentView = <div className={styles.ChatView}>
+			<PodContainer />
+			<DiscoverCategoriesContainer />
+			{/* <DiscoverContainer /> */}
+			<CreateJoinModal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal.bind(this)}/>
+		</div>;
 
     if (!this.props.isDiscoverActive) {
       currentView = (

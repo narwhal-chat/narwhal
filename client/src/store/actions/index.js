@@ -2,10 +2,13 @@ export {
   auth,
   login,
   editProfile,
+  editProfileSuccess,
+  editProfileFail,
   authSuccess,
   authCheckState,
   authLogout,
-  logout
+  logout,
+  authFail
 } from './auth';
 
 export {

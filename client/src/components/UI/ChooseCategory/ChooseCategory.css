@@ -1,0 +1,43 @@
+.ChooseCategory {
+  display: grid;
+  grid-template-rows: 1fr 6fr;
+  align-self: center;
+  justify-self: center;
+  width: 600px;
+  height: 400px;
+  background-color: #ffffff;
+}
+
+.ChooseCategory .Header {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 600;
+  color: #505AB2;
+  font-size: 120%;
+}
+
+.Categories{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  /* align-self: center;
+  justify-self: center;
+  width: 600px;
+  height: 400px;
+  background-color: #ffffff; */
+}
+
+
+.Categories .CategoryBox {
+  color: #414141;
+  text-align: center;
+  border: 1px #414141 solid;
+  margin: 1em 0.5em;
+  border-radius: 5%;
+}
+
+.Categories .Category {
+  margin-top: 35%;
+  color: #505AB2;
+  font-weight: 600;
+}

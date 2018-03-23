@@ -1,0 +1,32 @@
+.CreateJoin {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-self: center;
+  justify-self: center;
+  width: 600px;
+  height: 400px;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 150%;
+}
+
+.CreateJoin .Create {
+  display: grid;
+  background-color: #505AB2;
+  color: #FFFFFF;
+  justify-items: center;
+  align-items: center;
+}
+.CreateJoin .Join {
+  display: grid;
+  background-color: #FFFFFF;
+  color: #505AB2;
+  justify-items: center;
+  align-items: center;
+}
+
+.ChatView {
+  display: grid;
+  grid-template-columns: 80px 210px 1fr;
+  grid-template-rows: 100vh;
+}
