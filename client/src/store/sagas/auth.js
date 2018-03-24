@@ -5,13 +5,15 @@ import * as actions from '../actions/index';
 export function* authCheckState(action) {
 	try {
 		const token = yield localStorage.getItem('token');
-		if (token) {
-			const userData = JSON.parse(localStorage.getItem('userData'));
-			yield put(actions.authSuccess(token, userData));
-		} else {
-			yield put(actions.logout);
-		}
+			if (!token) {
+				yield put(actions.authLogout());
+			} 
+			else {
+				const userData = JSON.parse(localStorage.getItem('userData'));
+				yield put(actions.authSuccess(token, userData));
+			}
 	} catch (e) {
+
 	}
 }
 
