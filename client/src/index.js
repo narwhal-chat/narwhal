@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
-import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
@@ -25,13 +24,13 @@ const rootReducer = combineReducers({
 });
 
 const history = createHistory();
-const middleware = routerMiddleware(history);
+const reduxRouterMiddleware = routerMiddleware(history);
 
 // Initialize the Saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(rootReducer, composeEnhancers(
-    applyMiddleware(thunk, sagaMiddleware, middleware)
+    applyMiddleware(sagaMiddleware, reduxRouterMiddleware)
 ));
 
 sagaMiddleware.run(watchChat);

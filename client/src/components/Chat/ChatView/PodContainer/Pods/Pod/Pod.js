@@ -4,19 +4,19 @@ import styles from './Pod.css';
 
 const pod = (props) => {
   // Default inactive pod styling
-  let podStyle = [styles.Avatar, styles.Inactive].join(' ');
+  let podStyling = [styles.Avatar, styles.Inactive].join(' ');
 
   // If the pod is currently selected
   if (props.activePod !== null) {
     if (props.activePod.id === props.pod.id) {
-      podStyle = [styles.Avatar, styles.Active].join(' ');
+      podStyling = [styles.Avatar, styles.Active].join(' ');
     }
   }
 
   return (
     <div className={styles.Pod}>
       <img 
-        className={podStyle}
+        className={podStyling}
         src={props.pod.avatar} 
         alt={props.pod.display_name}
         onClick={() => props.clicked(props.pod)}

@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 
-.Avatar:hover {
+.Pod .Avatar:hover {
   border-radius: 36%;
   transition: 0.15s;
 }
