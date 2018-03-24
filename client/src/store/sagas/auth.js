@@ -20,7 +20,6 @@ export function* authCheckState(action) {
 export function* authLogout(action) {
 			yield localStorage.removeItem('token');
 			yield localStorage.removeItem('userData');
-			yield put(actions.authLogout());
 }
 
 export function* auth(action) {

@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     let routes = null;
 
-    // if (!this.props.loading) {
+    if (!this.props.loading) {
       if (this.props.isAuthenticated) {
         console.log(this.props.isAuthenticated);
         routes = (
@@ -35,12 +35,11 @@ class App extends Component {
           </Switch>
         );
       }
-    // }
+    }
 
     return (
       <React.Fragment>
-        {/* {routes} */}
-        <div>hi</div>
+        {routes}
       </React.Fragment>
     );
   }
