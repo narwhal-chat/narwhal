@@ -12,31 +12,29 @@ import * as actions from '../../../../store/actions/index';
 
 const animationStyles = {
   headShake: {
-    animation: 'x 1s',
+    animation: 'x 1.25s',
     animationName: Radium.keyframes(headShake, 'headShake')
   }
 };
 
 class PodContainer extends Component {
-  state = {
-    discoverIsActive: false
-  }
-
   componentDidMount() {
-    this.props.onFetchPods();
-  }
-
-  onLogoClick = () => {
-    this.setState({discoverIsActive: true});
+    console.log('yo', this.props.initialPodId);
+    this.props.onFetchPods(this.props.initialPodId);
   }
   
   render() {
-    let narwhalLogoAnimation = this.state.discoverIsActive ? animationStyles.headShake : null;
+    // let narwhalLogoAnimation = this.props.isDiscoverActive ? animationStyles.headShake : null;
 
     return (
       <div className={styles.PodContainer}>
         <StyleRoot>
-          <img className={styles.Logo} style={narwhalLogoAnimation} src={narwhalLogo} alt="Discover" onClick={this.onLogoClick}/>
+          <img
+            className={styles.Logo}
+            // style={narwhalLogoAnimation}
+            src={narwhalLogo} alt="Discover"
+            onClick={this.props.onDiscoverClicked}
+          />
         </StyleRoot>
         <div className={styles.DiscoverTitle}>DISCOVER</div>
         <div className={styles.DiscoverSeparator}></div>
@@ -54,14 +52,16 @@ class PodContainer extends Component {
 const mapStateToProps = state => {
   return {
     pods: state.chat.pods,
-    activePod: state.chat.activePod
+    activePod: state.chat.activePod,
+    isDiscoverActive: state.chat.isDiscoverActive
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-      onFetchPods: () => dispatch(actions.fetchPods(1)),
-      onPodClicked: (pod) => dispatch(actions.podClicked(pod))
+      onFetchPods: (initialPodId) => dispatch(actions.fetchPods(1, initialPodId)),
+      onPodClicked: (pod) => dispatch(actions.podClicked(pod)),
+      onDiscoverClicked: () => dispatch(actions.discoverClicked())
   };
 };
 

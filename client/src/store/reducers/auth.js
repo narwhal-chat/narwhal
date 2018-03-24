@@ -3,9 +3,10 @@ import { updateObject } from '../../shared/utility';
 
 const initialState = {
     token: null,
-    userData: null,
+	userData: null,
     error: null,
-    loading: false
+    loading: true,
+    authRedirectPath: '/'
 };
 
 const authStart = (state, action) => {

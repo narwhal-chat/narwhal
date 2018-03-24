@@ -26,6 +26,7 @@ class ChatView extends Component {
   }
 
   render() {
+<<<<<<< HEAD
     let currentView = <div className={styles.ChatView}>
 			<PodContainer />
 			<DiscoverCategoriesContainer />
@@ -34,10 +35,30 @@ class ChatView extends Component {
 		</div>;
 
     if (!this.props.isDiscoverActive) {
+=======
+    console.log('chat view', this.props);
+    let currentView = null;
+    
+    if (this.props.match.params.podId === '@discover') {
+>>>>>>> Commit progress on changing the intitial flow to use URL params
       currentView = (
         <div className={styles.ChatView}>
           <PodContainer />
-          <TopicContainer />
+          <DiscoverCategoriesContainer />
+          <DiscoverContainer />
+        </div>
+      );
+     } else {
+       console.log(this.props.match.params);
+      currentView = (
+        <div className={styles.ChatView}>
+          <PodContainer
+            initialPodId={this.props.match.params.podId}
+          />
+          <TopicContainer
+            initialPodId={this.props.match.params.podId}
+            initialTopicId={this.props.match.params.topicId}
+          />
           <MessageContainer />
         </div>
       );

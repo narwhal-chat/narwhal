@@ -14,37 +14,50 @@ class App extends Component {
   }
   
   render() {
-    let routes = (
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Auth} />
-        <Redirect to="/login" />
-      </Switch>
-    )
+    let routes = null;
 
-    if (this.props.isAuthenticated) {
-        routes = (        
-        <Switch>
-					<Route path="/pods/@discover" exact component={ChatView} />
-          <Redirect to="/pods/@discover" />
-        </Switch>
+    if (!this.props.loading) {
+      if (this.props.isAuthenticated) {
+        routes = (
+          <Switch>
+            <Route path="/topics/:podId" exact component={ChatView} />
+            <Route path="/topics/:podId/:topicId" exact component={ChatView} />
+            <Redirect to="/topics/@discover" />
+          </Switch>
         );
+      } else {
+        routes = (
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Auth} />
+            <Redirect to="/login" />
+          </Switch>
+        );
+      }
     }
 
-    return(
+    return (
       <React.Fragment>
         {routes}
       </React.Fragment>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => {
+<<<<<<< HEAD
 	return { 
     error: state.auth.error, 
     token: state.auth.token, 
     isAuthenticated: state.auth.token !== null,
     userData: state.auth.userData
+=======
+	return {
+    token: state.auth.token,
+    isAuthenticated: state.auth.token !== null,
+    loading: state.auth.loading,
+    error: state.auth.error
+>>>>>>> Commit progress on changing the intitial flow to use URL params
   };
 };
 

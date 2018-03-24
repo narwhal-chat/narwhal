@@ -8,10 +8,22 @@ import Topics from './Topics/Topics';
 import * as actions from '../../../../store/actions/index';
 
 class TopicContainer extends Component {
+  componentDidMount() {
+    this.props.onFetchTopics(this.props.initialPodId);
+    console.log('topic component mounted');
+  }
+
   render() {
+    let podHeader = null;
     let topics = null;
 
-    if (this.props.topics) {
+    if (this.props.activePod && this.props.topics && this.props.activeTopic) {
+      podHeader = (
+        <PodHeader
+          name={this.props.activePod.display_name}
+        />
+      );
+
       topics = (
         <Topics
           topics={this.props.topics}
@@ -25,9 +37,7 @@ class TopicContainer extends Component {
     return (
       <div className={styles.TopicContainer}>
         <div className={styles.Content}>
-          <PodHeader
-            name={this.props.activePod.display_name}
-          />
+          {podHeader}
           <User />
           {topics}
         </div>

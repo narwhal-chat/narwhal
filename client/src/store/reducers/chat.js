@@ -5,7 +5,7 @@ const initialState = {
     pods: [],
     topics: [],
     messages: [],
-    isDiscoverActive: true,
+    isDiscoverActive: false,
     activePod: null,
     activeTopic: null
 };
@@ -39,16 +39,22 @@ const createTopicFail = (state, action) => {
   return updateObject(state);
 };
 
-const updateActivePod = (state, action) => {
+const setActivePod = (state, action) => {
   return updateObject(state, {
     isDiscoverActive: false,
     activePod: action.pod
   });
 };
 
-const updateActiveTopic = (state, action) => {
+const setActiveTopic = (state, action) => {
   return updateObject(state, {
     activeTopic: action.topic
+  });
+};
+
+const discoverActive = (state, action) => {
+  return updateObject(state, {
+    isDiscoverActive: true
   });
 };
 
@@ -60,8 +66,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_TOPICS_SUCCESS: return fetchTopicsSuccess(state, action);
     case actionTypes.FETCH_TOPICS_FAIL: return fetchTopicsFail(state, action);
     case actionTypes.CREATE_TOPIC_FAIL: return createTopicFail(state, action);
-    case actionTypes.UPDATE_ACTIVE_POD: return updateActivePod(state, action);
-    case actionTypes.UPDATE_ACTIVE_TOPIC: return updateActiveTopic(state, action);
+    case actionTypes.SET_ACTIVE_POD: return setActivePod(state, action);
+    case actionTypes.SET_ACTIVE_TOPIC: return setActiveTopic(state, action);
+    case actionTypes.DISCOVER_ACTIVE: return discoverActive(state, action);
     default: return state;
   }
 };

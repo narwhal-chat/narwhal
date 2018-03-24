@@ -23,7 +23,9 @@ export {
   createTopic,
   createTopicFail,
   podClicked,
-  updateActivePod,
+  setActivePod,
   topicClicked,
-  updateActiveTopic
+  setActiveTopic,
+  discoverClicked,
+  discoverActive
 } from './chat';
