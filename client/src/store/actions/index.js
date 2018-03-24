@@ -6,6 +6,7 @@ export {
   editProfileFail,
   authSuccess,
   authCheckState,
+  authCheckStateFinished,
   authLogout,
   logout,
   authFail
@@ -20,7 +21,7 @@ export {
   fetchTopics,
   fetchTopicsSuccess,
   fetchTopicsFail,
-  fetchTopicsComplete,
+  fetchTopicsFinished,
   createTopic,
   createTopicFail,
   podClicked,

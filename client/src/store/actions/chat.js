@@ -58,9 +58,9 @@ export const fetchTopicsFail = (error) => {
   };
 };
 
-export const fetchTopicsComplete = () => {
+export const fetchTopicsFinished = () => {
   return {
-    type: actionTypes.FETCH_TOPICS_COMPLETE
+    type: actionTypes.FETCH_TOPICS_FINISHED
   }
 };
 

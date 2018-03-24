@@ -6,6 +6,7 @@ export function* authCheckState(action) {
 	try {
 		const token = yield localStorage.getItem('token');
 			if (!token) {
+				yield put(actions.authCheckStateFinished());
 				yield put(actions.authLogout());
 			} 
 			else {
@@ -18,8 +19,8 @@ export function* authCheckState(action) {
 }
 
 export function* authLogout(action) {
-			yield localStorage.removeItem('token');
-			yield localStorage.removeItem('userData');
+	yield localStorage.removeItem('token');
+	yield localStorage.removeItem('userData');
 }
 
 export function* auth(action) {

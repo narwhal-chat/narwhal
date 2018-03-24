@@ -18,9 +18,7 @@ export function* fetchPods(action) {
 
     // Check if an initial pod id was passed in from the route params
     if (action.initialPodId) {
-      console.log('hi');
       for (let pod of results.data) {
-        console.log('pod', pod.id, action.initialPodId);
         if (pod.id === +action.initialPodId) {
           yield put(actions.setActivePod(pod));
           break;
@@ -55,7 +53,7 @@ export function* fetchTopics(action) {
     yield put(actions.fetchTopicsSuccess(results.data));
     const topics = yield select(selectors.topics);
     yield put(actions.setActiveTopic(topics[0]));
-    yield put(actions.fetchTopicsComplete());
+    yield put(actions.fetchTopicsFinished());
   } catch (e) {
     yield put(actions.fetchTopicsFail());
   }
@@ -79,7 +77,7 @@ export function* podClicked(action) {
   try {
     yield put(actions.setActivePod(action.pod));
     yield put(actions.fetchTopics(action.pod.id));
-    yield take(actionTypes.FETCH_TOPICS_COMPLETE);
+    yield take(actionTypes.FETCH_TOPICS_FINISHED);
     const activeTopic = yield select(selectors.activeTopic);
     yield put(push(`/topics/${action.pod.id}/${activeTopic.id}`));
   } catch (e) {

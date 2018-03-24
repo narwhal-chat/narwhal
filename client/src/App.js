@@ -16,9 +16,8 @@ class App extends Component {
   render() {
     let routes = null;
 
-    if (!this.props.loading) {
+    if (!this.props.isAuthenticating) {
       if (this.props.isAuthenticated) {
-        console.log(this.props.isAuthenticated);
         routes = (
           <Switch>
             <Route path="/topics/:podId" exact component={ChatView} />
@@ -49,7 +48,7 @@ const mapStateToProps = state => {
 	return {
     token: state.auth.token,
     isAuthenticated: state.auth.token !== null,
-    loading: state.auth.loading,
+    isAuthenticating: state.auth.isAuthenticating,
     userData: state.auth.userData,
     error: state.auth.error
   };

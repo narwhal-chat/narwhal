@@ -5,12 +5,12 @@ const initialState = {
     token: null,
 	userData: null,
     error: null,
-    loading: true,
+    isAuthenticating: true,
     authRedirectPath: '/'
 };
 
 const authStart = (state, action) => {
-    return updateObject(state, { error: null, loading: true });
+    return updateObject(state, { error: null, isAuthenticating: true });
 };
 
 const authSuccess = (state, action) => {
@@ -18,15 +18,21 @@ const authSuccess = (state, action) => {
         token: action.idToken,
         userData: action.userData,
         error: null,
-        loading: false
+        isAuthenticating: false
     });
 };
 
 const authFail = (state, action) => {
     return updateObject(state, {
         error: action.error,
-        loading: false
+        isAuthenticating: false
     });
+};
+
+const authCheckStateFinished = (state, action) => {
+	return updateObject(state, {
+		isAuthenticating: false
+	});
 };
 
 const authLogout = (state, action) => {
@@ -43,27 +49,29 @@ const editProfileSuccess = (state, action) => {
 };
 
 const editProfileFail = (state, action) => {
-	return updateObject(state, {
-		error: action.error,
-	});
+  return updateObject(state, {
+	error: action.error,
+  });
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
 		case actionTypes.AUTH_START:
-			return authStart(state, action);
+		  return authStart(state, action);
 		case actionTypes.AUTH_SUCCESS:
-			return authSuccess(state, action);
+		  return authSuccess(state, action);
 		case actionTypes.AUTH_FAIL:
-			return authFail(state, action);
+		  return authFail(state, action);
+		case actionTypes.AUTH_CHECK_STATE_FINISHED:
+		  return authCheckStateFinished(state, action);
 		case actionTypes.AUTH_LOGOUT:
-			return authLogout(state, action);
+		  return authLogout(state, action);
 		case actionTypes.EDIT_PROFILE_FAIL:
-			return editProfileFail(state, action);
+		  return editProfileFail(state, action);
 		case actionTypes.EDIT_PROFILE_SUCCESS:
-			return editProfileSuccess(state, action);
+		  return editProfileSuccess(state, action);
 		default:
-			return state;
+		  return state;
 	}
 };
 
