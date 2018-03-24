@@ -36,10 +36,11 @@ export const createPodFail = (error) => {
   };
 };
 
-export const fetchTopics = (podId) => {
+export const fetchTopics = (podId, initialTopicId) => {
   return {
       type: actionTypes.FETCH_TOPICS,
-      podId: podId
+      podId: podId,
+      initialTopicId: initialTopicId
   };
 };
 
@@ -55,6 +56,12 @@ export const fetchTopicsFail = (error) => {
       type: actionTypes.FETCH_TOPICS_FAIL,
       error: error
   };
+};
+
+export const fetchTopicsComplete = () => {
+  return {
+    type: actionTypes.FETCH_TOPICS_COMPLETE
+  }
 };
 
 export const createTopic = () => {

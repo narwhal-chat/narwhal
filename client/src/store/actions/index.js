@@ -20,6 +20,7 @@ export {
   fetchTopics,
   fetchTopicsSuccess,
   fetchTopicsFail,
+  fetchTopicsComplete,
   createTopic,
   createTopicFail,
   podClicked,

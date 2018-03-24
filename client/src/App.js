@@ -18,6 +18,7 @@ class App extends Component {
 
     if (!this.props.loading) {
       if (this.props.isAuthenticated) {
+        console.log(this.props.isAuthenticated);
         routes = (
           <Switch>
             <Route path="/topics/:podId" exact component={ChatView} />
@@ -45,19 +46,12 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-<<<<<<< HEAD
-	return { 
-    error: state.auth.error, 
-    token: state.auth.token, 
-    isAuthenticated: state.auth.token !== null,
-    userData: state.auth.userData
-=======
 	return {
     token: state.auth.token,
     isAuthenticated: state.auth.token !== null,
     loading: state.auth.loading,
+    userData: state.auth.userData,
     error: state.auth.error
->>>>>>> Commit progress on changing the intitial flow to use URL params
   };
 };
 

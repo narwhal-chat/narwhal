@@ -8,12 +8,12 @@ export function* authCheckState(action) {
 		if (token) {
 			const userData = JSON.parse(localStorage.getItem('userData'));
 			yield put(actions.authSuccess(token, userData));
+		} else {
+			yield put(actions.logout);
 		}
 	} catch (e) {
-		yield put(actions.logout);
 	}
-
-};
+}
 
 export function* authLogout(action) {
 			yield localStorage.removeItem('token');
@@ -38,7 +38,6 @@ export function* auth(action) {
 	} catch (error) {
 		yield put(actions.authFail(error.response.data));
 	}
-
 }
 
 export function* login(action) {

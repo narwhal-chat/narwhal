@@ -1,8 +1,9 @@
-import { put, select } from 'redux-saga/effects';
+import { put, take, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import axios from 'axios';
 
 import * as actions from '../actions/index';
+import * as actionTypes from '../actions/actionTypes';
 import * as selectors from './selectors';
 
 export function* fetchPods(action) {
@@ -16,14 +17,11 @@ export function* fetchPods(action) {
     yield put(actions.fetchPodsSuccess(results.data));
 
     // Check if an initial pod id was passed in from the route params
-    console.log('inside fetch pods', action.initialPodId);
     if (action.initialPodId) {
       console.log('hi');
       for (let pod of results.data) {
-        console.log('not possible');
         console.log('pod', pod.id, action.initialPodId);
         if (pod.id === +action.initialPodId) {
-          console.log('is this working?');
           yield put(actions.setActivePod(pod));
           break;
         }
@@ -57,6 +55,7 @@ export function* fetchTopics(action) {
     yield put(actions.fetchTopicsSuccess(results.data));
     const topics = yield select(selectors.topics);
     yield put(actions.setActiveTopic(topics[0]));
+    yield put(actions.fetchTopicsComplete());
   } catch (e) {
     yield put(actions.fetchTopicsFail());
   }
@@ -80,8 +79,8 @@ export function* podClicked(action) {
   try {
     yield put(actions.setActivePod(action.pod));
     yield put(actions.fetchTopics(action.pod.id));
+    yield take(actionTypes.FETCH_TOPICS_COMPLETE);
     const activeTopic = yield select(selectors.activeTopic);
-    console.log('active topic', activeTopic);
     yield put(push(`/topics/${action.pod.id}/${activeTopic.id}`));
   } catch (e) {
 

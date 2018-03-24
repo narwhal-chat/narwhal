@@ -26,21 +26,20 @@ class ChatView extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    let currentView = <div className={styles.ChatView}>
-			<PodContainer />
-			<DiscoverCategoriesContainer />
-			{/* <DiscoverContainer /> */}
-			<CreateJoinModal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal.bind(this)}/>
-		</div>;
+    // let currentView = (
+    //   <div className={styles.ChatView}>
+    //     <PodContainer />
+    //     <DiscoverCategoriesContainer />
+    //     {/* <DiscoverContainer /> */}
+    //     <CreateJoinModal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal.bind(this)}/>
+    //   </div>
+    // );
 
-    if (!this.props.isDiscoverActive) {
-=======
-    console.log('chat view', this.props);
+    // if (!this.props.isDiscoverActive) {
+    // console.log('chat view', this.props);
     let currentView = null;
     
     if (this.props.match.params.podId === '@discover') {
->>>>>>> Commit progress on changing the intitial flow to use URL params
       currentView = (
         <div className={styles.ChatView}>
           <PodContainer />
@@ -49,7 +48,6 @@ class ChatView extends Component {
         </div>
       );
      } else {
-       console.log(this.props.match.params);
       currentView = (
         <div className={styles.ChatView}>
           <PodContainer
