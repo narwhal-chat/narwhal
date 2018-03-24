@@ -1,7 +1,9 @@
-import { put, select } from 'redux-saga/effects';
+import { put, take, select } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import axios from 'axios';
 
 import * as actions from '../actions/index';
+import * as actionTypes from '../actions/actionTypes';
 import * as selectors from './selectors';
 
 export function* fetchPods(action) {
@@ -13,10 +15,20 @@ export function* fetchPods(action) {
         }
     });
     yield put(actions.fetchPodsSuccess(results.data));
+
+    // Check if an initial pod id was passed in from the route params
+    if (action.initialPodId) {
+      for (let pod of results.data) {
+        if (pod.id === +action.initialPodId) {
+          yield put(actions.setActivePod(pod));
+          break;
+        }
+      }
+    }
   } catch (e) {
     yield put(actions.fetchPodsFail());
   }
-};
+}
 
 export function* createPod(action) {
   try {
@@ -28,7 +40,7 @@ export function* createPod(action) {
   } catch (e) {
     yield put(actions.createPodFail());
   }
-};
+}
 
 export function* fetchTopics(action) {
   try {
@@ -40,39 +52,53 @@ export function* fetchTopics(action) {
     });
     yield put(actions.fetchTopicsSuccess(results.data));
     const topics = yield select(selectors.topics);
-    yield put(actions.updateActiveTopic(topics[0]));
+    yield put(actions.setActiveTopic(topics[0]));
+    yield put(actions.fetchTopicsFinished());
   } catch (e) {
     yield put(actions.fetchTopicsFail());
   }
-};
+}
 
 export function* createTopic(action) {
   try {
     const token = yield select(selectors.token);
-    const pod = yield select(selectors.activePod);
+    const activePod = yield select(selectors.activePod);
     const userId = 1;
-    yield axios.post('/pods/' + pod.id + '/topics', {
+    yield axios.post('/pods/' + activePod.id + '/topics', {
         token: token
     });
-    yield put(actions.fetchTopics(pod.id));
+    yield put(actions.fetchTopics(activePod.id));
   } catch (e) {
     yield put(actions.createTopicFail());
   }
-};
+}
 
 export function* podClicked(action) {
   try {
-    yield put(actions.updateActivePod(action.pod));
+    yield put(actions.setActivePod(action.pod));
     yield put(actions.fetchTopics(action.pod.id));
+    yield take(actionTypes.FETCH_TOPICS_FINISHED);
+    const activeTopic = yield select(selectors.activeTopic);
+    yield put(push(`/topics/${action.pod.id}/${activeTopic.id}`));
   } catch (e) {
 
   }
-};
+}
 
 export function* topicClicked(action) {
   try {
-    yield put(actions.updateActiveTopic(action.topic));
+    yield put(actions.setActiveTopic(action.topic));
+    yield put(push(`/topics/${action.topic.pod_id}/${action.topic.id}`));
   } catch (e) {
 
   }
-};
+}
+
+export function* discoverClicked(action) {
+  try {
+    yield put(actions.discoverActive());
+    yield put(push('/topics/@discover'));
+  } catch (e) {
+
+  }
+}

@@ -28,6 +28,12 @@ export const authCheckState = () => {
     }
 }
 
+export const authCheckStateFinished = () => {
+    return {
+        type: actionTypes.AUTH_CHECK_STATE_FINISHED
+    }
+}
+
 // For logging out
 export const authLogout = () => {
     return { type: actionTypes.AUTH_LOGOUT };

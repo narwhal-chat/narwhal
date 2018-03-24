@@ -5,20 +5,22 @@ import * as actions from '../actions/index';
 export function* authCheckState(action) {
 	try {
 		const token = yield localStorage.getItem('token');
-		if (token) {
-			const userData = JSON.parse(localStorage.getItem('userData'));
-			yield put(actions.authSuccess(token, userData));
-		}
+			if (!token) {
+				yield put(actions.authCheckStateFinished());
+				yield put(actions.authLogout());
+			} 
+			else {
+				const userData = JSON.parse(localStorage.getItem('userData'));
+				yield put(actions.authSuccess(token, userData));
+			}
 	} catch (e) {
-		yield put(actions.logout);
-	}
 
-};
+	}
+}
 
 export function* authLogout(action) {
-			yield localStorage.removeItem('token');
-			yield localStorage.removeItem('userData');
-			yield put(actions.authLogout());
+	yield localStorage.removeItem('token');
+	yield localStorage.removeItem('userData');
 }
 
 export function* auth(action) {
@@ -38,7 +40,6 @@ export function* auth(action) {
 	} catch (error) {
 		yield put(actions.authFail(error.response.data));
 	}
-
 }
 
 export function* login(action) {

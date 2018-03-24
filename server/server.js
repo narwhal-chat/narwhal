@@ -81,6 +81,7 @@ app.use((req, res, next) => {
                 // res.status(403).render('/login');
             } else {
                 req.decoded=decod;
+                console.log('decod', decod);
                 next();
             }
         });

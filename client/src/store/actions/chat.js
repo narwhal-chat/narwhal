@@ -1,9 +1,10 @@
 import * as actionTypes from './actionTypes';
 
-export const fetchPods = (userId) => {
+export const fetchPods = (userId, initialPodId) => {
   return {
       type: actionTypes.FETCH_PODS,
-      userId: userId
+      userId: userId,
+      initialPodId: initialPodId
   };
 };
 
@@ -35,10 +36,11 @@ export const createPodFail = (error) => {
   };
 };
 
-export const fetchTopics = (podId) => {
+export const fetchTopics = (podId, initialTopicId) => {
   return {
       type: actionTypes.FETCH_TOPICS,
-      podId: podId
+      podId: podId,
+      initialTopicId: initialTopicId
   };
 };
 
@@ -54,6 +56,12 @@ export const fetchTopicsFail = (error) => {
       type: actionTypes.FETCH_TOPICS_FAIL,
       error: error
   };
+};
+
+export const fetchTopicsFinished = () => {
+  return {
+    type: actionTypes.FETCH_TOPICS_FINISHED
+  }
 };
 
 export const createTopic = () => {
@@ -76,9 +84,9 @@ export const podClicked = (pod) => {
   };
 };
 
-export const updateActivePod = (pod) => {
+export const setActivePod = (pod) => {
   return  {
-    type: actionTypes.UPDATE_ACTIVE_POD,
+    type: actionTypes.SET_ACTIVE_POD,
     pod: pod
   }
 };
@@ -90,9 +98,21 @@ export const topicClicked = (topic) => {
   };
 };
 
-export const updateActiveTopic = (topic) => {
+export const setActiveTopic = (topic) => {
   return  {
-    type: actionTypes.UPDATE_ACTIVE_TOPIC,
+    type: actionTypes.SET_ACTIVE_TOPIC,
     topic: topic
-  }
+  };
+};
+
+export const discoverClicked = () => {
+  return {
+    type: actionTypes.DISCOVER_CLICKED
+  };
+};
+
+export const discoverActive = () => {
+  return {
+    type: actionTypes.DISCOVER_ACTIVE
+  };
 };

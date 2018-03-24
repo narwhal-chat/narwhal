@@ -6,6 +6,7 @@ export {
   editProfileFail,
   authSuccess,
   authCheckState,
+  authCheckStateFinished,
   authLogout,
   logout,
   authFail
@@ -20,10 +21,13 @@ export {
   fetchTopics,
   fetchTopicsSuccess,
   fetchTopicsFail,
+  fetchTopicsFinished,
   createTopic,
   createTopicFail,
   podClicked,
-  updateActivePod,
+  setActivePod,
   topicClicked,
-  updateActiveTopic
+  setActiveTopic,
+  discoverClicked,
+  discoverActive
 } from './chat';
