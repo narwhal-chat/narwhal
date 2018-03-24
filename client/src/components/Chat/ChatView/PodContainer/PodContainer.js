@@ -19,19 +19,18 @@ const animationStyles = {
 
 class PodContainer extends Component {
   componentDidMount() {
-    console.log('yo', this.props.initialPodId);
     this.props.onFetchPods(this.props.initialPodId);
   }
   
   render() {
-    // let narwhalLogoAnimation = this.props.isDiscoverActive ? animationStyles.headShake : null;
+    let narwhalLogoAnimation = this.props.isDiscoverActive ? animationStyles.headShake : null;
 
     return (
       <div className={styles.PodContainer}>
         <StyleRoot>
           <img
             className={styles.Logo}
-            // style={narwhalLogoAnimation}
+            style={narwhalLogoAnimation}
             src={narwhalLogo} alt="Discover"
             onClick={this.props.onDiscoverClicked}
           />

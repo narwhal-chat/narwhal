@@ -10,7 +10,6 @@ import * as actions from '../../../../store/actions/index';
 class TopicContainer extends Component {
   componentDidMount() {
     this.props.onFetchTopics(this.props.initialPodId);
-    console.log('topic component mounted');
   }
 
   render() {
