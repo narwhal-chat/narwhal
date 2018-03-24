@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
-import { reducer as formReducer } from 'redux-form';
 
 import './index.css';
 import App from './App';

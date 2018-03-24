@@ -8,7 +8,6 @@ export {
   authCheckState,
   authCheckStateFinished,
   authLogout,
-  logout,
   authFail
 } from './auth';
 

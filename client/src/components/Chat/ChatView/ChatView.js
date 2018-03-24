@@ -26,41 +26,41 @@ class ChatView extends Component {
   }
 
   render() {
-    // let currentView = (
-    //   <div className={styles.ChatView}>
-    //     <PodContainer />
-    //     <DiscoverCategoriesContainer />
-    //     {/* <DiscoverContainer /> */}
-    //     <CreateJoinModal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal.bind(this)}/>
-    //   </div>
-    // );
+    let currentView = (
+      <div className={styles.ChatView}>
+        <PodContainer />
+        <DiscoverCategoriesContainer />
+        {/* <DiscoverContainer /> */}
+        <CreateJoinModal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal.bind(this)}/>
+      </div>
+    );
 
     // if (!this.props.isDiscoverActive) {
     // console.log('chat view', this.props);
-    let currentView = null;
+    // let currentView = null;
     
-    if (this.props.match.params.podId === '@discover') {
-      currentView = (
-        <div className={styles.ChatView}>
-          <PodContainer />
-          <DiscoverCategoriesContainer />
-          <DiscoverContainer />
-        </div>
-      );
-     } else {
-      currentView = (
-        <div className={styles.ChatView}>
-          <PodContainer
-            initialPodId={this.props.match.params.podId}
-          />
-          <TopicContainer
-            initialPodId={this.props.match.params.podId}
-            initialTopicId={this.props.match.params.topicId}
-          />
-          <MessageContainer />
-        </div>
-      );
-    }
+    // if (this.props.match.params.podId === '@discover') {
+    //   currentView = (
+    //     <div className={styles.ChatView}>
+    //       <PodContainer />
+    //       <DiscoverCategoriesContainer />
+    //       <DiscoverContainer />
+    //     </div>
+    //   );
+    //  } else {
+    //   currentView = (
+    //     <div className={styles.ChatView}>
+    //       <PodContainer
+    //         initialPodId={this.props.match.params.podId}
+    //       />
+    //       <TopicContainer
+    //         initialPodId={this.props.match.params.podId}
+    //         initialTopicId={this.props.match.params.topicId}
+    //       />
+    //       <MessageContainer />
+    //     </div>
+    //   );
+    // }
 
     return currentView;
   }
