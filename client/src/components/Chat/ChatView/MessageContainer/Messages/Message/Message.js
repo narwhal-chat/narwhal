@@ -13,7 +13,7 @@ const message = (props) => {
           {'narwhal_user12'}
         </div>
         <div className={styles.Time}>
-          6:30pm
+          6:30 PM
         </div>
         <p className={styles.MessageText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
   ullamco laboris nisi ut aliquip ex ea commodo consequat yooo. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 

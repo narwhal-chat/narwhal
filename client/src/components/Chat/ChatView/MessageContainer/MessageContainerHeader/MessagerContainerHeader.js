@@ -10,7 +10,7 @@ const messageContainerHeader = (props) => {
       <TopicHeader
         topicName={props.topicName}
       />
-      <MessageSearchBar />
+      {/* <MessageSearchBar /> */}
     </div>
   );
 };

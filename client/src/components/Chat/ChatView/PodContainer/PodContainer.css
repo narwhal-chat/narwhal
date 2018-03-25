@@ -20,11 +20,11 @@
   font-size: 60%;
   text-align: center;
   letter-spacing: 0.3px;
-  color: #FFFFFF;
+  cursor: pointer;
 }
 
 .PodContainer .DiscoverSeparator {
   margin-bottom: 10px;
   width: 2.1em;
-  border: 0.5px solid #FFFFFF;
+  border: 0.5px solid rgb(255, 255, 255);
 }

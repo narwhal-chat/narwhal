@@ -10,7 +10,7 @@
 .Message .AvatarContainer {
 }
 
-.Message .Avatar {
+.Message .AvatarContainer .Avatar {
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -32,12 +32,11 @@
 
 .Message .Time {
   display: inline;
-  font-size: 60%;
-  font-weight: 300;
-  color: #525252;
+  font-size: 63%;
+  color: #636363;
 }
 
 .Message .MessageText {
-  font-size: 75%;
+  font-size: 74%;
   color: #000000;
 }

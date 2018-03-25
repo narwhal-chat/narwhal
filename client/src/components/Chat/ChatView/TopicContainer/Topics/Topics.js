@@ -38,7 +38,7 @@ const topics = (props) => {
   return (
     <div className={styles.Topics}>
       <div>
-        <div className={styles.Title}>TOPICS</div>
+        <div className={styles.Title}>Topics</div>
         <div className={styles.AddTopicContainer}>
           <PlusIcon
             className={styles.AddTopicIcon}

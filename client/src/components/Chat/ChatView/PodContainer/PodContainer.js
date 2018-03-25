@@ -37,7 +37,11 @@ class PodContainer extends Component {
             />
           </StyleRoot>
         </div>
-        <div className={styles.DiscoverTitle}>DISCOVER</div>
+        <div
+          className={styles.DiscoverTitle}
+          onClick={this.props.onDiscoverClicked}>
+          DISCOVER
+        </div>
         <div className={styles.DiscoverSeparator}></div>
         <Pods
           pods={this.props.pods}

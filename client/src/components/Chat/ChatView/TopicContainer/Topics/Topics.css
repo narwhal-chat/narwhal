@@ -1,5 +1,4 @@
 .Topics {
-  color: #FFFFFF;
 }
 
 .Topics .Title {
@@ -17,9 +16,15 @@
 }
 
 .Topics .AddTopicIcon {
-  cursor: pointer;
   font-size: 110%;
-  color: #FFFFFF;
+  color: rgb(214, 214, 214);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.Topics .AddTopicIcon:hover {
+  color: rgb(255, 255, 255);
+  transition: 0.2s;
 }
 
 .Topics .Clearfix::after {
