@@ -52,7 +52,25 @@ export function* fetchTopics(action) {
     });
     yield put(actions.fetchTopicsSuccess(results.data));
     const topics = yield select(selectors.topics);
-    yield put(actions.setActiveTopic(topics[0]));
+
+    let newActiveTopic = topics[0];
+
+    // If an initialTopicId was supplied
+    if (action.initialTopicId) {
+      // If the topic id matches one of the newly fetched topics, set that topic as the active topic
+      for (let topic of topics) {
+        console.log('inside loop', topic, action.initialTopicId);
+        if (topic.id === action.initialTopicId) {
+          console.log('matched');
+          newActiveTopic = topic;
+        }
+      }
+      // If the topic was not supplied by the GET request, default to the first topic in the pod
+      yield put(actions.setActiveTopic(newActiveTopic));
+    } else {
+      // If an initialTopicId was not supplied, default to the first topic in the pod
+      yield put(actions.setActiveTopic(topics[0]));
+    }
     yield put(actions.fetchTopicsFinished());
   } catch (e) {
     yield put(actions.fetchTopicsFail());
@@ -63,11 +81,13 @@ export function* createTopic(action) {
   try {
     const token = yield select(selectors.token);
     const activePod = yield select(selectors.activePod);
-    const userId = 1;
-    yield axios.post('/pods/' + activePod.id + '/topics', {
-        token: token
+    const userId = yield select(selectors.userId);
+    const results = yield axios.post('/pods/' + activePod.id + '/topics', {
+        token: token,
+        userId: userId
     });
-    yield put(actions.fetchTopics(activePod.id));
+    console.log('new topic', results.data);
+    yield put(actions.fetchTopics(activePod.id, results.data.id));
   } catch (e) {
     yield put(actions.createTopicFail());
   }
