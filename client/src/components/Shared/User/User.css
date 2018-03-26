@@ -8,14 +8,22 @@
 
 .User .StatusIcon {
   margin-right: 5px;
-  width: 7px;
-  height: 7px;
+  margin-top: 2px;
+  width: 8px;
+  height: 8px;
   background-color: #44DBC0;
   border-radius: 50%;
 }
 
 .User .Username {
   display: inline;
-  font-size: 75%;
-  color: rgb(184, 187, 216);
+  font-size: 70%;
+  color: rgb(214, 214, 214);
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.User .Username:hover {
+  color: rgb(255, 255, 255);
+  transition: 0.1s;
 }

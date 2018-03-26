@@ -9,23 +9,22 @@
 
 .PodContainer .Logo {
   margin-top: 10px;
-  margin-bottom: 6px;
   width: 64px;
   height: 76px;
   cursor: pointer;
 }
 
 .PodContainer .DiscoverTitle {
-  margin-bottom: 2px;
+  margin-bottom: 16px;
   font-family: 'Source Sans Pro';
   font-size: 60%;
   text-align: center;
   letter-spacing: 0.3px;
-  color: #FFFFFF;
+  cursor: pointer;
 }
 
 .PodContainer .DiscoverSeparator {
-  margin-bottom: 22px;
+  margin-bottom: 10px;
   width: 2.1em;
-  border: 0.5px solid #FFFFFF;
+  border: 0.5px solid rgb(255, 255, 255);
 }

@@ -8,17 +8,17 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  transition: 0.15s;
+  transition: 0.2s;
   cursor: pointer;
 }
 
-.Avatar:hover {
-  border-radius: 36%;
-  transition: 0.15s;
+.Pod .Avatar:hover {
+  border-radius: 33%;
+  transition: 0.2s;
 }
 
 .Pod .Active {
-  border-radius: 36%;
+  border-radius: 33%;
   opacity: 1;
 }
 

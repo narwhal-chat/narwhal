@@ -7,11 +7,10 @@ import styles from './User.css';
 
 class User extends Component {
   render() {
-    console.log((this.props.userData.username));
     return (
       <div className={styles.User}>
         <div className={styles.StatusIcon}></div>
-        <div className={styles.Username}>rorywell</div>
+        <div className={styles.Username}>{this.props.userData.username}</div>
       </div>
     );
   }

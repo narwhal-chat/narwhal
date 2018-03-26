@@ -19,24 +19,29 @@ const animationStyles = {
 
 class PodContainer extends Component {
   componentDidMount() {
-    console.log('yo', this.props.initialPodId);
     this.props.onFetchPods(this.props.initialPodId);
   }
   
   render() {
-    // let narwhalLogoAnimation = this.props.isDiscoverActive ? animationStyles.headShake : null;
+    let logoStyling = this.props.isDiscoverActive ? [styles.Logo, styles.Active].join(' ') : [styles.Logo, styles.Inactive].join(' ');
 
     return (
       <div className={styles.PodContainer}>
-        <StyleRoot>
-          <img
-            className={styles.Logo}
-            // style={narwhalLogoAnimation}
-            src={narwhalLogo} alt="Discover"
-            onClick={this.props.onDiscoverClicked}
-          />
-        </StyleRoot>
-        <div className={styles.DiscoverTitle}>DISCOVER</div>
+        <div className={styles.LogoContainer}>
+          <StyleRoot>
+            <img
+              className={logoStyling}
+              // style={narwhalLogoAnimation}
+              src={narwhalLogo} alt="Discover"
+              onClick={this.props.onDiscoverClicked}
+            />
+          </StyleRoot>
+        </div>
+        <div
+          className={styles.DiscoverTitle}
+          onClick={this.props.onDiscoverClicked}>
+          DISCOVER
+        </div>
         <div className={styles.DiscoverSeparator}></div>
         <Pods
           pods={this.props.pods}

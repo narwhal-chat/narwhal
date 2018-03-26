@@ -17,29 +17,36 @@ class Messages extends Component {
   }
 
   render() {
+    let messages = (
+      <React.Fragment>
+        <Message />
+        <div className={styles.MessageSeparator}></div>
+      </React.Fragment>
+    );
+
     return (
       <div className={styles.Messages}>
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
+        {messages}
         <div ref={el => { this.el = el; }} />
       </div>
     );
