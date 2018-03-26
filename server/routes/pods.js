@@ -17,16 +17,21 @@ router.get('/:userId', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
+  console.log(req.body, 'sent from create pods');
+  let reference = req.body.podName + Math.random().toString(36).substring(7);
+  
   try {
     const results = await axios.post(POD_MICROSERVICE_URL,
       {
-        referenceName: 'dream-teamz1',
-        displayName: 'Dream Team',
-        description: 'This is a test description',
-        avatar: 'fake avatar',
+        referenceName: reference,
+        displayName: req.body.podName,
+        description: req.body.description,
+        avatar: req.body.avatar,
         podCategoryId: 2,
-        userId: 1
+        userId: req.body.userId
       });
+
+      console.log('RESULTS FROM POST', results.data)
       res.json(results.data);
   } catch (e) {
       console.log(e);

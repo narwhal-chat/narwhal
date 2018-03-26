@@ -31,13 +31,23 @@ export function* fetchPods(action) {
 }
 
 export function* createPod(action) {
+  console.log('i am getting to actions', action)
   try {
     const token = yield select(selectors.token);
-    yield axios.post('/pods', {
-        token: token
+    const userId = yield select(selectors.userId)
+    console.log(token, userId)
+    const pod = yield axios.post('/pods', {
+        
+        token: token,
+        userId: userId,
+        podName: action.podName,
+        category: action.category,
+        description: action.description,
+        avatar: action.avatar
     });
-    yield put(actions.fetchPods(action.userId));
+    yield put(actions.fetchPods(userId));
   } catch (e) {
+    console.log('failing');
     yield put(actions.createPodFail());
   }
 }

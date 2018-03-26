@@ -1,10 +1,10 @@
 import * as actionTypes from './actionTypes';
 
-export const fetchPods = (userId, initialPodId) => {
+export const fetchPods = (userId/*, initialPodId*/) => {
   return {
       type: actionTypes.FETCH_PODS,
       userId: userId,
-      initialPodId: initialPodId
+      /*initialPodId: initialPodId*/
   };
 };
 
@@ -22,11 +22,14 @@ export const fetchPodsFail = (error) => {
   };
 };
 
-export const createPod = (userId) => {
-  return {
-      type: actionTypes.CREATE_POD,
-      userId: userId
-  };
+export const createPod = (podName, category, description, avatar) => {
+	return {
+		type: actionTypes.CREATE_POD,
+		podName: podName,
+		category: category,
+		description: description,
+		avatar: avatar
+	};
 };
 
 export const createPodFail = (error) => {

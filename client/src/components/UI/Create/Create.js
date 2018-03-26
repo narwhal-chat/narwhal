@@ -195,7 +195,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createPod: (podname, category, description, avatar) => dispatch(actions.createPod(podname, category, description, avatar))
+    createPod: (podName, category, description, avatar) => dispatch(actions.createPod(podName, category, description, avatar))
   }
 }
 
