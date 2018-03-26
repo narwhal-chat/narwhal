@@ -6,7 +6,7 @@ import styles from './AddPod.css';
 const addPod = (props) => {
   return (
     <div className={styles.AddPod}>
-      <PlusIcon size="70%" />
+      <PlusIcon size="68%" />
     </div>
   );
 };
