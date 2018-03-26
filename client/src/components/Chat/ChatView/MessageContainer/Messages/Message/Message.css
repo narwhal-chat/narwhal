@@ -6,6 +6,7 @@
 }
 
 .Message .Avatar {
+  flex-shrink: 0;
   margin-top: 6px;
   width: 44px;
   height: 44px;

@@ -6,12 +6,9 @@ const axios = require('axios');
 
 const POD_MICROSERVICE_URL = process.env.POD_MICROSERVICE_URL ? process.env.POD_MICROSERVICE_URL + '/pods' : 'http://localhost:3334/pods';
 
-router.get('/:userid', async (req, res, next) => {
-  console.log('we in the get', req.params);
-  console.log(POD_MICROSERVICE_URL + '/' + req.params.userid);
+router.get('/:userId', async (req, res, next) => {
   try {
-    const results = await axios.get(POD_MICROSERVICE_URL + '/' + req.params.userid);
-    console.log('response data 2', results.data);
+    const results = await axios.get(POD_MICROSERVICE_URL + '/' + req.params.userId);
     return res.json(results.data);
   } catch (e) {
     console.log('ERROR', e);
@@ -37,10 +34,10 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.get('/:podid/topics', async (req, res, next) => {
+router.get('/:podId/topics', async (req, res, next) => {
   console.log('getting topics', req.params);
   try {
-    const results = await axios.get(POD_MICROSERVICE_URL + '/' + req.params.podid + '/topics');
+    const results = await axios.get(POD_MICROSERVICE_URL + '/' + req.params.podId + '/topics');
     res.json(results.data);
   } catch (e) {
     console.log(e);
@@ -48,13 +45,14 @@ router.get('/:podid/topics', async (req, res, next) => {
   }
 });
 
-router.post('/:podid/topics', async (req, res, next) => {
+router.post('/:podId/topics', async (req, res, next) => {
+  console.log('post topic', req.params.podId, req.body.userId);
   try {
-    const results = await axios.post(POD_MICROSERVICE_URL + '/' + req.params.podid + '/topics',
+    const results = await axios.post(POD_MICROSERVICE_URL + '/' + req.params.podId + '/topics',
       {
-        name: 'database',
-        podId: req.params.podid,
-        userId: 1
+        name: 'new-topic',
+        podId: req.params.podId,
+        userId: req.body.userId
       });
       res.json(results.data);
   } catch (e) {
