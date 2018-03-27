@@ -21,7 +21,7 @@ class Create extends Component {
 		descriptionError: {
 			error: false,
 			message: '',
-		}
+		},
 	};
 
 	categoryClick = () => {
@@ -33,99 +33,105 @@ class Create extends Component {
 			category: event.target.id,
 			showModal: false,
 		});
-  };
+	};
 
-  validate = () => {
-    let isError = false;
-    if (this.state.podName.length < 5) {
-      isError = true;
-      this.setState({
-        podNameError: {
-          error: true,
-          message: 'Pod name needs to be at least 5 characters long'
-        }
-      })
-    }
+	validate = () => {
+		let isError = false;
+		if (this.state.podName.length < 5) {
+			isError = true;
+			this.setState({
+				podNameError: {
+					error: true,
+					message: 'Pod name needs to be at least 5 characters long',
+				},
+			});
+		}
 
-    if(this.state.podName.includes(' ')) {
-      isError = true;
-      this.setState({
-        podNameError: {
-          error: true,
-          message: 'Pod name must not contain any spaces'
-        }
-      })
-    }
+		if (this.state.podName.includes(' ')) {
+			isError = true;
+			this.setState({
+				podNameError: {
+					error: true,
+					message: 'Pod name must not contain any spaces',
+				},
+			});
+		}
 
-    if (this.state.category === '') {
-      isError = true;
-      this.setState({
-        categoryError: {
-          error: true,
-          message: 'Please select a category'
-        }
-      })
-    }
+		if (this.state.category === '') {
+			isError = true;
+			this.setState({
+				categoryError: {
+					error: true,
+					message: 'Please select a category',
+				},
+			});
+		}
 
-    if (this.state.description.split(' ').length < 5) {
-      isError = true;
-      this.setState({
-        descriptionError: {
-          error: true,
-          message: 'Description must be at least 5 words long.'
-        }
-      })
-    }
+		if (this.state.description.split(' ').length < 5) {
+			isError = true;
+			this.setState({
+				descriptionError: {
+					error: true,
+					message: 'Description must be at least 5 words long.',
+				},
+			});
+		}
 
-    return isError;
-  }
-  
-  onSubmit = event => {
-    event.preventDefault();
-    //check for errors
-    this.setState({
-        podNameError: {
-          error: false,
-          message: ''
-        },
-        categoryError: {
-          error: false,
-          message: ''
-        },
-        descriptionError: {
-          error: false,
-          message: ''
-        },
-    })
-    const err = this.validate();
-    if (err) {
-      this.setState({
-			podName: '',
-			category: '',
-			description: ''
+		return isError;
+	};
+
+	onSubmit = event => {
+		event.preventDefault();
+		//check for errors
+		this.setState({
+			podNameError: {
+				error: false,
+				message: '',
+			},
+			categoryError: {
+				error: false,
+				message: '',
+			},
+			descriptionError: {
+				error: false,
+				message: '',
+			},
 		});
-    } else {
-      this.props.createPod(this.state.podName, this.state.category, this.state.description, this.state.podName.charAt(0));
-      this.setState({
-        podName: '',
-        podNameError: {
-          error: false,
-          message: '',
-        },
-        category: '',
-        categoryError: {
-          error: false,
-          message: '',
-        },
-        description: '',
-        descriptionError: {
-          error: false,
-          message: '',
-        }
-      });
-    }
-
-  }
+		console.log('i am submitting');
+		const err = this.validate();
+		console.log('i am err', err);
+		if (err) {
+			this.setState({
+				podName: '',
+				category: '',
+				description: '',
+			});
+		} else {
+			this.props.createPod(
+				this.state.podName,
+				this.state.category,
+				this.state.description,
+				this.state.podName.charAt(0)
+			);
+			this.setState({
+				podName: '',
+				podNameError: {
+					error: false,
+					message: '',
+				},
+				category: '',
+				categoryError: {
+					error: false,
+					message: '',
+				},
+				description: '',
+				descriptionError: {
+					error: false,
+					message: '',
+				},
+			});
+		}
+	};
 
 	handleChange = event => {
 		this.setState({ [event.target.name]: event.target.value });
@@ -146,30 +152,51 @@ class Create extends Component {
 			avatar = this.state.podName.charAt(0);
 		}
 
-		return <div className={styles.Create}>
+		return (
+			<div className={styles.Create}>
 				<div className={styles.Header}>CREATE A POD</div>
 				<div className={styles.PodInfo}>
 					<div className={styles.PodLeft}>
 						<div>
 							<label>POD NAME</label>
 							<div className={styles.PodForm}>
-								<input className={styles.PodInputForm} type="text" placeholder="Enter pod name here" name="podName" value={this.state.podName} onChange={this.handleChange} />
+								<input
+									className={styles.PodInputForm}
+									type="text"
+									placeholder="Enter pod name here"
+									name="podName"
+									value={this.state.podName}
+									onChange={this.handleChange}
+								/>
 								<hr />
-                {this.state.podNameError.error ? <div className={styles.ErrorMessage}>{this.state.podNameError.message}</div> : null}
+								{this.state.podNameError.error ? (
+									<div className={styles.ErrorMessage}>{this.state.podNameError.message}</div>
+								) : null}
 							</div>
 						</div>
 						<div>
 							<label>POD CATEGORY</label>
-								<button className={styles.CategoryButton} onClick={this.categoryClick}>
-									{category}
-								</button>
-                {this.state.categoryError.error ? <div className={styles.ErrorMessage}>{this.state.categoryError.message}</div> : null}
+							<button className={styles.CategoryButton} onClick={this.categoryClick}>
+								{category}
+							</button>
+							{this.state.categoryError.error ? (
+								<div className={styles.ErrorMessage}>{this.state.categoryError.message}</div>
+							) : null}
 						</div>
 						<div>
 							<label>POD DESCRIPTION</label>
-							<input className={styles.DescriptionInputForm} type="text" placeholder="Enter description here" name="description" value={this.state.description} onChange={this.handleChange} />
+							<input
+								className={styles.DescriptionInputForm}
+								type="text"
+								placeholder="Enter description here"
+								name="description"
+								value={this.state.description}
+								onChange={this.handleChange}
+							/>
 							<hr />
-              {this.state.descriptionError.error ? <div className={styles.ErrorMessage}>{this.state.descriptionError.message}</div> : null}
+							{this.state.descriptionError.error ? (
+								<div className={styles.ErrorMessage}>{this.state.descriptionError.message}</div>
+							) : null}
 						</div>
 					</div>
 					<div className={styles.Avatar}>{avatar}</div>
@@ -182,19 +209,20 @@ class Create extends Component {
 						Create
 					</button>
 				</div>
-			</div>;
+			</div>
+		);
 	}
-};
+}
 
 const mapStateToProps = state => {
-  return {
-  }
-}
+	return {};
+};
 
 const mapDispatchToProps = dispatch => {
-  return {
-    createPod: (podName, category, description, avatar) => dispatch(actions.createPod(podName, category, description, avatar))
-  }
-}
+	return {
+		createPod: (podName, category, description, avatar) =>
+			dispatch(actions.createPod(podName, category, description, avatar)),
+	};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Create);
