@@ -11,6 +11,9 @@ const messageBar = (props) => {
         className={styles.TextContainer}
         type="text"
         placeholder={placeholderText}
+        value={props.message}
+        onChange={(event) => props.onMessageChange(event.target.value)}
+        onKeyPress={props.onSendMessage}
       />
     </div>
   );

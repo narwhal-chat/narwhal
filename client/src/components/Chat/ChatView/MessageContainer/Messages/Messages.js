@@ -17,35 +17,19 @@ class Messages extends Component {
   }
 
   render() {
-    let messages = (
-      <React.Fragment>
-        <Message />
-        <div className={styles.MessageSeparator}></div>
-      </React.Fragment>
-    );
+    let messages = this.props.messages.map((message) => {
+      return (
+        <React.Fragment>
+          <Message
+            message={message}
+          />
+          <div className={styles.MessageSeparator}></div>
+        </React.Fragment>
+      );
+    });
 
     return (
       <div className={styles.Messages}>
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
-        {messages}
         {messages}
         <div ref={el => { this.el = el; }} />
       </div>

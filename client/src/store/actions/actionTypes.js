@@ -38,6 +38,7 @@ export const POD_CLICKED = 'POD_CLICKED';
 export const SET_ACTIVE_POD = 'SET_ACTTIVE_POD';
 
 export const TOPIC_CLICKED = 'TOPIC_CLICKED';
+
 export const UPDATE_ACTIVE_TOPIC = 'UPDATE_ACTIVE_TOPIC';
 
 export const SET_ACTIVE_TOPIC = 'SET_ACTIVE_TOPIC';
@@ -45,6 +46,8 @@ export const SET_ACTIVE_TOPIC = 'SET_ACTIVE_TOPIC';
 export const DISCOVER_CLICKED = 'DISCOVER_CLICKED';
 
 export const DISCOVER_ACTIVE = 'DISCOVER_ACTIVE';
+
+export const ADD_MESSAGE = 'ADD_MESSAGE';
 
 
 // Modals

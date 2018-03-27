@@ -9,7 +9,7 @@ import * as actions from '../../../../store/actions/index';
 
 class TopicContainer extends Component {
   componentDidMount() {
-    this.props.onFetchTopics(this.props.initialPodId);
+    this.props.onFetchTopics(this.props.initialPodId, this.props.initialTopicId);
   }
 
   render() {
@@ -56,6 +56,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+
       onFetchTopics: (podId) => dispatch(actions.fetchTopics(podId)),
       // onCreateTopic: () => dispatch(actions.createTopic()),
       onTopicClicked: (topic) => dispatch(actions.topicClicked(topic))
