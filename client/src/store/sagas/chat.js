@@ -31,13 +31,10 @@ export function* fetchPods(action) {
 }
 
 export function* createPod(action) {
-  console.log('i am getting to actions', action)
   try {
     const token = yield select(selectors.token);
     const userId = yield select(selectors.userId)
-    console.log(token, userId)
     const pod = yield axios.post('/pods', {
-        
         token: token,
         userId: userId,
         podName: action.podName,

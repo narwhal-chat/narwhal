@@ -1,10 +1,10 @@
 import * as actionTypes from './actionTypes';
 
-export const fetchPods = (userId/*, initialPodId*/) => {
+export const fetchPods = (userId, initialPodId) => {
   return {
       type: actionTypes.FETCH_PODS,
       userId: userId,
-      /*initialPodId: initialPodId*/
+      initialPodId: initialPodId
   };
 };
 
