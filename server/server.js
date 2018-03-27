@@ -35,11 +35,15 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Set up socket.io
-// const io = socketIO(server);
+const io = socketIO(http);
 
-// io.on('connection', socket => {
-//   console.log('User connected');
-// });
+io.on('connection', socket => {
+  console.log('User connected');
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
+});
 
 // Register account route
 app.post('/register', (req, res, next) => {
