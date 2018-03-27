@@ -26,6 +26,7 @@
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.1",
     "nodemon": "^1.15.1",
+    "npm": "^5.8.0",
     "pg": "^7.4.1",
     "pg-promise": "^8.1.1",
     "sequelize": "^4.33.4",

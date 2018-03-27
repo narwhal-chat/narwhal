@@ -1,20 +1,24 @@
 .Create {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 5fr 1fr;
+  /* grid-template-columns: 1fr; */
+  grid-template-rows: 1fr 4fr 1fr;
   align-self: center;
   justify-self: center;
   width: 600px;
-  height: 400px;
+  height: 450px;
   background-color: #ffffff;
 }
 
+.Create .ErrorMessage {
+  color: #d53b3b;
+}
+
 .Create .Header {
-  display: grid;
+  display: flex;
   text-align: center;
   color: #505AB2;
   font-weight: 600;
-  justify-items: center;
+  justify-content: center;
   align-items: center;
   font-size: 120%;
 }
@@ -111,7 +115,7 @@
 }
 
 .Create .CategoryButton {
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 10px 30px;
   background-color: #FFFFFF;
   color: #414141;

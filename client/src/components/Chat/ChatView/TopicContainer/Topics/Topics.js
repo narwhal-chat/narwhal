@@ -7,6 +7,7 @@ import Topic from './Topic/Topic';
 
 const topics = (props) => {
   let activeTopic = null;
+  console.log('props in topics', props)
 
   if (props.activeTopic === null) {
     activeTopic = props.topics[0];
@@ -43,7 +44,7 @@ const topics = (props) => {
         <div className={styles.AddTopicContainer}>
           <PlusIcon
             className={styles.AddTopicIcon}
-            onClick={props.clickedAddTopic}
+            onClick={props.openTopicModal}
             data-tip="Create Topic"
           />
           <ReactTooltip place="top" type="dark" effect="solid" />

@@ -22,11 +22,14 @@ export const fetchPodsFail = (error) => {
   };
 };
 
-export const createPod = (userId) => {
-  return {
-      type: actionTypes.CREATE_POD,
-      userId: userId
-  };
+export const createPod = (podName, category, description, avatar) => {
+	return {
+		type: actionTypes.CREATE_POD,
+		podName: podName,
+		category: category,
+		description: description,
+		avatar: avatar
+	};
 };
 
 export const createPodFail = (error) => {
@@ -64,9 +67,10 @@ export const fetchTopicsFinished = () => {
   }
 };
 
-export const createTopic = () => {
+export const createTopic = (topicName) => {
   return {
-      type: actionTypes.CREATE_TOPIC
+      type: actionTypes.CREATE_TOPIC,
+      topicName: topicName
   };
 };
 

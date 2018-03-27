@@ -1,12 +1,12 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-import styles from './CreateJoinModal.css';
-import CreateJoin from '../CreateJoin/CreateJoin';
+import styles from './CreateTopicModal.css';
+import CreateTopic from '../CreateTopic/CreateTopic';
 
 Modal.setAppElement('#root');
 
-const createJoinModal = (props) => {
+const createTopicModal = (props) => {
   return (
     <div>
       <Modal
@@ -16,10 +16,10 @@ const createJoinModal = (props) => {
         onRequestClose={props.onRequestClose}
         shouldCloseOnOverlayClick={true} 
         >
-        <CreateJoin closeModal={props.onRequestClose}/>
+        <CreateTopic closeModal={props.onRequestClose}/>
       </Modal>
     </div>
   );
 }
 
-export default createJoinModal;
+export default createTopicModal;

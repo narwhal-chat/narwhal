@@ -5,6 +5,7 @@ import * as actions from '../actions/index';
 export function* authCheckState(action) {
 	try {
 		const token = yield localStorage.getItem('token');
+		console.log(token)
 			if (!token) {
 				yield put(actions.authCheckStateFinished());
 				yield put(actions.authLogout());

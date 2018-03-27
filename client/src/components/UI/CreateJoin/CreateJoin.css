@@ -4,7 +4,7 @@
   align-self: center;
   justify-self: center;
   width: 600px;
-  height: 400px;
+  height: 450px;
   border-radius: 3px;
   font-weight: 600;
   font-size: 150%;
@@ -23,10 +23,4 @@
   color: #505AB2;
   justify-items: center;
   align-items: center;
-}
-
-.ChatView {
-  display: grid;
-  grid-template-columns: 80px 210px 1fr;
-  grid-template-rows: 100vh;
 }
