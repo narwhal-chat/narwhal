@@ -28,7 +28,8 @@ class TopicContainer extends Component {
           topics={this.props.topics}
           activeTopic={this.props.activeTopic}
           clickedTopic={this.props.onTopicClicked}
-          clickedAddTopic={this.props.onCreateTopic}
+          // clickedAddTopic={this.props.onCreateTopic}
+          openTopicModal={this.props.openTopicModal}
         />
       );
     }
@@ -56,7 +57,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
       onFetchTopics: (podId) => dispatch(actions.fetchTopics(podId)),
-      onCreateTopic: () => dispatch(actions.createTopic()),
+      // onCreateTopic: () => dispatch(actions.createTopic()),
       onTopicClicked: (topic) => dispatch(actions.topicClicked(topic))
   };
 };

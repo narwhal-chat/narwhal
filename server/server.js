@@ -87,7 +87,6 @@ app.use((req, res, next) => {
             }
         });
     } else {
-        console.log('token expired');
         res.status(403).json({
             message:"No Token"
         });

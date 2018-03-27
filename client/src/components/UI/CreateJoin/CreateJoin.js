@@ -17,6 +17,10 @@ class createJoin extends Component {
 
   }
 
+  closeCreate = () => {
+    this.setState({ showCreate: false });
+  }
+
   createClick = () => {
     console.log('this', this);
     this.setState({ showCreate: true })
@@ -28,7 +32,7 @@ class createJoin extends Component {
 
   render() {
     if(this.state.showCreate) {
-      return <Create closeModal={this.props.closeModal}/>;
+      return <Create onRequestClose={this.props.closeModal} closeModal={this.closeCreate.bind(this)}/>;
     }
 
     if(this.state.showJoin) {

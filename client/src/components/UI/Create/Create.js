@@ -97,9 +97,7 @@ class Create extends Component {
 				message: '',
 			},
 		});
-		console.log('i am submitting');
 		const err = this.validate();
-		console.log('i am err', err);
 		if (err) {
 			this.setState({
 				podName: '',
@@ -130,7 +128,8 @@ class Create extends Component {
 					message: '',
 				},
 			});
-			this.props.closeModal();
+
+			this.props.onRequestClose();
 		}
 	};
 
@@ -203,7 +202,7 @@ class Create extends Component {
 					<div className={styles.Avatar}>{avatar}</div>
 				</div>
 				<div className={styles.Footer}>
-					<div onClick={this.props.onRequestClose} className={styles.BackButton}>
+					<div onClick={this.props.closeModal} className={styles.BackButton}>
 						BACK
 					</div>
 					<button onClick={this.onSubmit} className={styles.CreateButton}>

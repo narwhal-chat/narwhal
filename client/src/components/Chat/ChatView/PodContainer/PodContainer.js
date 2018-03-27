@@ -49,7 +49,7 @@ class PodContainer extends Component {
           activePod={this.props.activePod}
         />
         <AddPod 
-          openModal={this.props.openModal}
+          openModal={this.props.openCreateJoinModal}
         />
       </div>
     );

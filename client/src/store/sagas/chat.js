@@ -57,6 +57,7 @@ export function* fetchTopics(action) {
           token: token
         }
     });
+    console.log('this is results', results);
     yield put(actions.fetchTopicsSuccess(results.data));
     const topics = yield select(selectors.topics);
 
@@ -91,17 +92,21 @@ export function* createTopic(action) {
     const userId = yield select(selectors.userId);
     const results = yield axios.post('/pods/' + activePod.id + '/topics', {
         token: token,
-        userId: userId
+        userId: userId,
+        name: action.topicName
     });
-    console.log('new topic', results.data);
+    console.log('new topic', results);
     yield put(actions.fetchTopics(activePod.id, results.data.id));
   } catch (e) {
+    console.log('action when create topic', action);
+    console.log('error when create topic', e);
     yield put(actions.createTopicFail());
   }
 }
 
 export function* podClicked(action) {
   try {
+    yield put(actions.authCheckState());
     yield put(actions.setActivePod(action.pod));
     yield put(actions.fetchTopics(action.pod.id));
     yield take(actionTypes.FETCH_TOPICS_FINISHED);

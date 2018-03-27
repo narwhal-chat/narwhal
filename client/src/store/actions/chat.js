@@ -67,9 +67,10 @@ export const fetchTopicsFinished = () => {
   }
 };
 
-export const createTopic = () => {
+export const createTopic = (topicName) => {
   return {
-      type: actionTypes.CREATE_TOPIC
+      type: actionTypes.CREATE_TOPIC,
+      topicName: topicName
   };
 };
 

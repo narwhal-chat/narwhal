@@ -55,7 +55,7 @@ router.post('/:podId/topics', async (req, res, next) => {
   try {
     const results = await axios.post(POD_MICROSERVICE_URL + '/' + req.params.podId + '/topics',
       {
-        name: 'new-topic',
+        name: req.body.name,
         podId: req.params.podId,
         userId: req.body.userId
       });
