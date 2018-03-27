@@ -13,7 +13,7 @@ class MessageContainer extends Component {
     super(props);
 
     this.state = {
-      endpoint: 'http://localhost:5000',
+      endpoint: '/',
       message: ''
     };
 
