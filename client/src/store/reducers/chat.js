@@ -60,6 +60,12 @@ const discoverActive = (state, action) => {
   });
 };
 
+const addMessage = (state, action) => {
+  return updateObject(state, {
+    messages: [...state.messages, action.message]
+  });
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PODS_SUCCESS: return fetchPodsSuccess(state, action);
@@ -71,6 +77,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_ACTIVE_POD: return setActivePod(state, action);
     case actionTypes.SET_ACTIVE_TOPIC: return setActiveTopic(state, action);
     case actionTypes.DISCOVER_ACTIVE: return discoverActive(state, action);
+    case actionTypes.ADD_MESSAGE: return addMessage(state, action);
     default: return state;
   }
 };

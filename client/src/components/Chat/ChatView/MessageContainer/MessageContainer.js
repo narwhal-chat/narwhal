@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import io from 'socket.io-client';
 
 import styles from './MessageContainer.css';
 import MessageContainerHeader from './MessageContainerHeader/MessagerContainerHeader';
@@ -8,6 +9,36 @@ import MessageBar from './MessageBar/MessageBar';
 import * as actions from '../../../../store/actions/index';
 
 class MessageContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      endpoint: '/',
+      message: ''
+    };
+
+    this.socket = io(this.state.endpoint);
+
+    this.socket.on('RECEIVE_MESSAGE', (message) => {
+      this.props.onAddMessage(message);
+    });
+  }
+
+  onMessageChange = (message) => {
+    this.setState({
+      message: message
+    });
+  }
+
+  onSendMessage = (event) => {
+    if (event.key === 'Enter') {
+      this.socket.emit('SEND_MESSAGE', this.state.message);
+      this.setState({
+        message: ''
+      });
+    }
+  }
+
   render() {
     let messageContainer = null;
 
@@ -18,9 +49,14 @@ class MessageContainer extends Component {
           <MessageContainerHeader
             topicName={this.props.activeTopic.name}
           />
-          <Messages />
+          <Messages
+            messages={this.props.messages}
+          />
           <MessageBar
             topicName={this.props.activeTopic.name}
+            message={this.state.message}
+            onMessageChange={this.onMessageChange}
+            onSendMessage={this.onSendMessage}
           />
         </div>
       );
@@ -39,6 +75,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onAddMessage: (message) => dispatch(actions.addMessage(message))
   };
 };
 

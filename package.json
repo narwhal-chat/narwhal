@@ -28,7 +28,8 @@
     "nodemon": "^1.15.1",
     "pg": "^7.4.1",
     "pg-promise": "^8.1.1",
-    "sequelize": "^4.33.4"
+    "sequelize": "^4.33.4",
+    "socket.io": "^2.0.4"
   },
   "engines": {
     "node": "7.9.0"
