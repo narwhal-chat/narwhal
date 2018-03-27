@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
 import styles from './Topics.css';
 import PlusIcon from 'react-icons/lib/io/android-add';
@@ -43,7 +44,9 @@ const topics = (props) => {
           <PlusIcon
             className={styles.AddTopicIcon}
             onClick={props.clickedAddTopic}
+            data-tip="Create Topic"
           />
+          <ReactTooltip place="top" type="dark" effect="solid" />
         </div>
         <div className={styles.Clearfix}></div>
       </div>

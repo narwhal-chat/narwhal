@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
 import styles from './Pod.css';
 
@@ -20,7 +21,9 @@ const pod = (props) => {
         src={props.pod.avatar} 
         alt={props.pod.display_name}
         onClick={() => props.clicked(props.pod)}
+        data-tip={props.pod.display_name}
       />
+      <ReactTooltip place="right" type="dark" effect="solid" />
     </div>
   );
 };
