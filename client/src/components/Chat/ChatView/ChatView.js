@@ -65,7 +65,7 @@ class ChatView extends Component {
 				<div className={styles.ChatView}>
 					<PodContainer
 						initialPodId={this.props.match.params.podId}
-						openModal={this.openCreateJoinModal.bind(this)}
+						openCreateJoinModal={this.openCreateJoinModal.bind(this)}
 					/>
 					<TopicContainer
 						initialPodId={this.props.match.params.podId}
