@@ -8,59 +8,50 @@ import DiscoverContainer from '../../Chat/ChatView/DiscoverContainer/DiscoverCon
 
 
 class createJoin extends Component {
-	state = {
-		showModal: false,
-		showJoin: false
-	};
-
-	componentDidMount() {
-		console.log('this', this);
+  state = {
+    showCreate: false,
+    showJoin: false
   }
-  
-	handleOpenModal() {
-		this.setState({ showModal: true });
-	}
 
-	handleCloseModal() {
-		this.setState({ showModal: false });
-	}
-	createClick = () => {
+  componentDidMount() {
+
+  }
+
+  createClick = () => {
     console.log('this', this);
-    
-    this.setState({ showModal: true });
-    // this.props.closeModal();
-	};
+    this.setState({ showCreate: true })
+  }
 
-	joinClick = () => {
-		this.setState({ showJoin: true });
-	};
+  joinClick = () => {
+    this.setState({ showJoin: true })
+  }
 
-	render() {
-		if (this.state.showModal) {
-			return <Create isOpen={this.state.showModal} onRequestClose={this.handleCloseModal.bind(this)}/>;
-		}
+  render() {
+    if(this.state.showCreate) {
+      return <Create closeModal={this.props.closeModal}/>;
+    }
 
-		if (this.state.showJoin) {
-			return (
-				<div className={styles.ChatView}>
-					<PodContainer />
-					<DiscoverCategoriesContainer />
-					<DiscoverContainer />
-				</div>
-			);
-		}
+    if(this.state.showJoin) {
+      return(
+        <div className={styles.ChatView}>
+          <PodContainer />
+          <DiscoverCategoriesContainer />
+          <DiscoverContainer />
+        </div>
+      )
+    }
 
-		return (
-			<div className={styles.CreateJoin}>
-				<div className={styles.Create} onClick={this.createClick}>
-					<div>CREATE</div>
-				</div>
-				<div className={styles.Join} onClick={this.joinClick}>
-					<div>JOIN</div>
-				</div>
-			</div>
-		);
-	}
+    return(
+      <div className={styles.CreateJoin}>
+        <div className={styles.Create} onClick={this.createClick}>
+          <div>CREATE</div>
+        </div>
+        <div className={styles.Join} onClick={this.joinClick}>
+          <div>JOIN</div>
+        </div>
+      </div>
+    )
+  }
 };
 
 export default createJoin;

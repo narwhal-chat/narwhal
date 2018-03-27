@@ -48,7 +48,9 @@ class PodContainer extends Component {
           podClicked={this.props.onPodClicked}
           activePod={this.props.activePod}
         />
-        <AddPod />
+        <AddPod 
+          openModal={this.props.openModal}
+        />
       </div>
     );
   }

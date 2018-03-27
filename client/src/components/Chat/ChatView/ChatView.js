@@ -14,7 +14,7 @@ import CreateJoinModal from '../../UI/CreateJoinModal/CreateJoinModal';
 
 class ChatView extends Component {
   state = {
-    showModal: true
+    showModal: false
   }
 
   handleOpenModal () {
@@ -26,41 +26,39 @@ class ChatView extends Component {
   }
 
   render() {
-    let currentView = (
-      <div className={styles.ChatView}>
-        <PodContainer />
-        <DiscoverCategoriesContainer />
-        <DiscoverContainer />
-        {/* <CreateJoinModal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal.bind(this)}/> */}
-      </div>
-    );
+    // let currentView = <div className={styles.ChatView}>
+		// 	<PodContainer openModal={this.handleOpenModal}/>
+		// 	<DiscoverCategoriesContainer />
+		// 	<DiscoverContainer />
+		// 	<CreateJoinModal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal}/>
+    // </div>;
+    let currentView = null;
 
-    // if (!this.props.isDiscoverActive) {
-    // console.log('chat view', this.props);
-    // let currentView = null;
-    
-    // if (this.props.match.params.podId === '@discover') {
-    //   currentView = (
-    //     <div className={styles.ChatView}>
-    //       <PodContainer />
-    //       <DiscoverCategoriesContainer />
-    //       <DiscoverContainer />
-    //     </div>
-    //   );
-    //  } else {
-    //   currentView = (
-    //     <div className={styles.ChatView}>
-    //       <PodContainer
-    //         initialPodId={this.props.match.params.podId}
-    //       />
-    //       <TopicContainer
-    //         initialPodId={this.props.match.params.podId}
-    //         initialTopicId={this.props.match.params.topicId}
-    //       />
-    //       <MessageContainer />
-    //     </div>
-    //   );
-    // }
+    if (!this.props.isDiscoverActive) {
+      currentView = (
+        <div className={styles.ChatView}>
+          <PodContainer openModal={this.handleOpenModal.bind(this)}/>
+          <DiscoverCategoriesContainer />
+          <DiscoverContainer />
+          <CreateJoinModal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal.bind(this)}/>
+        </div>
+      );
+     } else {
+      currentView = (
+        <div className={styles.ChatView}>
+          <PodContainer
+            initialPodId={this.props.match.params.podId}
+            openModal={this.handleOpenModal.bind(this)}
+          />
+          <TopicContainer
+            initialPodId={this.props.match.params.podId}
+            initialTopicId={this.props.match.params.topicId}
+          />
+          <MessageContainer />
+          <CreateJoinModal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal.bind(this)}/>
+        </div>
+      );
+    }
 
     return currentView;
   }

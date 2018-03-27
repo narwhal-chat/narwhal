@@ -5,7 +5,7 @@ import styles from './AddPod.css';
 
 const addPod = (props) => {
   return (
-    <div className={styles.AddPod}>
+    <div onClick={props.openModal} className={styles.AddPod}>
       <PlusIcon size="68%" />
     </div>
   );

@@ -130,6 +130,7 @@ class Create extends Component {
 					message: '',
 				},
 			});
+			this.props.closeModal();
 		}
 	};
 
