@@ -59,9 +59,7 @@ export function* fetchTopics(action) {
     if (action.initialTopicId) {
       // If the topic id matches one of the newly fetched topics, set that topic as the active topic
       for (let topic of topics) {
-        console.log('inside loop', topic, action.initialTopicId);
-        if (topic.id === action.initialTopicId) {
-          console.log('matched');
+        if (topic.id === +action.initialTopicId) {
           newActiveTopic = topic;
         }
       }

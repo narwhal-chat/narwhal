@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const app = express();
+const http = require('http').Server(app);
+const socketIO = require('socket.io')(http);
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
  
@@ -19,98 +21,105 @@ const pods = require('./routes/pods');
 
 // Define a single source of route paths
 const routes = {
-    register: USER_MICROSERVICE_URL + '/register',
-    login: USER_MICROSERVICE_URL + '/login',
-    editProfile: USER_MICROSERVICE_URL + '/editProfile',
-    pods: '/pods'
+  register: USER_MICROSERVICE_URL + '/register',
+  login: USER_MICROSERVICE_URL + '/login',
+  editProfile: USER_MICROSERVICE_URL + '/editProfile',
+  pods: '/pods'
 };
 
 // Set static path
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
+  app.use(express.static('client/build'));
 } else {
-    app.use(express.static(__dirname + '/../client/build'));
+  app.use(express.static(__dirname + '/../client/build'));
 }
+
+// Set up socket.io
+// const io = socketIO(server);
+
+// io.on('connection', socket => {
+//   console.log('User connected');
+// });
 
 // Register account route
 app.post('/register', (req, res, next) => {
-    console.log('HELLO');
-    axios.post(routes.register, req.body)
+  console.log('HELLO');
+  axios.post(routes.register, req.body)
     .then(user => {
-        res.status(200).json({
-            token: user.data.token,
-            user: user.data.user
-        })
+      res.status(200).json({
+        token: user.data.token,
+        user: user.data.user
+      })
     })
     .catch(err => {
-        return res.status(404).json({
-            error: err.response.data.error,
-            message: err.response.data.message
-        })
+      return res.status(404).json({
+        error: err.response.data.error,
+        message: err.response.data.message
+      })
     });
 });
 
 // Login route
 app.post('/login', (req, res, next) => {
-    axios.post(routes.login, req.body)
+  axios.post(routes.login, req.body)
     .then(user => {
-        console.log('USER DTA IN SERV', user.data)
-        res.status(200).json({
-            token: user.data.token,
-            user: user.data.user
-        })
+      console.log('USER DTA IN SERV', user.data)
+      res.status(200).json({
+          token: user.data.token,
+          user: user.data.user
+      });
     })
     .catch(err => {
-        console.log('Error logging in', err)
+      console.log('Error logging in', err)
         return res.status(404).json({
-            error: err.response.data.error,
-            message: err.response.data.message
+          error: err.response.data.error,
+          message: err.response.data.message
         })
     });
 });
 
 // Enable authentication middleware
 app.use((req, res, next) => {
-    let token = req.body.token || req.query.token || req.headers['x-access-token'];
-    if (token) {
-        jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
-            if (err) {
-                res.status(403).json({
-                    message:"Token Expired"
-                });
-                // res.status(403).render('/login');
-            } else {
-                req.decoded=decod;
-                console.log('decod', decod);
-                next();
-            }
-        });
-    } else {
-        console.log('token expired');
+  let token = req.body.token || req.query.token || req.headers['x-access-token'];
+  if (token) {
+    jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
+      if (err) {
         res.status(403).json({
-            message:"No Token"
+          message:"Token Expired"
         });
-    }
+      // res.status(403).render('/login');
+      } else {
+        req.decoded=decod;
+        console.log('decod', decod);
+        next();
+      }
+    });
+  } else {
+    console.log('token expired');
+    res.status(403).json({
+      message:"No Token"
+    });
+  }
 });
 
 //PUT ALL PROTECTED ROUTES BELOW HERE
 
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
-    axios.post(routes.editProfile, req.body)
+  axios.post(routes.editProfile, req.body)
     .then(user => {
-        console.log('succesfully edited the profile');
-        res.status(200).json({
-            token: user.data.token,
-            user: user.data.user
-        })
+      console.log('succesfully edited the profile');
+      res.status(200).json({
+        token: user.data.token,
+        user: user.data.user
+      });
     })
     .catch(err => {
-        console.log('ERROR IN EDIT PROFILE', err.response.data)
-        return res.status(404).json({
-            error: err.response.data.error,
-            message: err.response.data.message
-        })
+      console.log('ERROR IN EDIT PROFILE', err.response.data)
+      return res.status(404).json({
+        error: err.response.data.error,
+        message: err.response.data.message
+      })
     })
 })
 
@@ -118,4 +127,4 @@ app.post('/editProfile', (req, res, next) => {
 app.use(routes.pods, pods);
 
 // Start server
-app.listen(PORT);
+http.listen(PORT);
