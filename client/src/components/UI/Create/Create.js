@@ -97,9 +97,7 @@ class Create extends Component {
           message: ''
         },
     })
-    console.log('i am submitting');
     const err = this.validate();
-    console.log('i am err', err)
     if (err) {
       this.setState({
 			podName: '',

@@ -30,8 +30,8 @@ class ChatView extends Component {
       <div className={styles.ChatView}>
         <PodContainer />
         <DiscoverCategoriesContainer />
-        {/* <DiscoverContainer /> */}
-        <CreateJoinModal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal.bind(this)}/>
+        <DiscoverContainer />
+        {/* <CreateJoinModal isOpen={this.state.showModal} onRequestClose={this.handleCloseModal.bind(this)}/> */}
       </div>
     );
 
