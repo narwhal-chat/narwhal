@@ -5,7 +5,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
-const socketIO = require('socket.io')(http);
+const io = require('socket.io')(http);
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
  
@@ -34,14 +34,16 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(__dirname + '/../client/build'));
 }
 
-// Set up socket.io
-const io = socketIO(http);
-
 io.on('connection', socket => {
   console.log('User connected');
 
   socket.on('disconnect', () => {
     console.log('User disconnected');
+  });
+
+  socket.on('SEND_MESSAGE', (message) => {
+    console.log('Message received', message);
+    io.emit('RECEIVE_MESSAGE', message);
   });
 });
 

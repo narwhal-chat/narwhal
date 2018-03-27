@@ -116,3 +116,10 @@ export const discoverActive = () => {
     type: actionTypes.DISCOVER_ACTIVE
   };
 };
+
+export const addMessage = (message) => {
+  return {
+    type: actionTypes.ADD_MESSAGE,
+    message: message
+  }
+};

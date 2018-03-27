@@ -9,7 +9,6 @@ import * as actions from '../../../../store/actions/index';
 
 class TopicContainer extends Component {
   componentDidMount() {
-    console.log(this.props);
     this.props.onFetchTopics(this.props.initialPodId, this.props.initialTopicId);
   }
 
