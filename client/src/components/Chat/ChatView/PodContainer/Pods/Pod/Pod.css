@@ -15,6 +15,10 @@
 }
 
 .Pod .AvatarLetter {
+  -webkit-user-select: none;    
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-size: 200%;
   color: rgb(80, 89, 178);
 }
