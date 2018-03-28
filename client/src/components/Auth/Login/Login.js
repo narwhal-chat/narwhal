@@ -114,6 +114,7 @@ class Login extends Component {
 
 		let form = formElementsArray.map(formElement => (
 			<div key={formElement.id}>
+				<p className={styles.AuthFormText}>{formElement.config.name}</p>
 				<Input
 					key={formElement.id}
 					elementType={formElement.config.elementType}
@@ -124,7 +125,6 @@ class Login extends Component {
 					touched={formElement.config.touched}
 					changed={event => this.inputChangedHandler(event, formElement.id)}
 				/>
-				<p className={styles.AuthFormText}>{formElement.config.name}</p>
 			</div>
 		));
 
@@ -147,14 +147,15 @@ class Login extends Component {
 		// 	authRedirect = <Redirect to="/"/>
 		// }
 
-		return <React.Fragment>
+		return (
+			<React.Fragment>
 				<div className={styles.Login}>
-					{/* {authRedirect} */}
 					<form className={styles.LoginForm} onSubmit={this.submitHandler}>
 						<p className={styles.AuthHeader}>SIGN IN</p>
 						{errorMessage}
 						{invalidMessage}
 						{form}
+						<div style={{ marginBottom: '14px' }}></div>
 						<Button btnType="Success">Continue</Button>
 						<p className={styles.AuthInfo}>
 							Need an account? <NavLink className={styles.AuthLink} to="/register">
@@ -166,7 +167,8 @@ class Login extends Component {
 				<div className={styles.Logo}>
 					<LogoAuth />
 				</div>
-			</React.Fragment>;
+				</React.Fragment>
+		);
 	}
 }
 
