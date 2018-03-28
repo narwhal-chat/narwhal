@@ -89,10 +89,10 @@ app.use((req, res, next) => {
   let token = req.body.token || req.query.token || req.headers['x-access-token'];
   if (token) {
     jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
-        if(err) {
-            res.status(403).json({
-            message:"Token Expired"
-            });
+      if (err) {
+        res.status(403).json({
+        message:"Token Expired"
+      });
       // res.status(403).render('/login');
       } else {
         req.decoded=decod;
