@@ -1,27 +1,34 @@
 .Pod {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 8px;
   width: 62px;
   height: 62px;
-}
-
-.Pod .Avatar {
-  width: 100%;
-  height: 100%;
+  background-size: 62px;
+  background-size: 62px;
+  background-color: #DADADA;
+  background-repeat: no-repeat;
   border-radius: 50%;
   transition: 0.2s;
   cursor: pointer;
 }
 
-.Pod .Avatar:hover {
-  border-radius: 33%;
+.Pod .AvatarLetter {
+  font-size: 200%;
+  color: rgb(80, 89, 178);
+}
+
+.Pod:hover {
+  border-radius: 36%;
   transition: 0.2s;
 }
 
-.Pod .Active {
-  border-radius: 33%;
+.Active {
+  border-radius: 36%;
   opacity: 1;
 }
 
-.Pod .Inactive {
+.Inactive {
   opacity: 0.5;
 }

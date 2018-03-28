@@ -34,6 +34,7 @@ class PodContainer extends Component {
               // style={narwhalLogoAnimation}
               src={narwhalLogo} alt="Discover"
               onClick={this.props.onDiscoverClicked}
+              draggable="false"
             />
           </StyleRoot>
         </div>

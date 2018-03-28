@@ -22,6 +22,11 @@ class Create extends Component {
 			error: false,
 			message: '',
 		},
+		avatar: '',
+		avatarError: {
+			error: false,
+			message: '',
+		}
 	};
 
 	categoryClick = () => {
@@ -109,7 +114,7 @@ class Create extends Component {
 				this.state.podName,
 				this.state.category,
 				this.state.description,
-				this.state.podName.charAt(0)
+				this.state.avatar
 			);
 			this.setState({
 				podName: '',

@@ -57,7 +57,6 @@ export function* fetchTopics(action) {
           token: token
         }
     });
-    console.log('this is results', results);
     yield put(actions.fetchTopicsSuccess(results.data));
     const topics = yield select(selectors.topics);
 
