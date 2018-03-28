@@ -113,7 +113,8 @@ class Login extends Component {
 		}
 
 		let form = formElementsArray.map(formElement => (
-			<div key={formElement.id}>
+			<div className={styles.FormContainer} key={formElement.id}>
+				<p className={styles.AuthFormText}>{formElement.config.name}</p>
 				<Input
 					key={formElement.id}
 					elementType={formElement.config.elementType}
@@ -124,7 +125,6 @@ class Login extends Component {
 					touched={formElement.config.touched}
 					changed={event => this.inputChangedHandler(event, formElement.id)}
 				/>
-				<p className={styles.AuthFormText}>{formElement.config.name}</p>
 			</div>
 		));
 
@@ -155,6 +155,7 @@ class Login extends Component {
 						{errorMessage}
 						{invalidMessage}
 						{form}
+						<div style={{ marginBottom: '10px' }}></div>
 						<Button btnType="Success">Continue</Button>
 						<p className={styles.AuthInfo}>
 							Need an account? <NavLink className={styles.AuthLink} to="/register">

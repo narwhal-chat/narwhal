@@ -10,14 +10,17 @@
     background: #2B316B;
     border: none;
     color: #fff;
-    font-size: 150%;
+    font-size: 100%;
+    outline: none;
 }
 
 .AuthInput:after {
     margin-top: 5px;
+    margin-bottom: 24px;
     display: block;
-    height: 2px;
+    height: 1px;
     background-color: #fff;
     content: " ";
     width: 400px;
+    opacity: 0.6;
 }

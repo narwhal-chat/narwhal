@@ -1,9 +1,9 @@
-
 .Login {
     float: left;
     width: 50%;
     height: 100vh;
     background-color: #2B316B;
+    font-size: 80%;
 }
 
 .Logo {
@@ -36,16 +36,21 @@
 }
 
 .Login .AuthFormText {
-    color: #fff;
-    font-weight: 400;
-    margin-top: 5px;
+    margin: 5px 0 14px 0;
+    font-size: 82%;
+    color: rgba(255, 255, 255, 0.65);
 }
 
 .Login .AuthInfo {
-    color: #fff;
+    font-size: 80%;
+    color: rgb(197, 197, 197);
 }
 
-.Login .AuthLink,
-.Login .AuthLink:hover {
+.Login .AuthLink {
     color: #fff;
+    text-decoration: none;
+}
+
+.Login .AuthLink:hover {
+    border-bottom: 1px solid #FFFFFF;
 }
