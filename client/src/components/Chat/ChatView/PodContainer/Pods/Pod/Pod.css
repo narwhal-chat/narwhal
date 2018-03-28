@@ -23,12 +23,12 @@
 }
 
 .Pod:hover {
-  border-radius: 36%;
+  border-radius: 32%;
   transition: 0.2s;
 }
 
 .Active {
-  border-radius: 36%;
+  border-radius: 32%;
   opacity: 1;
 }
 
