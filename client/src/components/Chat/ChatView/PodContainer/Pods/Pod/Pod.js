@@ -35,10 +35,17 @@ const pod = (props) => {
         style={avatar}
         onClick={() => props.clicked(props.pod)}
         draggable="false"
-        data-tip={props.pod.display_name}>
+        data-tip
+        data-for={'' + props.pod.id}>
         {avatarLetter}
       </div>
-      <ReactTooltip place="right" type="dark" effect="solid" />
+      <ReactTooltip
+        id={'' + props.pod.id}
+        place="right"
+        type="dark"
+        effect="solid">
+        <span>{props.pod.display_name}</span>
+      </ReactTooltip>
     </React.Fragment>
   );
 };

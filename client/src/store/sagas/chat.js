@@ -18,7 +18,6 @@ export function* fetchPods(action) {
     yield put(actions.fetchPodsSuccess(results.data));
 
     // Check if an initial pod id was passed in from the route params
-    console.log('initial', action.initialPodId);
     if (action.initialPodId) {
       for (let pod of results.data) {
         if (pod.id === +action.initialPodId) {
@@ -64,8 +63,6 @@ export function* fetchTopics(action) {
 
     let newActiveTopic = topics[0];
 
-    console.log('init topic in saga', action);
-
     // If an initialTopicId was supplied
     if (action.initialTopicId) {
       // If the topic id matches one of the newly fetched topics, set that topic as the active topic
@@ -80,6 +77,7 @@ export function* fetchTopics(action) {
       // If an initialTopicId was not supplied, default to the first topic in the pod
       yield put(actions.setActiveTopic(topics[0]));
     }
+    // Send a final action to notify any calling sagas
     yield put(actions.fetchTopicsFinished());
   } catch (e) {
     yield put(actions.fetchTopicsFail());

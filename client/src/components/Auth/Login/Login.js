@@ -102,8 +102,7 @@ class Login extends Component {
 
 		return isValid;
 	};
-
-
+	
 	render() {
 		const formElementsArray = [];
 		for (let key in this.state.controls) {

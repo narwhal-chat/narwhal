@@ -19,7 +19,6 @@ import * as actions from '../../../../store/actions/index';
 
 class PodContainer extends Component {
   componentDidMount() {
-    console.log('props', this.props);
     this.props.onFetchPods(this.props.initialPodId);
   }
   

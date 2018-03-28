@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
-import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode';
 
 import './index.css';
 import App from './App';
@@ -26,7 +25,7 @@ const rootReducer = combineReducers({
 const history = createHistory();
 const reduxRouterMiddleware = routerMiddleware(history);
 
-// middleware to check expiration
+// Middleware to check expiration
 const checkTokenExpirationMiddleware = store => next => action => {
   const token = localStorage.getItem('token');
   if (token) {
