@@ -57,7 +57,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
 
-      onFetchTopics: (podId) => dispatch(actions.fetchTopics(podId)),
+      onFetchTopics: (podId, initialTopicId) => dispatch(actions.fetchTopics(podId, initialTopicId)),
       // onCreateTopic: () => dispatch(actions.createTopic()),
       onTopicClicked: (topic) => dispatch(actions.topicClicked(topic))
   };

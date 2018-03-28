@@ -10,5 +10,5 @@
 .Messages .MessageSeparator {
   margin: 0 auto 14px auto;
   width: 100%;
-  border: 0.5px solid rgba(223, 223, 223, 0.3);
+  border: 0.5px solid rgba(223, 223, 223, 0.25);
 }
