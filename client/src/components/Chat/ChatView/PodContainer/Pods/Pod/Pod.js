@@ -5,26 +5,41 @@ import styles from './Pod.css';
 
 const pod = (props) => {
   // Default inactive pod styling
-  let podStyling = [styles.Avatar, styles.Inactive].join(' ');
+  let podStyling = [styles.Pod, styles.Inactive].join(' ');
 
   // If the pod is currently selected
   if (props.activePod !== null) {
     if (props.activePod.id === props.pod.id) {
-      podStyling = [styles.Avatar, styles.Active].join(' ');
+      podStyling = [styles.Pod, styles.Active].join(' ');
     }
   }
 
+  // Set the avatar styling
+  let avatar = {
+    backgroundImage: `url('${props.pod.avatar}')`
+  }
+
+  let avatarLetter = null;
+
+  // If no avatar was provided, use a default background color with the first letter of the pod display name
+  if (!props.pod.avatar) {
+    avatarLetter = (
+      <div className={styles.AvatarLetter}>{props.pod.display_name[0].toUpperCase()}</div>
+    );
+  }
+
   return (
-    <div className={styles.Pod}>
-      <img 
+    <React.Fragment>
+      <div
         className={podStyling}
-        src={props.pod.avatar} 
-        alt={props.pod.display_name}
+        style={avatar}
         onClick={() => props.clicked(props.pod)}
-        data-tip={props.pod.display_name}
-      />
+        draggable="false"
+        data-tip={props.pod.display_name}>
+        {avatarLetter}
+      </div>
       <ReactTooltip place="right" type="dark" effect="solid" />
-    </div>
+    </React.Fragment>
   );
 };
 
