@@ -9,7 +9,8 @@ import * as selectors from './selectors';
 export function* fetchPods(action) {
   try {
     const token = yield select(selectors.token);
-    const results = yield axios.get('/pods/' + action.userId, {
+    const userId = yield select(selectors.userId);
+    const results = yield axios.get('/pods/' + userId, {
         params: {
           token: token
         }
@@ -17,6 +18,7 @@ export function* fetchPods(action) {
     yield put(actions.fetchPodsSuccess(results.data));
 
     // Check if an initial pod id was passed in from the route params
+    console.log('initial', action.initialPodId);
     if (action.initialPodId) {
       for (let pod of results.data) {
         if (pod.id === +action.initialPodId) {
@@ -33,8 +35,8 @@ export function* fetchPods(action) {
 export function* createPod(action) {
   try {
     const token = yield select(selectors.token);
-    const userId = yield select(selectors.userId)
-    const pod = yield axios.post('/pods', {
+    const userId = yield select(selectors.userId);
+    yield axios.post('/pods', {
         token: token,
         userId: userId,
         podName: action.podName,
@@ -61,6 +63,8 @@ export function* fetchTopics(action) {
     const topics = yield select(selectors.topics);
 
     let newActiveTopic = topics[0];
+
+    console.log('init topic in saga', action);
 
     // If an initialTopicId was supplied
     if (action.initialTopicId) {

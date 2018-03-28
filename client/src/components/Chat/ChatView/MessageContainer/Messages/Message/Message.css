@@ -10,6 +10,9 @@
   margin-top: 6px;
   width: 44px;
   height: 44px;
+  background-size: 44px 44px;
+  background-color: #DADADA;
+  background-repeat: no-repeat;
   border-radius: 50%;
   background-color: #FFFFFF;
 }

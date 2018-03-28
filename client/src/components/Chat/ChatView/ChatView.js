@@ -44,7 +44,7 @@ class ChatView extends Component {
 		// </div>;
 		let currentView = null;
 
-		if (this.props.isDiscoverActive) {
+		if (this.props.match.params.podId === '@discover') {
 			currentView = (
 				<div className={styles.ChatView}>
 					<PodContainer openCreateJoinModal={this.openCreateJoinModal.bind(this)} />
@@ -91,7 +91,7 @@ class ChatView extends Component {
 
 const mapStateToProps = state => {
 	return { 
-    isDiscoverActive: state.chat.isDiscoverActive
+    
   };
 };
 

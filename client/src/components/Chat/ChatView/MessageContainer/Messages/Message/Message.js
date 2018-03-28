@@ -3,14 +3,18 @@ import React from 'react';
 import styles from './Message.css';
 
 const message = (props) => {
+  // Set the avatar styling
+  let avatar = {
+    backgroundImage: `url('https://pre00.deviantart.net/e4d4/th/pre/i/2013/030/6/9/poring_by_aliazanetsu-d5t89bq.png')`
+  };
+
   return (
     <div className={styles.Message}>
-      <img
+      <div
         className={styles.Avatar}
-        src="https://pre00.deviantart.net/e4d4/th/pre/i/2013/030/6/9/poring_by_aliazanetsu-d5t89bq.png"
-        alt="Username"
-        draggable="false"
-      />
+        style={avatar}
+        draggable="false">
+      </div>
       <div className={styles.MessageContent}>
         <div className={styles.Username}>
           narwhal_user12

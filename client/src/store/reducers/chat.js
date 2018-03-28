@@ -5,7 +5,6 @@ const initialState = {
     pods: [],
     topics: [],
     messages: [],
-    isDiscoverActive: true,
     activePod: null,
     activeTopic: null
 };
@@ -41,7 +40,6 @@ const createTopicFail = (state, action) => {
 
 const setActivePod = (state, action) => {
   return updateObject(state, {
-    isDiscoverActive: false,
     activePod: action.pod
   });
 };
@@ -54,7 +52,6 @@ const setActiveTopic = (state, action) => {
 
 const discoverActive = (state, action) => {
   return updateObject(state, {
-    isDiscoverActive: true,
     activePod: null,
     activeTopic: null
   });
