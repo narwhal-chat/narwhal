@@ -9,19 +9,36 @@ import * as actions from '../../../../store/actions/index';
 
 class TopicContainer extends Component {
   componentDidMount() {
-    this.props.onFetchTopics();
+    this.props.onFetchTopics(this.props.initialPodId, this.props.initialTopicId);
   }
 
   render() {
+    let podHeader = null;
+    let topics = null;
+
+    if (this.props.activePod && this.props.topics && this.props.activeTopic) {
+      podHeader = (
+        <PodHeader
+          name={this.props.activePod.display_name}
+        />
+      );
+
+      topics = (
+        <Topics
+          topics={this.props.topics}
+          activeTopic={this.props.activeTopic}
+          clickedTopic={this.props.onTopicClicked}
+          openTopicModal={this.props.openTopicModal}
+        />
+      );
+    }
+
     return (
       <div className={styles.TopicContainer}>
         <div className={styles.Content}>
-          <PodHeader />
+          {podHeader}
           <User />
-          <Topics
-            topics={this.props.topics}
-            clickedAddTopic={this.props.onCreateTopic}
-          />
+          {topics}
         </div>
       </div>
     );
@@ -30,15 +47,18 @@ class TopicContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    topics: state.chat.topics
+    topics: state.chat.topics,
+    activePod: state.chat.activePod,
+    activeTopic: state.chat.activeTopic
   };
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-      onFetchTopics: () => dispatch(actions.fetchTopics(1)),
-      onCreateTopic: () => dispatch(actions.createTopic(1, 1))
-  }
-}
+
+      onFetchTopics: (podId, initialTopicId) => dispatch(actions.fetchTopics(podId, initialTopicId)),
+      onTopicClicked: (topic) => dispatch(actions.topicClicked(topic))
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopicContainer);

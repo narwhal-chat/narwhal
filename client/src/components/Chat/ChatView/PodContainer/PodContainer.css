@@ -8,23 +8,23 @@
 }
 
 .PodContainer .Logo {
-  margin-top: 24px;
-  margin-bottom: 14px;
-  width: 60px;
-  height: 70px;
+  margin-top: 10px;
+  width: 64px;
+  height: 76px;
+  cursor: pointer;
 }
 
 .PodContainer .DiscoverTitle {
-  margin-bottom: 2px;
+  margin-bottom: 16px;
   font-family: 'Source Sans Pro';
-  font-size: .75em;
+  font-size: 60%;
   text-align: center;
-  letter-spacing: 0.5px;
-  color: #FFFFFF;
+  letter-spacing: 0.3px;
+  cursor: pointer;
 }
 
 .PodContainer .DiscoverSeparator {
-  margin-bottom: 24px;
-  width: 2.6em;
-  border: 0.5px solid #FFFFFF;
+  margin-bottom: 10px;
+  width: 2.1em;
+  border: 0.5px solid rgb(255, 255, 255);
 }

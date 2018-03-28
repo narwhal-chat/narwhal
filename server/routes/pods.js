@@ -1,30 +1,37 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
-router.get('/:userid', async (req, res, next) => {
-  console.log('we in the get', req.params);
+const POD_MICROSERVICE_URL = process.env.POD_MICROSERVICE_URL ? process.env.POD_MICROSERVICE_URL + '/pods' : 'http://localhost:3334/pods';
+
+router.get('/:userId', async (req, res, next) => {
   try {
-    const results = await axios.get('http://localhost:3334/pods/' + req.params.userid);
-    console.log('response data 2', results.data);
+    const results = await axios.get(POD_MICROSERVICE_URL + '/' + req.params.userId);
     return res.json(results.data);
   } catch (e) {
-    console.log(e);
+    console.log('ERROR', e);
     res.send(e);
   }
 });
 
 router.post('/', async (req, res, next) => {
+  console.log(req.body, 'sent from create pods');
+  let reference = req.body.podName + Math.random().toString(36).substring(7);
+  
   try {
-    const results = await axios.post('http://localhost:3334/pods',
+    const results = await axios.post(POD_MICROSERVICE_URL,
       {
-        referenceName: 'dream-teamz1',
-        displayName: 'Dream Team',
-        description: 'This is a test description',
-        avatar: 'fake avatar',
+        referenceName: reference,
+        displayName: req.body.podName,
+        description: req.body.description,
+        avatar: req.body.avatar,
         podCategoryId: 2,
-        userId: 1
+        userId: req.body.userId
       });
+
+      console.log('RESULTS FROM POST', results.data)
       res.json(results.data);
   } catch (e) {
       console.log(e);
@@ -32,11 +39,10 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.get('/:podid/topics', async (req, res, next) => {
-  console.log(req.params);
+router.get('/:podId/topics', async (req, res, next) => {
+  console.log('getting topics', req.params);
   try {
-    const results = await axios.get('http://localhost:3334/pods/' + req.params.podid + '/topics');
-    console.log('topics', results);
+    const results = await axios.get(POD_MICROSERVICE_URL + '/' + req.params.podId + '/topics');
     res.json(results.data);
   } catch (e) {
     console.log(e);
@@ -44,13 +50,14 @@ router.get('/:podid/topics', async (req, res, next) => {
   }
 });
 
-router.post('/:podid/topics', async (req, res, next) => {
+router.post('/:podId/topics', async (req, res, next) => {
+  console.log('post topic', req.params.podId, req.body.userId);
   try {
-    const results = await axios.post('http://localhost:3334/pods/' + req.params.podid + '/topics',
+    const results = await axios.post(POD_MICROSERVICE_URL + '/' + req.params.podId + '/topics',
       {
-        name: 'database',
-        podId: req.params.podid,
-        userId: 1
+        name: req.body.name,
+        podId: req.params.podId,
+        userId: req.body.userId
       });
       res.json(results.data);
   } catch (e) {

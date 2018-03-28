@@ -102,8 +102,7 @@ class Login extends Component {
 
 		return isValid;
 	};
-
-
+	
 	render() {
 		const formElementsArray = [];
 		for (let key in this.state.controls) {
@@ -114,7 +113,8 @@ class Login extends Component {
 		}
 
 		let form = formElementsArray.map(formElement => (
-			<div>
+			<div key={formElement.id}>
+				<p className={styles.AuthFormText}>{formElement.config.name}</p>
 				<Input
 					key={formElement.id}
 					elementType={formElement.config.elementType}
@@ -125,7 +125,6 @@ class Login extends Component {
 					touched={formElement.config.touched}
 					changed={event => this.inputChangedHandler(event, formElement.id)}
 				/>
-				<p className={styles.AuthFormText}>{formElement.config.name}</p>
 			</div>
 		));
 
@@ -148,14 +147,15 @@ class Login extends Component {
 		// 	authRedirect = <Redirect to="/"/>
 		// }
 
-		return <React.Fragment>
+		return (
+			<React.Fragment>
 				<div className={styles.Login}>
-					{/* {authRedirect} */}
 					<form className={styles.LoginForm} onSubmit={this.submitHandler}>
 						<p className={styles.AuthHeader}>SIGN IN</p>
 						{errorMessage}
 						{invalidMessage}
 						{form}
+						<div style={{ marginBottom: '14px' }}></div>
 						<Button btnType="Success">Continue</Button>
 						<p className={styles.AuthInfo}>
 							Need an account? <NavLink className={styles.AuthLink} to="/register">
@@ -167,23 +167,21 @@ class Login extends Component {
 				<div className={styles.Logo}>
 					<LogoAuth />
 				</div>
-			</React.Fragment>;
+				</React.Fragment>
+		);
 	}
 }
 
 const mapStateToProps = state => {
-	console.log(state.auth);
 	return {
 		error: state.auth.error,
-		isAuthenticated: state.auth.token !== null,
-		authRedirectPath: state.authRedirectPath
+		isAuthenticated: state.auth.token !== null
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onLogin: (password, username, isSignup) => dispatch(actions.login(password, username, isSignup)),
-		onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
+		onLogin: (password, username) => dispatch(actions.login(password, username))
 	};
 };
 

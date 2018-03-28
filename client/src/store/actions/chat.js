@@ -1,9 +1,9 @@
 import * as actionTypes from './actionTypes';
 
-export const fetchPods = (userId) => {
+export const fetchPods = (initialPodId) => {
   return {
       type: actionTypes.FETCH_PODS,
-      userId: userId
+      initialPodId: initialPodId
   };
 };
 
@@ -21,11 +21,14 @@ export const fetchPodsFail = (error) => {
   };
 };
 
-export const createPod = (userId) => {
-  return {
-      type: actionTypes.CREATE_POD,
-      userId: userId
-  };
+export const createPod = (podName, category, description, avatar) => {
+	return {
+		type: actionTypes.CREATE_POD,
+		podName: podName,
+		category: category,
+		description: description,
+		avatar: avatar
+	};
 };
 
 export const createPodFail = (error) => {
@@ -35,10 +38,11 @@ export const createPodFail = (error) => {
   };
 };
 
-export const fetchTopics = (podId) => {
+export const fetchTopics = (podId, initialTopicId) => {
   return {
       type: actionTypes.FETCH_TOPICS,
-      podId: podId
+      podId: podId,
+      initialTopicId: initialTopicId
   };
 };
 
@@ -56,11 +60,16 @@ export const fetchTopicsFail = (error) => {
   };
 };
 
-export const createTopic = (podId, userId) => {
+export const fetchTopicsFinished = () => {
+  return {
+    type: actionTypes.FETCH_TOPICS_FINISHED
+  }
+};
+
+export const createTopic = (topicName) => {
   return {
       type: actionTypes.CREATE_TOPIC,
-      podId: podId,
-      userId: userId
+      topicName: topicName
   };
 };
 
@@ -69,4 +78,51 @@ export const createTopicFail = (error) => {
       type: actionTypes.CREATE_TOPIC_FAIL,
       error: error
   };
+};
+
+export const podClicked = (pod) => {
+  return {
+    type: actionTypes.POD_CLICKED,
+    pod: pod
+  };
+};
+
+export const setActivePod = (pod) => {
+  return  {
+    type: actionTypes.SET_ACTIVE_POD,
+    pod: pod
+  }
+};
+
+export const topicClicked = (topic) => {
+  return {
+    type: actionTypes.TOPIC_CLICKED,
+    topic: topic
+  };
+};
+
+export const setActiveTopic = (topic) => {
+  return  {
+    type: actionTypes.SET_ACTIVE_TOPIC,
+    topic: topic
+  };
+};
+
+export const discoverClicked = () => {
+  return {
+    type: actionTypes.DISCOVER_CLICKED
+  };
+};
+
+export const discoverActive = () => {
+  return {
+    type: actionTypes.DISCOVER_ACTIVE
+  };
+};
+
+export const addMessage = (message) => {
+  return {
+    type: actionTypes.ADD_MESSAGE,
+    message: message
+  }
 };

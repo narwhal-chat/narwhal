@@ -5,6 +5,28 @@
 }
 
 body {
-
+  font-weight: 400;
+  font-size: 20px;
+  text-rendering: optimizeLegibility;
   font-family: 'Source Sans Pro', sans-serif;
+}
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+	background-color: rgba(184, 184, 184, 0.5);
 }

@@ -140,6 +140,7 @@ class Signup extends Component {
 
 		let form = formElementsArray.map(formElement => (
 			<div>
+				<p className={styles.AuthFormText}>{formElement.config.name}</p>
 				<Input
 					key={formElement.id}
 					elementType={formElement.config.elementType}
@@ -148,7 +149,6 @@ class Signup extends Component {
 					invalid={!formElement.config.valid}
 					changed={event => this.inputChangedHandler(event, formElement.id)}
 				/>
-				<p className={styles.AuthFormText}>{formElement.config.name}</p>
 			</div>
 		));
 
@@ -167,19 +167,19 @@ class Signup extends Component {
 		// 	authRedirect = <Redirect to="/" />;
 		// }
 
-		return <React.Fragment>
+		return (
+			<React.Fragment>
 				<div className={styles.SignUp}>
-					{/* {authRedirect} */}
 					<form className={styles.SignupForm} onSubmit={this.submitHandler}>
 						<p className={styles.AuthHeader}>CREATE AN ACCOUNT</p>
 						{errorMessage}
 						{duplicateUserMessage}
 						{form}
-						<Button btnType="Success">CONTINUE</Button>
+						<div style={{ marginBottom: '14px' }}></div>
+						<Button btnType="Success">Continue</Button>
 						<p className={styles.AuthInfo}>
-							{' '}
 							Already have an account? <NavLink className={styles.AuthLink} to="/login">
-								<strong>Login</strong>
+								Login
 							</NavLink>
 						</p>
 					</form>
@@ -187,12 +187,12 @@ class Signup extends Component {
 				<div className={styles.Logo}>
 					<LogoAuth />
 				</div>
-			</React.Fragment>;
+			</React.Fragment>
+		);
 	}
 }
 
 const mapStateToProps = state => {
-	console.log('state in signup', state.auth.error)
     return {
 		error: state.auth.error,
 		token: state.auth.token,

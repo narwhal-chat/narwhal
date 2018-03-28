@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styles from './EditPodInfo.css';
+import * as actions from '../../../../../store/actions/index';
 
-const EditPodInfo = () => {
+class EditPodInfo extends Component {
+	state = {
+		pod_name: '',
+		reference: '',
+		category: '',
+		description: ''
+	}
+
+	submitHandler = event => {
+		event.preventDefault();
+	}
+	render() {
 	return <div className={styles.PodProfile}>
 			<div className={styles.PodInfo}>
 				<div className={styles.ProfileText}>Pod Name</div>
@@ -50,6 +63,20 @@ const EditPodInfo = () => {
 				<button className={styles.ButtonCancel}>Cancel</button>
 			</div>
 		</div>;
+	}
+}
+
+const mapStateToProps = state => {
+	console.log('this is state.chat', state.chat)
+	return {
+		pods: state.chat.pods,
+	};
 };
 
-export default EditPodInfo;
+const mapDispatchToProps = dispatch => {
+	return {
+		onFetchPods: () => dispatch(actions.fetchPods(1)),
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditPodInfo);

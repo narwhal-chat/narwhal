@@ -7,11 +7,11 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (token, userId) => {
+export const authSuccess = (token, userData) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         idToken: token,
-        userId: userId
+        userData: userData
     };
 };
 
@@ -28,91 +28,41 @@ export const authCheckState = () => {
     }
 }
 
+export const authCheckStateFinished = () => {
+    return {
+        type: actionTypes.AUTH_CHECK_STATE_FINISHED
+    }
+}
 
 // For logging out
-
 export const authLogout = () => {
     return { type: actionTypes.AUTH_LOGOUT };
 }
 
-export const logout = () => {
-    return dispatch => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('userId');
-        dispatch(authLogout())
-    }
-}
-
-// export const checkAuthTimeout = (expirationTime) => {
-//     return dispatch => {
-//         setTimeout(() => {
-//             dispatch(logout());
-//         }, expirationTime * 1000) // it was in ms.
-//     }
-// }
-
-export const setAuthRedirectPath = (path) => {
-    return {
-        type: actionTypes.SET_AUTH_REDIRECT_PATH,
-        path: path
-    }
-}
-
 export const auth = (email, password, username) => {
-    return dispatch => {
-        dispatch(authStart());
-        let currentDate = new Date(Date.now()).toLocaleString();;
-        const authData = {
-            username: username,
-            password: password,
-            email_address: email,
-            avatar: 'avatar',
-            create_date: currentDate,
-            returnSecureToken: true
-        };
-
-        axios.post('/register', authData)
-            .then(response => {
-                // const expirationDate = new Date(new Date().getTime() + 86400);
-                localStorage.setItem('token', response.data.token);
-                // localStorage.setItem('expirationDate', expirationDate);
-                localStorage.setItem('userId', response.data.user);
-                dispatch(authSuccess(response.data.token, response.data.user));
-                // dispatch(checkAuthTimeout(response.data.expiresIn))
-            })
-            .catch(err => {
-                console.log('ERROR REGISTERING', err.response.data);
-                dispatch(authFail(err.response.data));
-            })
-
-    }
+    return { 
+        type: actionTypes.AUTH,
+        email: email,
+        password: password,
+        username: username
+    };
 }
 
 export const login = (password, username) => {
-    return dispatch => {
-        dispatch(authStart());
-        axios.post('/login', {
-            username: username,
-            password: password
-        })
-        .then(response => {
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('userId', response.data.user);
-            dispatch(authSuccess(response.data.token, response.data.user));
-        })
-        .catch((err, res) => {
-            dispatch(authFail(err.response.data.error))
-        })
+    return {
+        type: actionTypes.LOGIN,
+        password: password,
+        username: username
     }
 }
 
 // Editing a user profile
 
-export const editProfileSuccess = (token, userId) => {
+export const editProfileSuccess = (token, userData) => {
 	return {
 		type: actionTypes.EDIT_PROFILE_SUCCESS,
 		idToken: token,
-		userId: userId,
+		userData: userData,
 	};
 };
 
@@ -124,22 +74,12 @@ export const editProfileFail = error => {
 };
 
 export const editProfile = (username, newUsername, email, password, token) => {
-	return dispatch => {
-		let editProfile = {
-			username: username,
-			newUsername: newUsername,
-			email: email,
-			password: password,
-			token: token,
-		};
-
-		axios
-			.post('/editProfile', editProfile)
-			.then(response => {
-				dispatch(editProfileSuccess(response.data.token, response.data.user));
-			})
-			.catch(err => {
-				dispatch(editProfileFail(err.response.data));
-			});
-	};
-};
+    return {
+        type: actionTypes.EDIT_PROFILE_START,
+        username: username,
+        newUsername: newUsername,
+        email: email,
+        password: password,
+        token: token
+    }
+}

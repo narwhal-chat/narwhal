@@ -1,11 +1,14 @@
 export {
   auth,
   login,
-  setAuthRedirectPath,
-  logout,
   editProfile,
+  editProfileSuccess,
+  editProfileFail,
   authSuccess,
-  authCheckState
+  authCheckState,
+  authCheckStateFinished,
+  authLogout,
+  authFail
 } from './auth';
 
 export {
@@ -17,6 +20,14 @@ export {
   fetchTopics,
   fetchTopicsSuccess,
   fetchTopicsFail,
+  fetchTopicsFinished,
   createTopic,
-  createTopicFail
+  createTopicFail,
+  podClicked,
+  setActivePod,
+  topicClicked,
+  setActiveTopic,
+  discoverClicked,
+  discoverActive,
+  addMessage
 } from './chat';

@@ -1,15 +1,16 @@
 .AuthBtn {
-    margin: 30px 0;
+    margin: 10px 0;
     display: inline-block;
-    padding: 10px 165px;
+    padding: 16px 165px;
     background-color: #44DBC0;
     color: #fff;
     font-weight: 700;
     border-radius: 3%;
     border: none;
-    -webkit-transition: background-color 0.5s;
+    font-size: 90%;
+    transition: 0.2s;
 }
 
 .AuthBtn:hover {
-    background-color: rgb(56, 176, 154);
+    background-color: #38b09a;
 }

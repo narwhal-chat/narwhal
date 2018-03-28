@@ -1,19 +1,18 @@
 .Message {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: stretch;
-  justify-content: space-evenly;
-  margin: 20px 30px 100px 30px;
-}
-
-.Message .AvatarContainer {
+  flex-shrink: 0;
+  padding-bottom: 16px;
 }
 
 .Message .Avatar {
+  flex-shrink: 0;
+  margin-top: 6px;
   width: 44px;
   height: 44px;
-  border: 2px solid #000000;
+  background-size: 44px 44px;
+  background-color: #DADADA;
+  background-repeat: no-repeat;
   border-radius: 50%;
   background-color: #FFFFFF;
 }
@@ -23,22 +22,21 @@
   padding-right: 10px;
 }
 
-.Message .Username {
+.Message .MessageContent .Username {
   display: inline;
-  padding-right: 40px;
-  font-size: 0.9em;
+  padding-right: 8px;
+  font-size: 70%;
   font-weight: 600;
   color: #000000;
 }
 
-.Message .Time {
+.Message .MessageContent .Time {
   display: inline;
-  font-size: 0.9em;
-  font-weight: 300;
-  color: #525252;
+  font-size: 63%;
+  color: #636363;
 }
 
-.Message .MessageText {
-  font-size: 0.9em;
+.Message .MessageContent .MessageText {
+  font-size: 74%;
   color: #000000;
 }

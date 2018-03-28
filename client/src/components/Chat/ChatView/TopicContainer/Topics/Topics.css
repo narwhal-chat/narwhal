@@ -1,28 +1,34 @@
 .Topics {
-  color: #FFFFFF;
 }
 
 .Topics .Title {
-  margin-bottom: 14px;
-  padding-left: 2px;
-  padding-top: 2px;
+  margin-bottom: 8px;
+  padding: 4px 0 0px 18px;
   float: left;
-  font-size: 1.2em;
+  font-size: 90%;
+  font-weight: 600;
   letter-spacing: 0.3px;
 }
 
 .Topics .AddTopicContainer {
   float: right;
-  padding-top: 1px;
+  margin-right: 12px;
 }
 
-.Topics .AddTopic {
-  width: 14px;
-  height: 14px;
+.Topics .AddTopicIcon {
+  font-size: 110%;
+  color: rgb(214, 214, 214);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.Topics .AddTopicIcon:hover {
+  color: rgb(255, 255, 255);
+  transition: 0.2s;
 }
 
 .Topics .Clearfix::after {
-  content: "";
+  content: '';
   clear: both;
   display: table;
 }

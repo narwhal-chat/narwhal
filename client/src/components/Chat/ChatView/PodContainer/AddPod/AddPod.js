@@ -1,12 +1,12 @@
 import React from 'react';
+import PlusIcon from 'react-icons/lib/io/ios-plus-empty';
 
 import styles from './AddPod.css';
-import plusThin from '../../../../../assets/images/plus-thin.svg';
 
 const addPod = (props) => {
   return (
-    <div className={styles.AddPod}>
-      <img className={styles.PlusThin} src={plusThin} alt="Create or Join" />
+    <div onClick={props.openModal} className={styles.AddPod}>
+      <PlusIcon size="68%" />
     </div>
   );
 };

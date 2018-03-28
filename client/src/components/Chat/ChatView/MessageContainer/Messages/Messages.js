@@ -1,34 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import styles from './Messages.css';
 import Message from './Message/Message';
 
-const messages = (props) => {
-  return (
-    <div className={styles.Messages}>
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-    </div>
-  );
+class Messages extends Component {
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    this.el.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  render() {
+    let messages = this.props.messages.map((message) => {
+      return (
+        <React.Fragment>
+          <Message
+            message={message}
+          />
+          <div className={styles.MessageSeparator}></div>
+        </React.Fragment>
+      );
+    });
+
+    return (
+      <div className={styles.Messages}>
+        {messages}
+        <div ref={el => { this.el = el; }} />
+      </div>
+    );
+  }
 };
 
-export default messages;
+export default Messages;

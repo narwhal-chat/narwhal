@@ -2,20 +2,28 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 2px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  padding: 0px 18px;
 }
 
 .User .StatusIcon {
   margin-right: 5px;
-  width: 0.5em;
-  height: 0.5em;
+  margin-top: 2px;
+  width: 8px;
+  height: 8px;
   background-color: #44DBC0;
   border-radius: 50%;
 }
 
 .User .Username {
   display: inline;
-  font-size: 0.9em;
-  color: #979CCC;
+  font-size: 70%;
+  color: rgb(214, 214, 214);
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.User .Username:hover {
+  color: rgb(255, 255, 255);
+  transition: 0.1s;
 }
