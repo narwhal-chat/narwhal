@@ -163,12 +163,12 @@ class Create extends Component {
 				<div className={styles.PodInfo}>
 					<div className={styles.PodLeft}>
 						<div>
-							<label>POD NAME</label>
+							<label>NAME</label>
 							<div className={styles.PodForm}>
 								<input
 									className={styles.PodInputForm}
 									type="text"
-									placeholder="Enter pod name here"
+									placeholder="Enter a pod name here"
 									name="podName"
 									value={this.state.podName}
 									onChange={this.handleChange}
@@ -180,7 +180,7 @@ class Create extends Component {
 							</div>
 						</div>
 						<div>
-							<label>POD CATEGORY</label>
+							<label>CATEGORY</label>
 							<button className={styles.CategoryButton} onClick={this.categoryClick}>
 								{category}
 							</button>
@@ -189,11 +189,11 @@ class Create extends Component {
 							) : null}
 						</div>
 						<div>
-							<label>POD DESCRIPTION</label>
+							<label>DESCRIPTION</label>
 							<input
 								className={styles.DescriptionInputForm}
 								type="text"
-								placeholder="Enter description here"
+								placeholder="Enter a description here"
 								name="description"
 								value={this.state.description}
 								onChange={this.handleChange}
