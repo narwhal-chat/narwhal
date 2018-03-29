@@ -4,8 +4,7 @@ import Create from '../Create/Create'
 import PodContainer from '../../Chat/ChatView/PodContainer/PodContainer'
 import DiscoverCategoriesContainer from '../../Chat/ChatView/DiscoverCategoriesContainer/DiscoverCategoriesContainer';
 import DiscoverContainer from '../../Chat/ChatView/DiscoverContainer/DiscoverContainer'
-
-
+import { NavLink } from 'react-router-dom';
 
 class createJoin extends Component {
   state = {
@@ -50,9 +49,10 @@ class createJoin extends Component {
         <div className={styles.Create} onClick={this.createClick}>
           <div>CREATE</div>
         </div>
-        <div className={styles.Join} onClick={this.joinClick}>
-          <div>JOIN</div>
-        </div>
+        {/* <div className={styles.Join} onClick={this.joinClick}> */}
+        <NavLink className={styles.Join} to="/login">
+          <div className={styles.JoinText}>JOIN</div>
+        </NavLink>
       </div>
     )
   }
