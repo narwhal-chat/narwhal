@@ -47,11 +47,11 @@ class createJoin extends Component {
     return(
       <div className={styles.CreateJoin}>
         <div className={styles.Create} onClick={this.createClick}>
-          <div>CREATE</div>
+          <div className={styles.CreateText}>CREATE</div>
         </div>
         {/* <div className={styles.Join} onClick={this.joinClick}> */}
         <NavLink className={styles.Join} to="/login">
-          <div className={styles.JoinText}>JOIN</div>
+          <div>JOIN</div>
         </NavLink>
       </div>
     )
