@@ -131,11 +131,3 @@ export function* discoverClicked(action) {
 
   }
 }
-
-export function* updateRoute(action) {
-  try {
-    yield put(push(action.route));
-  } catch (e) {
-
-  }
-}

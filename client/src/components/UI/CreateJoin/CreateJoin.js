@@ -10,8 +10,7 @@ import * as actions from '../../../store/actions/index';
 
 class createJoin extends Component {
   state = {
-    showCreate: false,
-    showJoin: false
+    showCreate: false
   }
 
   componentDidMount() {
@@ -27,28 +26,19 @@ class createJoin extends Component {
   }
 
   handleJoinClick = () => {
-    this.props.updateRoute('/');
+    this.props.discoverClicked();
+    this.props.closeModal();
   }
 
   render() {
-    if(this.state.showCreate) {
+    if (this.state.showCreate) {
       return <Create onRequestClose={this.props.closeModal} closeModal={this.closeCreate.bind(this)}/>;
-    }
-
-    if(this.state.showJoin) {
-      return(
-        <div className={styles.ChatView}>
-          <PodContainer />
-          <DiscoverCategoriesContainer />
-          <DiscoverContainer />
-        </div>
-      )
     }
 
     return (
       <div className={styles.CreateJoin}>
         <div className={styles.Create} onClick={this.createClick}>
-          <div className={styles.CreateText}>CREATE POD</div>
+          CREATE POD
         </div>
         <div
           className={styles.Join}
@@ -66,7 +56,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-      updateRoute: (route) => dispatch(actions.updateRoute(route)),
+      discoverClicked: () => dispatch(actions.discoverClicked()),
   };
 };
 
