@@ -133,7 +133,7 @@ class Login extends Component {
 		let errorMessage = null;
 
 		if (this.props.error) {
-			errorMessage = <p className={styles.ErrorMessage}>Username or Password does not match</p>;
+			errorMessage = <p className={styles.ErrorMessage}>Username or password does not match</p>;
 		}
 
 		let invalidMessage = null;
