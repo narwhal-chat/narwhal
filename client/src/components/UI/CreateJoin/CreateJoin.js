@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import styles from './CreateJoin.css';
-import Create from '../Create/Create'
-import PodContainer from '../../Chat/ChatView/PodContainer/PodContainer'
+import Create from '../Create/Create';
+import PodContainer from '../../Chat/ChatView/PodContainer/PodContainer';
 import DiscoverCategoriesContainer from '../../Chat/ChatView/DiscoverCategoriesContainer/DiscoverCategoriesContainer';
-import DiscoverContainer from '../../Chat/ChatView/DiscoverContainer/DiscoverContainer'
-import { NavLink } from 'react-router-dom';
+import DiscoverContainer from '../../Chat/ChatView/DiscoverContainer/DiscoverContainer';
+import * as actions from '../../../store/actions/index';
 
 class createJoin extends Component {
   state = {
@@ -21,12 +23,11 @@ class createJoin extends Component {
   }
 
   createClick = () => {
-    console.log('this', this);
-    this.setState({ showCreate: true })
+    this.setState({ showCreate: true });
   }
 
-  joinClick = () => {
-    this.setState({ showJoin: true })
+  handleJoinClick = () => {
+    this.props.updateRoute('/');
   }
 
   render() {
@@ -44,18 +45,29 @@ class createJoin extends Component {
       )
     }
 
-    return(
+    return (
       <div className={styles.CreateJoin}>
         <div className={styles.Create} onClick={this.createClick}>
-          <div className={styles.CreateText}>CREATE</div>
+          <div className={styles.CreateText}>CREATE POD</div>
         </div>
-        {/* <div className={styles.Join} onClick={this.joinClick}> */}
-        <NavLink className={styles.Join} to="/login">
-          <div>JOIN</div>
-        </NavLink>
+        <div
+          className={styles.Join}
+          onClick={this.handleJoinClick}>
+          JOIN POD
+        </div>
       </div>
-    )
+    );
   }
 };
 
-export default createJoin;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+      updateRoute: (route) => dispatch(actions.updateRoute(route)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(createJoin);

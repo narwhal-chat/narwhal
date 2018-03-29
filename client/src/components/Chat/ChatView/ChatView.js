@@ -9,7 +9,6 @@ import DiscoverContainer from './DiscoverContainer/DiscoverContainer';
 import DiscoverCategoriesContainer from './DiscoverCategoriesContainer/DiscoverCategoriesContainer';
 import ProfileContainer from './ProfileContainer/ProfileContainer';
 import EditPodContainer from './EditPodContainer/EditPodContainer';
-import ChatModal from '../../UI/ChatModal/ChatModal';
 import CreateJoinModal from '../../UI/CreateJoinModal/CreateJoinModal';
 import CreateTopicModal from '../../UI/CreateTopicModal/CreateTopicModal';
 
@@ -36,12 +35,6 @@ class ChatView extends Component {
 	}
 
 	render() {
-		// let currentView = <div className={styles.ChatView}>
-		// 	<PodContainer openModal={this.openCreateJoinModal}/>
-		// 	<DiscoverCategoriesContainer />
-		// 	<DiscoverContainer />
-		// 	<CreateJoinModal isOpen={this.state.showCreateJoinModal} onRequestClose={this.closeCreateJoinModal}/>
-		// </div>;
 		let currentView = null;
 
 		if (this.props.match.params.podId === '@discover') {
@@ -90,9 +83,7 @@ class ChatView extends Component {
 }
 
 const mapStateToProps = state => {
-	return { 
-    
-  };
+	return {};
 };
 
 export default connect(mapStateToProps)(ChatView);

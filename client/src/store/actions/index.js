@@ -29,5 +29,6 @@ export {
   setActiveTopic,
   discoverClicked,
   discoverActive,
-  addMessage
+  addMessage,
+  updateRoute
 } from './chat';

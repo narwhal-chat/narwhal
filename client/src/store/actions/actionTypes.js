@@ -33,6 +33,5 @@ export const SET_ACTIVE_TOPIC = 'SET_ACTIVE_TOPIC';
 export const DISCOVER_CLICKED = 'DISCOVER_CLICKED';
 export const DISCOVER_ACTIVE = 'DISCOVER_ACTIVE';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
-
-// Modals
 export const CHOOSE_CATEGORY = 'CHOOSE_CATEGORY';
+export const UPDATE_ROUTE = 'UPDATE_ROUTE';

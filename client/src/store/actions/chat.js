@@ -126,3 +126,10 @@ export const addMessage = (message) => {
     message: message
   }
 };
+
+export const updateRoute = (route) => {
+  return {
+    type: actionTypes.UPDATE_ROUTE,
+    route: route
+  }
+};

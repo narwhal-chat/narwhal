@@ -147,7 +147,7 @@ class Create extends Component {
 			return <ChooseCategory chooseCategory={this.chooseCategory} />;
 		}
 
-		let category = 'SELECT A CATEGORY';
+		let category = 'Select a category';
 		if (this.state.category !== '') {
 			category = this.state.category;
 		}

@@ -18,12 +18,12 @@
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.15s;
 }
 
 .CreateJoin .Create:hover {
   font-size: 140%;
-  transition: 0.2s;
+  transition: 0.15s;
 }
 
 .CreateJoin .Join {
@@ -35,10 +35,10 @@
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   text-decoration: none;
-  transition: 0.2s;
+  transition: 0.15s;
 }
 
 .CreateJoin .Join:hover {
-  font-size: 140%;
-  transition: 0.2s;
+  font-size: 150%;
+  transition: 0.15s;
 }
