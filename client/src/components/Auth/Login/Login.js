@@ -148,8 +148,8 @@ class Login extends Component {
 		// }
 
 		return (
-			<React.Fragment>
-				<div className={styles.Login}>
+			<div className={styles.Login}>
+				<div className={styles.LoginContainer}>
 					<form className={styles.LoginForm} onSubmit={this.submitHandler}>
 						<p className={styles.AuthHeader}>SIGN IN</p>
 						{errorMessage}
@@ -158,7 +158,7 @@ class Login extends Component {
 						<div style={{ marginBottom: '14px' }}></div>
 						<Button btnType="Success">Continue</Button>
 						<p className={styles.AuthInfo}>
-							Need an account? <NavLink className={styles.AuthLink} to="/register">
+							Join the community! <NavLink className={styles.AuthLink} to="/register">
 								Register
 							</NavLink>
 						</p>
@@ -167,7 +167,7 @@ class Login extends Component {
 				<div className={styles.Logo}>
 					<LogoAuth />
 				</div>
-				</React.Fragment>
+			</div>
 		);
 	}
 }

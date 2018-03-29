@@ -170,22 +170,24 @@ class Signup extends Component {
 		return (
 			<React.Fragment>
 				<div className={styles.SignUp}>
-					<form className={styles.SignupForm} onSubmit={this.submitHandler}>
-						<p className={styles.AuthHeader}>CREATE AN ACCOUNT</p>
-						{errorMessage}
-						{duplicateUserMessage}
-						{form}
-						<div style={{ marginBottom: '14px' }}></div>
-						<Button btnType="Success">Continue</Button>
-						<p className={styles.AuthInfo}>
-							Already have an account? <NavLink className={styles.AuthLink} to="/login">
-								Login
-							</NavLink>
-						</p>
-					</form>
-				</div>
-				<div className={styles.Logo}>
-					<LogoAuth />
+					<div className={styles.SignUpContainer}>
+						<form className={styles.SignupForm} onSubmit={this.submitHandler}>
+							<p className={styles.AuthHeader}>CREATE AN ACCOUNT</p>
+							{errorMessage}
+							{duplicateUserMessage}
+							{form}
+							<div style={{ marginBottom: '14px' }}></div>
+							<Button btnType="Success">Continue</Button>
+							<p className={styles.AuthInfo}>
+								Already a Narwhaler? <NavLink className={styles.AuthLink} to="/login">
+									Login
+								</NavLink>
+							</p>
+						</form>
+					</div>
+					<div className={styles.Logo}>
+						<LogoAuth />
+					</div>
 				</div>
 			</React.Fragment>
 		);

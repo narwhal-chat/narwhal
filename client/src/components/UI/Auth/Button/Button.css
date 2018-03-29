@@ -9,6 +9,7 @@
     border: none;
     font-size: 90%;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 .AuthBtn:hover {

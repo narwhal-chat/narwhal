@@ -1,23 +1,27 @@
 .SignUp {
-  float: left;
-  width: 50%;
-  height: 100vh;
-  background-color: #2B316B;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100vh;
   font-size: 80%;
 }
 
-.Logo {
-  float: left;
-  width: 50%;
+.SignUp .SignUpContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
   height: 100vh;
+  background-color: #2b316b;
+}
+
+.Logo {
   background-color: #505AB2;
 }
 
 .SignUp .SignupForm {
-  position: absolute;
-  top: 50%;
-  left: 25%;
-  transform: translate(-50%, -50%);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
 }
 
 .SignUp .AuthHeader {
