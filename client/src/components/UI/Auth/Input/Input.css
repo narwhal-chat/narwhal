@@ -15,10 +15,10 @@
   color: #fff;
   font-size: 100%;
   outline: none;
-  transition: 0.1s;
+  transition: 0.05s;
 }
 
 .AuthInputForm:focus {
   border-bottom: 1px solid rgba(255, 255, 255, 1);
-  transition: 0.1s;
+  transition: 0.05s;
 }
