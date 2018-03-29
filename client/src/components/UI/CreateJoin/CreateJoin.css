@@ -16,6 +16,7 @@
   color: #FFFFFF;
   justify-items: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .CreateJoin .Join {
@@ -24,4 +25,9 @@
   color: #505AB2;
   justify-items: center;
   align-items: center;
+<<<<<<< HEAD
 }
+=======
+  text-decoration: none;
+}
+>>>>>>> Join now links to the discover page

@@ -89,12 +89,13 @@ export function* createTopic(action) {
     const token = yield select(selectors.token);
     const activePod = yield select(selectors.activePod);
     const userId = yield select(selectors.userId);
+    console.log('THIS IS THE USER ID', userId);
     const results = yield axios.post('/pods/' + activePod.id + '/topics', {
         token: token,
         userId: userId,
         name: action.topicName
     });
-    console.log('new topic', results);
+    console.log('RESULTS', results);
     yield put(actions.fetchTopics(activePod.id, results.data.id));
   } catch (e) {
     console.log('action when create topic', action);
