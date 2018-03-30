@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import styles from './CreateJoin.css';
-import Create from '../Create/Create'
-import PodContainer from '../../Chat/ChatView/PodContainer/PodContainer'
+import Create from '../Create/Create';
+import PodContainer from '../../Chat/ChatView/PodContainer/PodContainer';
 import DiscoverCategoriesContainer from '../../Chat/ChatView/DiscoverCategoriesContainer/DiscoverCategoriesContainer';
-import DiscoverContainer from '../../Chat/ChatView/DiscoverContainer/DiscoverContainer'
-import { NavLink } from 'react-router-dom';
+import DiscoverContainer from '../../Chat/ChatView/DiscoverContainer/DiscoverContainer';
+import * as actions from '../../../store/actions/index';
 
 class createJoin extends Component {
   state = {
-    showCreate: false,
-    showJoin: false
+    showCreate: false
   }
 
   componentDidMount() {
@@ -21,41 +22,42 @@ class createJoin extends Component {
   }
 
   createClick = () => {
-    console.log('this', this);
-    this.setState({ showCreate: true })
+    this.setState({ showCreate: true });
   }
 
-  joinClick = () => {
-    this.setState({ showJoin: true })
+  handleJoinClick = () => {
+    this.props.discoverClicked();
+    this.props.closeModal();
   }
 
   render() {
-    if(this.state.showCreate) {
+    if (this.state.showCreate) {
       return <Create onRequestClose={this.props.closeModal} closeModal={this.closeCreate.bind(this)}/>;
     }
 
-    if(this.state.showJoin) {
-      return(
-        <div className={styles.ChatView}>
-          <PodContainer />
-          <DiscoverCategoriesContainer />
-          <DiscoverContainer />
-        </div>
-      )
-    }
-
-    return(
+    return (
       <div className={styles.CreateJoin}>
         <div className={styles.Create} onClick={this.createClick}>
-          <div>CREATE</div>
+          CREATE
         </div>
-        {/* <div className={styles.Join} onClick={this.joinClick}> */}
-        <NavLink className={styles.Join} to="/login">
-          <div className={styles.JoinText}>JOIN</div>
-        </NavLink>
+        <div
+          className={styles.Join}
+          onClick={this.handleJoinClick}>
+          JOIN
+        </div>
       </div>
-    )
+    );
   }
 };
 
-export default createJoin;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+      discoverClicked: () => dispatch(actions.discoverClicked()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(createJoin);

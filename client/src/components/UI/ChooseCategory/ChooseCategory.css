@@ -6,6 +6,7 @@
   width: 600px;
   height: 400px;
   background-color: #ffffff;
+  border-radius: 10px;
 }
 
 .ChooseCategory .Header {
@@ -16,7 +17,7 @@
   font-size: 120%;
 }
 
-.Categories{
+.Categories {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -29,15 +30,21 @@
 
 
 .Categories .CategoryBox {
-  color: #414141;
   text-align: center;
-  border: 1px #414141 solid;
-  margin: 1em 0.5em;
-  border-radius: 5%;
+  border: 1px solid #414141;
+  margin: 1.5em 0.5em;
+  border-radius: 10px;
+  background-color: #505AB2;
+  cursor: pointer;
+}
+
+.Categories .CategoryBox:hover {
+  background-color: rgb(68, 77, 158);
 }
 
 .Categories .Category {
+  font-size: 90%;
   margin-top: 35%;
-  color: #505AB2;
+  color: #FFFFFF;
   font-weight: 600;
 }

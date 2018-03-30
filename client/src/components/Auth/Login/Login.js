@@ -128,7 +128,6 @@ class Login extends Component {
 			</div>
 		));
 
-
 		//Checks to see if we get an error message back from the server.
 		let errorMessage = null;
 

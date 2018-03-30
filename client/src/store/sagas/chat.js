@@ -95,11 +95,8 @@ export function* createTopic(action) {
         userId: userId,
         name: action.topicName
     });
-    console.log('RESULTS', results);
     yield put(actions.fetchTopics(activePod.id, results.data.id));
   } catch (e) {
-    console.log('action when create topic', action);
-    console.log('error when create topic', e);
     yield put(actions.createTopicFail());
   }
 }

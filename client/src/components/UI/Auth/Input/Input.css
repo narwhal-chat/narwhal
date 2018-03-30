@@ -1,26 +1,24 @@
 .AuthInput {
-    width: 100%;
-    box-sizing: border-box;
-    background: #2B316B;
+  width: 100%;
+  box-sizing: border-box;
+  background: #2B316B;
 }
 
 .AuthInputForm {
-    width: 100%;
-    box-sizing: border-box;
-    background: #2B316B;
-    border: none;
-    color: #fff;
-    font-size: 100%;
-    outline: none;
+  width: 100%;
+  padding-bottom: 4px;
+  box-sizing: border-box;
+  background: #2B316B;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  margin-bottom: 24px;
+  color: #fff;
+  font-size: 100%;
+  outline: none;
+  transition: 0.05s;
 }
 
-.AuthInput:after {
-    margin-top: 5px;
-    margin-bottom: 24px;
-    display: block;
-    height: 1px;
-    background-color: #fff;
-    content: " ";
-    width: 400px;
-    opacity: 0.6;
+.AuthInputForm:focus {
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+  transition: 0.05s;
 }

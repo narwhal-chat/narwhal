@@ -3,7 +3,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: none;
+}
+
+.Modal:focus {
+  outline: 0;
 }
 
 .Overlay {

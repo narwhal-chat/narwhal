@@ -15,7 +15,7 @@ const topic = (props) => {
     <div
       className={topicStyle}
       onClick={() => props.clicked(props.topic)}>
-      # {props.topic.name}
+      <div className={styles.TopicName}># {props.topic.name}</div>
     </div>
   );
 };
