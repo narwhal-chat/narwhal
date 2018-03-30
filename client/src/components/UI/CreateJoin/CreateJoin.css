@@ -22,7 +22,7 @@
 }
 
 .CreateJoin .Create:hover {
-  font-size: 130%;
+  font-size: 140%;
   transition: 0.15s;
 }
 
@@ -40,6 +40,6 @@
 }
 
 .CreateJoin .Join:hover {
-  font-size: 130%;
+  font-size: 140%;
   transition: 0.15s;
 }

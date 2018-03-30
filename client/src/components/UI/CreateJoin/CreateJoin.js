@@ -38,12 +38,12 @@ class createJoin extends Component {
     return (
       <div className={styles.CreateJoin}>
         <div className={styles.Create} onClick={this.createClick}>
-          CREATE POD
+          CREATE
         </div>
         <div
           className={styles.Join}
           onClick={this.handleJoinClick}>
-          JOIN POD
+          JOIN
         </div>
       </div>
     );
