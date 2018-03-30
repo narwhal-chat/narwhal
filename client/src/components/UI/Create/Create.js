@@ -154,7 +154,7 @@ class Create extends Component {
 
 		let avatar = '';
 		if (this.state.podName !== '') {
-			avatar = this.state.podName.charAt(0);
+			avatar = this.state.podName.charAt(0).toUpperCase();
 		}
 
 		return (

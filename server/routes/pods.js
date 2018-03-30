@@ -17,6 +17,8 @@ router.get('/:userId', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   let reference = req.body.podName + Math.random().toString(36).substring(7);
+
+  console.log('ref', reference);
   
   try {
     const results = await axios.post(POD_MICROSERVICE_URL, {

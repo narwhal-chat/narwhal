@@ -18,13 +18,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Import routes handled by Express Router
 const pods = require('./routes/pods');
+const categories = require('./routes/categories');
 
 // Define a single source of route paths
 const routes = {
   register: USER_MICROSERVICE_URL + '/register',
   login: USER_MICROSERVICE_URL + '/login',
   editProfile: USER_MICROSERVICE_URL + '/editProfile',
-  pods: '/pods'
+  pods: '/pods',
+  categories: '/categories'
 };
 
 // Set static path
@@ -108,7 +110,7 @@ app.use((req, res, next) => {
   }
 });
 
-//PUT ALL PROTECTED ROUTES BELOW HERE
+// All protected routes go below here
 
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
@@ -131,6 +133,9 @@ app.post('/editProfile', (req, res, next) => {
 
 // Pods route
 app.use(routes.pods, pods);
+
+// Categories route
+app.use(routes.categories, categories);
 
 // Start server
 http.listen(PORT);

@@ -166,6 +166,7 @@
   font-size: 100%;
   border: 1px solid #777777;
   width: 80%;
+  outline: none;
   cursor: pointer;
   transition: 0.2s;
 }
