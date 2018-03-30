@@ -16,7 +16,7 @@ router.get('/:userId', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  let reference = req.body.podName + Math.random().toString(36).substring(7);
+  let reference = req.body.podName;
 
   console.log('ref', reference);
   
