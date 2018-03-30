@@ -22,11 +22,12 @@
 }
 
 .CreateJoin .Create:hover {
-  font-size: 140%;
+  font-size: 130%;
   transition: 0.2s;
 }
 
 .CreateJoin .Join {
+  font-size: 130%;
   display: grid;
   background-color: #FFFFFF;
   color: #505AB2;

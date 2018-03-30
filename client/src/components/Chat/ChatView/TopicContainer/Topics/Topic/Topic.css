@@ -1,8 +1,16 @@
 .Topic {
-  padding: 3px 0 3px 18px;
+  margin: 0 6px;
+  padding: 3px 0 3px 4px;
   font-size: 82%;
   letter-spacing: 0.1px;
+  border-radius: 6px;
   cursor: pointer;
+}
+
+.Topic .TopicName {
+  margin-left: -6px;
+  padding: 0 16px;
+  text-align: left;
 }
 
 .Topic:hover {

@@ -6,7 +6,7 @@
   padding: 4px 0 0px 18px;
   float: left;
   font-size: 90%;
-  font-weight: 600;
+  color: rgb(214, 214, 214);
   letter-spacing: 0.3px;
 }
 
@@ -16,14 +16,17 @@
 }
 
 .Topics .AddTopicIcon {
-  font-size: 110%;
+  font-size: 94%;
   color: rgb(214, 214, 214);
+  border: 1.5px solid rgb(214, 214, 214);
+  border-radius: 50%;
   transition: 0.2s;
   cursor: pointer;
 }
 
 .Topics .AddTopicIcon:hover {
   color: rgb(255, 255, 255);
+  border: 1.5px solid rgb(255, 255, 255);
   transition: 0.2s;
 }
 
