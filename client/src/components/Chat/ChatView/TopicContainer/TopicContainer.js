@@ -37,7 +37,7 @@ class TopicContainer extends Component {
       <div className={styles.TopicContainer}>
         <div className={styles.Content}>
           {podHeader}
-          <User />
+          <User openModal={this.props.openEditProfileModal}/>
           {topics}
         </div>
       </div>

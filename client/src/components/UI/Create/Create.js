@@ -157,51 +157,63 @@ class Create extends Component {
 			avatar = this.state.podName.charAt(0).toUpperCase();
 		}
 
-		return (
-			<div className={styles.Create}>
+		return <div className={styles.Create}>
 				<div className={styles.Header}>CREATE A POD</div>
 				<div className={styles.PodInfo}>
 					<div className={styles.PodLeft}>
 						<div>
 							<label>NAME</label>
 							<div className={styles.PodForm}>
-								<input
-									className={styles.PodInputForm}
-									type="text"
-									placeholder="Enter a pod name here"
-									name="podName"
-									value={this.state.podName}
-									onChange={this.handleChange}
-								/>
+								<input className={styles.PodInputForm} type="text" placeholder="Enter a pod name here" name="podName" value={this.state.podName} onChange={this.handleChange} />
 								<hr />
-								{this.state.podNameError.error ? (
-									<div className={styles.ErrorMessage}>{this.state.podNameError.message}</div>
-								) : null}
+								{this.state.podNameError.error ? <div className={styles.ErrorMessage}>
+										{this.state.podNameError.message}
+									</div> : null}
 							</div>
 						</div>
 						<div>
 							<label>CATEGORY</label>
-							<button className={styles.CategoryButton} onClick={this.categoryClick}>
+							{/* <button className={styles.CategoryButton} onClick={this.categoryClick}>
 								{category}
-							</button>
-							{this.state.categoryError.error ? (
-								<div className={styles.ErrorMessage}>{this.state.categoryError.message}</div>
-							) : null}
+							</button> */}
+							<select className={styles.PodCategory}>
+								<option value="" selected disabled hidden />
+								<option className={styles.DropdownValue} value="technology">
+									Technology
+								</option>
+								<option className={styles.DropdownValue} value="business">
+									Business
+								</option>
+								<option className={styles.DropdownValue} value="gaming">
+									Gaming
+								</option>
+								<option className={styles.DropdownValue} value="television">
+									Television
+								</option>
+								<option className={styles.DropdownValue} value="design">
+									Design
+								</option>
+								<option className={styles.DropdownValue} value="movies">
+									Movies
+								</option>
+								<option className={styles.DropdownValue} value="music">
+									Music
+								</option>
+								<option className={styles.DropdownValue} value="social">
+									Social
+								</option>
+							</select>
+							{this.state.categoryError.error ? <div className={styles.ErrorMessage}>
+									{this.state.categoryError.message}
+								</div> : null}
 						</div>
 						<div>
 							<label>DESCRIPTION</label>
-							<input
-								className={styles.DescriptionInputForm}
-								type="text"
-								placeholder="Enter a description here"
-								name="description"
-								value={this.state.description}
-								onChange={this.handleChange}
-							/>
+							<input className={styles.DescriptionInputForm} type="text" placeholder="Enter a description here" name="description" value={this.state.description} onChange={this.handleChange} />
 							<hr />
-							{this.state.descriptionError.error ? (
-								<div className={styles.ErrorMessage}>{this.state.descriptionError.message}</div>
-							) : null}
+							{this.state.descriptionError.error ? <div className={styles.ErrorMessage}>
+									{this.state.descriptionError.message}
+								</div> : null}
 						</div>
 					</div>
 					<div className={styles.Avatar}>{avatar}</div>
@@ -214,8 +226,7 @@ class Create extends Component {
 						Create
 					</button>
 				</div>
-			</div>
-		);
+			</div>;
 	}
 }
 
