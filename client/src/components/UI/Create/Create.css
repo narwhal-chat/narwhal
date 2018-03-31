@@ -1,12 +1,22 @@
 .Create {
   display: grid;
-  /* grid-template-columns: 1fr; */
+  grid-template-columns: 600px;
   grid-template-rows: 1fr 4fr 1fr;
+  min-height: 400px;
+  max-height: 400px;
   align-self: center;
   justify-self: center;
-  width: 600px;
-  height: 450px;
   background-color: #ffffff;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.Create label {
+  display: block;
+  font-size: 90%;
+  color: rgb(90, 90, 90, 0.95);
 }
 
 .Create .ErrorMessage {
@@ -26,111 +36,157 @@
 .Create .PodInfo {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-column-gap: 3em;
+  grid-column-gap: 20px;
 }
 
 .Create .PodInfo .PodLeft {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  margin-left: 30px;
+  margin-left: 40px;
   font-weight: 600;
   color: #414141;
   font-size: 70%;
 }
 
 .Create .PodForm {
-    width: 100%;
-    box-sizing: border-box;
-    background: #FFFFFF;
+  width: 100%;
+  box-sizing: border-box;
+  background: #FFFFFF;
 }
 
 .Create .PodInputForm {
-    width: 100%;
-    background: #FFFFFF;
-    border: none;
-    color: #414141;
-    font-size: 150%;
-    height: 2em;
-    margin-top: 10px;
+  width: 250px;
+  background: #FFFFFF;
+  border: none;
+  border-bottom: 1px solid rgba(161, 161, 161, 0.4);
+  color: #000000;
+  font-size: 100%;
+  height: 2em;
+  margin-top: 10px;
+  outline: none;
+  transition: 0.05s;
+}
+
+.Create .PodInputForm:focus {
+  border-bottom: 1px solid #505AB2;
+  transition: 0.05s;
+}
+
+.Create .PodInputForm::placeholder {
+  color: rgba(122, 122, 122, 0.8);
 }
 
 .Create .DescriptionInputForm {
-    width: 100%;
-    background: #FFFFFF;
-    border: none;
-    color: #414141;
-    font-size: 150%;
-    height: 2em;
-    margin-top: 10px;
+  width: 250px;
+  background: #FFFFFF;
+  border: none;
+  border-bottom: 1px solid rgba(161, 161, 161, 0.4);
+  color: #000000;
+  font-size: 100%;
+  height: 2em;
+  margin-top: 10px;
+  outline: none;
+}
+
+.Create .DescriptionInputForm:focus {
+  border-bottom: 1px solid #505AB2;
+  transition: 0.05s;
+}
+
+.Create .DescriptionInputForm::placeholder {
+  color: rgba(122, 122, 122, 0.8);
 }
 
 .Create .PodCategory {
-  width: 100%;
-  height: 2em;
-  font-size: 150%;
-  color: #414141;
   margin-top: 10px;
+  padding: 10px 4px;
+  width: 250px;
+  height: 36px;
+  background-color: #FFFFFF;
+  color: #505AB2;
+  font-weight: 600;
+  border-radius: 5px;
+  font-size: 100%;
+  border: 1px solid rgba(133, 132, 132, 0.7);
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.Create .PodCategory:hover {
+  background-color: #505AB2;
+  border: 1px solid transparent;
+  color: #FFFFFF;
+  transition: 0.2s;
 }
 
 .Create .Avatar {
   display: grid;
+  margin-top: 40px;
+  margin-right: 40px;
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  background-color: #797979;
+  background-color: #DADADA;
   justify-items: center;
   align-items: center;
-  margin-right: 30px;
-  border: 2px #505AB2 solid;
-  color: #ffffff;
-  font-size: 500%;
-  text-transform: uppercase;
+  border: 2px solid #888888;
+  color: rgb(80, 89, 178);
+  font-size: 600%;
 }
 
 .Create .Footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background-color: #bfbfbf
+  grid-template-rows: 76px;
+  padding-left: 10px;
+  background-color: rgba(240, 235, 235, 0.9);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .Create .BackButton {
-  font-size: 80%;
+  margin-left: 20px;
   justify-self: start;
   align-self: center;
-  margin-left: 20px;
+  font-size: 70%;
+  font-weight: 600;
+  color: rgba(77, 77, 77, 0.8);
+  transition: 0.1s;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  outline: none;
+}
+
+.Create .BackIcon {
+  display: inline;
+  margin: 0 6px 0 0;
+  vertical-align: middle;
+  font-size: 130%;
+}
+
+.Create .BackButton:hover {
+  border-bottom: 2px solid rgb(65, 65, 65);
+  transition: 0.1s;
 }
 
 .Create .CreateButton {
+  margin-right: 40px;
+  padding: 10px 20px;
   justify-self: end;
   align-self: center;
-  padding: 10px 30px;
   background-color: #505AB2;
   color: #fff;
-  font-weight: 700;
-  border-radius: 5%;
+  font-weight: 600;
+  border-radius: 6px;
   border: none;
   font-size: 80%;
-  margin-right: 20px;
-  -webkit-transition: background-color 0.5s;
+  cursor: pointer;
+  transition: 0.2s;
+  outline: none;
 }
 
-.Create .CategoryButton {
-  margin-top: 10px;
-  padding: 10px 30px;
-  background-color: #FFFFFF;
-  color: #414141;
-  font-weight: 700;
-  border-radius: 5%;
-  border: 1px #505AB2 solid;
-  font-size: 120%;
-  text-transform: uppercase;
-  width: 80%;
-}
-
-hr {
-    display: block;
-    height: 2px;
-    border: 0;
-    border-top: 1px solid #505AB2;
-    padding: 0;
+.Create .CreateButton:hover {
+  background-color: rgb(57, 64, 133);
+  transition: 0.2s;
 }

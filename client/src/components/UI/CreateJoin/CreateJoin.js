@@ -7,6 +7,8 @@ import PodContainer from '../../Chat/ChatView/PodContainer/PodContainer';
 import DiscoverCategoriesContainer from '../../Chat/ChatView/DiscoverCategoriesContainer/DiscoverCategoriesContainer';
 import DiscoverContainer from '../../Chat/ChatView/DiscoverContainer/DiscoverContainer';
 import * as actions from '../../../store/actions/index';
+import CreateIcon from 'react-icons/lib/io/ios-compose';
+import JoinIcon from 'react-icons/lib/io/android-exit';
 
 class createJoin extends Component {
   state = {
@@ -31,6 +33,7 @@ class createJoin extends Component {
   }
 
   render() {
+    // ion-ios-compose
     if (this.state.showCreate) {
       return <Create onRequestClose={this.props.closeModal} closeModal={this.closeCreate.bind(this)}/>;
     }
@@ -38,12 +41,22 @@ class createJoin extends Component {
     return (
       <div className={styles.CreateJoin}>
         <div className={styles.Create} onClick={this.createClick}>
-          CREATE
+          <div>
+            <div className={styles.CreateIcon}>
+              <CreateIcon />
+              <br />
+            </div>
+            <div className={styles.CreateText}>CREATE A POD</div>
+          </div>
         </div>
-        <div
-          className={styles.Join}
-          onClick={this.handleJoinClick}>
-          JOIN
+        <div className={styles.Join} onClick={this.handleJoinClick}>
+          <div>
+            <div className={styles.JoinIcon}>
+              <JoinIcon />
+              <br />
+            </div>
+            <div className={styles.JoinText}>JOIN A POD</div>
+          </div>
         </div>
       </div>
     );

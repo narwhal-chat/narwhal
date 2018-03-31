@@ -1,29 +1,42 @@
 .CreateJoin {
   display: grid;
-  grid-template-columns: 350px 350px;
-  grid-template-rows: 450px;
+  grid-template-columns: 300px 300px;
+  grid-template-rows: 400px;
   align-self: center;
   justify-self: center;
   border-radius: 20px;
-  font-size: 150%;
+  font-size: 210%;
   font-weight: 600;
 }
 
 .CreateJoin .Create {
   display: grid;
+  grid-template-columns: 1fr;
   background-color: #505AB2;
   color: #FFFFFF;
+  justify-content: space-evenly;
   justify-items: center;
   align-items: center;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
   cursor: pointer;
   transition: 0.15s;
 }
 
 .CreateJoin .Create:hover {
-  font-size: 140%;
+  font-size: 124%;
   transition: 0.15s;
+}
+
+.CreateJoin .Create .CreateIcon {
+  margin-top: -30px;
+  padding: 0 0 20px 14px;
+  font-size: 160%;
+  text-align: center;
+}
+
+.CreateJoin .Create .CreateText {
+  font-size: 70%;
 }
 
 .CreateJoin .Join {
@@ -32,14 +45,25 @@
   color: #505AB2;
   justify-items: center;
   align-items: center;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
   text-decoration: none;
   cursor: pointer;
   transition: 0.15s;
 }
 
 .CreateJoin .Join:hover {
-  font-size: 140%;
+  font-size: 124%;
   transition: 0.15s;
+}
+
+.CreateJoin .Join .JoinIcon {
+  margin-top: -30px;
+  padding: 6px 0 20px 0;
+  font-size: 154%;
+  text-align: center;
+}
+
+.CreateJoin .Join .JoinText {
+  font-size: 70%;
 }
