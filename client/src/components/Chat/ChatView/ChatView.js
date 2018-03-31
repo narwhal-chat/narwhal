@@ -11,11 +11,13 @@ import ProfileContainer from './ProfileContainer/ProfileContainer';
 import EditPodContainer from './EditPodContainer/EditPodContainer';
 import CreateJoinModal from '../../UI/CreateJoinModal/CreateJoinModal';
 import CreateTopicModal from '../../UI/CreateTopicModal/CreateTopicModal';
+import EditProfileModal from '../../UI/EditProfileModal/EditProfileModal';
 
 class ChatView extends Component {
 	state = {
 		showCreateJoinModal: false,
 		showCreateTopicModal: false,
+		showEditProfileModal: false,
 	};
 
 	openCreateTopicModal() {
@@ -34,6 +36,15 @@ class ChatView extends Component {
 		this.setState({ showCreateJoinModal: false });
 	}
 
+  openEditProfileModal() {
+    console.log('opened');
+		this.setState({ showEditProfileModal: true });
+	}
+
+	closeEditProfileModal() {
+		this.setState({ showEditProfileModal: false });
+	}
+
 	render() {
 		let currentView = null;
 
@@ -41,16 +52,20 @@ class ChatView extends Component {
 			currentView = (
 				<div className={styles.ChatView}>
 					<PodContainer openCreateJoinModal={this.openCreateJoinModal.bind(this)} />
-					<DiscoverCategoriesContainer />
+					<DiscoverCategoriesContainer openEditProfileModal={this.openEditProfileModal.bind(this)}/>
 					<DiscoverContainer />
 					<CreateJoinModal
 						isOpen={this.state.showCreateJoinModal}
 						onRequestClose={this.closeCreateJoinModal.bind(this)}
 					/>
-          <CreateTopicModal
-            isOpen={this.state.showCreateTopicModal}
-            onRequestClose={this.closeCreateTopicModal.bind(this)}
-          />
+					<CreateTopicModal
+						isOpen={this.state.showCreateTopicModal}
+						onRequestClose={this.closeCreateTopicModal.bind(this)}
+					/>
+					<EditProfileModal
+						isOpen={this.state.showEditProfileModal}
+						onRequestClose={this.closeEditProfileModal.bind(this)}
+					/>
 				</div>
 			);
 		} else {
@@ -62,18 +77,23 @@ class ChatView extends Component {
 					/>
 					<TopicContainer
 						initialPodId={this.props.match.params.podId}
-            initialTopicId={this.props.match.params.topicId}
+						initialTopicId={this.props.match.params.topicId}
             openTopicModal={this.openCreateTopicModal.bind(this)}
+            openEditProfileModal={this.openEditProfileModal.bind(this)}
 					/>
 					<MessageContainer />
 					<CreateJoinModal
 						isOpen={this.state.showCreateJoinModal}
 						onRequestClose={this.closeCreateJoinModal.bind(this)}
 					/>
-          <CreateTopicModal
-            isOpen={this.state.showCreateTopicModal}
-            onRequestClose={this.closeCreateTopicModal.bind(this)}
-          />
+					<CreateTopicModal
+						isOpen={this.state.showCreateTopicModal}
+						onRequestClose={this.closeCreateTopicModal.bind(this)}
+					/>
+					<EditProfileModal
+						isOpen={this.state.showEditProfileModal}
+						onRequestClose={this.closeEditProfileModal.bind(this)}
+					/>
 				</div>
 			);
 		}
