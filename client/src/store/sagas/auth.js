@@ -51,7 +51,7 @@ export function* login(action) {
 		yield localStorage.setItem('userData', JSON.stringify(response.data.user));
 		yield put(actions.authSuccess(response.data.token, response.data.user));
 	} catch (error) {
-		yield put(actions.authFail(error.response.data.error));
+		yield put(actions.authFail(error.response.data.error, error.response.data.message));
 	}
 }
 
