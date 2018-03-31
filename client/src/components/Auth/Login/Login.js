@@ -46,15 +46,12 @@ class Login extends Component {
 
 	submitHandler = event => {
 		event.preventDefault();
-		if (!this.state.controls.username.valid || !this.state.controls.password.valid) {
-			this.setState({ isValid: false });
-		}
-		this.props.onLogin(
-			this.state.controls.password.value,
-			this.state.controls.username.value,
-			this.state.isSignup
-		);
 
+			this.props.onLogin(
+				this.state.controls.password.value,
+				this.state.controls.username.value,
+				this.state.isSignup
+			);
 	};
 
 	//updating the form fields for each input form.
@@ -64,43 +61,10 @@ class Login extends Component {
 			[controlName]: {
 				...this.state.controls[controlName],
 				value: event.target.value,
-				valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
 				touched: true,
 			},
 		};
 		this.setState({ controls: updatedControl });
-	};
-
-	//Making sure that the form has valid rules for username, password and email
-	checkValidity = (value, rules) => {
-		let isValid = true;
-		if (!rules) {
-			return true;
-		}
-
-		if (rules.required) {
-			isValid = value.trim() !== '' && isValid;
-		}
-
-		if (rules.minLength) {
-			isValid = value.length >= rules.minLength && isValid;
-		}
-
-		if (rules.maxLength) {
-			isValid = value.length <= rules.maxLength && isValid;
-		}
-
-		if (rules.isEmail) {
-			const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-			isValid = pattern.test(value) && isValid;
-		}
-
-		if (rules.isNumeric) {
-			const pattern = /^\d+$/;
-			isValid = pattern.test(value) && isValid;
-		}
-
-		return isValid;
 	};
 	
 	render() {
@@ -129,30 +93,20 @@ class Login extends Component {
 		));
 
 		//Checks to see if we get an error message back from the server.
-		let errorMessage = null;
+		let errorMessage = <br/>;
 
 		if (this.props.error) {
-			errorMessage = <p className={styles.ErrorMessage}>Username or password does not match</p>;
+			errorMessage = <p className={styles.ErrorMessage}>{this.props.errorMessage}</p>;
 		}
-
-		let invalidMessage = null;
-		if (!this.state.isValid && this.props.error === null) {
-			invalidMessage = <p className={styles.ErrorMessage}>Username does not exist</p>;
-		}
-
-		//If we become authenticated, it will redirect us to the main page.
-		// let authRedirect = null;
-		// if (this.props.isAuthenticated) {
-		// 	authRedirect = <Redirect to="/"/>
-		// }
 
 		return (
 			<div className={styles.Login}>
 				<div className={styles.LoginContainer}>
 					<form className={styles.LoginForm} onSubmit={this.submitHandler}>
 						<p className={styles.AuthHeader}>SIGN IN</p>
-						{errorMessage}
-						{invalidMessage}
+						<span>
+							<div className={styles.ErrorSpace}>{errorMessage}</div>
+						</span>
 						{form}
 						<div style={{ marginBottom: '14px' }}></div>
 						<Button btnType="Success">Continue</Button>
@@ -174,6 +128,7 @@ class Login extends Component {
 const mapStateToProps = state => {
 	return {
 		error: state.auth.error,
+		errorMessage: state.auth.message,
 		isAuthenticated: state.auth.token !== null
 	};
 };

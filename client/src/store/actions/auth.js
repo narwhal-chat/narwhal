@@ -15,10 +15,11 @@ export const authSuccess = (token, userData) => {
     };
 };
 
-export const authFail = (error) => {
+export const authFail = (error, message) => {
     return {
         type: actionTypes.AUTH_FAIL,
-        error: error
+        error: error,
+        message: message
     };
 };
 
