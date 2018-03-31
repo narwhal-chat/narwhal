@@ -5,14 +5,16 @@
   align-self: center;
   justify-self: center;
   border-radius: 20px;
-  font-size: 150%;
+  font-size: 220%;
   font-weight: 600;
 }
 
 .CreateJoin .Create {
   display: grid;
+  grid-template-columns: 1fr;
   background-color: #505AB2;
   color: #FFFFFF;
+  justify-content: space-evenly;
   justify-items: center;
   align-items: center;
   border-top-left-radius: 10px;
@@ -24,6 +26,16 @@
 .CreateJoin .Create:hover {
   font-size: 140%;
   transition: 0.15s;
+}
+
+.CreateJoin .Create .CreateIcon {
+  padding: 0 0 20px 14px;
+  font-size: 160%;
+  text-align: center;
+}
+
+.CreateJoin .Create .CreateText {
+  font-size: 70%;
 }
 
 .CreateJoin .Join {
@@ -42,4 +54,14 @@
 .CreateJoin .Join:hover {
   font-size: 140%;
   transition: 0.15s;
+}
+
+.CreateJoin .Join .JoinIcon {
+  padding: 6px 0 20px 0;
+  font-size: 160%;
+  text-align: center;
+}
+
+.CreateJoin .Join .JoinText {
+  font-size: 70%;
 }

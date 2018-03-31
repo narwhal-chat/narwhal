@@ -17,8 +17,8 @@
 
 .User .Username {
   display: inline;
-  font-size: 70%;
-  color: rgb(214, 214, 214);
+  font-size: 66%;
+  color: rgba(214, 214, 214, 0.6);
   transition: 0.1s;
   cursor: pointer;
 }
