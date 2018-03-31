@@ -29,16 +29,20 @@ class Create extends Component {
 		}
 	};
 
-	categoryClick = () => {
-		this.setState({ showModal: true });
-	};
+	// categoryClick = () => {
+	// 	this.setState({ showModal: true });
+	// };
 
-	chooseCategory = event => {
-		this.setState({
-			category: event.target.id,
-			showModal: false,
-		});
-	};
+	// chooseCategory = event => {
+	// 	this.setState({
+	// 		category: event.target.id,
+	// 		showModal: false,
+	// 	});
+	// };
+
+	changeCategory = event => {
+		this.setState({ category: event.target.value })
+	}
 
 	validate = () => {
 		let isError = false;
@@ -88,6 +92,7 @@ class Create extends Component {
 	onSubmit = event => {
 		event.preventDefault();
 		//check for errors
+		console.log(this.state);
 		this.setState({
 			podNameError: {
 				error: false,
@@ -176,7 +181,7 @@ class Create extends Component {
 							{/* <button className={styles.CategoryButton} onClick={this.categoryClick}>
 								{category}
 							</button> */}
-							<select className={styles.PodCategory}>
+							<select onChange={this.changeCategory} className={styles.PodCategory}>
 								<option value="" selected disabled hidden />
 								<option className={styles.DropdownValue} value="technology">
 									Technology
