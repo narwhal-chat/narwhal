@@ -170,20 +170,20 @@ class Create extends Component {
 						<div>
 							<label>NAME</label>
 							<div className={styles.PodForm}>
-								<input className={styles.PodInputForm} type="text" placeholder="Enter a pod name here" name="podName" value={this.state.podName} onChange={this.handleChange} />
-								<hr />
-								{this.state.podNameError.error ? <div className={styles.ErrorMessage}>
-										{this.state.podNameError.message}
-									</div> : null}
+								<input className={styles.PodInputForm}
+									type="text"
+									placeholder="Enter a pod name here"
+									name="podName"
+									value={this.state.podName}
+									onChange={this.handleChange} 
+								/>
+								{this.state.podNameError.error ? <div className={styles.ErrorMessage}>{this.state.podNameError.message}</div> : null}
 							</div>
 						</div>
 						<div>
 							<label>CATEGORY</label>
-							{/* <button className={styles.CategoryButton} onClick={this.categoryClick}>
-								{category}
-							</button> */}
-							<select onChange={this.changeCategory} className={styles.PodCategory}>
-								<option value="" selected disabled hidden />
+							<select className={styles.PodCategory} onChange={this.changeCategory}>
+								<option value="" disabled selected hidden>Select a category</option>
 								<option className={styles.DropdownValue} value="technology">
 									Technology
 								</option>
@@ -215,17 +215,20 @@ class Create extends Component {
 						</div>
 						<div>
 							<label>DESCRIPTION</label>
-							<input className={styles.DescriptionInputForm} type="text" placeholder="Enter a description here" name="description" value={this.state.description} onChange={this.handleChange} />
-							<hr />
-							{this.state.descriptionError.error ? <div className={styles.ErrorMessage}>
-									{this.state.descriptionError.message}
-								</div> : null}
+							<input
+								className={styles.DescriptionInputForm}
+								type="text" placeholder="Enter a description here"
+								name="description" value={this.state.description}
+								onChange={this.handleChange}
+							/>
+								{this.state.descriptionError.error ? <div className={styles.ErrorMessage}>{this.state.descriptionError.message}</div> : null}
 						</div>
 					</div>
 					<div className={styles.Avatar}>{avatar}</div>
 				</div>
 				<div className={styles.Footer}>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
+						<div className={styles.BackIcon}>&larr;</div>
 						BACK
 					</div>
 					<button onClick={this.onSubmit} className={styles.CreateButton}>

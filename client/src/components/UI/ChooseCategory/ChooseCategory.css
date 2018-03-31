@@ -21,11 +21,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  /* align-self: center;
-  justify-self: center;
-  width: 600px;
-  height: 400px;
-  background-color: #ffffff; */
 }
 
 
