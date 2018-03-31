@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import styles from './Create.css';
 import ChooseCategory from '../ChooseCategory/ChooseCategory';
 import * as actions from '../../../store/actions/index';

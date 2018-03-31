@@ -1,12 +1,16 @@
 .Create {
   display: grid;
-  /* grid-template-columns: 1fr; */
+  grid-template-columns: 600px;
   grid-template-rows: 1fr 4fr 1fr;
   align-self: center;
   justify-self: center;
-  width: 600px;
-  height: 450px;
+  min-height: 400px;
+  max-height: 400px;
   background-color: #ffffff;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 .Create .ErrorMessage {
@@ -90,7 +94,25 @@
 .Create .Footer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background-color: #bfbfbf
+  grid-template-rows: 76px;
+  padding-left: 10px;
+  background-color: rgba(231, 226, 226, 0.9);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.Create .BackButton {
+  font-size: 70%;
+  font-weight: 600;
+  color: #000000;
+  transition: 0.1s;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.Create .BackButton:hover {
+  border-bottom: 2px solid #000000;
+  transition: 0.1s;
 }
 
 .Create .BackButton {

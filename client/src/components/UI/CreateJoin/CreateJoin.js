@@ -46,7 +46,7 @@ class createJoin extends Component {
               <CreateIcon />
               <br />
             </div>
-            <div className={styles.CreateText}>CREATE</div>
+            <div className={styles.CreateText}>CREATE A POD</div>
           </div>
         </div>
         <div className={styles.Join} onClick={this.handleJoinClick}>
@@ -55,7 +55,7 @@ class createJoin extends Component {
               <JoinIcon />
               <br />
             </div>
-            <div className={styles.JoinText}>JOIN</div>
+            <div className={styles.JoinText}>JOIN A POD</div>
           </div>
         </div>
       </div>
