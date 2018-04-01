@@ -97,12 +97,18 @@
   color: rgba(122, 122, 122, 0.8);
 }
 
+.Create .PodCategoryContainer {
+  width: 250px;
+  height: 40px;
+  background-color: #FFFFFF;
+}
+
 .Create .PodCategory {
   margin-top: 10px;
-  padding: 10px 4px;
+  padding: 10px 6px;
   width: 250px;
-  height: 36px;
-  background-color: #FFFFFF;
+  height: 40px;
+  background: transparent;
   color: #505AB2;
   font-weight: 600;
   border-radius: 5px;
@@ -110,14 +116,10 @@
   border: 1px solid rgba(133, 132, 132, 0.7);
   outline: none;
   cursor: pointer;
-  transition: 0.2s;
 }
 
-.Create .PodCategory:hover {
-  background-color: #505AB2;
-  border: 1px solid transparent;
-  color: #FFFFFF;
-  transition: 0.2s;
+.Create .PodCategory option {
+  color: rgb(0, 0, 0);
 }
 
 .Create .Avatar {
@@ -140,7 +142,8 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 76px;
   padding-left: 10px;
-  background-color: rgba(240, 235, 235, 0.9);
+  background-color: rgba(238, 238, 238, 0.9);
+  border-top: 1px solid rgba(168, 168, 168, 0.2);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -149,7 +152,9 @@
   margin-left: 20px;
   justify-self: start;
   align-self: center;
-  font-size: 70%;
+  justify-content: center;
+  vertical-align: center;
+  font-size: 68%;
   font-weight: 600;
   color: rgba(77, 77, 77, 0.8);
   transition: 0.1s;
@@ -159,14 +164,12 @@
 }
 
 .Create .BackIcon {
-  display: inline;
   margin: 0 6px 0 0;
-  vertical-align: middle;
-  font-size: 130%;
+  font-size: 110%;
 }
 
 .Create .BackButton:hover {
-  border-bottom: 2px solid rgb(65, 65, 65);
+  border-bottom: 2px solid rgba(77, 77, 77, 0.8);
   transition: 0.1s;
 }
 
@@ -178,7 +181,7 @@
   background-color: #505AB2;
   color: #fff;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 4px;
   border: none;
   font-size: 80%;
   cursor: pointer;
