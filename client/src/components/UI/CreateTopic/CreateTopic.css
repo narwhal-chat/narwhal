@@ -1,6 +1,6 @@
 .CreateTopic {
   display: grid;
-  grid-template-columns: 450px;
+  grid-template-columns: 480px;
   grid-template-rows: 80px 1fr 80px;
   background-color: #ffffff;
   color: #414141;
@@ -94,12 +94,13 @@
 
 .CreateTopic .BackButton {
   margin-left: 40px;
+  padding-top: 6px;
   padding-bottom: 4px;
   justify-self: start;
   align-self: center;
   justify-content: center;
   vertical-align: center;
-  font-size: 68%;
+  font-size: 74%;
   font-weight: 600;
   color: rgba(77, 77, 77, 0.8);
   transition: 0.1s;
@@ -109,13 +110,9 @@
 }
 
 .CreateTopic .BackButton:hover {
-  color: #000000;
+  color: rgba(0, 0, 0, 0.8);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.8);
   transition: 0.1s;
-}
-
-.CreateTopic .CancelIcon {
-  margin-top: 7px;
-  font-size: 180%;
 }
 
 .CreateTopic .ErrorMessage {

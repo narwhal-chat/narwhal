@@ -197,7 +197,7 @@ class Create extends Component {
 				<div className={styles.Footer}>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
 						<LeftArrow className={styles.BackIcon} />
-						BACK
+						Back
 					</div>
 					<button type="submit" className={styles.CreateButton}>
 						Create

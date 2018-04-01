@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import styles from './CreateTopic.css';
-import CancelIcon from 'react-icons/lib/io/close-round';
 import * as actions from '../../../store/actions/index';
 
 class CreateTopic extends Component {
@@ -96,9 +95,7 @@ class CreateTopic extends Component {
 				</div>
 				<div className={styles.Footer}>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
-						<CancelIcon
-							className={styles.CancelIcon}
-						/>
+						Cancel
 					</div>
 					<button type="submit" className={styles.CreateButton}>
 						Create

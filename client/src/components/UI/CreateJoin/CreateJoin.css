@@ -5,7 +5,7 @@
   align-self: center;
   justify-self: center;
   border-radius: 20px;
-  font-size: 210%;
+  font-size: 198%;
   font-weight: 600;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .CreateJoin .Create:hover {
-  font-size: 124%;
+  font-size: 120%;
   transition: 0.15s;
 }
 

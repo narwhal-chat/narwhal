@@ -161,7 +161,7 @@
   align-self: center;
   justify-content: center;
   vertical-align: center;
-  font-size: 68%;
+  font-size: 74%;
   font-weight: 600;
   color: rgba(77, 77, 77, 0.8);
   transition: 0.1s;
@@ -171,12 +171,13 @@
 }
 
 .Create .BackIcon {
-  margin: 0 6px 0 0;
+  margin: -2px 6px 0 0;
   font-size: 110%;
 }
 
 .Create .BackButton:hover {
-  border-bottom: 2px solid rgba(77, 77, 77, 0.8);
+  color: rgba(0, 0, 0, 0.8);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.8);
   transition: 0.1s;
 }
 
