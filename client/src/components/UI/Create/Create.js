@@ -153,9 +153,7 @@ class Create extends Component {
 							<label>CATEGORY</label>
 							<div className={styles.PodCategoryContainer}>
 								<select className={styles.PodCategory} onChange={this.changeCategory}>
-									<option value="" disabled selected hidden>
-										Select a category
-									</option>
+									<option value="" disabled selected hidden>Select a category</option>
 									<option className={styles.DropdownValue} value="technology">
 										Technology
 									</option>
@@ -179,7 +177,7 @@ class Create extends Component {
 									</option>
 									<option className={styles.DropdownValue} value="social">
 										Social
-									</option>
+									</option> 
 								</select>
 							</div>
 							{this.state.categoryError.error ? <div className={styles.ErrorMessage}>

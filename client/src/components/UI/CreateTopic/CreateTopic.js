@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import styles from './CreateTopic.css';
-import ChooseCategory from '../ChooseCategory/ChooseCategory';
+import CancelIcon from 'react-icons/lib/io/close-round';
 import * as actions from '../../../store/actions/index';
 
 class CreateTopic extends Component {
@@ -90,13 +91,14 @@ class CreateTopic extends Component {
 							name="topicName"
 							onChange={this.handleChange}
 						/>
-						<hr />
-							{this.state.topicNameError.error ? (<div className={styles.ErrorMessage}>{this.state.topicNameError.message}</div>) : null}
+						{this.state.topicNameError.error ? (<div className={styles.ErrorMessage}>{this.state.topicNameError.message}</div>) : null}
 					</div>
 				</div>
 				<div className={styles.Footer}>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
-						BACK
+						<CancelIcon
+							className={styles.CancelIcon}
+						/>
 					</div>
 					<button type="submit" className={styles.CreateButton}>
 						Create
