@@ -123,23 +123,23 @@ class Create extends Component {
 				this.state.description,
 				this.state.avatar
 			);
-			this.setState({
-				podName: '',
-				podNameError: {
-					error: false,
-					message: '',
-				},
-				category: '',
-				categoryError: {
-					error: false,
-					message: '',
-				},
-				description: '',
-				descriptionError: {
-					error: false,
-					message: '',
-				},
-			});
+			// this.setState({
+			// 	podName: '',
+			// 	podNameError: {
+			// 		error: false,
+			// 		message: '',
+			// 	},
+			// 	category: '',
+			// 	categoryError: {
+			// 		error: false,
+			// 		message: '',
+			// 	},
+			// 	description: '',
+			// 	descriptionError: {
+			// 		error: false,
+			// 		message: '',
+			// 	},
+			// });
 
 			this.props.onRequestClose();
 		}

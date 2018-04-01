@@ -64,9 +64,12 @@ export function* editProfile(action) {
 		token: action.token
 	}
 	try {
-		const response = axios.post('/editProfile', editProfile)
+		const response = yield axios.post('/editProfile', editProfile)
+		console.log('response', response)
 		yield put(actions.editProfileSuccess(response.data.token, response.data.user));
+		console.log('response', response);
 	} catch(error) {
-		yield put(actions.editProfileFail(error.response.data));
+		console.log('ERROR', error.response);
+		yield put(actions.editProfileFail(error.response.data.error, error.response.data.message));
 	}
 }

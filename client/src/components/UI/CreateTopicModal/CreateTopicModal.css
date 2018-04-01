@@ -5,6 +5,10 @@
     transform: translate(-50%, -50%)
 }
 
+.Modal:focus {
+  outline: 0;
+}
+
 .Overlay {
   position: fixed;
   top: 0;
