@@ -85,6 +85,7 @@ class CreateTopic extends Component {
 						<input
 							className={styles.InputForm}
 							type="text"
+							autoFocus="autofocus"
 							placeholder="Enter topic name here"
 							name="topicName"
 							onChange={this.handleChange}

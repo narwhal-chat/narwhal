@@ -4,9 +4,11 @@ import styles from './Input.css';
 
 const input = (props) => {
   let inputElement = null;
-
+  console.log(props);
   inputElement = (
     <input
+      type="text"
+      autoFocus={props.elementConfig.type === "username" ? "autofocus" : null}
       className={styles.AuthInputForm}
       {...props.elementConfig}
       value={props.value}

@@ -169,7 +169,7 @@ class EditProfile extends Component {
 				<div className={styles.Content}>
 					<div>
 						<label>Username</label>
-						<input className={styles.InputForm} type="text" value={this.state.username} placeholder="Edit your username (optional)" name="username" onChange={this.handleChange} />
+						<input className={styles.InputForm} type="text" autoFocus="autofocus" value={this.state.username} placeholder="Edit your username (optional)" name="username" onChange={this.handleChange} />
 						<hr />
 						{this.state.usernameError.error ? <div className={styles.ErrorMessage}>
 								{this.state.usernameError.message}

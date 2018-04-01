@@ -143,7 +143,7 @@ class Create extends Component {
 						<div>
 							<label>NAME</label>
 							<div className={styles.PodForm}>
-								<input className={styles.PodInputForm} type="text" placeholder="Enter a pod name here" name="podName" value={this.state.podName} onChange={this.handleChange} />
+								<input className={styles.PodInputForm} type="text" autoFocus="autofocus" placeholder="Enter a pod name here" name="podName" value={this.state.podName} onChange={this.handleChange} />
 								{this.state.podNameError.error ? <div className={styles.ErrorMessage}>
 										{this.state.podNameError.message}
 									</div> : null}
