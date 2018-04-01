@@ -35,7 +35,7 @@ export function* createPod(action) {
   try {
     const token = yield select(selectors.token);
     const userId = yield select(selectors.userId);
-    yield axios.post('/pods', {
+    const results = yield axios.post('/pods', {
         token: token,
         userId: userId,
         podName: action.podName,
@@ -45,7 +45,6 @@ export function* createPod(action) {
     });
     yield put(actions.fetchPods(userId));
   } catch (e) {
-    console.log('failing');
     yield put(actions.createPodFail());
   }
 }
@@ -89,7 +88,6 @@ export function* createTopic(action) {
     const token = yield select(selectors.token);
     const activePod = yield select(selectors.activePod);
     const userId = yield select(selectors.userId);
-    console.log('THIS IS THE USER ID', userId);
     const results = yield axios.post('/pods/' + activePod.id + '/topics', {
         token: token,
         userId: userId,

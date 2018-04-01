@@ -2,6 +2,7 @@ export {
   auth,
   login,
   editProfile,
+  editProfileReset,
   editProfileSuccess,
   editProfileFail,
   authSuccess,

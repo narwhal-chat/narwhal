@@ -22,6 +22,6 @@ export function* watchAuth() {
     takeEvery(actionTypes.AUTH_LOGOUT, authLogout),
     takeEvery(actionTypes.AUTH, auth),
     takeEvery(actionTypes.LOGIN, login),
-    takeEvery(actionTypes.EDIT_PROFILE_START, editProfile)
+    takeEvery(actionTypes.EDIT_PROFILE, editProfile)
   ]);
 }

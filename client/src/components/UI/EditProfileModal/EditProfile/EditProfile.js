@@ -28,6 +28,23 @@ class EditProfile extends Component {
 		}
 	};
 
+	componentWillReceiveProps(nextProps) {
+		if (this.props.error !== nextProps.error) {
+			this.setState({
+				username: '',
+				email: '',
+				password: '',
+				confirmpw: ''
+			})
+		}
+	}
+
+	componentDidUpdate() {
+		if (this.props.error === false) {
+			this.props.closeModal();
+		}
+	}
+
 
 	validate = () => {
 		let isError = false;
@@ -51,9 +68,9 @@ class EditProfile extends Component {
 			})
 		}
 
-		if (this.state.password.length > 1 && (this.state.confirmpw === this.state.password)) {
-			this.props.editProfile(this.props.userData.username, this.state.username, this.state.email, this.state.password, this.props.token);
-		}
+		// if (this.state.password.length > 1 && (this.state.confirmpw === this.state.password)) {
+		// 	this.props.editProfile(this.props.userData.username, this.state.username, this.state.email, this.state.password, this.props.token);
+		// }
 
 		if(this.state.username.length >= 1) {
 			if (this.state.username.length < 4 || this.state.username.length > 28) {
@@ -79,19 +96,22 @@ class EditProfile extends Component {
 
 		if (this.state.email.length > 1) {
 			const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-			isError = pattern.test(this.state.email)
-			this.setState({
-				emailError: {
-					error: true,
-					message: 'Not a valid e-mail address'
-				}
-			})
+			const isValid = pattern.test(this.state.email)
+			if (!isValid) {
+				isError = true;
+				this.setState({
+					emailError: {
+						error: true,
+						message: 'Not a valid e-mail address'
+					}
+				})
+			}
 		}
 
 		return isError;
 	};
 
-	onSubmit = event => {
+	verifyOnSubmit = event => {
 		event.preventDefault();
 		this.setState({
 			usernameError: {
@@ -114,7 +134,7 @@ class EditProfile extends Component {
 
 		let err = this.validate()
 
-		if(err) {
+		if (err) {
 			this.setState({
 				username: '',
 				email: '',
@@ -122,39 +142,12 @@ class EditProfile extends Component {
 				confirmpw: ''
 			})
 		} else {
-			console.log('there was an error');
-			// if (this.props.error) {
-			// 	this.setState({
-			// 		username: '',
-			// 		email: '',
-			// 		password: '',
-			// 		confirmpw: ''
-			// 	})
-			}
-			// this.setState({
-			// 	usernameError: {
-			// 		error: false,
-			// 		message: '',
-			// 	},
-			// 	emailError: {
-			// 		error: false,
-			// 		message: '',
-			// 	},
-			// 	passwordError: {
-			// 		error: false,
-			// 		message: '',
-			// 	},
-			// 	confirmpwError: {
-			// 		error: false,
-			// 		message: '',
-			// 	},
-			// });
-		// }
+			this.props.editProfile(this.props.userData.username, this.state.username, this.state.email, this.state.password, this.props.token);
+		}
 	};
 
 	handleChange = event => {
 		this.setState({ [event.target.name]: event.target.value });
-		console.log(this.state);
 	};
 
 	logout = event => {
@@ -164,7 +157,7 @@ class EditProfile extends Component {
 
 	render() {
 
-		return <div className={styles.EditProfile}>
+		return <form onSubmit={this.verifyOnSubmit} className={styles.EditProfile}>
 				<div className={styles.Header}>
 					<div className={styles.HeaderTitle}>EDIT PROFILE</div>
 					<div className={styles.Logout}>
@@ -176,10 +169,13 @@ class EditProfile extends Component {
 				<div className={styles.Content}>
 					<div>
 						<label>Username</label>
-						<input className={styles.InputForm} type="text" value={this.state.username} placeholder="Edit your username (optional)" name="username" onChange={this.handleChange} />
+						<input className={styles.InputForm} type="text" autoFocus="autofocus" value={this.state.username} placeholder="Edit your username (optional)" name="username" onChange={this.handleChange} />
 						<hr />
 						{this.state.usernameError.error ? <div className={styles.ErrorMessage}>
 								{this.state.usernameError.message}
+							</div> : null}
+						{this.props.errorType === 'username' ? <div className={styles.ErrorMessage}>
+								{this.props.message}
 							</div> : null}
 					</div>
 					<div>
@@ -189,6 +185,9 @@ class EditProfile extends Component {
 						{this.state.emailError.error ? <div className={styles.ErrorMessage}>
 								{this.state.emailError.message}
 							</div> : null}
+						{this.props.errorType === 'email' ? <div className={styles.ErrorMessage}>
+								{this.props.message}
+							</div> : null}
 					</div>
 					<div>
 						<label>Password</label>
@@ -197,7 +196,7 @@ class EditProfile extends Component {
 						{this.state.passwordError.error ? <div className={styles.ErrorMessage}>
 								{this.state.passwordError.message}
 							</div> : null}
-						{this.props.error ? <div className={styles.ErrorMessage}>
+						{this.props.errorType === 'password' ? <div className={styles.ErrorMessage}>
 								{this.props.message}
 							</div> : null}
 					</div>
@@ -214,11 +213,11 @@ class EditProfile extends Component {
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
 						BACK
 					</div>
-					<button onClick={this.onSubmit} className={styles.CreateButton}>
+					<button type="submit" className={styles.CreateButton}>
 						Update
 					</button>
 				</div>
-			</div>;
+			</form>;
 	}
 }
 
@@ -227,7 +226,8 @@ const mapStateToProps = state => {
 		userData: state.auth.userData,
 		token: state.auth.token,
 		error: state.auth.error,
-		message: state.auth.message
+		message: state.auth.message,
+		errorType: state.auth.errorType
 	};
 };
 

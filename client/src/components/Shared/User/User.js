@@ -8,9 +8,9 @@ import styles from './User.css';
 class User extends Component {
   render() {
     return (
-      <div onClick={this.props.openModal} className={styles.User}>
+      <div className={styles.User}>
         <div className={styles.StatusIcon}></div>
-        <div className={styles.Username}>{this.props.userData.username}</div>
+        <div onClick={this.props.openModal} className={styles.Username}>{this.props.userData.username}</div>
       </div>
     );
   }
