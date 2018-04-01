@@ -43,11 +43,19 @@ const authLogout = (state, action) => {
     return updateObject(state, { token: null, userData: null });
 };
 
+const editProfileReset = (state, action) => {
+	return updateObject(state, {
+		error: null,
+		message: null,
+		errorType: null
+	})
+}
+
 const editProfileSuccess = (state, action) => {
 	return updateObject(state, {
 		token: action.idToken,
 		userData: action.userData,
-		error: null,
+		error: false,
 		message: null,
 	});
 };
@@ -55,7 +63,7 @@ const editProfileSuccess = (state, action) => {
 const editProfileFail = (state, action) => {
 	console.log(action);
   return updateObject(state, {
-		error: action.error,
+		error: true,
 		message: action.message,
 		errorType: action.errorType
   });
@@ -72,7 +80,9 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.AUTH_CHECK_STATE_FINISHED:
 		  return authCheckStateFinished(state, action);
 		case actionTypes.AUTH_LOGOUT:
-		  return authLogout(state, action);
+			return authLogout(state, action);
+		case actionTypes.EDIT_PROFILE_RESET:
+			return editProfileReset(state, action);
 		case actionTypes.EDIT_PROFILE_FAIL:
 		  return editProfileFail(state, action);
 		case actionTypes.EDIT_PROFILE_SUCCESS:

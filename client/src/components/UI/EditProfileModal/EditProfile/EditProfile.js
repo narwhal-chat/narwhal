@@ -28,6 +28,24 @@ class EditProfile extends Component {
 		}
 	};
 
+	componentWillReceiveProps(nextProps) {
+		if (this.props.error !== nextProps.error) {
+			this.setState({
+				username: '',
+				email: '',
+				password: '',
+				confirmpw: ''
+			})
+		}
+	}
+
+	componentDidUpdate() {
+		console.log('PROPS', this.props.error)
+		if (this.props.error === false) {
+			this.props.closeModal();
+		}
+	}
+
 
 	validate = () => {
 		let isError = false;
@@ -79,19 +97,23 @@ class EditProfile extends Component {
 
 		if (this.state.email.length > 1) {
 			const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-			isError = pattern.test(this.state.email)
-			this.setState({
-				emailError: {
-					error: true,
-					message: 'Not a valid e-mail address'
-				}
-			})
+			const isValid = pattern.test(this.state.email)
+			console.log('iserror', isValid);
+			if (!isValid) {
+				isError = true;
+				this.setState({
+					emailError: {
+						error: true,
+						message: 'Not a valid e-mail address'
+					}
+				})
+			}
 		}
 
 		return isError;
 	};
 
-	onSubmit = event => {
+	verifyOnSubmit = event => {
 		event.preventDefault();
 		this.setState({
 			usernameError: {
@@ -124,25 +146,6 @@ class EditProfile extends Component {
 		} else {
 			this.props.editProfile(this.props.userData.username, this.state.username, this.state.email, this.state.password, this.props.token);
 		}
-			// this.setState({
-			// 	usernameError: {
-			// 		error: false,
-			// 		message: '',
-			// 	},
-			// 	emailError: {
-			// 		error: false,
-			// 		message: '',
-			// 	},
-			// 	passwordError: {
-			// 		error: false,
-			// 		message: '',
-			// 	},
-			// 	confirmpwError: {
-			// 		error: false,
-			// 		message: '',
-			// 	},
-			// });
-		// }
 	};
 
 	handleChange = event => {
@@ -212,7 +215,7 @@ class EditProfile extends Component {
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
 						BACK
 					</div>
-					<button onClick={this.onSubmit} className={styles.CreateButton}>
+					<button type="submit" onClick={this.verifyOnSubmit} className={styles.CreateButton}>
 						Update
 					</button>
 				</div>

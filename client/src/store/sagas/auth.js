@@ -66,10 +66,14 @@ export function* editProfile(action) {
 	try {
 		const response = yield axios.post('/editProfile', editProfile)
 		console.log('response', response)
+		// yield put(actions.editProfileReset());
 		yield put(actions.editProfileSuccess(response.data.token, response.data.user));
+		yield put(actions.editProfileReset());
 		console.log('response', response);
 	} catch(error) {
 		console.log('ERROR', error.response);
+		yield put(actions.editProfileReset());
 		yield put(actions.editProfileFail(error.response.data.error, error.response.data.message, error.response.data.errorType));
+		
 	}
 }

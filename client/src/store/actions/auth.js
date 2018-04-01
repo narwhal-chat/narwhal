@@ -59,6 +59,10 @@ export const login = (password, username) => {
 
 // Editing a user profile
 
+export const editProfileReset = () => {
+    return { type: actionTypes.EDIT_PROFILE_RESET }
+}
+
 export const editProfileSuccess = (token, userData) => {
 	return {
 		type: actionTypes.EDIT_PROFILE_SUCCESS,
@@ -78,7 +82,7 @@ export const editProfileFail = (error, message, errorType) => {
 
 export const editProfile = (username, newUsername, email, password, token) => {
     return {
-        type: actionTypes.EDIT_PROFILE_START,
+        type: actionTypes.EDIT_PROFILE,
         username: username,
         newUsername: newUsername,
         email: email,
