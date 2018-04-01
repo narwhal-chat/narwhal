@@ -70,6 +70,6 @@ export function* editProfile(action) {
 		console.log('response', response);
 	} catch(error) {
 		console.log('ERROR', error.response);
-		yield put(actions.editProfileFail(error.response.data.error, error.response.data.message));
+		yield put(actions.editProfileFail(error.response.data.error, error.response.data.message, error.response.data.errorType));
 	}
 }

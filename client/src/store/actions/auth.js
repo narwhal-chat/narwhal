@@ -67,11 +67,12 @@ export const editProfileSuccess = (token, userData) => {
 	};
 };
 
-export const editProfileFail = (error, message) => {
+export const editProfileFail = (error, message, errorType) => {
 	return {
 		type: actionTypes.EDIT_PROFILE_FAIL,
         error: error,
-        message: message
+        message: message,
+        errorType: errorType
 	};
 };
 

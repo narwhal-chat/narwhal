@@ -6,6 +6,7 @@ const initialState = {
 		userData: null,
 		error: null,
 		message: null,
+		errorType: null,
     isAuthenticating: true,
     authRedirectPath: '/'
 };
@@ -52,9 +53,11 @@ const editProfileSuccess = (state, action) => {
 };
 
 const editProfileFail = (state, action) => {
+	console.log(action);
   return updateObject(state, {
-	error: action.error,
-	message: action.message
+		error: action.error,
+		message: action.message,
+		errorType: action.errorType
   });
 };
 

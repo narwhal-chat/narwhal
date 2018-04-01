@@ -126,7 +126,8 @@ app.post('/editProfile', (req, res, next) => {
       console.log('ERROR IN EDIT PROFILE', err.response.data)
       res.status(401).json({
         error: err.response.data.error,
-        message: err.response.data.message
+        message: err.response.data.message,
+        errorType: err.response.data.errorType
       })
     })
 })
