@@ -36,7 +36,7 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  font-size: 120%;
+  font-size: 130%;
 }
 
 .EditProfile .Logout {
@@ -45,6 +45,7 @@
   justify-content: flex-end;
   align-items: center;
   margin-right: 40px;
+  font-size: 110%;
 }
 
 .EditProfile .Link {
@@ -82,7 +83,7 @@
   border: none;
   border-bottom: 2px solid rgba(161, 161, 161, 0.4);
   color: #000000;
-  font-size: 100%;
+  font-size: 110%;
   outline: none;
   transition: 0.05s;
 }
@@ -114,7 +115,7 @@
   align-self: center;
   justify-content: center;
   vertical-align: center;
-  font-size: 74%;
+  font-size: 80%;
   font-weight: 600;
   color: rgba(77, 77, 77, 0.8);
   transition: 0.1s;
