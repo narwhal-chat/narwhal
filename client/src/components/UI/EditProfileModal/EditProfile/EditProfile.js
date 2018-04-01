@@ -48,31 +48,31 @@ class EditProfile extends Component {
 
 	validate = () => {
 		let isError = false;
-		if(this.state.password.length < 1) {
+		if (this.state.password.length < 1) {
 			isError = true;
 			this.setState({
 				passwordError: {
 					error: true,
 					message: 'Password is required'
 				}
-			})
+			});
 		}
 
-		if(this.state.confirmpw !== this.state.password) {
+		if (this.state.confirmpw !== this.state.password) {
 			isError = true;
 			this.setState({
 				confirmpwError: {
 					error: true,
 					message: 'Password does not match'
 				}
-			})
+			});
 		}
 
 		// if (this.state.password.length > 1 && (this.state.confirmpw === this.state.password)) {
 		// 	this.props.editProfile(this.props.userData.username, this.state.username, this.state.email, this.state.password, this.props.token);
 		// }
 
-		if(this.state.username.length >= 1) {
+		if (this.state.username.length >= 1) {
 			if (this.state.username.length < 4 || this.state.username.length > 28) {
 				isError = true;
 				this.setState({

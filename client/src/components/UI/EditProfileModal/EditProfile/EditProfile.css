@@ -34,8 +34,13 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-right: 60px;
+  margin-right: 40px;
   font-size: 70%;
+}
+
+.EditProfile .Logout:hover {
+  border-bottom: 2px solid rgba(77, 77, 77, 0.8);
+  transition: 0.1s;
 }
 
 .EditProfile .Link {
