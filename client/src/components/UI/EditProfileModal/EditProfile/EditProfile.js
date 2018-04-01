@@ -40,7 +40,6 @@ class EditProfile extends Component {
 	}
 
 	componentDidUpdate() {
-		console.log('PROPS', this.props.error)
 		if (this.props.error === false) {
 			this.props.closeModal();
 		}
@@ -98,7 +97,6 @@ class EditProfile extends Component {
 		if (this.state.email.length > 1) {
 			const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 			const isValid = pattern.test(this.state.email)
-			console.log('iserror', isValid);
 			if (!isValid) {
 				isError = true;
 				this.setState({
@@ -159,7 +157,7 @@ class EditProfile extends Component {
 
 	render() {
 
-		return <div className={styles.EditProfile}>
+		return <form onSubmit={this.verifyOnSubmit} className={styles.EditProfile}>
 				<div className={styles.Header}>
 					<div className={styles.HeaderTitle}>EDIT PROFILE</div>
 					<div className={styles.Logout}>
@@ -215,11 +213,11 @@ class EditProfile extends Component {
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
 						BACK
 					</div>
-					<button type="submit" onClick={this.verifyOnSubmit} className={styles.CreateButton}>
+					<button type="submit" className={styles.CreateButton}>
 						Update
 					</button>
 				</div>
-			</div>;
+			</form>;
 	}
 }
 

@@ -61,7 +61,6 @@ const editProfileSuccess = (state, action) => {
 };
 
 const editProfileFail = (state, action) => {
-	console.log(action);
   return updateObject(state, {
 		error: true,
 		message: action.message,

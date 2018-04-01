@@ -51,12 +51,10 @@ class CreateTopic extends Component {
 
 		const err = this.validate();
 		if (err) {
-			console.log('error', this.state)
 			this.setState({
 				topicName: ''
 			});
 		} else {
-			console.log('success');
 			this.setState({
 				topicName: '',
 				topicNameError: {
@@ -66,7 +64,7 @@ class CreateTopic extends Component {
 			});
 
 			this.props.onCreateTopic(this.state.topicName);
-			console.log(this.props.closeModal());
+			this.props.closeModal();
 		}
 	};
 
@@ -77,7 +75,7 @@ class CreateTopic extends Component {
 	render() {
 
 		return (
-			<div className={styles.CreateTopic}>
+			<form onSubmit={this.onSubmit}className={styles.CreateTopic}>
 				<div className={styles.Header}>
 					<div>CREATE A TOPIC</div>
 				</div>
@@ -99,11 +97,11 @@ class CreateTopic extends Component {
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
 						BACK
 					</div>
-					<button onClick={this.onSubmit} className={styles.CreateButton}>
+					<button type="submit" className={styles.CreateButton}>
 						Create
 					</button>
 				</div>
-			</div>
+			</form>
 		);
 	}
 }

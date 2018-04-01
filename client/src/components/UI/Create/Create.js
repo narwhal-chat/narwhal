@@ -31,16 +31,6 @@ class Create extends Component {
 		}
 	};
 
-	// categoryClick = () => {
-	// 	this.setState({ showModal: true });
-	// };
-
-	// chooseCategory = event => {
-	// 	this.setState({
-	// 		category: event.target.id,
-	// 		showModal: false,
-	// 	});
-	// };
 
 	changeCategory = event => {
 		this.setState({ category: event.target.value })
@@ -48,12 +38,12 @@ class Create extends Component {
 
 	validate = () => {
 		let isError = false;
-		if (this.state.podName.length < 5) {
+		if (this.state.podName.length < 4) {
 			isError = true;
 			this.setState({
 				podNameError: {
 					error: true,
-					message: 'Pod name needs to be at least 5 characters long',
+					message: 'Pod name needs to be at least 4 characters long',
 				},
 			});
 		}
@@ -94,7 +84,6 @@ class Create extends Component {
 	onSubmit = event => {
 		event.preventDefault();
 		//check for errors
-		console.log(this.state);
 		this.setState({
 			podNameError: {
 				error: false,
@@ -123,23 +112,6 @@ class Create extends Component {
 				this.state.description,
 				this.state.avatar
 			);
-			// this.setState({
-			// 	podName: '',
-			// 	podNameError: {
-			// 		error: false,
-			// 		message: '',
-			// 	},
-			// 	category: '',
-			// 	categoryError: {
-			// 		error: false,
-			// 		message: '',
-			// 	},
-			// 	description: '',
-			// 	descriptionError: {
-			// 		error: false,
-			// 		message: '',
-			// 	},
-			// });
 
 			this.props.onRequestClose();
 		}
@@ -164,53 +136,51 @@ class Create extends Component {
 			avatar = this.state.podName.charAt(0).toUpperCase();
 		}
 
-		return <div className={styles.Create}>
+		return <form onSubmit={this.onSubmit} className={styles.Create}>
 				<div className={styles.Header}>CREATE A POD</div>
 				<div className={styles.PodInfo}>
 					<div className={styles.PodLeft}>
 						<div>
 							<label>NAME</label>
 							<div className={styles.PodForm}>
-								<input className={styles.PodInputForm}
-									type="text"
-									placeholder="Enter a pod name here"
-									name="podName"
-									value={this.state.podName}
-									onChange={this.handleChange} 
-								/>
-								{this.state.podNameError.error ? <div className={styles.ErrorMessage}>{this.state.podNameError.message}</div> : null}
+								<input className={styles.PodInputForm} type="text" placeholder="Enter a pod name here" name="podName" value={this.state.podName} onChange={this.handleChange} />
+								{this.state.podNameError.error ? <div className={styles.ErrorMessage}>
+										{this.state.podNameError.message}
+									</div> : null}
 							</div>
 						</div>
 						<div>
 							<label>CATEGORY</label>
 							<div className={styles.PodCategoryContainer}>
-							<select className={styles.PodCategory} onChange={this.changeCategory}>
-								<option value="" disabled selected hidden>Select a category</option>
-								<option className={styles.DropdownValue} value="technology">
-									Technology
-								</option>
-								<option className={styles.DropdownValue} value="business">
-									Business
-								</option>
-								<option className={styles.DropdownValue} value="gaming">
-									Gaming
-								</option>
-								<option className={styles.DropdownValue} value="television">
-									Television
-								</option>
-								<option className={styles.DropdownValue} value="design">
-									Design
-								</option>
-								<option className={styles.DropdownValue} value="movies">
-									Movies
-								</option>
-								<option className={styles.DropdownValue} value="music">
-									Music
-								</option>
-								<option className={styles.DropdownValue} value="social">
-									Social
-								</option> 
-							</select>
+								<select className={styles.PodCategory} onChange={this.changeCategory}>
+									<option value="" disabled selected hidden>
+										Select a category
+									</option>
+									<option className={styles.DropdownValue} value="technology">
+										Technology
+									</option>
+									<option className={styles.DropdownValue} value="business">
+										Business
+									</option>
+									<option className={styles.DropdownValue} value="gaming">
+										Gaming
+									</option>
+									<option className={styles.DropdownValue} value="television">
+										Television
+									</option>
+									<option className={styles.DropdownValue} value="design">
+										Design
+									</option>
+									<option className={styles.DropdownValue} value="movies">
+										Movies
+									</option>
+									<option className={styles.DropdownValue} value="music">
+										Music
+									</option>
+									<option className={styles.DropdownValue} value="social">
+										Social
+									</option>
+								</select>
 							</div>
 							{this.state.categoryError.error ? <div className={styles.ErrorMessage}>
 									{this.state.categoryError.message}
@@ -218,29 +188,24 @@ class Create extends Component {
 						</div>
 						<div>
 							<label>DESCRIPTION</label>
-							<input
-								className={styles.DescriptionInputForm}
-								type="text" placeholder="Enter a description here"
-								name="description" value={this.state.description}
-								onChange={this.handleChange}
-							/>
-								{this.state.descriptionError.error ? <div className={styles.ErrorMessage}>{this.state.descriptionError.message}</div> : null}
+							<input className={styles.DescriptionInputForm} type="text" placeholder="Enter a description here" name="description" value={this.state.description} onChange={this.handleChange} />
+							{this.state.descriptionError.error ? <div className={styles.ErrorMessage}>
+									{this.state.descriptionError.message}
+								</div> : null}
 						</div>
 					</div>
 					<div className={styles.Avatar}>{avatar}</div>
 				</div>
 				<div className={styles.Footer}>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
-						<LeftArrow
-							className={styles.BackIcon}
-						/>
+						<LeftArrow className={styles.BackIcon} />
 						BACK
 					</div>
-					<button onClick={this.onSubmit} className={styles.CreateButton}>
+					<button type="submit" className={styles.CreateButton}>
 						Create
 					</button>
 				</div>
-			</div>;
+			</form>;
 	}
 }
 
