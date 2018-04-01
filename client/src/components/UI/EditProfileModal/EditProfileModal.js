@@ -14,9 +14,8 @@ const editProfileModal = (props) => {
         overlayClassName={styles.Overlay}
         isOpen={props.isOpen}
         onRequestClose={props.onRequestClose}
-        shouldCloseOnOverlayClick={true} 
-        >
-        <EditProfile closeModal={props.onRequestClose}/>
+        shouldCloseOnOverlayClick={true}>
+        <EditProfile closeModal={props.onRequestClose} />
       </Modal>
     </div>
   );

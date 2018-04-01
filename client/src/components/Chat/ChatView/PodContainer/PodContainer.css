@@ -9,13 +9,14 @@
 
 .PodContainer .Logo {
   margin-top: 14px;
-  width: 58px;
-  height: 63.3px;
+  padding-bottom: 4px;
+  width: 62px;
+  height: 67.66px;
   cursor: pointer;
 }
 
 .PodContainer .DiscoverTitle {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   font-family: 'Source Sans Pro';
   font-size: 60%;
   text-align: center;
