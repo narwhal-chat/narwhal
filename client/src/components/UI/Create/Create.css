@@ -119,7 +119,8 @@
 }
 
 .Create .PodCategory option {
-  color: rgb(0, 0, 0);
+  color: #505ab2;
+  font-weight: 600;
 }
 
 .Create .Avatar {
@@ -150,6 +151,7 @@
 
 .Create .BackButton {
   margin-left: 20px;
+  padding-bottom: 4px;
   justify-self: start;
   align-self: center;
   justify-content: center;
