@@ -66,6 +66,7 @@ class CreateTopic extends Component {
 			});
 
 			this.props.onCreateTopic(this.state.topicName);
+			console.log(this.props.closeModal());
 		}
 	};
 

@@ -3,8 +3,9 @@ import { updateObject } from '../../shared/utility';
 
 const initialState = {
     token: null,
-	userData: null,
-    error: null,
+		userData: null,
+		error: null,
+		message: null,
     isAuthenticating: true,
     authRedirectPath: '/'
 };
@@ -53,6 +54,7 @@ const editProfileSuccess = (state, action) => {
 const editProfileFail = (state, action) => {
   return updateObject(state, {
 	error: action.error,
+	message: action.message
   });
 };
 

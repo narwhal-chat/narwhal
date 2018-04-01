@@ -116,7 +116,7 @@ app.use((req, res, next) => {
 app.post('/editProfile', (req, res, next) => {
   axios.post(routes.editProfile, req.body)
     .then(user => {
-      console.log('succesfully edited the profile');
+      console.log('succesfully edited the profile', user);
       res.status(200).json({
         token: user.data.token,
         user: user.data.user
@@ -124,7 +124,7 @@ app.post('/editProfile', (req, res, next) => {
     })
     .catch(err => {
       console.log('ERROR IN EDIT PROFILE', err.response.data)
-      return res.status(404).json({
+      res.status(401).json({
         error: err.response.data.error,
         message: err.response.data.message
       })
