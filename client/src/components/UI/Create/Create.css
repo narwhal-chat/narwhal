@@ -58,7 +58,7 @@
   width: 250px;
   background: #FFFFFF;
   border: none;
-  border-bottom: 1px solid rgba(161, 161, 161, 0.4);
+  border-bottom: 2px solid rgba(161, 161, 161, 0.4);
   color: #000000;
   font-size: 100%;
   height: 2em;
@@ -68,7 +68,7 @@
 }
 
 .Create .PodInputForm:focus {
-  border-bottom: 1px solid #505AB2;
+  border-bottom: 2px solid #505AB2;
   transition: 0.05s;
 }
 
@@ -80,7 +80,7 @@
   width: 250px;
   background: #FFFFFF;
   border: none;
-  border-bottom: 1px solid rgba(161, 161, 161, 0.4);
+  border-bottom: 2px solid rgba(161, 161, 161, 0.4);
   color: #000000;
   font-size: 100%;
   height: 2em;
@@ -89,7 +89,7 @@
 }
 
 .Create .DescriptionInputForm:focus {
-  border-bottom: 1px solid #505AB2;
+  border-bottom: 2px solid #505AB2;
   transition: 0.05s;
 }
 
@@ -113,9 +113,15 @@
   font-weight: 600;
   border-radius: 5px;
   font-size: 100%;
-  border: 1px solid rgba(133, 132, 132, 0.7);
+  border: 2px solid rgba(161, 161, 161, 0.4);
   outline: none;
   cursor: pointer;
+  transition: 0.1s;
+}
+
+.Create .PodCategory:hover {
+  border: 2px solid #505AB2;
+  transition: 0.1s;
 }
 
 .Create .PodCategory option {
@@ -142,7 +148,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 76px;
-  padding-left: 10px;
   background-color: rgba(238, 238, 238, 0.9);
   border-top: 1px solid rgba(168, 168, 168, 0.2);
   border-bottom-left-radius: 10px;
@@ -150,7 +155,7 @@
 }
 
 .Create .BackButton {
-  margin-left: 20px;
+  margin-left: 40px;
   padding-bottom: 4px;
   justify-self: start;
   align-self: center;
@@ -176,8 +181,8 @@
 }
 
 .Create .CreateButton {
-  margin-right: 40px;
-  padding: 10px 20px;
+  margin-right: 44px;
+  padding: 10px 30px;
   justify-self: end;
   align-self: center;
   background-color: #505AB2;

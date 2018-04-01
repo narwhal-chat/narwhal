@@ -10,7 +10,7 @@
   box-sizing: border-box;
   background: #2B316B;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
   margin-bottom: 24px;
   color: #fff;
   font-size: 100%;
@@ -19,6 +19,6 @@
 }
 
 .AuthInputForm:focus {
-  border-bottom: 1px solid rgba(255, 255, 255, 1);
+  border-bottom: 2px solid rgba(255, 255, 255, 1);
   transition: 0.05s;
 }

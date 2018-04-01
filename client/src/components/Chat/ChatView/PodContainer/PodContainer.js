@@ -5,7 +5,7 @@ import { headShake } from 'react-animations';
 import Radium, { StyleRoot } from 'radium';
 
 import styles from './PodContainer.css';
-import narwhalLogo from '../../../../assets/images/narwhal.png';
+import narwhalLogo from '../../../../assets/images/narwhal.svg';
 import Pods from './Pods/Pods';
 import AddPod from './AddPod/AddPod';
 import * as actions from '../../../../store/actions/index';
