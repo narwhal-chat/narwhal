@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import styles from './Create.css';
+import LeftArrow from 'react-icons/lib/io/android-arrow-back';
 import ChooseCategory from '../ChooseCategory/ChooseCategory';
 import * as actions from '../../../store/actions/index';
 
@@ -182,6 +183,7 @@ class Create extends Component {
 						</div>
 						<div>
 							<label>CATEGORY</label>
+							<div className={styles.PodCategoryContainer}>
 							<select className={styles.PodCategory} onChange={this.changeCategory}>
 								<option value="" disabled selected hidden>Select a category</option>
 								<option className={styles.DropdownValue} value="technology">
@@ -207,8 +209,9 @@ class Create extends Component {
 								</option>
 								<option className={styles.DropdownValue} value="social">
 									Social
-								</option>
+								</option> 
 							</select>
+							</div>
 							{this.state.categoryError.error ? <div className={styles.ErrorMessage}>
 									{this.state.categoryError.message}
 								</div> : null}
@@ -228,7 +231,9 @@ class Create extends Component {
 				</div>
 				<div className={styles.Footer}>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
-						<div className={styles.BackIcon}>&larr;</div>
+						<LeftArrow
+							className={styles.BackIcon}
+						/>
 						BACK
 					</div>
 					<button onClick={this.onSubmit} className={styles.CreateButton}>
