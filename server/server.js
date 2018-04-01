@@ -18,13 +18,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Import routes handled by Express Router
 const pods = require('./routes/pods');
+const categories = require('./routes/categories');
 
 // Define a single source of route paths
 const routes = {
   register: USER_MICROSERVICE_URL + '/register',
   login: USER_MICROSERVICE_URL + '/login',
   editProfile: USER_MICROSERVICE_URL + '/editProfile',
-  pods: '/pods'
+  pods: '/pods',
+  categories: '/categories'
 };
 
 // Set static path
@@ -108,13 +110,13 @@ app.use((req, res, next) => {
   }
 });
 
-//PUT ALL PROTECTED ROUTES BELOW HERE
+// All protected routes go below here
 
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
   axios.post(routes.editProfile, req.body)
     .then(user => {
-      console.log('succesfully edited the profile');
+      console.log('succesfully edited the profile', user);
       res.status(200).json({
         token: user.data.token,
         user: user.data.user
@@ -122,15 +124,19 @@ app.post('/editProfile', (req, res, next) => {
     })
     .catch(err => {
       console.log('ERROR IN EDIT PROFILE', err.response.data)
-      return res.status(404).json({
+      res.status(401).json({
         error: err.response.data.error,
-        message: err.response.data.message
+        message: err.response.data.message,
+        errorType: err.response.data.errorType
       })
     })
 })
 
 // Pods route
 app.use(routes.pods, pods);
+
+// Categories route
+app.use(routes.categories, categories);
 
 // Start server
 http.listen(PORT);

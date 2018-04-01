@@ -15,10 +15,11 @@ export const authSuccess = (token, userData) => {
     };
 };
 
-export const authFail = (error) => {
+export const authFail = (error, message) => {
     return {
         type: actionTypes.AUTH_FAIL,
-        error: error
+        error: error,
+        message: message
     };
 };
 
@@ -58,6 +59,10 @@ export const login = (password, username) => {
 
 // Editing a user profile
 
+export const editProfileReset = () => {
+    return { type: actionTypes.EDIT_PROFILE_RESET }
+}
+
 export const editProfileSuccess = (token, userData) => {
 	return {
 		type: actionTypes.EDIT_PROFILE_SUCCESS,
@@ -66,16 +71,18 @@ export const editProfileSuccess = (token, userData) => {
 	};
 };
 
-export const editProfileFail = error => {
+export const editProfileFail = (error, message, errorType) => {
 	return {
 		type: actionTypes.EDIT_PROFILE_FAIL,
-		error: error,
+        error: error,
+        message: message,
+        errorType: errorType
 	};
 };
 
 export const editProfile = (username, newUsername, email, password, token) => {
     return {
-        type: actionTypes.EDIT_PROFILE_START,
+        type: actionTypes.EDIT_PROFILE,
         username: username,
         newUsername: newUsername,
         email: email,

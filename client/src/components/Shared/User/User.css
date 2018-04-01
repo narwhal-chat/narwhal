@@ -8,7 +8,7 @@
 
 .User .StatusIcon {
   margin-right: 5px;
-  margin-top: 2px;
+  margin-top: 1px;
   width: 8px;
   height: 8px;
   background-color: #44DBC0;
@@ -18,7 +18,7 @@
 .User .Username {
   display: inline;
   font-size: 70%;
-  color: rgb(214, 214, 214);
+  color: rgba(214, 214, 214, 0.6);
   transition: 0.1s;
   cursor: pointer;
 }

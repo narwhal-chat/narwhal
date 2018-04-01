@@ -3,7 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 20px 30px
+  margin: 20px 30px;
+  color: #414141;
 }
 
 .Result .PodAvatar {

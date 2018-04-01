@@ -10,7 +10,7 @@ class DiscoverCategoriesContainer extends Component {
 			<div className={styles.DiscoverCategoriesContainer}>
 				<div className={styles.Content}>
 					<div className={styles.Header}>Discover</div>
-					<User />
+					<User openModal={this.props.openEditProfileModal}/>
 					<DiscoverCategories />
 				</div>
 			</div>

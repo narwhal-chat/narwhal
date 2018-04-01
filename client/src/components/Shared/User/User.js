@@ -10,7 +10,7 @@ class User extends Component {
     return (
       <div className={styles.User}>
         <div className={styles.StatusIcon}></div>
-        <div className={styles.Username}>{this.props.userData.username}</div>
+        <div onClick={this.props.openModal} className={styles.Username}>{this.props.userData.username}</div>
       </div>
     );
   }

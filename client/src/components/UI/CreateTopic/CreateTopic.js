@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import styles from './CreateTopic.css';
-import ChooseCategory from '../ChooseCategory/ChooseCategory';
 import * as actions from '../../../store/actions/index';
 
 class CreateTopic extends Component {
@@ -51,12 +51,10 @@ class CreateTopic extends Component {
 
 		const err = this.validate();
 		if (err) {
-			console.log('error', this.state)
 			this.setState({
 				topicName: ''
 			});
 		} else {
-			console.log('success');
 			this.setState({
 				topicName: '',
 				topicNameError: {
@@ -66,6 +64,7 @@ class CreateTopic extends Component {
 			});
 
 			this.props.onCreateTopic(this.state.topicName);
+			this.props.closeModal();
 		}
 	};
 
@@ -76,7 +75,7 @@ class CreateTopic extends Component {
 	render() {
 
 		return (
-			<div className={styles.CreateTopic}>
+			<form onSubmit={this.onSubmit}className={styles.CreateTopic}>
 				<div className={styles.Header}>
 					<div>CREATE A TOPIC</div>
 				</div>
@@ -86,23 +85,23 @@ class CreateTopic extends Component {
 						<input
 							className={styles.InputForm}
 							type="text"
+							autoFocus="autofocus"
 							placeholder="Enter topic name here"
 							name="topicName"
 							onChange={this.handleChange}
 						/>
-						<hr />
-							{this.state.topicNameError.error ? (<div className={styles.ErrorMessage}>{this.state.topicNameError.message}</div>) : null}
+						{this.state.topicNameError.error ? (<div className={styles.ErrorMessage}>{this.state.topicNameError.message}</div>) : null}
 					</div>
 				</div>
 				<div className={styles.Footer}>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
-						BACK
+						Cancel
 					</div>
-					<button onClick={this.onSubmit} className={styles.CreateButton}>
+					<button type="submit" className={styles.CreateButton}>
 						Create
 					</button>
 				</div>
-			</div>
+			</form>
 		);
 	}
 }

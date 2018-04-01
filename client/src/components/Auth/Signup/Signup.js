@@ -152,40 +152,36 @@ class Signup extends Component {
 			</div>
 		));
 
-		let duplicateUserMessage = null;
-		if (this.props.error && this.state.controls.username.valid && this.state.controls.email.valid && this.state.controls.password.valid) {
-			duplicateUserMessage = <p className={styles.ErrorMessage}>{this.props.error.message}</p>;
-		}
-
-		let errorMessage = null;
+		let errorMessage = <br/>;
 		if (this.state.errorMessages !== null) {
 			errorMessage = <p className={styles.ErrorMessage}>{this.state.errorMessages}</p>;
 		}
-
-		// let authRedirect = null;
-		// if (this.props.isAuthenticated) {
-		// 	authRedirect = <Redirect to="/" />;
-		// }
+		if (this.props.error && this.state.controls.username.valid && this.state.controls.email.valid && this.state.controls.password.valid) {
+			errorMessage = <p className={styles.ErrorMessage}>{this.props.error.message}</p>;
+		}
 
 		return (
 			<React.Fragment>
 				<div className={styles.SignUp}>
-					<form className={styles.SignupForm} onSubmit={this.submitHandler}>
-						<p className={styles.AuthHeader}>CREATE AN ACCOUNT</p>
-						{errorMessage}
-						{duplicateUserMessage}
-						{form}
-						<div style={{ marginBottom: '14px' }}></div>
-						<Button btnType="Success">Continue</Button>
-						<p className={styles.AuthInfo}>
-							Already have an account? <NavLink className={styles.AuthLink} to="/login">
-								Login
-							</NavLink>
-						</p>
-					</form>
-				</div>
-				<div className={styles.Logo}>
-					<LogoAuth />
+					<div className={styles.SignUpContainer}>
+						<form className={styles.SignupForm} onSubmit={this.submitHandler}>
+							<p className={styles.AuthHeader}>CREATE AN ACCOUNT</p>
+							<span>
+								<div className={styles.ErrorSpace}>{errorMessage}</div>
+							</span>
+							{form}
+							<div style={{ marginBottom: '14px' }}></div>
+							<Button btnType="Success">Continue</Button>
+							<p className={styles.AuthInfo}>
+								Already a Narwhaler? <NavLink className={styles.AuthLink} to="/login">
+									Login
+								</NavLink>
+							</p>
+						</form>
+					</div>
+					<div className={styles.Logo}>
+						<LogoAuth />
+					</div>
 				</div>
 			</React.Fragment>
 		);
