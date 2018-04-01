@@ -25,7 +25,7 @@
   font-weight: 600;
   justify-content: center;
   align-items: center;
-  font-size: 120%;
+  font-size: 130%;
 }
 
 .CreateTopic .InputForm {
@@ -35,7 +35,7 @@
   border: none;
   border-bottom: 2px solid rgba(161, 161, 161, 0.4);
   color: #000000;
-  font-size: 100%;
+  font-size: 110%;
   height: 2em;
   outline: none;
   transition: 0.05s;
@@ -53,8 +53,6 @@
 .CreateTopic .Content {
   display: flex;
   margin-left: 40px;
-  /* justify-content: center;
-  align-items: center; */
   color: #414141;
   font-size: 70%;
   font-weight: 600;
@@ -100,7 +98,7 @@
   align-self: center;
   justify-content: center;
   vertical-align: center;
-  font-size: 74%;
+  font-size: 80%;
   font-weight: 600;
   color: rgba(77, 77, 77, 0.8);
   transition: 0.1s;
