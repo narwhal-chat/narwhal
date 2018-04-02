@@ -129,3 +129,17 @@ export function* discoverClicked(action) {
 
   }
 }
+
+export function* fetchDiscover(action) {
+  try {
+    const token = yield select(selectors.token);
+    const results = yield axios.get('/pods/get/all', {
+        params: {
+          token: token
+        }
+    })
+    console.log(results);
+  } catch (e) {
+
+  }
+}

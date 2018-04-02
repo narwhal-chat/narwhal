@@ -30,5 +30,8 @@ export {
   setActiveTopic,
   discoverClicked,
   discoverActive,
-  addMessage
+  addMessage,
+  fetchDiscover,
+  fetchDiscoverSuccess,
+  fetchDiscoverFail
 } from './chat';
