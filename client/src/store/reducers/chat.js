@@ -3,6 +3,7 @@ import { updateObject } from '../../shared/utility';
 
 const initialState = {
     pods: [],
+    discover: [],
     topics: [],
     messages: [],
     activePod: null,
@@ -63,6 +64,16 @@ const addMessage = (state, action) => {
   });
 };
 
+const fetchDiscoverSuccess = (state, action) => {
+  return updateObject(state, {
+    discover: action.discoverPods
+  })
+}
+
+const fetchDiscoverFail = (state, action) => {
+  return updateObject(state);
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PODS_SUCCESS: return fetchPodsSuccess(state, action);
@@ -75,6 +86,8 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_ACTIVE_TOPIC: return setActiveTopic(state, action);
     case actionTypes.DISCOVER_ACTIVE: return discoverActive(state, action);
     case actionTypes.ADD_MESSAGE: return addMessage(state, action);
+    case actionTypes.FETCH_DISCOVER_SUCCESS: return fetchDiscoverSuccess(state, action);
+    case actionTypes.FETCH_DISCOVER_FAIL: return fetchDiscoverFail(state, action);
     default: return state;
   }
 };

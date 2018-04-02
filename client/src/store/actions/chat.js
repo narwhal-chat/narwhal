@@ -126,3 +126,22 @@ export const addMessage = (message) => {
     message: message
   }
 };
+
+export const fetchDiscover = () => {
+  return {
+    type: actionTypes.FETCH_DISCOVER
+  }
+}
+
+export const fetchDiscoverSuccess = (discoverPods) => {
+  return {
+    type: actionTypes.FETCH_DISCOVER_SUCCESS,
+    discover: discoverPods
+  }
+}
+
+export const fetchDiscoverFail = () => {
+  return {
+    type: actionTypes.FETCH_DISCOVER_FAIL
+  }
+}
