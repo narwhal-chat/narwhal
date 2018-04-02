@@ -1,48 +1,51 @@
 .Result {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
-  margin: 20px 30px;
+  align-items: flex-start; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 4fr 3fr;
+  margin: 15px 30px;
   color: #414141;
 }
 
 .Result .PodAvatar {
-  width: 3.8em;
-  height: 3.8em;
+  width: 3em;
+  height: 3em;
   border-radius: 50%;
   background-color: rgb(99, 99, 99);
-}
-
-.Result .Pod {
-  display: flex;
-  flex-direction: row;
+  margin-right: 10px;
 }
 
 .Result .PodInfo {
-  margin: 5px 15px;
+  margin: 5px 10px;
 }
 
 .Result .PodName {
   font-weight: 600;
+  font-size: 75%;
 }
 
 .Result .PodCategory {
-  font-size: 90%
+  font-size: 70%
 }
 
 .Result .PodDescription {
+  display: inline-block;
+  word-wrap: break-word;
   width: 720px;
-  margin-top: 5px;
+  margin: 5px 10px;
+  font-size: 75%;
 }
 
 .Result .UserCount {
- margin-top: 5px;
- margin-left: 40px;
+  margin: 5px 10px;
+  font-size: 75%;
+  padding-right: 8px;
 }
 
 .Result .Button {
-    width: 15%;
+    /* width: 100%; */
     height: 40px;
     margin-left: 15px;
     display: inline-block;
