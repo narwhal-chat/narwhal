@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 
 import styles from './CreateJoin.css';
 import Create from '../Create/Create';
-import PodContainer from '../../Chat/ChatView/PodContainer/PodContainer';
-import DiscoverCategoriesContainer from '../../Chat/ChatView/DiscoverCategoriesContainer/DiscoverCategoriesContainer';
-import DiscoverContainer from '../../Chat/ChatView/DiscoverContainer/DiscoverContainer';
 import * as actions from '../../../store/actions/index';
 import CreateIcon from 'react-icons/lib/io/ios-compose';
 import JoinIcon from 'react-icons/lib/io/android-exit';
