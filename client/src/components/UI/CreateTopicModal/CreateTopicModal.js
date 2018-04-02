@@ -10,12 +10,21 @@ const createTopicModal = (props) => {
   return (
     <div>
       <Modal
-        className={styles.Modal}
-        overlayClassName={styles.Overlay}
+        className={{
+          base: styles.Modal,
+          afterOpen: styles.ModalAfterOpen,
+          beforeClose: styles.ModalBeforeClose
+        }
+        }
+        overlayClassName={{
+          base: styles.Overlay,
+          afterOpen: styles.OverlayAfterOpen,
+          beforeClose: styles.OverlayBeforeClose
+        }}
         isOpen={props.isOpen}
         onRequestClose={props.onRequestClose}
-        shouldCloseOnOverlayClick={true} 
-        >
+        shouldCloseOnOverlayClick={true}
+        closeTimeoutMS={150}>
         <CreateTopic closeModal={props.onRequestClose}/>
       </Modal>
     </div>
