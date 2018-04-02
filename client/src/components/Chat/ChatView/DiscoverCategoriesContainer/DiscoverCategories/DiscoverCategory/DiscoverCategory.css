@@ -1,6 +1,25 @@
 .Category {
-  margin-bottom: 12px;
-  font-size: 15px;
-  font-weight: 300;
-  letter-spacing: 0.5px;
+  margin: 0 10px;
+  padding: 3px 0;
+  font-size: 82%;
+  letter-spacing: 0.1px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.Category .CategoryName {
+  padding: 0 8px;
+  text-align: left;
+}
+
+.Category:hover {
+  background-color: rgba(31, 30, 30, 0.2);
+}
+
+.Active {
+  background-color: #44DBC0;
+}
+
+.Active:hover {
+  background-color: #44DBC0;
 }
