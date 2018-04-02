@@ -16,12 +16,22 @@ const createJoinModal = (props) => {
   return (
     <div>
       <Modal
-        className={styles.Modal}
+        className={{
+          base: styles.Modal,
+          afterOpen: styles.ModalAfterOpen,
+          beforeClose: styles.ModalBeforeClose
+        }
+        }
+        overlayClassName={{
+          base: styles.Overlay,
+          afterOpen: styles.OverlayAfterOpen,
+          beforeClose: styles.OverlayBeforeClose
+        }}
         style={customStyles}
-        overlayClassName={styles.Overlay}
         isOpen={props.isOpen}
         onRequestClose={props.onRequestClose}
-        shouldCloseOnOverlayClick={true}>
+        shouldCloseOnOverlayClick={true}
+        closeTimeoutMS={150}>
         <CreateJoin closeModal={props.onRequestClose}/>
       </Modal>
     </div>
