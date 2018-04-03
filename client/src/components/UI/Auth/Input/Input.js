@@ -8,7 +8,7 @@ const input = (props) => {
   inputElement = (
     <input
       type="text"
-      autoFfdocus={props.elementConfig.type === "username" ? "autofocus" : null}
+      autoFocus={props.elementConfig.type === "username" ? "autofocus" : null}
       className={styles.AuthInputForm}
       {...props.elementConfig}
       value={props.value}

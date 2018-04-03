@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
 
 import styles from './CreateJoin.css';
 import Create from '../Create/Create';
@@ -32,7 +33,9 @@ class createJoin extends Component {
   render() {
     // ion-ios-compose
     if (this.state.showCreate) {
-      return <Create onRequestClose={this.props.closeModal} closeModal={this.closeCreate.bind(this)}/>;
+      return(
+            <Create onRequestClose={this.props.closeModal} closeModal={this.closeCreate.bind(this)}/>
+      )
     }
 
     return (

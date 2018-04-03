@@ -136,7 +136,8 @@ class Create extends Component {
 			avatar = this.state.podName.charAt(0).toUpperCase();
 		}
 
-		return <form onSubmit={this.onSubmit} className={styles.Create}>
+		return(
+			<form onSubmit={this.onSubmit} className={styles.Create}>
 				<div className={styles.Header}>CREATE A POD</div>
 				<div className={styles.PodInfo}>
 					<div className={styles.PodLeft}>
@@ -203,7 +204,8 @@ class Create extends Component {
 						Create
 					</button>
 				</div>
-			</form>;
+			</form>
+		)
 	}
 }
 

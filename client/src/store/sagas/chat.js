@@ -139,7 +139,7 @@ export function* fetchDiscover(action) {
           token: token
         }
     })
-    console.log(results);
+    yield put(actions.fetchDiscoverSuccess(results.data));
   } catch (e) {
 
   }

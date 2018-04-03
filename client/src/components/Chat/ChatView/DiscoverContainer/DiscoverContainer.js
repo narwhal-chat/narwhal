@@ -19,12 +19,13 @@ class DiscoverContainer extends Component {
 				<div>
 					<DiscoverContainerHeader />
 				</div>
-        <div>        
+				<div>
 					<DiscoverSearch />
-          <ResultsFound />
-          <Results />
+					<ResultsFound />
+					<Results results={this.props.discover} />
 				</div>
 			</div>
+			
 		);
 	}
 }
