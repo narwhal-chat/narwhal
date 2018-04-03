@@ -12,20 +12,15 @@ class Results extends Component {
 		if (this.props.activeCategory === null) {
 			results = this.props.results.map(result => {
 				return (
-					<React.Fragment>
-						<Result key={result.id} result={result} />
-					</React.Fragment>
+					<Result key={result.id} result={result} />
 				)
 			});
 		} else {
-			console.log('ACTIVE CATEGORY', this.props.activeCategory);
 			results = this.props.results.filter(filterResults => {
 				return filterResults.pod_category_name === this.props.activeCategory
 			}).map(result => {
 				return (
-					<React.Fragment>
-						<Result key={result.id} result={result} />
-					</React.Fragment>
+					<Result key={result.id} result={result} />
 				)
 			})
 			console.log(results);

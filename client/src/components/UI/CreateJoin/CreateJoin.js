@@ -14,7 +14,7 @@ class createJoin extends Component {
   }
 
   componentDidMount() {
-
+    this.props.fetchCategories();
   }
 
   closeCreate = () => {
@@ -34,7 +34,7 @@ class createJoin extends Component {
     // ion-ios-compose
     if (this.state.showCreate) {
       return(
-            <Create onRequestClose={this.props.closeModal} closeModal={this.closeCreate.bind(this)}/>
+            <Create categories={this.props.categories} onRequestClose={this.props.closeModal} closeModal={this.closeCreate.bind(this)}/>
       )
     }
 
@@ -64,12 +64,15 @@ class createJoin extends Component {
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    categories: state.chat.categories
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
       discoverClicked: () => dispatch(actions.discoverClicked()),
+      fetchCategories: () => dispatch(actions.fetchCategories())
   };
 };
 

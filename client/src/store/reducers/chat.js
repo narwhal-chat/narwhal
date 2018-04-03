@@ -69,7 +69,6 @@ const addMessage = (state, action) => {
 };
 
 const fetchDiscoverSuccess = (state, action) => {
-  console.log('action', action)
   return updateObject(state, {
     discover: action.discover
   })

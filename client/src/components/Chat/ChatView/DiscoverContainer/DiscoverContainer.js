@@ -19,7 +19,6 @@ class DiscoverContainer extends Component {
 				<DiscoverContainerHeader />
 					<DiscoverSearch />
 					<ResultsFound />
-					{console.log(this.props.activeCategory)}
 					<Results activeCategory={this.props.activeCategory} results={this.props.discover} />
 			</div>
 			

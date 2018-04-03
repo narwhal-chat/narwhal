@@ -160,7 +160,6 @@ export function* fetchCategories(action) {
 }
 export function* categoryClicked(action) {
   try {
-    console.log(action)
     yield put(actions.setActiveCategory(action.activeCategory))
   } catch (e) {
 

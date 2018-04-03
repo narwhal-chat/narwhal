@@ -18,16 +18,14 @@ router.get('/:userId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     let reference = req.body.podName;
-    console.log('ref', reference);
     const results = await axios.post(POD_MICROSERVICE_URL, {
       referenceName: reference,
       displayName: req.body.podName,
       description: req.body.description,
       avatar: req.body.avatar,
-      podCategoryId: 2,
+      podCategoryId: req.body.category,
       userId: req.body.userId
     });
-    console.log('create pod route on server', results);
     res.json(results.data);
   } catch (e) {
     res.sendStatus(400);
