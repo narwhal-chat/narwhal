@@ -6,7 +6,7 @@ const DiscoverCategory = props => {
 	return(
     <div 
       className={styles.Category}>
-      <div className={styles.CategoryName}># general</div>
+      <div className={styles.CategoryName}># {props.category.name}</div>
     </div>
   )
 };

@@ -11,13 +11,13 @@ class DiscoverCategoriesContainer extends Component {
 		this.props.fetchCategories();
 	}
 	render() {
+
 		return (
 			<div className={styles.DiscoverCategoriesContainer}>
-			{console.log('categories', this.props.categories)}
 				<div className={styles.Content}>
 					<div className={styles.Header}>Discover</div>
 					<User openModal={this.props.openEditProfileModal}/>
-					<DiscoverCategories />
+					<DiscoverCategories categories={this.props.categories}/>
 				</div>
 			</div>
 		);

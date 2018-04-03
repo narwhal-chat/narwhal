@@ -9,11 +9,9 @@ const DiscoverCategories = (props) => {
 		<div className={styles.Categories}>
 			<div className={styles.Title}>Categories</div>
 			<div className={styles.Clearfix}></div>
-			<DiscoverCategory />
-			<DiscoverCategory />
-			<DiscoverCategory />
-			<DiscoverCategory />
-			<DiscoverCategory />
+			{props.categories.map((categoryData) => {
+				return <DiscoverCategory id={categoryData.id} category={categoryData}/>
+			})}
 		</div>
 	)
 };
