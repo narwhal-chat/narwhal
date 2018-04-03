@@ -1,6 +1,8 @@
 import React from 'react';
 
+import styles from './Pods.css';
 import Pod from './Pod/Pod';
+import AddPod from './AddPod/AddPod';
 
 const pods = (props) => {
   let pods = props.pods.map((pod) => {
@@ -14,9 +16,12 @@ const pods = (props) => {
     );
   });
   return (
-    <React.Fragment>
+    <div className={styles.Pods}>
       {pods}
-    </React.Fragment>
+      <AddPod 
+        openModal={props.openCreateJoinModal}
+      />
+    </div>
   );
 };
 

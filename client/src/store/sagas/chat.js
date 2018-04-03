@@ -43,6 +43,7 @@ export function* createPod(action) {
         description: action.description,
         avatar: action.avatar
     });
+    console.log('create pod results', results);
     yield put(actions.fetchPods(userId));
   } catch (e) {
     yield put(actions.createPodFail());
