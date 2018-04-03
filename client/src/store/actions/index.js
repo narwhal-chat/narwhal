@@ -36,5 +36,7 @@ export {
   fetchDiscoverFail,
   fetchCategories,
   fetchCategoriesSuccess,
-  fetchCategoriesFail
+  fetchCategoriesFail,
+  setActiveCategory,
+  categoryClicked
 } from './chat';

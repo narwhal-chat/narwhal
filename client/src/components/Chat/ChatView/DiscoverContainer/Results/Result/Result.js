@@ -4,7 +4,6 @@ import styles from './Result.css';
 const result = (props) => {
   return(
 			<div className={styles.Result}>
-			{console.log(props)}
 				<div className={styles.PodAvatar} />
 				<div className={styles.PodInfo}>
 					<div className={styles.PodName}>{props.result.display_name}</div>

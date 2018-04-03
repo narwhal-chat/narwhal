@@ -10,6 +10,12 @@ class DiscoverCategoriesContainer extends Component {
 	componentDidMount() {
 		this.props.fetchCategories();
 	}
+
+	onCategoryClick(category) {
+		console.log('hello', category)
+		this.props.categoryClicked(category)
+	}
+
 	render() {
 
 		return (
@@ -17,7 +23,7 @@ class DiscoverCategoriesContainer extends Component {
 				<div className={styles.Content}>
 					<div className={styles.Header}>Discover</div>
 					<User openModal={this.props.openEditProfileModal}/>
-					<DiscoverCategories categories={this.props.categories}/>
+					<DiscoverCategories categoryClick={this.onCategoryClick.bind(this)} categories={this.props.categories} discover={this.props.discover}/>
 				</div>
 			</div>
 		);
@@ -32,7 +38,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		fetchCategories: () => dispatch(actions.fetchCategories())
+		fetchCategories: () => dispatch(actions.fetchCategories()),
+		categoryClicked: (category) => dispatch(actions.categoryClicked(category))
 	}
 }
 

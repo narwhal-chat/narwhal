@@ -17,11 +17,10 @@ class DiscoverContainer extends Component {
 		return (
 			<div className={styles.DiscoverContainer}>
 				<DiscoverContainerHeader />
-				<div className={styles.DiscoverResults}>
 					<DiscoverSearch />
 					<ResultsFound />
-					<Results results={this.props.discover} />
-				</div>
+					{console.log(this.props.activeCategory)}
+					<Results activeCategory={this.props.activeCategory} results={this.props.discover} />
 			</div>
 			
 		);
@@ -30,7 +29,8 @@ class DiscoverContainer extends Component {
 
 const mapStateToProps = state => {
 	return {
-		discover: state.chat.discover
+		discover: state.chat.discover,
+		activeCategory: state.chat.activeCategory
 	}
 }
 

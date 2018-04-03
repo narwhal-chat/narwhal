@@ -164,3 +164,17 @@ export const fetchCategoriesFail = () => {
     type: actionTypes.FETCH_CATEGORIES_FAIL
   }
 }
+
+export const setActiveCategory = (category) => {
+  return {
+    type: actionTypes.SET_ACTIVE_CATEGORY,
+    activeCategory: category
+  }
+}
+
+export const categoryClicked = (category) => {
+  return {
+    type: actionTypes.CATEGORY_CLICKED,
+    activeCategory: category
+  }
+}

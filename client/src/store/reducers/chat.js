@@ -8,7 +8,8 @@ const initialState = {
     messages: [],
     categories: [],
     activePod: null,
-    activeTopic: null
+    activeTopic: null,
+    activeCategory: null
 };
 
 const fetchPodsSuccess = (state, action) => {
@@ -42,13 +43,15 @@ const createTopicFail = (state, action) => {
 
 const setActivePod = (state, action) => {
   return updateObject(state, {
-    activePod: action.pod
+    activePod: action.pod,
+    activeCategory: null
   });
 };
 
 const setActiveTopic = (state, action) => {
   return updateObject(state, {
-    activeTopic: action.topic
+    activeTopic: action.topic,
+    activeCategory: null
   });
 };
 
@@ -86,6 +89,13 @@ const fetchCategoriesFail = (state, action) => {
   return updateObject(state);
 }
 
+const setActiveCategory = (state, action) => {
+  console.log(action);
+  return updateObject(state, {
+    activeCategory: action.activeCategory
+  })
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PODS_SUCCESS: return fetchPodsSuccess(state, action);
@@ -102,6 +112,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_DISCOVER_FAIL: return fetchDiscoverFail(state, action);
     case actionTypes.FETCH_CATEGORIES_SUCCESS: return fetchCategoriesSuccess(state, action);
     case actionTypes.FETCH_CATEGORIES_FAIL: return fetchCategoriesFail(state, action);
+    case actionTypes.SET_ACTIVE_CATEGORY: return setActiveCategory(state, action);
     default: return state;
   }
 };
