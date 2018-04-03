@@ -3,10 +3,13 @@ import { updateObject } from '../../shared/utility';
 
 const initialState = {
     pods: [],
+    discover: [],
     topics: [],
     messages: [],
+    categories: [],
     activePod: null,
-    activeTopic: null
+    activeTopic: null,
+    activeCategory: null
 };
 
 const fetchPodsSuccess = (state, action) => {
@@ -40,13 +43,15 @@ const createTopicFail = (state, action) => {
 
 const setActivePod = (state, action) => {
   return updateObject(state, {
-    activePod: action.pod
+    activePod: action.pod,
+    activeCategory: null
   });
 };
 
 const setActiveTopic = (state, action) => {
   return updateObject(state, {
-    activeTopic: action.topic
+    activeTopic: action.topic,
+    activeCategory: null
   });
 };
 
@@ -63,6 +68,33 @@ const addMessage = (state, action) => {
   });
 };
 
+const fetchDiscoverSuccess = (state, action) => {
+  return updateObject(state, {
+    discover: action.discover
+  })
+}
+
+const fetchDiscoverFail = (state, action) => {
+  return updateObject(state);
+}
+
+const fetchCategoriesSuccess = (state, action) => {
+  return updateObject(state, {
+    categories: action.categories
+  })
+}
+
+const fetchCategoriesFail = (state, action) => {
+  return updateObject(state);
+}
+
+const setActiveCategory = (state, action) => {
+  console.log(action);
+  return updateObject(state, {
+    activeCategory: action.activeCategory
+  })
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PODS_SUCCESS: return fetchPodsSuccess(state, action);
@@ -75,6 +107,11 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_ACTIVE_TOPIC: return setActiveTopic(state, action);
     case actionTypes.DISCOVER_ACTIVE: return discoverActive(state, action);
     case actionTypes.ADD_MESSAGE: return addMessage(state, action);
+    case actionTypes.FETCH_DISCOVER_SUCCESS: return fetchDiscoverSuccess(state, action);
+    case actionTypes.FETCH_DISCOVER_FAIL: return fetchDiscoverFail(state, action);
+    case actionTypes.FETCH_CATEGORIES_SUCCESS: return fetchCategoriesSuccess(state, action);
+    case actionTypes.FETCH_CATEGORIES_FAIL: return fetchCategoriesFail(state, action);
+    case actionTypes.SET_ACTIVE_CATEGORY: return setActiveCategory(state, action);
     default: return state;
   }
 };

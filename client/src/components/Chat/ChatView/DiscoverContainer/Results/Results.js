@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
+// import ScrollArea from 'react-scrollbar'
 
 import styles from './Results.css';
 import Result from './Result/Result';
 
-const Results = () => {
-  return <div className={styles.Results}>
-			<Result />
-			<Result />
-			<Result />
-			<Result />
-		</div>;
+class Results extends Component {
+
+	render() {
+		let results = null;
+
+		if (this.props.activeCategory === null) {
+			results = this.props.results.map(result => {
+				return (
+					<Result key={result.id} result={result} />
+				)
+			});
+		} else {
+			results = this.props.results.filter(filterResults => {
+				return filterResults.pod_category_name === this.props.activeCategory
+			}).map(result => {
+				return (
+					<Result key={result.id} result={result} />
+				)
+			})
+			console.log(results);
+		}
+
+
+
+		return(
+				<div className={styles.Results}>
+					{results}
+				</div>
+		)
+	}
 }
 
 export default Results;

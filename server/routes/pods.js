@@ -16,20 +16,16 @@ router.get('/:userId', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  let reference = req.body.podName;
-
-  console.log('ref', reference);
-  
   try {
+    let reference = req.body.podName;
     const results = await axios.post(POD_MICROSERVICE_URL, {
       referenceName: reference,
       displayName: req.body.podName,
       description: req.body.description,
       avatar: req.body.avatar,
-      podCategoryId: 2,
+      podCategoryId: req.body.category,
       userId: req.body.userId
     });
-
     res.json(results.data);
   } catch (e) {
     res.sendStatus(400);
@@ -56,6 +52,15 @@ router.post('/:podId/topics', async (req, res, next) => {
   } catch (e) {
     res.sendStatus(400);
   }
+});
+
+router.get('/get/all', async (req, res, next) => {
+	try {
+		const results = await axios.get(POD_MICROSERVICE_URL + '/get/all');
+		res.json(results.data);
+	} catch (e) {
+		res.sendStatus(400);
+	}
 });
 
 module.exports = router;

@@ -1,2 +1,10 @@
 .DiscoverContainer {
+  display: grid;
+  grid-template-rows: 50px 65px 20px 1fr;
+  grid-template-columns: 1fr;
+  /* height: 100vh; */
+}
+
+.DiscoverContainer .DiscoverResults {
+  /* max-height:calc(100vh - 50px) */
 }

@@ -7,7 +7,6 @@ import Radium, { StyleRoot } from 'radium';
 import styles from './PodContainer.css';
 import narwhalLogo from '../../../../assets/images/narwhal.svg';
 import Pods from './Pods/Pods';
-import AddPod from './AddPod/AddPod';
 import * as actions from '../../../../store/actions/index';
 
 // const animationStyles = {
@@ -46,9 +45,7 @@ class PodContainer extends Component {
           pods={this.props.pods}
           podClicked={this.props.onPodClicked}
           activePod={this.props.activePod}
-        />
-        <AddPod 
-          openModal={this.props.openCreateJoinModal}
+          openCreateJoinModal={this.props.openCreateJoinModal}
         />
       </div>
     );

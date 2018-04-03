@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
 
 import styles from './CreateJoin.css';
 import Create from '../Create/Create';
-import PodContainer from '../../Chat/ChatView/PodContainer/PodContainer';
-import DiscoverCategoriesContainer from '../../Chat/ChatView/DiscoverCategoriesContainer/DiscoverCategoriesContainer';
-import DiscoverContainer from '../../Chat/ChatView/DiscoverContainer/DiscoverContainer';
 import * as actions from '../../../store/actions/index';
 import CreateIcon from 'react-icons/lib/io/ios-compose';
 import JoinIcon from 'react-icons/lib/io/android-exit';
@@ -16,7 +14,7 @@ class createJoin extends Component {
   }
 
   componentDidMount() {
-
+    this.props.fetchCategories();
   }
 
   closeCreate = () => {
@@ -35,7 +33,9 @@ class createJoin extends Component {
   render() {
     // ion-ios-compose
     if (this.state.showCreate) {
-      return <Create onRequestClose={this.props.closeModal} closeModal={this.closeCreate.bind(this)}/>;
+      return(
+            <Create categories={this.props.categories} onRequestClose={this.props.closeModal} closeModal={this.closeCreate.bind(this)}/>
+      )
     }
 
     return (
@@ -64,12 +64,15 @@ class createJoin extends Component {
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    categories: state.chat.categories
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
       discoverClicked: () => dispatch(actions.discoverClicked()),
+      fetchCategories: () => dispatch(actions.fetchCategories())
   };
 };
 

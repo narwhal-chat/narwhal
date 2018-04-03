@@ -5,13 +5,15 @@ import DiscoverCategory from './DiscoverCategory/DiscoverCategory';
 
 
 const DiscoverCategories = (props) => {
-	return <div className={styles.Categories}>
-			<DiscoverCategory />
-			<DiscoverCategory />
-			<DiscoverCategory />
-			<DiscoverCategory />
-			<DiscoverCategory />
-		</div>; 
+	return(
+		<div className={styles.Categories}>
+			<div className={styles.Title}>Categories</div>
+			<div className={styles.Clearfix}></div>
+			{props.categories.map((categoryData) => {
+				return <DiscoverCategory key={categoryData.id} category={categoryData} categoryClick={props.categoryClick}/>
+			})}
+		</div>
+	)
 };
 
 export default DiscoverCategories;

@@ -126,3 +126,55 @@ export const addMessage = (message) => {
     message: message
   }
 };
+
+export const fetchDiscover = () => {
+  return {
+    type: actionTypes.FETCH_DISCOVER
+  }
+}
+
+export const fetchDiscoverSuccess = (discoverPods) => {
+  return {
+    type: actionTypes.FETCH_DISCOVER_SUCCESS,
+    discover: discoverPods
+  }
+}
+
+export const fetchDiscoverFail = () => {
+  return {
+    type: actionTypes.FETCH_DISCOVER_FAIL
+  }
+}
+
+export const fetchCategories = () => {
+  return {
+    type: actionTypes.FETCH_CATEGORIES
+  }
+}
+
+export const fetchCategoriesSuccess = (categories) => {
+  return {
+    type: actionTypes.FETCH_CATEGORIES_SUCCESS,
+    categories: categories
+  }
+}
+
+export const fetchCategoriesFail = () => {
+  return {
+    type: actionTypes.FETCH_CATEGORIES_FAIL
+  }
+}
+
+export const setActiveCategory = (category) => {
+  return {
+    type: actionTypes.SET_ACTIVE_CATEGORY,
+    activeCategory: category
+  }
+}
+
+export const categoryClicked = (category) => {
+  return {
+    type: actionTypes.CATEGORY_CLICKED,
+    activeCategory: category
+  }
+}

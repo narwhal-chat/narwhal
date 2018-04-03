@@ -43,6 +43,7 @@ export function* createPod(action) {
         description: action.description,
         avatar: action.avatar
     });
+    console.log('create pod results', results);
     yield put(actions.fetchPods(userId));
   } catch (e) {
     yield put(actions.createPodFail());
@@ -125,6 +126,41 @@ export function* discoverClicked(action) {
   try {
     yield put(actions.discoverActive());
     yield put(push('/topics/@discover'));
+  } catch (e) {
+
+  }
+}
+
+export function* fetchDiscover(action) {
+  try {
+    const token = yield select(selectors.token);
+    const results = yield axios.get('/pods/get/all', {
+        params: {
+          token: token
+        }
+    })
+    yield put(actions.fetchDiscoverSuccess(results.data));
+  } catch (e) {
+    yield put(actions.fetchDiscoverFail())
+  }
+}
+
+export function* fetchCategories(action) {
+  try {
+    const token = yield select(selectors.token);
+    const results = yield axios.get('/categories', {
+      params: {
+        token: token
+      }
+    })
+    yield put(actions.fetchCategoriesSuccess(results.data));
+  } catch (e) {
+    yield put(actions.fetchCategoriesFail());
+  }
+}
+export function* categoryClicked(action) {
+  try {
+    yield put(actions.setActiveCategory(action.activeCategory))
   } catch (e) {
 
   }

@@ -31,6 +31,11 @@ class Create extends Component {
 		}
 	};
 
+	componentDidMount() {
+		console.log(this.props);
+		// this.props.fetchCategories();
+	}
+
 
 	changeCategory = event => {
 		this.setState({ category: event.target.value })
@@ -136,7 +141,12 @@ class Create extends Component {
 			avatar = this.state.podName.charAt(0).toUpperCase();
 		}
 
-		return <form onSubmit={this.onSubmit} className={styles.Create}>
+		let categories = this.props.categories.map(category => {
+			return <option key={category.id} className={styles.DropdownValue} value={category.id}>{category.name}</option>
+		})
+
+		return(
+			<form onSubmit={this.onSubmit} className={styles.Create}>
 				<div className={styles.Header}>CREATE A POD</div>
 				<div className={styles.PodInfo}>
 					<div className={styles.PodLeft}>
@@ -154,30 +164,7 @@ class Create extends Component {
 							<div className={styles.PodCategoryContainer}>
 								<select className={styles.PodCategory} onChange={this.changeCategory}>
 									<option value="" disabled selected hidden>Select a category</option>
-									<option className={styles.DropdownValue} value="technology">
-										Technology
-									</option>
-									<option className={styles.DropdownValue} value="business">
-										Business
-									</option>
-									<option className={styles.DropdownValue} value="gaming">
-										Gaming
-									</option>
-									<option className={styles.DropdownValue} value="television">
-										Television
-									</option>
-									<option className={styles.DropdownValue} value="design">
-										Design
-									</option>
-									<option className={styles.DropdownValue} value="movies">
-										Movies
-									</option>
-									<option className={styles.DropdownValue} value="music">
-										Music
-									</option>
-									<option className={styles.DropdownValue} value="social">
-										Social
-									</option> 
+									{categories}
 								</select>
 							</div>
 							{this.state.categoryError.error ? <div className={styles.ErrorMessage}>
@@ -203,18 +190,21 @@ class Create extends Component {
 						Create
 					</button>
 				</div>
-			</form>;
+			</form>
+		)
 	}
 }
 
 const mapStateToProps = state => {
-	return {};
+	return {
+		// categories: state.chat.categories
+	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		createPod: (podName, category, description, avatar) =>
-			dispatch(actions.createPod(podName, category, description, avatar)),
+		createPod: (podName, category, description, avatar) => dispatch(actions.createPod(podName, category, description, avatar)),
+		// fetchCategories: () => dispatch(actions.fetchCategories())
 	};
 };
 
