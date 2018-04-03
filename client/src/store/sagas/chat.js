@@ -141,6 +141,20 @@ export function* fetchDiscover(action) {
     })
     yield put(actions.fetchDiscoverSuccess(results.data));
   } catch (e) {
+    yield put(actions.fetchDiscoverFail())
+  }
+}
 
+export function* fetchCategories(action) {
+  try {
+    const token = yield select(selectors.token);
+    const results = yield axios.get('/categories', {
+      params: {
+        token: token
+      }
+    })
+    yield put(actions.fetchCategoriesSuccess(results.data));
+  } catch (e) {
+    yield put(actions.fetchCategoriesFail());
   }
 }

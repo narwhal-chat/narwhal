@@ -33,5 +33,8 @@ export {
   addMessage,
   fetchDiscover,
   fetchDiscoverSuccess,
-  fetchDiscoverFail
+  fetchDiscoverFail,
+  fetchCategories,
+  fetchCategoriesSuccess,
+  fetchCategoriesFail
 } from './chat';

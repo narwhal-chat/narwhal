@@ -5,4 +5,5 @@
   padding: 10px 30px 0 30px;
   overflow-x: hidden;
   overflow-y: auto;
+  max-height:calc(100vh - 160px)
 }

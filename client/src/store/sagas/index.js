@@ -1,7 +1,7 @@
 import { takeEvery, all } from 'redux-saga/effects';
 
 import * as actionTypes from '../actions/actionTypes';
-import { fetchPods, createPod, fetchTopics, createTopic, podClicked, topicClicked, discoverClicked, fetchDiscover } from './chat';
+import { fetchPods, createPod, fetchTopics, createTopic, podClicked, topicClicked, discoverClicked, fetchDiscover, fetchCategories } from './chat';
 import { authCheckState, authLogout, auth, login, editProfile } from './auth';
 
 export function* watchChat() {
@@ -13,7 +13,8 @@ export function* watchChat() {
     takeEvery(actionTypes.POD_CLICKED, podClicked),
     takeEvery(actionTypes.TOPIC_CLICKED, topicClicked),
     takeEvery(actionTypes.DISCOVER_CLICKED, discoverClicked),
-    takeEvery(actionTypes.FETCH_DISCOVER, fetchDiscover)
+    takeEvery(actionTypes.FETCH_DISCOVER, fetchDiscover),
+    takeEvery(actionTypes.FETCH_CATEGORIES, fetchCategories)
   ]);
 }
 

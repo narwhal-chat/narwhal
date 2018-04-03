@@ -16,10 +16,8 @@ class DiscoverContainer extends Component {
 	render() {
 		return (
 			<div className={styles.DiscoverContainer}>
-				<div>
-					<DiscoverContainerHeader />
-				</div>
-				<div>
+				<DiscoverContainerHeader />
+				<div className={styles.DiscoverResults}>
 					<DiscoverSearch />
 					<ResultsFound />
 					<Results results={this.props.discover} />

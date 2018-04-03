@@ -6,6 +6,7 @@ const initialState = {
     discover: [],
     topics: [],
     messages: [],
+    categories: [],
     activePod: null,
     activeTopic: null
 };
@@ -75,6 +76,16 @@ const fetchDiscoverFail = (state, action) => {
   return updateObject(state);
 }
 
+const fetchCategoriesSuccess = (state, action) => {
+  return updateObject(state, {
+    categories: action.categories
+  })
+}
+
+const fetchCategoriesFail = (state, action) => {
+  return updateObject(state);
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PODS_SUCCESS: return fetchPodsSuccess(state, action);
@@ -89,6 +100,8 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ADD_MESSAGE: return addMessage(state, action);
     case actionTypes.FETCH_DISCOVER_SUCCESS: return fetchDiscoverSuccess(state, action);
     case actionTypes.FETCH_DISCOVER_FAIL: return fetchDiscoverFail(state, action);
+    case actionTypes.FETCH_CATEGORIES_SUCCESS: return fetchCategoriesSuccess(state, action);
+    case actionTypes.FETCH_CATEGORIES_FAIL: return fetchCategoriesFail(state, action);
     default: return state;
   }
 };

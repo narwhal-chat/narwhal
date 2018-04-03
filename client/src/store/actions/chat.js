@@ -145,3 +145,22 @@ export const fetchDiscoverFail = () => {
     type: actionTypes.FETCH_DISCOVER_FAIL
   }
 }
+
+export const fetchCategories = () => {
+  return {
+    type: actionTypes.FETCH_CATEGORIES
+  }
+}
+
+export const fetchCategoriesSuccess = (categories) => {
+  return {
+    type: actionTypes.FETCH_CATEGORIES_SUCCESS,
+    categories: categories
+  }
+}
+
+export const fetchCategoriesFail = () => {
+  return {
+    type: actionTypes.FETCH_CATEGORIES_FAIL
+  }
+}

@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: flex-start; */
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 4fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr 4fr 3fr;
   margin: 15px 30px;
   color: #414141;
 }
