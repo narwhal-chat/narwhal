@@ -58,7 +58,8 @@ const setActiveTopic = (state, action) => {
 const discoverActive = (state, action) => {
   return updateObject(state, {
     activePod: null,
-    activeTopic: null
+    activeTopic: null,
+    activeCategory: null
   });
 };
 

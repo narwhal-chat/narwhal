@@ -11,6 +11,18 @@ import * as actions from '../../../../store/actions/index';
 class DiscoverContainer extends Component {
 	componentDidMount() {
 		this.props.fetchDiscover();
+		this.getResultsCount();
+	}
+
+	getResultsCount() {
+		const count = this.props.discover.filter(result => {
+			if (this.props.activeCategory !== null) {
+				return result.pod_category_name === this.props.activeCategory
+			} else {
+				return result;
+			}
+		})
+		return count.length
 	}
 
 	render() {
@@ -18,7 +30,8 @@ class DiscoverContainer extends Component {
 			<div className={styles.DiscoverContainer}>
 				<DiscoverContainerHeader />
 					<DiscoverSearch />
-					<ResultsFound />
+					<ResultsFound resultCount={this.getResultsCount.bind(this)}/>
+					{console.log('active category in dcontainer', this.props.activeCategory)}
 					<Results activeCategory={this.props.activeCategory} results={this.props.discover} />
 			</div>
 			
