@@ -1,6 +1,7 @@
 import { put, take, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import axios from 'axios';
+import io from 'socket.io-client';
 
 import * as actions from '../actions/index';
 import * as actionTypes from '../actions/actionTypes';

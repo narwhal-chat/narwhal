@@ -24,6 +24,14 @@ class MessageContainer extends Component {
     });
   }
 
+  componentDidMount() {
+    
+  }
+
+  componentWillUnmount() {
+
+  }
+
   onMessageChange = (message) => {
     this.setState({
       message: message
