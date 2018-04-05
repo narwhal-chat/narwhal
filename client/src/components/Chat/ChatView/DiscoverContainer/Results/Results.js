@@ -12,7 +12,7 @@ class Results extends Component {
 		if (this.props.activeCategory === null) {
 			results = this.props.results.map(result => {
 				return (
-					<Result key={result.id} result={result} />
+					<Result key={result.id} result={result} joinPod={this.props.joinPod}/>
 				)
 			});
 		} else {
@@ -20,7 +20,7 @@ class Results extends Component {
 				return filterResults.pod_category_name === this.props.activeCategory
 			}).map(result => {
 				return (
-					<Result key={result.id} result={result} />
+					<Result key={result.id} result={result} joinPod={this.props.joinPod}/>
 				)
 			})
 			console.log(results);

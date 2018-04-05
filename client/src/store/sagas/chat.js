@@ -165,3 +165,17 @@ export function* categoryClicked(action) {
 
   }
 }
+
+export function* joinPod(action) {
+  try {
+    console.log('action', action);
+    const token = yield select(selectors.token);
+    const userId = yield select(selectors.userId);
+    const results = yield axios.post(`/pods/join/${userId}/${action.podId}`, {
+      token: token
+    })
+    yield put(actions.fetchPods(userId));
+  } catch (e) {
+    yield put(actions.joinPodFail())
+  }
+}

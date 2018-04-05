@@ -13,7 +13,7 @@ const result = (props) => {
 				<div className={styles.PodDescription}>
 					{props.result.description}
 				</div>
-				<button className={styles.Button}>Join</button>
+				<button onClick={() => props.joinPod(props.result.id)} className={styles.Button}>Join</button>
 			</div>
 	)
 }
