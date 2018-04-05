@@ -120,9 +120,23 @@ export const discoverActive = () => {
   };
 };
 
-export const addMessage = (message) => {
+export const setSocket = (socket) => {
   return {
-    type: actionTypes.ADD_MESSAGE,
+    type: actionTypes.SET_SOCKET,
+    socket: socket
+  };
+}
+
+export const messageSent = (message) => {
+  return {
+    type: actionTypes.MESSAGE_SENT,
+    message: message
+  }
+};
+
+export const messageReceived = (message) => {
+  return {
+    type: actionTypes.MESSAGE_RECEIVED,
     message: message
   }
 };
@@ -178,6 +192,7 @@ export const categoryClicked = (category) => {
     activeCategory: category
   }
 }
+<<<<<<< HEAD
 
 export const joinPod = (podId) => {
   return {
@@ -206,3 +221,5 @@ export const updateSearchResults = (data) => {
     results: data
   }
 }
+=======
+>>>>>>> Get basic socket.io implementation working with redux-saga and continue working on topic rooms

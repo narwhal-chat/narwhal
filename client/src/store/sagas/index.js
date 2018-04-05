@@ -1,7 +1,11 @@
-import { takeEvery, all } from 'redux-saga/effects';
+import { takeEvery, all, fork } from 'redux-saga/effects';
 
 import * as actionTypes from '../actions/actionTypes';
+<<<<<<< HEAD
 import { fetchPods, createPod, fetchTopics, createTopic, podClicked, topicClicked, discoverClicked, fetchDiscover, fetchCategories, categoryClicked, joinPod } from './chat';
+=======
+import { fetchPods, createPod, fetchTopics, createTopic, podClicked, topicClicked, discoverClicked, fetchDiscover, fetchCategories, categoryClicked, connectSocketFlow, joinSocketRoom } from './chat';
+>>>>>>> Get basic socket.io implementation working with redux-saga and continue working on topic rooms
 import { authCheckState, authLogout, auth, login, editProfile } from './auth';
 
 export function* watchChat() {
@@ -16,7 +20,12 @@ export function* watchChat() {
     takeEvery(actionTypes.FETCH_DISCOVER, fetchDiscover),
     takeEvery(actionTypes.FETCH_CATEGORIES, fetchCategories),
     takeEvery(actionTypes.CATEGORY_CLICKED, categoryClicked),
+<<<<<<< HEAD
     takeEvery(actionTypes.JOIN_POD, joinPod)
+=======
+    fork(connectSocketFlow),
+    fork(joinSocketRoom)
+>>>>>>> Get basic socket.io implementation working with redux-saga and continue working on topic rooms
   ]);
 }
 

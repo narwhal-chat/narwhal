@@ -3,3 +3,4 @@ export const userId = (state) => state.auth.userData.id;
 export const activePod = (state) => state.chat.activePod;
 export const activeTopic = (state) => state.chat.activeTopic;
 export const topics = (state) => state.chat.topics;
+export const socket = (state) => state.chat.socket;

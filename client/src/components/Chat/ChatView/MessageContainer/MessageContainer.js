@@ -17,15 +17,15 @@ class MessageContainer extends Component {
       message: ''
     };
 
-    this.socket = io(this.state.endpoint);
+    // this.socket = io(this.state.endpoint);
 
-    this.socket.on('RECEIVE_MESSAGE', (message) => {
-      this.props.onAddMessage(message);
-    });
+    // this.socket.on('RECEIVE_MESSAGE', (message) => {
+    //   this.props.onAddMessage(message);
+    // });
   }
 
   componentDidMount() {
-    
+    this.props.roryTest();
   }
 
   componentWillUnmount() {
@@ -40,7 +40,8 @@ class MessageContainer extends Component {
 
   onSendMessage = (event) => {
     if (event.key === 'Enter') {
-      this.socket.emit('SEND_MESSAGE', this.state.message);
+      this.props.onSendMessage(this.state.message);
+      // this.socket.emit('SEND_MESSAGE', this.state.message);
       this.setState({
         message: ''
       });
@@ -83,7 +84,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddMessage: (message) => dispatch(actions.addMessage(message))
+    roryTest: () => dispatch({type: 'CONNECT_SOCKET'}),
+    onSendMessage: (message) => dispatch(actions.messageSent(message))
   };
 };
 

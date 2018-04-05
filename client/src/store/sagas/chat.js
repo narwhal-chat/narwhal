@@ -1,4 +1,5 @@
-import { put, take, select } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
+import { call, put, take, select, fork, cancel } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import axios from 'axios';
 import io from 'socket.io-client';
@@ -6,6 +7,27 @@ import io from 'socket.io-client';
 import * as actions from '../actions/index';
 import * as actionTypes from '../actions/actionTypes';
 import * as selectors from './selectors';
+
+const connectSocket = () => {
+  const socket = io('http://localhost:5000');
+  return new Promise(resolve => {
+    socket.on('connect', () => {
+      resolve(socket);
+    });
+  });
+}
+
+const subscribeSocket = (socket) => {
+  return eventChannel(emit => {
+    socket.on('RECEIVE_MESSAGE', (message) => {
+      emit(actions.messageReceived(message));
+    });
+    socket.on('disconnect', e => {
+
+    });
+    return () => {};
+  });
+}
 
 export function* fetchPods(action) {
   try {
@@ -153,12 +175,13 @@ export function* fetchCategories(action) {
       params: {
         token: token
       }
-    })
+    });
     yield put(actions.fetchCategoriesSuccess(results.data));
   } catch (e) {
     yield put(actions.fetchCategoriesFail());
   }
 }
+
 export function* categoryClicked(action) {
   try {
     yield put(actions.setActiveCategory(action.activeCategory))
@@ -178,5 +201,53 @@ export function* joinPod(action) {
     yield put(actions.fetchDiscover());
   } catch (e) {
     yield put(actions.joinPodFail())
+  }
+}
+
+function* readSocketEvents(socket) {
+  const channel = yield call(subscribeSocket, socket);
+  while (true) {
+    let action = yield take(channel);
+    yield put(action);
+  }
+}
+
+function* writeSocketMessage(socket) {
+  while (true) {
+    console.log(actions.messageSent);
+    const payload = yield take(actionTypes.MESSAGE_SENT);
+    console.log('sending message', payload.message);
+    socket.emit('SEND_MESSAGE', { message: payload.message, topic: 'rory room' });
+  }
+}
+
+function* handleSocketIO(socket) {
+  yield fork(readSocketEvents, socket);
+  yield fork(writeSocketMessage, socket);
+}
+
+export function* connectSocketFlow() {
+  while (true) {
+    // const yoYo = yield take(actionTypes.SET_ACTIVE_TOPIC);
+    // console.log(yoYo);
+    yield take('CONNECT_SOCKET');
+    const socket = yield call(connectSocket);
+    yield put(actions.setSocket(socket));
+
+    const task = yield fork(handleSocketIO, socket);
+
+    let action = yield take('logout');
+    yield cancel(task);
+    socket.emit('logout');
+  }
+}
+
+export function* joinSocketRoom(socket) {
+  while (true) {
+    // console.log(actions.joinTopicSocket;
+    const payload = yield take(actionTypes.SET_ACTIVE_TOPIC);
+    console.log('sending message', payload.topic);
+    const socket = yield(select(selectors.socket));
+    socket.emit('JOIN_ROOM', `ROOM_${payload.topic.pod_id}_${payload.topic.id}`);
   }
 }

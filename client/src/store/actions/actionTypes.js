@@ -33,7 +33,9 @@ export const UPDATE_ACTIVE_TOPIC = 'UPDATE_ACTIVE_TOPIC';
 export const SET_ACTIVE_TOPIC = 'SET_ACTIVE_TOPIC';
 export const DISCOVER_CLICKED = 'DISCOVER_CLICKED';
 export const DISCOVER_ACTIVE = 'DISCOVER_ACTIVE';
-export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const SET_SOCKET = 'SET_SOCKET';
+export const MESSAGE_SENT = 'MESSAGE_SENT';
+export const MESSAGE_RECEIVED = 'ADD_MESSAGE';
 export const CHOOSE_CATEGORY = 'CHOOSE_CATEGORY';
 export const FETCH_DISCOVER = 'FETCH_DISCOVER';
 export const FETCH_DISCOVER_SUCCESS = 'FETCH_DISCOVER_SUCCESS';
@@ -43,7 +45,10 @@ export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
 export const FETCH_CATEGORIES_FAIL = 'FETCH_CATEGORIES_FAIL';
 export const SET_ACTIVE_CATEGORY = 'SET_ACTIVE_CATEGORY';
 export const CATEGORY_CLICKED = 'CATEGORY_CLICKED';
+<<<<<<< HEAD
 export const JOIN_POD = 'JOIN_POD';
 export const JOIN_POD_FAIL = 'JOIN_POD_FAIL';
 export const SEARCH_DISCOVER = 'SEARCH_DISCOVER';
 export const UPDATE_SEARCH_RESULTS = 'UPDATE_SEARCH_RESULTS';
+=======
+>>>>>>> Get basic socket.io implementation working with redux-saga and continue working on topic rooms
