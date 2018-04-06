@@ -11,7 +11,8 @@ const initialState = {
     searchResults: [],
     activePod: null,
     activeTopic: null,
-    activeCategory: null
+    activeCategory: null,
+    socket: null
 };
 
 const fetchPodsSuccess = (state, action) => {
@@ -53,6 +54,7 @@ const setActivePod = (state, action) => {
 const setActiveTopic = (state, action) => {
   return updateObject(state, {
     activeTopic: action.topic,
+    messages: [],
     activeCategory: null
   });
 };
@@ -65,7 +67,19 @@ const discoverActive = (state, action) => {
   });
 };
 
-const addMessage = (state, action) => {
+const setSocket = (state, action) => {
+  return updateObject(state, {
+    socket: action.socket
+  })
+};
+
+const disconnectSocket = (state, action) => {
+  return updateObject(state, {
+    socket: null
+  });
+};
+
+const messageReceived = (state, action) => {
   return updateObject(state, {
     messages: [...state.messages, action.message]
   });
@@ -125,7 +139,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_ACTIVE_POD: return setActivePod(state, action);
     case actionTypes.SET_ACTIVE_TOPIC: return setActiveTopic(state, action);
     case actionTypes.DISCOVER_ACTIVE: return discoverActive(state, action);
-    case actionTypes.ADD_MESSAGE: return addMessage(state, action);
+    case actionTypes.SET_SOCKET: return setSocket(state, action);
+    case actionTypes.DISCONNECT_SOCKET: return disconnectSocket(state, action);
+    case actionTypes.MESSAGE_RECEIVED: return messageReceived(state, action);
     case actionTypes.FETCH_DISCOVER_SUCCESS: return fetchDiscoverSuccess(state, action);
     case actionTypes.FETCH_DISCOVER_FAIL: return fetchDiscoverFail(state, action);
     case actionTypes.FETCH_CATEGORIES_SUCCESS: return fetchCategoriesSuccess(state, action);

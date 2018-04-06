@@ -63,7 +63,7 @@ export const fetchTopicsFail = (error) => {
 export const fetchTopicsFinished = () => {
   return {
     type: actionTypes.FETCH_TOPICS_FINISHED
-  }
+  };
 };
 
 export const createTopic = (topicName) => {
@@ -91,7 +91,7 @@ export const setActivePod = (pod) => {
   return  {
     type: actionTypes.SET_ACTIVE_POD,
     pod: pod
-  }
+  };
 };
 
 export const topicClicked = (topic) => {
@@ -120,89 +120,121 @@ export const discoverActive = () => {
   };
 };
 
-export const addMessage = (message) => {
+export const connectSocket = () => {
   return {
-    type: actionTypes.ADD_MESSAGE,
+    type: actionTypes.CONNECT_SOCKET
+  };
+};
+
+export const connectSocketSuccess = () => {
+  return {
+    type: actionTypes.CONNECT_SOCKET_SUCCESS
+  };
+};
+
+export const diconnectSocket = () => {
+  return {
+    type: actionTypes.DISCONNECT_SOCKET
+  };
+};
+
+export const setSocket = (socket) => {
+  return {
+    type: actionTypes.SET_SOCKET,
+    socket: socket
+  };
+};
+
+export const messageSent = (message) => {
+  return {
+    type: actionTypes.MESSAGE_SENT,
     message: message
-  }
+  };
+};
+
+export const messageReceived = (message) => {
+  return {
+    type: actionTypes.MESSAGE_RECEIVED,
+    message: message
+  };
 };
 
 export const fetchDiscover = () => {
   return {
     type: actionTypes.FETCH_DISCOVER
-  }
-}
+  };
+};
 
 export const fetchDiscoverSuccess = (discoverPods) => {
   return {
     type: actionTypes.FETCH_DISCOVER_SUCCESS,
     discover: discoverPods
-  }
-}
+  };
+};
 
 export const fetchDiscoverFail = () => {
   return {
     type: actionTypes.FETCH_DISCOVER_FAIL
-  }
-}
+  };
+};
 
 export const fetchCategories = () => {
   return {
     type: actionTypes.FETCH_CATEGORIES
-  }
-}
+  };
+};
 
 export const fetchCategoriesSuccess = (categories) => {
   return {
     type: actionTypes.FETCH_CATEGORIES_SUCCESS,
     categories: categories
-  }
-}
+  };
+};
 
 export const fetchCategoriesFail = () => {
   return {
     type: actionTypes.FETCH_CATEGORIES_FAIL
-  }
-}
+  };
+};
 
 export const setActiveCategory = (category) => {
   return {
     type: actionTypes.SET_ACTIVE_CATEGORY,
     activeCategory: category
-  }
-}
+  };
+};
 
 export const categoryClicked = (category) => {
   return {
     type: actionTypes.CATEGORY_CLICKED,
     activeCategory: category
-  }
-}
+  };
+};
 
 export const joinPod = (podId) => {
   return {
     type: actionTypes.JOIN_POD,
     podId: podId
-  }
-}
+  };
+};
 
 export const joinPodFail = (error) => {
   return {
     type: actionTypes.JOIN_POD_FAIL,
     error: error
-  }
-}
+  };
+};
 
 export const searchDiscover = (term) => {
   return {
     type: actionTypes.SEARCH_DISCOVER,
     term: term
-  }
-}
+  };
+};
 
 export const updateSearchResults = (data) => {
   return {
     type: actionTypes.UPDATE_SEARCH_RESULTS,
     results: data
-  }
-}
+  };
+};

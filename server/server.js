@@ -43,9 +43,19 @@ io.on('connection', socket => {
     console.log('User disconnected');
   });
 
+  socket.on('JOIN_ROOM', (room) => {
+    console.log('Joined room', room);
+    socket.join(room);
+  });
+
+  socket.on('LEAVE_ROOM', (room) => {
+    console.log('Left room', room);
+    socket.leave(room);
+  });
+
   socket.on('SEND_MESSAGE', (message) => {
     console.log('Message received', message);
-    io.emit('RECEIVE_MESSAGE', message);
+    io.to(message.room).emit('RECEIVE_MESSAGE', message.message);
   });
 });
 
@@ -110,7 +120,7 @@ app.use((req, res, next) => {
   }
 });
 
-// All protected routes go below here
+// *** All protected routes go below here ***
 
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
