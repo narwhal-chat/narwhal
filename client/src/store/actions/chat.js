@@ -208,41 +208,33 @@ export const categoryClicked = (category) => {
   return {
     type: actionTypes.CATEGORY_CLICKED,
     activeCategory: category
-<<<<<<< HEAD
-  }
-}
-<<<<<<< HEAD
+  };
+};
 
 export const joinPod = (podId) => {
   return {
     type: actionTypes.JOIN_POD,
     podId: podId
-  }
-}
+  };
+};
 
 export const joinPodFail = (error) => {
   return {
     type: actionTypes.JOIN_POD_FAIL,
     error: error
-  }
-}
+  };
+};
 
 export const searchDiscover = (term) => {
   return {
     type: actionTypes.SEARCH_DISCOVER,
     term: term
-  }
-}
+  };
+};
 
 export const updateSearchResults = (data) => {
   return {
     type: actionTypes.UPDATE_SEARCH_RESULTS,
     results: data
-  }
-}
-=======
->>>>>>> Get basic socket.io implementation working with redux-saga and continue working on topic rooms
-=======
   };
 };
->>>>>>> Add functionality to automatically leave and join socket rooms depending on selected topic

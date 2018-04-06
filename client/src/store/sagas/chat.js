@@ -9,13 +9,13 @@ import * as actionTypes from '../actions/actionTypes';
 import * as selectors from './selectors';
 
 const connectSocket = () => {
-  const socket = io('http://localhost:5000');
+  const socket = io('/');
   return new Promise(resolve => {
     socket.on('connect', () => {
       resolve(socket);
     });
   });
-}
+};
 
 const subscribeSocket = (socket) => {
   return eventChannel(emit => {
@@ -27,7 +27,7 @@ const subscribeSocket = (socket) => {
     });
     return () => {};
   });
-}
+};
 
 export function* fetchPods(action) {
   try {
@@ -65,7 +65,7 @@ export function* createPod(action) {
 
     const token = yield select(selectors.token);
     const userId = yield select(selectors.userId);
-    yield axios.post('/pods', {
+    const result = yield axios.post('/pods', {
         token: token,
         userId: userId,
         podName: action.podName,
@@ -73,7 +73,16 @@ export function* createPod(action) {
         description: action.description,
         avatar: action.avatar
     });
-    yield put(actions.fetchPods(userId));
+
+    // Fetch the latest set of pods and if we receive the pod we just created, set that as the active pod
+    yield put(actions.fetchPods());
+    const payload = yield take(actionTypes.FETCH_PODS_SUCCESS);
+    for (let pod of payload.pods) {
+      if (pod.id === result.data.id) {
+        yield put(actions.podClicked(pod));
+      }
+    }
+    
     yield put(actions.fetchDiscover());
   } catch (e) {
     yield put(actions.createPodFail());
@@ -241,7 +250,7 @@ export function* joinPod(action) {
   try {
     const token = yield select(selectors.token);
     const userId = yield select(selectors.userId);
-    const results = yield axios.post(`/pods/join/${userId}/${action.podId}`, {
+    yield axios.post(`/pods/join/${userId}/${action.podId}`, {
       token: token
     })
     yield put(actions.fetchPods(userId));
@@ -295,6 +304,6 @@ export function* joinSocketRoom(socket) {
   }
 }
 
-export function* leaveSocketRoom(socket, room) {
-  yield socket.emit('LEAVE_ROOM', room);
-}
+// export function* leaveSocketRoom(socket, room) {
+//   yield socket.emit('LEAVE_ROOM', room);
+// }
