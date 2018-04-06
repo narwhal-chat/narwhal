@@ -96,6 +96,10 @@ const setActiveCategory = (state, action) => {
   })
 }
 
+const joinPodFail = (state, action) => {
+  return updateObject(state);
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PODS_SUCCESS: return fetchPodsSuccess(state, action);
@@ -113,6 +117,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_CATEGORIES_SUCCESS: return fetchCategoriesSuccess(state, action);
     case actionTypes.FETCH_CATEGORIES_FAIL: return fetchCategoriesFail(state, action);
     case actionTypes.SET_ACTIVE_CATEGORY: return setActiveCategory(state, action);
+    case actionTypes.JOIN_POD_FAIL: return joinPodFail(state, action);
     default: return state;
   }
 };

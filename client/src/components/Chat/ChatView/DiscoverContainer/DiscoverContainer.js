@@ -10,6 +10,7 @@ import * as actions from '../../../../store/actions/index';
 
 class DiscoverContainer extends Component {
 	componentDidMount() {
+		this.props.fetchPods();
 		this.props.fetchDiscover();
 		this.getResultsCount();
 	}
@@ -25,14 +26,17 @@ class DiscoverContainer extends Component {
 		return count.length
 	}
 
+	joinPod(podId) {
+		this.props.onJoinPod(podId)
+	}
+
 	render() {
 		return (
 			<div className={styles.DiscoverContainer}>
 				<DiscoverContainerHeader />
 					<DiscoverSearch />
 					<ResultsFound resultCount={this.getResultsCount.bind(this)}/>
-					{console.log('active category in dcontainer', this.props.activeCategory)}
-					<Results activeCategory={this.props.activeCategory} results={this.props.discover} />
+					<Results activeCategory={this.props.activeCategory} joinPod={this.joinPod.bind(this)} currentPods={this.props.pods} results={this.props.discover} />
 			</div>
 			
 		);
@@ -42,13 +46,16 @@ class DiscoverContainer extends Component {
 const mapStateToProps = state => {
 	return {
 		discover: state.chat.discover,
-		activeCategory: state.chat.activeCategory
+		activeCategory: state.chat.activeCategory,
+		pods: state.chat.pods
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		fetchDiscover: () => dispatch(actions.fetchDiscover())
+		fetchDiscover: () => dispatch(actions.fetchDiscover()),
+		onJoinPod: (podId) => dispatch(actions.joinPod(podId)),
+		fetchPods: () => dispatch(actions.fetchPods())
 	}
 }
 

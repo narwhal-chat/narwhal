@@ -38,5 +38,7 @@ export {
   fetchCategoriesSuccess,
   fetchCategoriesFail,
   setActiveCategory,
-  categoryClicked
+  categoryClicked,
+  joinPod,
+  joinPodFail
 } from './chat';

@@ -178,3 +178,17 @@ export const categoryClicked = (category) => {
     activeCategory: category
   }
 }
+
+export const joinPod = (podId) => {
+  return {
+    type: actionTypes.JOIN_POD,
+    podId: podId
+  }
+}
+
+export const joinPodFail = (error) => {
+  return {
+    type: actionTypes.JOIN_POD_FAIL,
+    error: error
+  }
+}
