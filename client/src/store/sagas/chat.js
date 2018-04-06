@@ -44,6 +44,7 @@ export function* createPod(action) {
         avatar: action.avatar
     });
     yield put(actions.fetchPods(userId));
+    yield put(actions.fetchDiscover());
   } catch (e) {
     yield put(actions.createPodFail());
   }
