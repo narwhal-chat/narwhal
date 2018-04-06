@@ -23,7 +23,6 @@ class Results extends Component {
 					<Result key={result.id} currentPods={this.props.currentPods} result={result} joinPod={this.props.joinPod}/>
 				)
 			})
-			console.log(results);
 		}
 
 
