@@ -40,5 +40,7 @@ export {
   setActiveCategory,
   categoryClicked,
   joinPod,
-  joinPodFail
+  joinPodFail,
+  searchDiscover,
+  updateSearchResults
 } from './chat';

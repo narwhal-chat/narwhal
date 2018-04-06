@@ -192,3 +192,17 @@ export const joinPodFail = (error) => {
     error: error
   }
 }
+
+export const searchDiscover = (term) => {
+  return {
+    type: actionTypes.SEARCH_DISCOVER,
+    term: term
+  }
+}
+
+export const updateSearchResults = (data) => {
+  return {
+    type: actionTypes.UPDATE_SEARCH_RESULTS,
+    results: data
+  }
+}

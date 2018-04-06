@@ -43,8 +43,8 @@ export function* createPod(action) {
         description: action.description,
         avatar: action.avatar
     });
-    console.log('create pod results', results);
     yield put(actions.fetchPods(userId));
+    yield put(actions.fetchDiscover());
   } catch (e) {
     yield put(actions.createPodFail());
   }
@@ -168,7 +168,6 @@ export function* categoryClicked(action) {
 
 export function* joinPod(action) {
   try {
-    console.log('action', action);
     const token = yield select(selectors.token);
     const userId = yield select(selectors.userId);
     const results = yield axios.post(`/pods/join/${userId}/${action.podId}`, {
