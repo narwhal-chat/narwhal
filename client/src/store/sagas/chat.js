@@ -175,6 +175,7 @@ export function* joinPod(action) {
       token: token
     })
     yield put(actions.fetchPods(userId));
+    yield put(actions.fetchDiscover());
   } catch (e) {
     yield put(actions.joinPodFail())
   }

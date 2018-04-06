@@ -10,7 +10,7 @@ import * as actions from '../../../../store/actions/index';
 
 class DiscoverContainer extends Component {
 	componentDidMount() {
-		console.log(this.props);
+		this.props.fetchPods();
 		this.props.fetchDiscover();
 		this.getResultsCount();
 	}
@@ -36,7 +36,7 @@ class DiscoverContainer extends Component {
 				<DiscoverContainerHeader />
 					<DiscoverSearch />
 					<ResultsFound resultCount={this.getResultsCount.bind(this)}/>
-					<Results activeCategory={this.props.activeCategory} joinPod={this.joinPod.bind(this)} results={this.props.discover} />
+					<Results activeCategory={this.props.activeCategory} joinPod={this.joinPod.bind(this)} currentPods={this.props.pods} results={this.props.discover} />
 			</div>
 			
 		);
@@ -46,14 +46,16 @@ class DiscoverContainer extends Component {
 const mapStateToProps = state => {
 	return {
 		discover: state.chat.discover,
-		activeCategory: state.chat.activeCategory
+		activeCategory: state.chat.activeCategory,
+		pods: state.chat.pods
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
 		fetchDiscover: () => dispatch(actions.fetchDiscover()),
-		onJoinPod: (podId) => dispatch(actions.joinPod(podId))
+		onJoinPod: (podId) => dispatch(actions.joinPod(podId)),
+		fetchPods: () => dispatch(actions.fetchPods())
 	}
 }
 
