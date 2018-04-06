@@ -48,9 +48,14 @@ io.on('connection', socket => {
     socket.join(room);
   });
 
+  socket.on('LEAVE_ROOM', (room) => {
+    console.log('Left room', room);
+    socket.leave(room);
+  });
+
   socket.on('SEND_MESSAGE', (message) => {
     console.log('Message received', message);
-    io.to('rory room').emit('RECEIVE_MESSAGE', message.message);
+    io.to(message.room).emit('RECEIVE_MESSAGE', message.message);
   });
 });
 

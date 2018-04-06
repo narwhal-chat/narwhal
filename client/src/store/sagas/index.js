@@ -1,4 +1,4 @@
-import { takeEvery, all, fork } from 'redux-saga/effects';
+import { takeEvery, takeLatest, all, fork } from 'redux-saga/effects';
 
 import * as actionTypes from '../actions/actionTypes';
 <<<<<<< HEAD
@@ -12,7 +12,7 @@ export function* watchChat() {
   yield all([
     takeEvery(actionTypes.FETCH_PODS, fetchPods),
     takeEvery(actionTypes.CREATE_POD, createPod),
-    takeEvery(actionTypes.FETCH_TOPICS, fetchTopics),
+    takeLatest(actionTypes.FETCH_TOPICS, fetchTopics),
     takeEvery(actionTypes.CREATE_TOPIC, createTopic),
     takeEvery(actionTypes.POD_CLICKED, podClicked),
     takeEvery(actionTypes.TOPIC_CLICKED, topicClicked),
