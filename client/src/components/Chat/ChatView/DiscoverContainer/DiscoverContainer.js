@@ -12,11 +12,6 @@ import * as actions from '../../../../store/actions/index';
 const KEYS_TO_FILTER = ['reference_name', 'display_name', 'description'];
 
 class DiscoverContainer extends Component {
-	// state = {
-	// 	search: '',
-	// 	typing: false,
-	// 	typingTimeout: 0
-	// }
 
 	componentDidMount() {
 		this.props.fetchPods();
@@ -61,9 +56,9 @@ class DiscoverContainer extends Component {
 		return (
 			<div className={styles.DiscoverContainer}>
 				<DiscoverContainerHeader />
-					<DiscoverSearch results={this.props.discover} changeSearch={this.changeSearch.bind(this)}/>
-					<ResultsFound resultCount={this.getResultsCount.bind(this)}/>
-					<Results activeCategory={this.props.activeCategory} joinPod={this.joinPod.bind(this)} currentPods={this.props.pods} results={searchResults} />
+				<DiscoverSearch results={this.props.discover} changeSearch={this.changeSearch.bind(this)}/>
+				<ResultsFound resultCount={this.getResultsCount.bind(this)}/>
+				<Results activeCategory={this.props.activeCategory} joinPod={this.joinPod.bind(this)} currentPods={this.props.pods} results={searchResults} />
 			</div>
 			
 		);
