@@ -34,7 +34,7 @@ router.post('/', async (req, res, next) => {
 
 router.get('/:podId/topics', async (req, res, next) => {
   try {
-    const results = await axios.get(POD_MICROSERVICE_URL + '/' + req.params.podId + '/topics');
+    const results = await axios.get(`${POD_MICROSERVICE_URL}/${req.params.podId}/topics`);
     res.json(results.data);
   } catch (e) {
     res.sendStatus(400);
@@ -43,7 +43,7 @@ router.get('/:podId/topics', async (req, res, next) => {
 
 router.post('/:podId/topics', async (req, res, next) => {
   try {
-    const results = await axios.post(POD_MICROSERVICE_URL + '/' + req.params.podId + '/topics', {
+    const results = await axios.post(`${POD_MICROSERVICE_URL}/${req.params.podId}/topics`, {
       name: req.body.name,
       podId: req.params.podId,
       userId: req.body.userId
@@ -56,7 +56,7 @@ router.post('/:podId/topics', async (req, res, next) => {
 
 router.get('/get/all', async (req, res, next) => {
 	try {
-		const results = await axios.get(POD_MICROSERVICE_URL + '/get/all');
+		const results = await axios.get(`${POD_MICROSERVICE_URL}/get/all`);
 		res.json(results.data);
 	} catch (e) {
 		res.sendStatus(400);
@@ -65,7 +65,7 @@ router.get('/get/all', async (req, res, next) => {
 
 router.post('/join/:userId/:podId', async (req, res, next) => {
   try {
-    const results = await axios.post(POD_MICROSERVICE_URL + `/join/${req.params.userId}/${req.params.podId}`);
+    const results = await axios.post(`${POD_MICROSERVICE_URL}/join/${req.params.userId}/${req.params.podId}`);
     console.log('results in pod route', results);
     res.json(results.data);
   } catch (e) {
