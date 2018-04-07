@@ -36,20 +36,9 @@ class Create extends Component {
 
 	onDrop = (files) => {
 		this.setState({
-			files: files
+			files: files,
+			avatar: files[0].preview
 		})
-		let image = files[0];
-		let uploadedImage = null;
-		upload.post('/upload')
-		.attach('image', image)
-		.end((err, res) => {
-			if (err) console.log(err);
-			uploadedImage = res.text;
-			this.setState({
-				avatar: uploadedImage
-			})
-		})
-
 	}
 
 	changeCategory = event => {
@@ -126,12 +115,32 @@ class Create extends Component {
 				description: '',
 			});
 		} else {
-			this.props.createPod(
-				this.state.podName,
-				this.state.category,
-				this.state.description,
-				this.state.avatar
-			);
+			let image = this.state.files[0]
+			let uploadedImage = null;
+			
+			upload.post('/upload')
+			.attach('image', image)
+			.end((err, res) => {
+				if (err) console.log(err);
+				uploadedImage = res.text;
+				// this.setState({
+				// 	avatar: uploadedImage
+				// })
+				this.props.createPod(
+					this.state.podName,
+					this.state.category,
+					this.state.description,
+					uploadedImage
+				);
+			})
+			
+
+			// this.props.createPod(
+			// 	this.state.podName,
+			// 	this.state.category,
+			// 	this.state.description,
+			// 	this.state.avatar
+			// );
 
 			this.props.onRequestClose();
 		}
