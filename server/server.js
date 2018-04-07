@@ -112,9 +112,23 @@ app.post('/login', (req, res, next) => {
 });
 
 app.post('/upload', upload.single('image'), (req, res, next) => {
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+		dd = '0' + dd;
+  }
+  if (mm < 10) {
+		mm = '0' + mm;
+  }
+  today = mm + '-' + dd + '-' + yyyy;
+
+  let random = Math.random().toString(36).substring(7);
+
   s3.upload({
     Bucket: process.env.AWS_BUCKET,
-    Key: req.file.originalname,
+    Key: `${today}/${random}/${req.file.originalname}`,
     Body: req.file.buffer,
     ACL: 'public-read'
   }, (err, data) => {
@@ -124,19 +138,6 @@ app.post('/upload', upload.single('image'), (req, res, next) => {
     }
     return res.status(200).send(data.Location);
   })
-
-  // console.log(response);
-
-  // s3.getSignedUrl('getObject', {
-  //   Bucket: 'narwhalavatar',
-  //   Key: req.file.originalname
-  // }, (err, url) => {
-  //   if (err) {
-  //     console.log(err);
-  //     return res.status(400).send(err);
-  //   }
-  //   return res.status(200).send(url);
-  // })
 })
 
 // Enable authentication middleware
