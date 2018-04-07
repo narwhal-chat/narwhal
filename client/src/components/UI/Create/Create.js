@@ -117,21 +117,29 @@ class Create extends Component {
 		} else {
 			let image = this.state.files[0]
 			let uploadedImage = null;
-			
-			upload.post('/upload')
-			.attach('image', image)
-			.end((err, res) => {
-				if (err) console.log(err);
-				uploadedImage = res.text;
-				// this.setState({
-				// 	avatar: uploadedImage
-				// })
+
+			if (this.state.avatar === '') {
 				this.props.createPod(
 					this.state.podName,
 					this.state.category,
 					this.state.description,
-					uploadedImage
+					this.state.avatar
 				);
+			} else {
+				upload.post('/upload')
+				.attach('image', image)
+				.end((err, res) => {
+					if (err) console.log(err);
+					uploadedImage = res.text;
+					// this.setState({
+					// 	avatar: uploadedImage
+					// })
+					this.props.createPod(
+						this.state.podName,
+						this.state.category,
+						this.state.description,
+						uploadedImage
+					);
 			})
 			
 
@@ -141,7 +149,7 @@ class Create extends Component {
 			// 	this.state.description,
 			// 	this.state.avatar
 			// );
-
+			}
 			this.props.onRequestClose();
 		}
 	};
