@@ -9,9 +9,26 @@ const result = (props) => {
 		button = <button onClick={() => props.joinPod(props.result.id)} className={styles.Button}>Join</button>;
 	}
 
+  // Set the avatar styling
+  let avatar = {
+		backgroundImage: `url('${props.result.avatar}')`
+  }
+
+  let avatarLetter = null;
+
+  // If no avatar was provided, use a default background color with the first letter of the pod display name
+  if (!props.result.avatar) {
+    avatarLetter = (
+      <div className={styles.AvatarLetter}>{props.result.display_name[0].toUpperCase()}</div>
+    );
+  }
+
   return(
 			<div className={styles.Result}>
-				<div className={styles.PodAvatar} />
+				<div className={styles.PodAvatar} style={avatar}>
+					{avatarLetter}
+					{console.log(props.result.avatar)}
+				</div>
 				<div className={styles.PodInfo}>
 					<div className={styles.PodName}>{props.result.display_name}</div>
 					<div className={styles.PodCategory}>{props.result.pod_category_name}</div>

@@ -8,6 +8,8 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
+const AWS = require('aws-sdk');
+const multer = require('multer');
  
 const PORT = process.env.PORT || 5000;
 const USER_MICROSERVICE_URL = process.env.USER_MICROSERVICE_URL || 'http://localhost:3033';
@@ -35,6 +37,20 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   app.use(express.static(__dirname + '/../client/build'));
 }
+
+// Amazon s3 config
+AWS.config.update({
+	accessKeyId: process.env.AWS_ACCESS_KEY,
+	secretAccessKey: process.env.AWS_SECRET_KEY,
+});
+const s3 = new AWS.S3();
+
+//Multer config
+//memory storage keeps file data in a buffer
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 52428800 }
+})
 
 io.on('connection', socket => {
   console.log('User connected');
@@ -95,6 +111,32 @@ app.post('/login', (req, res, next) => {
         })
     });
 });
+
+app.post('/upload', upload.single('image'), (req, res, next) => {
+  console.log('req file', req.file)
+  s3.putObject({
+    Bucket: 'narwhalavatar',
+    Key: req.file.originalname,
+    Body: req.file.buffer,
+    ACL: 'public-read'
+  }, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).send(err);
+    }
+  })
+
+  s3.getSignedUrl('getObject', {
+    Bucket: 'narwhalavatar',
+    Key: req.file.originalname
+  }, (err, url) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).send(err);
+    }
+    return res.status(200).send(url);
+  })
+})
 
 // Enable authentication middleware
 app.use((req, res, next) => {

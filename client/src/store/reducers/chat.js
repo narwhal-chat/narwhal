@@ -11,7 +11,7 @@ const initialState = {
     searchResults: [],
     activePod: null,
     activeTopic: null,
-    activeCategory: null,
+    activeCategory: 'Trending',
     socket: null
 };
 
@@ -63,7 +63,7 @@ const discoverActive = (state, action) => {
   return updateObject(state, {
     activePod: null,
     activeTopic: null,
-    activeCategory: null
+    activeCategory: 'Trending'
   });
 };
 
@@ -106,7 +106,6 @@ const fetchCategoriesFail = (state, action) => {
 }
 
 const setActiveCategory = (state, action) => {
-  console.log(action);
   return updateObject(state, {
     activeCategory: action.activeCategory
   })

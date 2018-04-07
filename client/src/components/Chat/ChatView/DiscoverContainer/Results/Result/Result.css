@@ -12,9 +12,22 @@
 .Result .PodAvatar {
   width: 3em;
   height: 3em;
+  background-size: 3em 3em;
+  background-color: #DADADA;
+  background-repeat: no-repeat;
   border-radius: 50%;
   background-color: rgb(99, 99, 99);
   margin-right: 10px;
+}
+
+.Result .AvatarLetter {
+  -webkit-user-select: none;    
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 200%;
+  color: #fff;
+  text-align: center;
 }
 
 .Result .PodInfo {
