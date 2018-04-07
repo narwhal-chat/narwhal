@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Import routes handled by Express Router
 const pods = require('./routes/pods');
 const categories = require('./routes/categories');
+const messages = require('./routes/messages');
 
 // Define a single source of route paths
 const routes = {
