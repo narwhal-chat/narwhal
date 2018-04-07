@@ -272,7 +272,13 @@ function* writeSocketMessage(socket) {
   while (true) {
     const payload = yield take(actionTypes.MESSAGE_SENT);
     const activeTopic = yield(select(selectors.activeTopic));
-    socket.emit('SEND_MESSAGE', { message: payload.message, room: `ROOM_${activeTopic.pod_id}_${activeTopic.id}` });
+    const userId = yield(select(selectors.userId));
+    socket.emit('SEND_MESSAGE', {
+      topicId: activeTopic.id,
+      userId: userId,
+      messageText: payload.message,
+      room: `ROOM_${activeTopic.pod_id}_${activeTopic.id}`
+    });
   }
 }
 

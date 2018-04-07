@@ -13,6 +13,7 @@ const multer = require('multer');
  
 const PORT = process.env.PORT || 5000;
 const USER_MICROSERVICE_URL = process.env.USER_MICROSERVICE_URL || 'http://localhost:3033';
+const MESSAGE_MICROSERVICE_URL = process.env.MESSAGE_MICROSERVICE_URL ? process.env.MESSAGE_MICROSERVICE_URL + '/messages' : 'http://localhost:3335/messages';
 
 // body-parser middleware
 app.use(bodyParser.json());
@@ -47,13 +48,14 @@ AWS.config.update({
 });
 const s3 = new AWS.S3();
 
-//Multer config
-//memory storage keeps file data in a buffer
+// Multer config
+// Memory storage keeps file data in a buffer
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 52428800 }
-})
+});
 
+// Socket.IO config
 io.on('connection', socket => {
   console.log('User connected');
 
@@ -71,9 +73,17 @@ io.on('connection', socket => {
     socket.leave(room);
   });
 
-  socket.on('SEND_MESSAGE', (message) => {
-    console.log('Message received', message);
-    io.to(message.room).emit('RECEIVE_MESSAGE', message.message);
+  socket.on('SEND_MESSAGE', (payload) => {
+    console.log('Message received', payload);
+    // Insert the message into the message microservice
+    axios.post(`${MESSAGE_MICROSERVICE_URL}/new-message`, payload)
+      .then((data) => {
+        console.log('send message data', data);
+        io.to(payload.room).emit('RECEIVE_MESSAGE', payload.messageText);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   });
 });
 
@@ -149,24 +159,23 @@ app.use((req, res, next) => {
     jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
       if (err) {
         res.status(403).json({
-        message:"Token Expired"
-      });
+          message: "Token expired"
+        });
       // res.status(403).render('/login');
       } else {
         req.decoded=decod;
-        console.log('decod', decod);
         next();
       }
     });
   } else {
     console.log('token expired');
     res.status(403).json({
-      message:"No Token"
+      message:"No token"
     });
   }
 });
 
-// *** All protected routes go below here ***
+// *** ALL PROTECTED ROUTES GO BELOW HERE ***
 
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
@@ -193,6 +202,9 @@ app.use(routes.pods, pods);
 
 // Categories route
 app.use(routes.categories, categories);
+
+// Messages route
+app.use(routes.messages, messages);
 
 // Start server
 http.listen(PORT);
