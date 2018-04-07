@@ -40,7 +40,6 @@ class Create extends Component {
 		})
 		let image = files[0];
 		let uploadedImage = null;
-		console.log(image);
 		upload.post('/upload')
 		.attach('image', image)
 		.end((err, res) => {
@@ -140,7 +139,6 @@ class Create extends Component {
 
 	handleChange = event => {
 		this.setState({ [event.target.name]: event.target.value });
-		console.log(this.state);
 	};
 
 	render() {

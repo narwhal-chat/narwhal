@@ -97,7 +97,6 @@ app.post('/register', (req, res, next) => {
 app.post('/login', (req, res, next) => {
   axios.post(routes.login, req.body)
     .then(user => {
-      console.log('USER DTA IN SERV', user.data)
       res.status(200).json({
           token: user.data.token,
           user: user.data.user
@@ -113,9 +112,8 @@ app.post('/login', (req, res, next) => {
 });
 
 app.post('/upload', upload.single('image'), (req, res, next) => {
-  console.log('req file', req.file)
-  s3.putObject({
-    Bucket: 'narwhalavatar',
+  s3.upload({
+    Bucket: process.env.AWS_BUCKET,
     Key: req.file.originalname,
     Body: req.file.buffer,
     ACL: 'public-read'
@@ -124,18 +122,21 @@ app.post('/upload', upload.single('image'), (req, res, next) => {
       console.log(err);
       return res.status(400).send(err);
     }
+    return res.status(200).send(data.Location);
   })
 
-  s3.getSignedUrl('getObject', {
-    Bucket: 'narwhalavatar',
-    Key: req.file.originalname
-  }, (err, url) => {
-    if (err) {
-      console.log(err);
-      return res.status(400).send(err);
-    }
-    return res.status(200).send(url);
-  })
+  // console.log(response);
+
+  // s3.getSignedUrl('getObject', {
+  //   Bucket: 'narwhalavatar',
+  //   Key: req.file.originalname
+  // }, (err, url) => {
+  //   if (err) {
+  //     console.log(err);
+  //     return res.status(400).send(err);
+  //   }
+  //   return res.status(200).send(url);
+  // })
 })
 
 // Enable authentication middleware
