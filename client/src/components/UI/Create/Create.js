@@ -123,17 +123,24 @@ class Create extends Component {
 			.end((err, res) => {
 				if (err) console.log(err);
 				uploadedImage = res.text;
-				this.setState({
-					avatar: uploadedImage
-				})
+				// this.setState({
+				// 	avatar: uploadedImage
+				// })
+				this.props.createPod(
+					this.state.podName,
+					this.state.category,
+					this.state.description,
+					uploadedImage
+				);
 			})
+			
 
-			this.props.createPod(
-				this.state.podName,
-				this.state.category,
-				this.state.description,
-				this.state.avatar
-			);
+			// this.props.createPod(
+			// 	this.state.podName,
+			// 	this.state.category,
+			// 	this.state.description,
+			// 	this.state.avatar
+			// );
 
 			this.props.onRequestClose();
 		}
