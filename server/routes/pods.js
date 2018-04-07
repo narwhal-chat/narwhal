@@ -71,6 +71,6 @@ router.post('/join/:userId/:podId', async (req, res, next) => {
   } catch (e) {
     res.sendStatus(400);
   }
-})
+});
 
 module.exports = router;

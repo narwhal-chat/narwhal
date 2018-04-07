@@ -29,7 +29,8 @@ const routes = {
   login: USER_MICROSERVICE_URL + '/login',
   editProfile: USER_MICROSERVICE_URL + '/editProfile',
   pods: '/pods',
-  categories: '/categories'
+  categories: '/categories',
+  messages: '/messages'
 };
 
 // Set static path
