@@ -21,6 +21,7 @@ class Messages extends Component {
       return (
         <React.Fragment>
           <Message
+            userData={this.props.userData}
             message={message}
           />
           <div className={styles.MessageSeparator}></div>

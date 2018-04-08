@@ -3,7 +3,7 @@
   overflow-y: auto;
 }
 
-::-webkit-scrollbar {
+.Pods::-webkit-scrollbar {
   width: 0px;
   background: transparent;
 }

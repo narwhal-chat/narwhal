@@ -79,9 +79,9 @@ const disconnectSocket = (state, action) => {
   });
 };
 
-const messageReceived = (state, action) => {
+const messagesReceived = (state, action) => {
   return updateObject(state, {
-    messages: [...state.messages, action.message]
+    messages: [...state.messages, ...action.messages]
   });
 };
 
@@ -140,7 +140,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.DISCOVER_ACTIVE: return discoverActive(state, action);
     case actionTypes.SET_SOCKET: return setSocket(state, action);
     case actionTypes.DISCONNECT_SOCKET: return disconnectSocket(state, action);
-    case actionTypes.MESSAGE_RECEIVED: return messageReceived(state, action);
+    case actionTypes.MESSAGES_RECEIVED: return messagesReceived(state, action);
     case actionTypes.FETCH_DISCOVER_SUCCESS: return fetchDiscoverSuccess(state, action);
     case actionTypes.FETCH_DISCOVER_FAIL: return fetchDiscoverFail(state, action);
     case actionTypes.FETCH_CATEGORIES_SUCCESS: return fetchCategoriesSuccess(state, action);

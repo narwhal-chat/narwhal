@@ -19,8 +19,13 @@ const connectSocket = () => {
 
 const subscribeSocket = (socket) => {
   return eventChannel(emit => {
-    socket.on('RECEIVE_MESSAGE', (message) => {
-      emit(actions.messageReceived(message));
+    socket.on('INITIAL_MESSAGE_HISTORY', (payload) => {
+      console.log('INITIAL_MESSAGE_HISTORY', payload);
+      emit(actions.messagesReceived(payload.messages));
+    });
+    socket.on('RECEIVE_MESSAGE', (payload) => {
+      console.log('received', payload);
+      emit(actions.messagesReceived(payload.messages));
     });
     socket.on('disconnect', e => {
 
@@ -273,10 +278,12 @@ function* writeSocketMessage(socket) {
     const payload = yield take(actionTypes.MESSAGE_SENT);
     const activeTopic = yield(select(selectors.activeTopic));
     const userId = yield(select(selectors.userId));
+    console.log('write socket message', payload);
     socket.emit('SEND_MESSAGE', {
       topicId: activeTopic.id,
       userId: userId,
       messageText: payload.message,
+      hello: 'hi',
       room: `ROOM_${activeTopic.pod_id}_${activeTopic.id}`
     });
   }
@@ -306,7 +313,10 @@ export function* joinSocketRoom(socket) {
     const payload = yield take(actionTypes.SET_ACTIVE_TOPIC);
     const socket = yield select(selectors.socket);
     console.log('joining room on client', `ROOM_${payload.topic.pod_id}_${payload.topic.id}`);
-    yield socket.emit('JOIN_ROOM', `ROOM_${payload.topic.pod_id}_${payload.topic.id}`);
+    yield socket.emit('JOIN_ROOM', {
+      topicId: payload.topic.id,
+      room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
+    });
   }
 }
 
