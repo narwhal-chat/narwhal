@@ -11,7 +11,7 @@ const initialState = {
     searchResults: [],
     activePod: null,
     activeTopic: null,
-    activeCategory: 'Trending',
+    activeCategory: 'trending',
     socket: null
 };
 
@@ -63,7 +63,7 @@ const discoverActive = (state, action) => {
   return updateObject(state, {
     activePod: null,
     activeTopic: null,
-    activeCategory: 'Trending'
+    activeCategory: 'trending'
   });
 };
 

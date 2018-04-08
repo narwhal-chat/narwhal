@@ -302,12 +302,15 @@ export function* connectSocketFlow() {
 }
 
 export function* joinSocketRoom(socket) {
-  while (true) {
-    const payload = yield take(actionTypes.SET_ACTIVE_TOPIC);
-    const socket = yield select(selectors.socket);
-    yield socket.emit('JOIN_ROOM', {
-      topicId: payload.topic.id,
-      room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
-    });
+  const pods = yield select(selectors.pods);
+  if (pods.length) {
+    while (true) {
+      const payload = yield take(actionTypes.SET_ACTIVE_TOPIC);
+      const socket = yield select(selectors.socket);
+      yield socket.emit('JOIN_ROOM', {
+        topicId: payload.topic.id,
+        room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
+      });
+    }
   }
 }
