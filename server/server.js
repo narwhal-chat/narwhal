@@ -64,11 +64,9 @@ io.on('connection', socket => {
   });
 
   socket.on('JOIN_ROOM', (payload) => {
-    console.log('Joined room', payload);
     // Get the message history for the topic
     axios.get(`${MESSAGE_MICROSERVICE_URL}/history/${payload.topicId}`)
       .then((results) => {
-        console.log('got topic history', results.data);
         io.emit('INITIAL_MESSAGE_HISTORY', { messages: results.data });
         socket.join(payload.room);
       })
@@ -78,16 +76,13 @@ io.on('connection', socket => {
   });
 
   socket.on('LEAVE_ROOM', (room) => {
-    console.log('Left room', room);
     socket.leave(room);
   });
 
   socket.on('SEND_MESSAGE', (payload) => {
-    console.log('send message payload', payload)
     // Insert the message into the message microservice
     axios.post(`${MESSAGE_MICROSERVICE_URL}/new-message`, payload)
       .then((results) => {
-        console.log('send message results', results.data);
         io.to(payload.room).emit('RECEIVE_MESSAGE', {messages: [results.data] });
       })
       .catch((e) => {

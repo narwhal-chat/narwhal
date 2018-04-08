@@ -17,7 +17,6 @@ class MessageContainer extends Component {
   }
 
   componentDidMount() {
-    console.log('mounted message container');
     this.props.onConnectSocket();
   }
 
