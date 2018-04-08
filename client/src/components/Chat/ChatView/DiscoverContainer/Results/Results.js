@@ -9,7 +9,7 @@ class Results extends Component {
 	render() {
 		let results = null;
 
-		if (this.props.activeCategory === 'Trending') {
+		if (this.props.activeCategory === 'trending') {
 			results = this.props.results.sort((a, b) => b.user_count - a.user_count).map(result => {
 				return (
 					<Result key={result.id} currentPods={this.props.currentPods} result={result} joinPod={this.props.joinPod}/>
