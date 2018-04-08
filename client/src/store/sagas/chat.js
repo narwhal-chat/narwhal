@@ -19,8 +19,11 @@ const connectSocket = () => {
 
 const subscribeSocket = (socket) => {
   return eventChannel(emit => {
-    socket.on('RECEIVE_MESSAGE', (message) => {
-      emit(actions.messageReceived(message));
+    socket.on('INITIAL_MESSAGE_HISTORY', (payload) => {
+      emit(actions.messagesReceived(payload.messages));
+    });
+    socket.on('RECEIVE_MESSAGE', (payload) => {
+      emit(actions.messagesReceived(payload.messages));
     });
     socket.on('disconnect', e => {
 
@@ -129,7 +132,6 @@ export function* createTopic(action) {
     const previousTopic = yield(select(selectors.activeTopic));
     const socket = yield(select(selectors.socket));
     if (previousTopic && socket) {
-      console.log('leaving room', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
       socket.emit('LEAVE_ROOM', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
     }
 
@@ -161,7 +163,6 @@ export function* podClicked(action) {
     // If a pod was previously selected, first leave the socket room associated with the previous active topic
     const previousTopic = yield(select(selectors.activeTopic));
     if (previousTopic && socket) {
-      console.log('leaving room', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
       socket.emit('LEAVE_ROOM', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
     }
     
@@ -181,7 +182,6 @@ export function* topicClicked(action) {
     const previousTopic = yield(select(selectors.activeTopic));
     const socket = yield(select(selectors.socket));
     if (previousTopic && socket) {
-      console.log('leaving room', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
       socket.emit('LEAVE_ROOM', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
     }
 
@@ -198,7 +198,6 @@ export function* discoverClicked(action) {
     const previousTopic = yield(select(selectors.activeTopic));
     const socket = yield(select(selectors.socket));
     if (previousTopic && socket) {
-      console.log('leaving room', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
       socket.emit('LEAVE_ROOM', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
     }
 
@@ -272,7 +271,14 @@ function* writeSocketMessage(socket) {
   while (true) {
     const payload = yield take(actionTypes.MESSAGE_SENT);
     const activeTopic = yield(select(selectors.activeTopic));
-    socket.emit('SEND_MESSAGE', { message: payload.message, room: `ROOM_${activeTopic.pod_id}_${activeTopic.id}` });
+    const userId = yield(select(selectors.userId));
+    socket.emit('SEND_MESSAGE', {
+      topicId: activeTopic.id,
+      userId: userId,
+      messageText: payload.message,
+      hello: 'hi',
+      room: `ROOM_${activeTopic.pod_id}_${activeTopic.id}`
+    });
   }
 }
 
@@ -299,11 +305,9 @@ export function* joinSocketRoom(socket) {
   while (true) {
     const payload = yield take(actionTypes.SET_ACTIVE_TOPIC);
     const socket = yield select(selectors.socket);
-    console.log('joining room on client', `ROOM_${payload.topic.pod_id}_${payload.topic.id}`);
-    yield socket.emit('JOIN_ROOM', `ROOM_${payload.topic.pod_id}_${payload.topic.id}`);
+    yield socket.emit('JOIN_ROOM', {
+      topicId: payload.topic.id,
+      room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
+    });
   }
 }
-
-// export function* leaveSocketRoom(socket, room) {
-//   yield socket.emit('LEAVE_ROOM', room);
-// }

@@ -13,6 +13,7 @@ const multer = require('multer');
  
 const PORT = process.env.PORT || 5000;
 const USER_MICROSERVICE_URL = process.env.USER_MICROSERVICE_URL || 'http://localhost:3033';
+const MESSAGE_MICROSERVICE_URL = process.env.MESSAGE_MICROSERVICE_URL ? process.env.MESSAGE_MICROSERVICE_URL + '/messages' : 'http://localhost:3335/messages';
 
 // body-parser middleware
 app.use(bodyParser.json());
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Import routes handled by Express Router
 const pods = require('./routes/pods');
 const categories = require('./routes/categories');
+const messages = require('./routes/messages');
 
 // Define a single source of route paths
 const routes = {
@@ -28,7 +30,8 @@ const routes = {
   login: USER_MICROSERVICE_URL + '/login',
   editProfile: USER_MICROSERVICE_URL + '/editProfile',
   pods: '/pods',
-  categories: '/categories'
+  categories: '/categories',
+  messages: '/messages'
 };
 
 // Set static path
@@ -45,13 +48,14 @@ AWS.config.update({
 });
 const s3 = new AWS.S3();
 
-//Multer config
-//memory storage keeps file data in a buffer
+// Multer config
+// Memory storage keeps file data in a buffer
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 52428800 }
-})
+});
 
+// Socket.IO config
 io.on('connection', socket => {
   console.log('User connected');
 
@@ -59,19 +63,31 @@ io.on('connection', socket => {
     console.log('User disconnected');
   });
 
-  socket.on('JOIN_ROOM', (room) => {
-    console.log('Joined room', room);
-    socket.join(room);
+  socket.on('JOIN_ROOM', (payload) => {
+    // Get the message history for the topic
+    axios.get(`${MESSAGE_MICROSERVICE_URL}/history/${payload.topicId}`)
+      .then((results) => {
+        io.emit('INITIAL_MESSAGE_HISTORY', { messages: results.data });
+        socket.join(payload.room);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   });
 
   socket.on('LEAVE_ROOM', (room) => {
-    console.log('Left room', room);
     socket.leave(room);
   });
 
-  socket.on('SEND_MESSAGE', (message) => {
-    console.log('Message received', message);
-    io.to(message.room).emit('RECEIVE_MESSAGE', message.message);
+  socket.on('SEND_MESSAGE', (payload) => {
+    // Insert the message into the message microservice
+    axios.post(`${MESSAGE_MICROSERVICE_URL}/new-message`, payload)
+      .then((results) => {
+        io.to(payload.room).emit('RECEIVE_MESSAGE', {messages: [results.data] });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   });
 });
 
@@ -147,24 +163,23 @@ app.use((req, res, next) => {
     jwt.verify(token, 'asdfvadasfdfasdfcv3234asdf', (err, decod) => {
       if (err) {
         res.status(403).json({
-        message:"Token Expired"
-      });
+          message: "Token expired"
+        });
       // res.status(403).render('/login');
       } else {
         req.decoded=decod;
-        console.log('decod', decod);
         next();
       }
     });
   } else {
     console.log('token expired');
     res.status(403).json({
-      message:"No Token"
+      message:"No token"
     });
   }
 });
 
-// *** All protected routes go below here ***
+// *** ALL PROTECTED ROUTES GO BELOW HERE ***
 
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
@@ -191,6 +206,9 @@ app.use(routes.pods, pods);
 
 // Categories route
 app.use(routes.categories, categories);
+
+// Messages route
+app.use(routes.messages, messages);
 
 // Start server
 http.listen(PORT);

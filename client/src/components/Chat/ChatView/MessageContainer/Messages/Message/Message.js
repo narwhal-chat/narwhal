@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import styles from './Message.css';
 
@@ -17,13 +18,13 @@ const message = (props) => {
       </div>
       <div className={styles.MessageContent}>
         <div className={styles.Username}>
-          narwhal_user12
+          {props.userData.username}
         </div>
         <div className={styles.Time}>
-          6:30 PM
+          {moment(props.message.create_date).calendar()}
         </div>
         <div className={styles.MessageText}>
-          {props.message}
+          {props.message.message_text}
         </div>
       </div>
       <div className={styles.MessageSeparator}></div>

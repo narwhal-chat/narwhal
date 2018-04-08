@@ -33,7 +33,7 @@
 .Message .MessageContent .Time {
   display: inline;
   font-size: 63%;
-  color: #636363;
+  color: rgba(99, 99, 99, 0.6);
 }
 
 .Message .MessageContent .MessageText {

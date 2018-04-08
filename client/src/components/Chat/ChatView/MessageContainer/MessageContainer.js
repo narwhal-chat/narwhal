@@ -17,7 +17,6 @@ class MessageContainer extends Component {
   }
 
   componentDidMount() {
-    console.log('mounted message container');
     this.props.onConnectSocket();
   }
 
@@ -51,6 +50,7 @@ class MessageContainer extends Component {
             topicName={this.props.activeTopic.name}
           />
           <Messages
+            userData={this.props.userData}
             messages={this.props.messages}
           />
           <MessageBar
@@ -69,6 +69,7 @@ class MessageContainer extends Component {
 
 const mapStateToProps = state => {
   return {
+    userData: state.auth.userData,
     messages: state.chat.messages,
     activeTopic: state.chat.activeTopic
   };

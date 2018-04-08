@@ -35,7 +35,7 @@ export {
   diconnectSocket,
   setSocket,
   messageSent,
-  messageReceived,
+  messagesReceived,
   fetchDiscover,
   fetchDiscoverSuccess,
   fetchDiscoverFail,

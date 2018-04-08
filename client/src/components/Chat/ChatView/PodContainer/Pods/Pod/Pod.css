@@ -30,8 +30,10 @@
 .Active {
   border-radius: 32%;
   opacity: 1;
+  transition: 0.2s;
 }
 
 .Inactive {
   opacity: 0.5;
+  transition: 0.2s;
 }

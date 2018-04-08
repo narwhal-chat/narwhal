@@ -19,8 +19,10 @@ class Messages extends Component {
   render() {
     let messages = this.props.messages.map((message) => {
       return (
-        <React.Fragment>
+        <React.Fragment
+          key={message.id}>
           <Message
+            userData={this.props.userData}
             message={message}
           />
           <div className={styles.MessageSeparator}></div>

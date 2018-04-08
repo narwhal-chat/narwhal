@@ -152,10 +152,10 @@ export const messageSent = (message) => {
   };
 };
 
-export const messageReceived = (message) => {
+export const messagesReceived = (messages) => {
   return {
-    type: actionTypes.MESSAGE_RECEIVED,
-    message: message
+    type: actionTypes.MESSAGES_RECEIVED,
+    messages: messages
   };
 };
 
