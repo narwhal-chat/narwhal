@@ -64,6 +64,7 @@ io.on('connection', socket => {
   });
 
   socket.on('JOIN_ROOM', (payload) => {
+    console.log('join room payload', payload);
     // Get the message history for the topic
     axios.get(`${MESSAGE_MICROSERVICE_URL}/history/${payload.topicId}`)
       .then((results) => {
