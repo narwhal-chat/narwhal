@@ -20,6 +20,7 @@ const connectSocket = () => {
 const subscribeSocket = (socket) => {
   return eventChannel(emit => {
     socket.on('INITIAL_MESSAGE_HISTORY', (payload) => {
+      console.log('initial message history', payload);
       emit(actions.messagesReceived(payload.messages));
     });
     socket.on('RECEIVE_MESSAGE', (payload) => {
@@ -203,7 +204,6 @@ export function* discoverClicked(action) {
     }
 
     yield put(actions.discoverActive());
-    // yield put(actions.diconnectSocket());
     yield put(push('/topics/@discover'));
   } catch (e) {
 
@@ -305,7 +305,14 @@ export function* connectSocketFlow() {
 export function* joinSocketRoom(socket) {
   while (true) {
     const payload = yield take(actionTypes.SET_ACTIVE_TOPIC);
+    const token = yield select(selectors.token);
     const socket = yield select(selectors.socket);
+    const results = yield axios.get(`/messages/history/${payload.topic.id}`, {
+      params: {
+        token: token
+      }
+    });
+    yield put(actions.messagesReceived(results.data));
     yield socket.emit('JOIN_ROOM', {
       topicId: payload.topic.id,
       room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
