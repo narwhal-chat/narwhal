@@ -75,7 +75,7 @@ io.on('connection', socket => {
     // Insert the message into the message microservice
     axios.post(`${MESSAGE_MICROSERVICE_URL}/new-message`, payload)
       .then((results) => {
-        io.to(payload.room).emit('RECEIVE_MESSAGE', {messages: [results.data] });
+        io.to(payload.room).emit('RECEIVE_MESSAGE', { message: results.data });
       })
       .catch((e) => {
         console.log(e);

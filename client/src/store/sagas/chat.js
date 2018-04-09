@@ -20,12 +20,10 @@ const connectSocket = () => {
 const subscribeSocket = (socket) => {
   return eventChannel(emit => {
     socket.on('INITIAL_MESSAGE_HISTORY', (payload) => {
-      console.log('initial message history', payload);
       emit(actions.messagesReceived(payload.messages));
     });
     socket.on('RECEIVE_MESSAGE', (payload) => {
-      console.log('received message', payload);
-      emit(actions.messagesReceived(payload.messages));
+      emit(actions.messagesReceived(payload.message));
     });
     socket.on('disconnect', e => {
 
@@ -312,7 +310,6 @@ export function* joinSocketRoom(socket) {
         token: token
       }
     });
-    console.log('history results', results);
     yield put(actions.messagesReceived(results.data));
     yield socket.emit('JOIN_ROOM', {
       topicId: payload.topic.id,
