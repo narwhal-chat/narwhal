@@ -22,7 +22,6 @@ class Messages extends Component {
         <React.Fragment
           key={message.id}>
           <Message
-            userData={this.props.userData}
             message={message}
           />
           <div className={styles.MessageSeparator}></div>
