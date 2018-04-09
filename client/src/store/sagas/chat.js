@@ -312,6 +312,7 @@ export function* joinSocketRoom(socket) {
         token: token
       }
     });
+    console.log('history results', results);
     yield put(actions.messagesReceived(results.data));
     yield socket.emit('JOIN_ROOM', {
       topicId: payload.topic.id,
