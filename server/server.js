@@ -14,7 +14,6 @@ const multer = require('multer');
 const PORT = process.env.PORT || 5000;
 const USER_MICROSERVICE_URL = process.env.USER_MICROSERVICE_URL || 'http://localhost:3033';
 const MESSAGE_MICROSERVICE_URL = process.env.MESSAGE_MICROSERVICE_URL ? process.env.MESSAGE_MICROSERVICE_URL + '/messages' : 'http://localhost:3335/messages';
-console.log('message microservice url', MESSAGE_MICROSERVICE_URL);
 
 // body-parser middleware
 app.use(bodyParser.json());
@@ -68,6 +67,7 @@ io.on('connection', socket => {
     // Get the message history for the topic
     axios.get(`${MESSAGE_MICROSERVICE_URL}/history/${payload.topicId}`)
       .then((results) => {
+        console.log('initial join history', results);
         io.emit('INITIAL_MESSAGE_HISTORY', { messages: results.data });
         socket.join(payload.room);
       })
