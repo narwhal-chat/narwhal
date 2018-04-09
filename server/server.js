@@ -82,6 +82,7 @@ io.on('connection', socket => {
   });
 
   socket.on('SEND_MESSAGE', (payload) => {
+    console.log('send message payload', payload);
     // Insert the message into the message microservice
     axios.post(`${MESSAGE_MICROSERVICE_URL}/new-message`, payload)
       .then((results) => {

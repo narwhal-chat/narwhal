@@ -23,6 +23,7 @@ const subscribeSocket = (socket) => {
       emit(actions.messagesReceived(payload.messages));
     });
     socket.on('RECEIVE_MESSAGE', (payload) => {
+      console.log('received message', payload);
       emit(actions.messagesReceived(payload.messages));
     });
     socket.on('disconnect', e => {
@@ -302,15 +303,12 @@ export function* connectSocketFlow() {
 }
 
 export function* joinSocketRoom(socket) {
-  const pods = yield select(selectors.pods);
-  if (pods.length) {
-    while (true) {
-      const payload = yield take(actionTypes.SET_ACTIVE_TOPIC);
-      const socket = yield select(selectors.socket);
-      yield socket.emit('JOIN_ROOM', {
-        topicId: payload.topic.id,
-        room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
-      });
-    }
+  while (true) {
+    const payload = yield take(actionTypes.SET_ACTIVE_TOPIC);
+    const socket = yield select(selectors.socket);
+    yield socket.emit('JOIN_ROOM', {
+      topicId: payload.topic.id,
+      room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
+    });
   }
 }
