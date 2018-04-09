@@ -18,7 +18,7 @@ const message = (props) => {
       </div>
       <div className={styles.MessageContent}>
         <div className={styles.Username}>
-          {props.userData.username}
+          {props.message.username}
         </div>
         <div className={styles.Time}>
           {moment(props.message.create_date).calendar()}
