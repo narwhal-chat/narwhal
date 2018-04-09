@@ -20,6 +20,7 @@ router.post('/new-message', async (req, res, next) => {
 });
 
 router.get('/history/:topicId', async (req, res, next) => {
+  console.log('hello sireeee');
   try {
     const results = await axios.get(`${MESSAGE_MICROSERVICE_URL}/history/${req.params.topicId}`);
     return res.json(results.data);
