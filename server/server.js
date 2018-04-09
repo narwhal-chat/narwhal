@@ -35,7 +35,7 @@ const routes = {
 };
 
 // Set static path
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
   app.use(express.static('client/build'));
 } else {
   app.use(express.static(__dirname + '/../client/build'));
