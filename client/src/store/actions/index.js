@@ -30,7 +30,12 @@ export {
   setActiveTopic,
   discoverClicked,
   discoverActive,
-  addMessage,
+  connectSocket,
+  connectSocketSuccess,
+  diconnectSocket,
+  setSocket,
+  messageSent,
+  messagesReceived,
   fetchDiscover,
   fetchDiscoverSuccess,
   fetchDiscoverFail,
@@ -38,5 +43,9 @@ export {
   fetchCategoriesSuccess,
   fetchCategoriesFail,
   setActiveCategory,
-  categoryClicked
+  categoryClicked,
+  joinPod,
+  joinPodFail,
+  searchDiscover,
+  updateSearchResults
 } from './chat';

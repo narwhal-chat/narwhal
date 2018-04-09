@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Dropzone from 'react-dropzone';
+import upload from 'superagent';
 
 import styles from './Create.css';
 import LeftArrow from 'react-icons/lib/io/android-arrow-back';
@@ -8,6 +10,7 @@ import * as actions from '../../../store/actions/index';
 
 class Create extends Component {
 	state = {
+		files: [],
 		showModal: false,
 		podName: '',
 		podNameError: {
@@ -31,11 +34,12 @@ class Create extends Component {
 		}
 	};
 
-	componentDidMount() {
-		console.log(this.props);
-		// this.props.fetchCategories();
+	onDrop = (files) => {
+		this.setState({
+			files: files,
+			avatar: files[0].preview
+		})
 	}
-
 
 	changeCategory = event => {
 		this.setState({ category: event.target.value })
@@ -111,13 +115,41 @@ class Create extends Component {
 				description: '',
 			});
 		} else {
-			this.props.createPod(
-				this.state.podName,
-				this.state.category,
-				this.state.description,
-				this.state.avatar
-			);
+			let image = this.state.files[0]
+			let uploadedImage = null;
 
+			if (this.state.avatar === '') {
+				this.props.createPod(
+					this.state.podName,
+					this.state.category,
+					this.state.description,
+					this.state.avatar
+				);
+			} else {
+				upload.post('/upload')
+				.attach('image', image)
+				.end((err, res) => {
+					if (err) console.log(err);
+					uploadedImage = res.text;
+					// this.setState({
+					// 	avatar: uploadedImage
+					// })
+					this.props.createPod(
+						this.state.podName,
+						this.state.category,
+						this.state.description,
+						uploadedImage
+					);
+			})
+			
+
+			// this.props.createPod(
+			// 	this.state.podName,
+			// 	this.state.category,
+			// 	this.state.description,
+			// 	this.state.avatar
+			// );
+			}
 			this.props.onRequestClose();
 		}
 	};
@@ -127,6 +159,7 @@ class Create extends Component {
 	};
 
 	render() {
+
 		if (this.state.showModal) {
 			return <ChooseCategory chooseCategory={this.chooseCategory} />;
 		}
@@ -145,8 +178,7 @@ class Create extends Component {
 			return <option key={category.id} className={styles.DropdownValue} value={category.id}>{category.name}</option>
 		})
 
-		return(
-			<form onSubmit={this.onSubmit} className={styles.Create}>
+		return <form onSubmit={this.onSubmit} className={styles.Create}>
 				<div className={styles.Header}>CREATE A POD</div>
 				<div className={styles.PodInfo}>
 					<div className={styles.PodLeft}>
@@ -163,7 +195,9 @@ class Create extends Component {
 							<label>CATEGORY</label>
 							<div className={styles.PodCategoryContainer}>
 								<select className={styles.PodCategory} onChange={this.changeCategory}>
-									<option value="" disabled selected hidden>Select a category</option>
+									<option value="" disabled selected hidden>
+										Select a category
+									</option>
 									{categories}
 								</select>
 							</div>
@@ -179,7 +213,14 @@ class Create extends Component {
 								</div> : null}
 						</div>
 					</div>
-					<div className={styles.Avatar}>{avatar}</div>
+					<div>
+						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
+							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview}/> : avatar}
+						</Dropzone>
+						<br/>
+						<div className={styles.UploadText}>Click to upload image</div>
+						{/* {avatar} */}
+					</div>
 				</div>
 				<div className={styles.Footer}>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
@@ -190,8 +231,7 @@ class Create extends Component {
 						Create
 					</button>
 				</div>
-			</form>
-		)
+			</form>;
 	}
 }
 

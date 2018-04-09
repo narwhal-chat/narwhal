@@ -19,7 +19,8 @@ class Messages extends Component {
   render() {
     let messages = this.props.messages.map((message) => {
       return (
-        <React.Fragment>
+        <React.Fragment
+          key={message.id}>
           <Message
             message={message}
           />

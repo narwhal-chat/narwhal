@@ -3,7 +3,7 @@ import styles from './ResultsFound.css';
 
 const resultsFound = (props) => {
   return(
-    <div className={styles.resultsFound}>56 Pods Found</div>
+    <div className={styles.resultsFound}>{props.resultCount()} Pods Found</div>
   )
 }
 

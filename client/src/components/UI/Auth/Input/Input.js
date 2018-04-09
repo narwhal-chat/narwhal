@@ -4,7 +4,6 @@ import styles from './Input.css';
 
 const input = (props) => {
   let inputElement = null;
-  console.log(props);
   inputElement = (
     <input
       type="text"

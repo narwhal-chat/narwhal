@@ -10,7 +10,7 @@ import LogoAuth from '../LogoAuth/LogoAuth';
 
 class Login extends Component {
 	state = {
-		//Form input fields
+		// Form input fields
 		controls: {
 			username: {
 				elementType: 'input',
@@ -53,7 +53,7 @@ class Login extends Component {
 			);
 	};
 
-	//updating the form fields for each input form.
+	// Updating the form fields for each input form
 	inputChangedHandler = (event, controlName) => {
 		const updatedControl = {
 			...this.state.controls,
@@ -91,7 +91,7 @@ class Login extends Component {
 			</div>
 		));
 
-		//Checks to see if we get an error message back from the server.
+		// Checks to see if we get an error message back from the server
 		let errorMessage = <br/>;
 
 		if (this.props.error) {

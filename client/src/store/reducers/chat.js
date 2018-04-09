@@ -7,9 +7,12 @@ const initialState = {
     topics: [],
     messages: [],
     categories: [],
+    search: '',
+    searchResults: [],
     activePod: null,
     activeTopic: null,
-    activeCategory: null
+    activeCategory: 'trending',
+    socket: null
 };
 
 const fetchPodsSuccess = (state, action) => {
@@ -51,6 +54,7 @@ const setActivePod = (state, action) => {
 const setActiveTopic = (state, action) => {
   return updateObject(state, {
     activeTopic: action.topic,
+    messages: [],
     activeCategory: null
   });
 };
@@ -58,13 +62,26 @@ const setActiveTopic = (state, action) => {
 const discoverActive = (state, action) => {
   return updateObject(state, {
     activePod: null,
-    activeTopic: null
+    activeTopic: null,
+    activeCategory: 'trending'
   });
 };
 
-const addMessage = (state, action) => {
+const setSocket = (state, action) => {
   return updateObject(state, {
-    messages: [...state.messages, action.message]
+    socket: action.socket
+  })
+};
+
+const disconnectSocket = (state, action) => {
+  return updateObject(state, {
+    socket: null
+  });
+};
+
+const messagesReceived = (state, action) => {
+  return updateObject(state, {
+    messages: [...state.messages, ...action.messages]
   });
 };
 
@@ -89,9 +106,24 @@ const fetchCategoriesFail = (state, action) => {
 }
 
 const setActiveCategory = (state, action) => {
-  console.log(action);
   return updateObject(state, {
     activeCategory: action.activeCategory
+  })
+}
+
+const joinPodFail = (state, action) => {
+  return updateObject(state);
+}
+
+const searchDiscover = (state, action) => {
+  return updateObject(state, {
+    search: action.term
+  })
+}
+
+const updateSearchResults = (state, action) => {
+  return updateObject(state, {
+    searchResults: action.results
   })
 }
 
@@ -106,12 +138,17 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_ACTIVE_POD: return setActivePod(state, action);
     case actionTypes.SET_ACTIVE_TOPIC: return setActiveTopic(state, action);
     case actionTypes.DISCOVER_ACTIVE: return discoverActive(state, action);
-    case actionTypes.ADD_MESSAGE: return addMessage(state, action);
+    case actionTypes.SET_SOCKET: return setSocket(state, action);
+    case actionTypes.DISCONNECT_SOCKET: return disconnectSocket(state, action);
+    case actionTypes.MESSAGES_RECEIVED: return messagesReceived(state, action);
     case actionTypes.FETCH_DISCOVER_SUCCESS: return fetchDiscoverSuccess(state, action);
     case actionTypes.FETCH_DISCOVER_FAIL: return fetchDiscoverFail(state, action);
     case actionTypes.FETCH_CATEGORIES_SUCCESS: return fetchCategoriesSuccess(state, action);
     case actionTypes.FETCH_CATEGORIES_FAIL: return fetchCategoriesFail(state, action);
     case actionTypes.SET_ACTIVE_CATEGORY: return setActiveCategory(state, action);
+    case actionTypes.JOIN_POD_FAIL: return joinPodFail(state, action);
+    case actionTypes.SEARCH_DISCOVER: return searchDiscover(state, action);
+    case actionTypes.UPDATE_SEARCH_RESULTS: return updateSearchResults(state, action);
     default: return state;
   }
 };

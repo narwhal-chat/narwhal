@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import io from 'socket.io-client';
 
 import styles from './MessageContainer.css';
 import MessageContainerHeader from './MessageContainerHeader/MessagerContainerHeader';
@@ -13,15 +12,16 @@ class MessageContainer extends Component {
     super(props);
 
     this.state = {
-      endpoint: '/',
       message: ''
     };
+  }
 
-    this.socket = io(this.state.endpoint);
+  componentDidMount() {
+    this.props.onConnectSocket();
+  }
 
-    this.socket.on('RECEIVE_MESSAGE', (message) => {
-      this.props.onAddMessage(message);
-    });
+  componentWillUnmount() {
+    this.props.onDisconnectSocket();
   }
 
   onMessageChange = (message) => {
@@ -32,7 +32,7 @@ class MessageContainer extends Component {
 
   onSendMessage = (event) => {
     if (event.key === 'Enter') {
-      this.socket.emit('SEND_MESSAGE', this.state.message);
+      this.props.onSendMessage(this.state.message);
       this.setState({
         message: ''
       });
@@ -75,7 +75,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddMessage: (message) => dispatch(actions.addMessage(message))
+    onConnectSocket: () => dispatch(actions.connectSocket()),
+    onDisconnectSocket: () => dispatch(actions.diconnectSocket()),
+    onSendMessage: (message) => dispatch(actions.messageSent(message))
   };
 };
 

@@ -131,7 +131,6 @@
 
 .Create .Avatar {
   display: grid;
-  margin-top: 40px;
   margin-right: 40px;
   width: 180px;
   height: 180px;
@@ -139,9 +138,22 @@
   background-color: #DADADA;
   justify-items: center;
   align-items: center;
-  border: 2px solid #888888;
+  border: 1px solid #888888;
   color: rgb(80, 89, 178);
   font-size: 600%;
+}
+
+.Create .UploadText {
+  font-size: 60%;
+  text-align: center;
+  margin-right: 40px;
+  background-color: #FFF
+}
+
+.Create .Image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
 }
 
 .Create .Footer {

@@ -23,7 +23,7 @@ class DiscoverCategoriesContainer extends Component {
 				<div className={styles.Content}>
 					<div className={styles.Header}>Discover</div>
 					<User openModal={this.props.openEditProfileModal}/>
-					<DiscoverCategories categoryClick={this.onCategoryClick.bind(this)} categories={this.props.categories} discover={this.props.discover}/>
+					<DiscoverCategories activeCategory={this.props.activeCategory} categoryClick={this.onCategoryClick.bind(this)} categories={this.props.categories} discover={this.props.discover}/>
 				</div>
 			</div>
 		);
@@ -32,7 +32,8 @@ class DiscoverCategoriesContainer extends Component {
 
 const mapStateToProps = state => {
 	return {
-		categories: state.chat.categories
+		categories: state.chat.categories,
+		activeCategory: state.chat.activeCategory
 	}
 }
 
