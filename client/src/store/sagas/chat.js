@@ -155,7 +155,7 @@ export function* podClicked(action) {
 
     // Prevent render when a user selects the currently active pod
     const previousPod = yield select(selectors.activePod);
-    if (previousPod.id !== action.pod.id) {
+    if (!previousPod || previousPod.id !== action.pod.id) {
       // If the socket hasn't already been established, create the socket and wait for a success action before continuing
       const socket = yield(select(selectors.socket));
       if (!socket) {
