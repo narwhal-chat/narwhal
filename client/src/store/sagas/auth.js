@@ -1,6 +1,7 @@
-import { put } from 'redux-saga/effects';
+import { call, put, take, select, fork, cancel } from 'redux-saga/effects';
 import axios from 'axios';
 import * as actions from '../actions/index';
+import * as selectors from './selectors'
 
 export function* authCheckState(action) {
 	try {
@@ -54,17 +55,19 @@ export function* login(action) {
 }
 
 export function* editProfile(action) {
-	let editProfile = {
-		username: action.username,
-		newUsername: action.newUsername,
-		email: action.email,
-		avatar: action.avatar,
-		password: action.password
-	}
-	console.log('im getting to saga', editProfile)
 	try {
-		const response = yield axios.post('/editProfile', editProfile)
+		const token = yield select(selectors.token);
+		const response = yield axios.post('/editProfile', {
+			username: action.username,
+			newUsername: action.newUsername,
+			email: action.email,
+			avatar: action.avatar,
+			password: action.password,
+			token: token
+		})
 		// yield put(actions.editProfileReset());
+		yield localStorage.setItem('token', response.data.token);
+		yield localStorage.setItem('userData', JSON.stringify(response.data.user));
 		yield put(actions.editProfileSuccess(response.data.token, response.data.user));
 		yield put(actions.editProfileReset());
 	} catch(error) {

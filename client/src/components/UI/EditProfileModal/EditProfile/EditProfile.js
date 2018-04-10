@@ -35,10 +35,8 @@ class EditProfile extends Component {
 	// componentWillReceiveProps(nextProps) {
 	// 	if (this.props.error !== nextProps.error) {
 	// 		this.setState({
-	// 			username: '',
-	// 			email: '',
-	// 			password: '',
-	// 			confirmpw: ''
+	// 			files: [],
+	// 			password: ''
 	// 		})
 	// 	}
 	// }
@@ -145,7 +143,8 @@ class EditProfile extends Component {
 					this.props.userData.username,
 					this.state.username,
 					this.state.email,
-					this.state.password
+					this.state.password,
+					this.props.userData.avatar
 				);
 			} else {
 				upload.post('/uploadUser')
@@ -163,7 +162,7 @@ class EditProfile extends Component {
 					)
 				})
 			}
-			console.log(this.props)
+			this.props.closeModal();
 		}
 	};
 
@@ -222,6 +221,7 @@ class EditProfile extends Component {
 						</div>
 					</div>
 					<div>
+						{console.log(this.props.userData)}
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
 							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : <img className={styles.Image} src={this.props.userData.avatar} />}
 						</Dropzone>
@@ -259,7 +259,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		editProfile: (username, newUsername, email, avatar, password, token) => dispatch(actions.editProfile(username, newUsername, email, avatar, password, token)),
+		editProfile: (username, newUsername, email, avatar, password) => dispatch(actions.editProfile(username, newUsername, email, avatar, password)),
 		authLogout: () => dispatch(actions.authLogout())
 	};
 };
