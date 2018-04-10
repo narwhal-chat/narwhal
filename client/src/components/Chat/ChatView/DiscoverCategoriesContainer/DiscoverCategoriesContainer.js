@@ -12,8 +12,7 @@ class DiscoverCategoriesContainer extends Component {
 	}
 
 	onCategoryClick(category) {
-		console.log('hello', category)
-		this.props.categoryClicked(category)
+		this.props.categoryClicked(category);
 	}
 
 	render() {
