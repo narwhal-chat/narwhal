@@ -46,6 +46,12 @@ export const fetchTopics = (podId, initialTopicId) => {
   };
 };
 
+export const fetchTopicsStarted = () => {
+  return {
+    type: actionTypes.FETCH_TOPICS_STARTED
+  };
+};
+
 export const fetchTopicsSuccess = (topics) => {
   return {
       type: actionTypes.FETCH_TOPICS_SUCCESS,

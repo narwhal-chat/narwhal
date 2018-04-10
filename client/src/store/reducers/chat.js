@@ -5,6 +5,7 @@ const initialState = {
     pods: [],
     discover: [],
     topics: [],
+    topicsLoading: false,
     messages: [],
     categories: [],
     search: '',
@@ -30,9 +31,21 @@ const createPodFail = (state, action) => {
   return updateObject(state);
 };
 
+const fetchTopicsStarted = (state, action) => {
+  return updateObject(state, {
+    topicsLoading: true
+  });
+};
+
 const fetchTopicsSuccess = (state, action) => {
   return updateObject(state, {
     topics: action.topics
+  });
+};
+
+const fetchTopicsFinished = (state, action) => {
+  return updateObject(state, {
+    topicsLoading: false
   });
 };
 
@@ -132,7 +145,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_PODS_SUCCESS: return fetchPodsSuccess(state, action);
     case actionTypes.FETCH_PODS_FAIL: return fetchPodsFail(state, action);
     case actionTypes.CREATE_POD_FAIL: return createPodFail(state, action);
+    case actionTypes.FETCH_TOPICS_STARTED: return fetchTopicsStarted(state, action);
     case actionTypes.FETCH_TOPICS_SUCCESS: return fetchTopicsSuccess(state, action);
+    case actionTypes.FETCH_TOPICS_FINISHED: return fetchTopicsFinished(state, action);
     case actionTypes.FETCH_TOPICS_FAIL: return fetchTopicsFail(state, action);
     case actionTypes.CREATE_TOPIC_FAIL: return createTopicFail(state, action);
     case actionTypes.SET_ACTIVE_POD: return setActivePod(state, action);

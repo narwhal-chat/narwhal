@@ -19,6 +19,7 @@ export {
   createPod,
   createPodFail,
   fetchTopics,
+  fetchTopicsStarted,
   fetchTopicsSuccess,
   fetchTopicsFail,
   fetchTopicsFinished,

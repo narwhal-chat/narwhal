@@ -15,24 +15,29 @@ class TopicContainer extends Component {
   render() {
     let topicContainer = null;
 
-    if (this.props.topics && this.props.activePod && this.props.topics && this.props.activeTopic) {
-      topicContainer = (
-        <div className={styles.Content}>
-          <PodHeader
-            name={this.props.activePod.display_name}
-          />
-          <User
-            openModal={this.props.openEditProfileModal}
-          />
-          <Topics
-            topics={this.props.topics}
-            activeTopic={this.props.activeTopic}
-            clickedTopic={this.props.onTopicClicked}
-            openTopicModal={this.props.openTopicModal}
-          />
-        </div>
-      );
+    if (this.props.topicsLoading) {
+      topicContainer = <div className={styles.Loading}></div>
+    } else {
+      if (this.props.topics && this.props.activePod && this.props.topics && this.props.activeTopic) {
+        topicContainer = (
+          <div className={styles.Content}>
+            <PodHeader
+              name={this.props.activePod.display_name}
+            />
+            <User
+              openModal={this.props.openEditProfileModal}
+            />
+            <Topics
+              topics={this.props.topics}
+              activeTopic={this.props.activeTopic}
+              clickedTopic={this.props.onTopicClicked}
+              openTopicModal={this.props.openTopicModal}
+            />
+          </div>
+        );
+      }
     }
+
 
     return (
       <div className={styles.TopicContainer}>
@@ -45,6 +50,7 @@ class TopicContainer extends Component {
 const mapStateToProps = state => {
   return {
     topics: state.chat.topics,
+    topicsLoading: state.chat.topicsLoading,
     activePod: state.chat.activePod,
     activeTopic: state.chat.activeTopic
   };
