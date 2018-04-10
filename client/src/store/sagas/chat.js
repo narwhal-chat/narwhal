@@ -151,8 +151,6 @@ export function* createTopic(action) {
 
 export function* podClicked(action) {
   try {
-    // yield put(actions.authCheckState());
-
     // Prevent render when a user selects the currently active pod
     const previousPod = yield select(selectors.activePod);
     if (!previousPod || previousPod.id !== action.pod.id) {
