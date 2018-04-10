@@ -32,10 +32,12 @@ class MessageContainer extends Component {
 
   onSendMessage = (event) => {
     if (event.key === 'Enter') {
-      this.props.onSendMessage(this.state.message);
-      this.setState({
-        message: ''
-      });
+      if (this.state.message.trim() !== '') {
+        this.props.onSendMessage(this.state.message);
+        this.setState({
+          message: ''
+        });
+      }
     }
   }
 
