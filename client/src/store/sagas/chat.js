@@ -178,15 +178,17 @@ export function* podClicked(action) {
 
 export function* topicClicked(action) {
   try {
-    // Leave the previous topic's socket room
     const previousTopic = yield(select(selectors.activeTopic));
-    const socket = yield(select(selectors.socket));
-    if (previousTopic && socket) {
-      socket.emit('LEAVE_ROOM', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
+    if (previousTopic.id !== action.topic.id) {
+      // Leave the previous topic's socket room
+      const socket = yield(select(selectors.socket));
+      if (previousTopic && socket) {
+        socket.emit('LEAVE_ROOM', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
+      }
+  
+      yield put(actions.setActiveTopic(action.topic));
+      yield put(push(`/topics/${action.topic.pod_id}/${action.topic.id}`));
     }
-
-    yield put(actions.setActiveTopic(action.topic));
-    yield put(push(`/topics/${action.topic.pod_id}/${action.topic.id}`));
   } catch (e) {
 
   }
