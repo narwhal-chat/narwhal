@@ -13,7 +13,7 @@ const DiscoverCategory = props => {
 	return(
     <div 
       className={categoryName}>
-      <div className={styles.CategoryName} value={props.category.name} onClick={() => props.categoryClick(props.category.name)}># {props.category.name}</div>
+      <div className={styles.CategoryName} value={props.category.name} onClick={() => props.categoryClick(props.category.name)}># {props.category.name.toLowerCase()}</div>
     </div>
   )
 };
