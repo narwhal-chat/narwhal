@@ -19,15 +19,6 @@ const pod = (props) => {
     backgroundImage: `url('${props.pod.avatar}')`
   }
 
-  let avatarLetter = null;
-
-  // If no avatar was provided, use a default background color with the first letter of the pod display name
-  if (!props.pod.avatar) {
-    avatarLetter = (
-      <div className={styles.AvatarLetter}>{props.pod.display_name[0].toUpperCase()}</div>
-    );
-  }
-
   return (
     <React.Fragment>
       <div
@@ -37,7 +28,6 @@ const pod = (props) => {
         draggable="false"
         data-tip
         data-for={'' + props.pod.id}>
-        {avatarLetter}
       </div>
       <ReactTooltip
         id={'' + props.pod.id}
