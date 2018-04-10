@@ -32,22 +32,22 @@ class EditProfile extends Component {
 		avatar: ''
 	};
 
-	componentWillReceiveProps(nextProps) {
-		if (this.props.error !== nextProps.error) {
-			this.setState({
-				username: '',
-				email: '',
-				password: '',
-				confirmpw: ''
-			})
-		}
-	}
+	// componentWillReceiveProps(nextProps) {
+	// 	if (this.props.error !== nextProps.error) {
+	// 		this.setState({
+	// 			username: '',
+	// 			email: '',
+	// 			password: '',
+	// 			confirmpw: ''
+	// 		})
+	// 	}
+	// }
 
-	componentDidUpdate() {
-		if (this.props.error === false) {
-			this.props.closeModal();
-		}
-	}
+	// componentDidUpdate() {
+	// 	if (this.props.error === false) {
+	// 		this.props.closeModal();
+	// 	}
+	// }
 
 	onDrop = (files) => {
 		this.setState({
@@ -65,16 +65,6 @@ class EditProfile extends Component {
 				passwordError: {
 					error: true,
 					message: 'Password is required'
-				}
-			});
-		}
-
-		if (this.state.confirmpw !== this.state.password) {
-			isError = true;
-			this.setState({
-				confirmpwError: {
-					error: true,
-					message: 'Password does not match'
 				}
 			});
 		}
@@ -136,32 +126,26 @@ class EditProfile extends Component {
 			passwordError: {
 				error: false,
 				message: ''
-			},
-			confirmpwError: {
-				error: false,
-				message: ''
 			}
 		});
 
 		let err = this.validate()
 
 		if (err) {
+			console.log(err);
 			this.setState({
-				username: '',
-				email: '',
-				password: '',
-				confirmpw: ''
+				password: ''
 			})
 		} else {
 			let image = this.state.files[0];
+			console.log('image', image);
 			let uploadedImage = null;
 			if (this.state.avatar === '') {
 				this.props.editProfile(
 					this.props.userData.username,
 					this.state.username,
 					this.state.email,
-					this.state.password,
-					this.props.token
+					this.state.password
 				);
 			} else {
 				upload.post('/uploadUser')
@@ -169,15 +153,17 @@ class EditProfile extends Component {
 				.end((err, res) => {
 					if (err) console.log(err);
 					uploadedImage = res.text;
+					console.log(uploadedImage);
 					this.props.editProfile(
 						this.props.userData.username,
 						this.state.username,
 						this.state.email,
-						this.state.password,
-						this.props.token
+						uploadedImage,
+						this.state.password
 					)
 				})
 			}
+			console.log(this.props)
 		}
 	};
 
@@ -191,6 +177,8 @@ class EditProfile extends Component {
 	}
 
 	render() {
+		let avatar = this.props.userData.avatar;
+
 		return <form onSubmit={this.verifyOnSubmit} className={styles.EditProfile}>
 				<div className={styles.Header}>
 					<div className={styles.HeaderTitle}>EDIT PROFILE</div>
@@ -235,7 +223,7 @@ class EditProfile extends Component {
 					</div>
 					<div>
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
-							{/* {this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : avatar} */}
+							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : <img className={styles.Image} src={this.props.userData.avatar} />}
 						</Dropzone>
 						<br />
 						<div className={styles.UploadText}>Click to upload image</div>
@@ -263,7 +251,6 @@ class EditProfile extends Component {
 const mapStateToProps = state => {
 	return {
 		userData: state.auth.userData,
-		token: state.auth.token,
 		error: state.auth.error,
 		message: state.auth.message,
 		errorType: state.auth.errorType
@@ -272,7 +259,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		editProfile: (username, newUsername, email, password, token) => dispatch(actions.editProfile(username, newUsername, email, password, token)),
+		editProfile: (username, newUsername, email, avatar, password, token) => dispatch(actions.editProfile(username, newUsername, email, avatar, password, token)),
 		authLogout: () => dispatch(actions.authLogout())
 	};
 };

@@ -89,9 +89,15 @@
   background-color: #DADADA;
   justify-items: center;
   align-items: center;
-  border: 1px solid #888888;
+  /* border: 1px solid #888888; */
   color: rgb(80, 89, 178);
   font-size: 600%;
+}
+
+.EditProfile .Image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
 }
 
 .EditProfile .UploadText {

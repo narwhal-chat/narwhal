@@ -174,7 +174,7 @@ app.post('/uploadUser', upload.single('image'), (req, res, next) => {
 		},
 		(err, data) => {
 			if (err) {
-				console.log(err);
+				console.log('error in upload', err);
 				return res.status(400).send(err);
 			}
 			return res.status(200).send(data.Location);
@@ -191,14 +191,12 @@ app.use((req, res, next) => {
         res.status(403).json({
           message: "Token expired"
         });
-      // res.status(403).render('/login');
       } else {
         req.decoded=decod;
         next();
       }
     });
   } else {
-    console.log('token expired');
     res.status(403).json({
       message:"No token"
     });

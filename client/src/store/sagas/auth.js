@@ -35,7 +35,7 @@ export function* auth(action) {
 		const response = yield axios.post('/register', authData)
 
 		yield localStorage.setItem('token', response.data.token);
-		yield localStorage.setItem('userData', response.data.user);
+		yield localStorage.setItem('userData', JSON.stringify(response.data.user));
 		yield put(actions.authSuccess(response.data.token, response.data.user));
 	} catch (error) {
 		yield put(actions.authFail(error.response.data));
@@ -59,15 +59,16 @@ export function* editProfile(action) {
 		newUsername: action.newUsername,
 		email: action.email,
 		avatar: action.avatar,
-		password: action.password,
-		token: action.token
+		password: action.password
 	}
+	console.log('im getting to saga', editProfile)
 	try {
 		const response = yield axios.post('/editProfile', editProfile)
 		// yield put(actions.editProfileReset());
 		yield put(actions.editProfileSuccess(response.data.token, response.data.user));
 		yield put(actions.editProfileReset());
 	} catch(error) {
+		console.log(error);
 		yield put(actions.editProfileReset());
 		yield put(actions.editProfileFail(error.response.data.error, error.response.data.message, error.response.data.errorType));
 		
