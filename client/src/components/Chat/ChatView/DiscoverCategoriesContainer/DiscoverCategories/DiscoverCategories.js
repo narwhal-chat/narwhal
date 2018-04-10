@@ -10,9 +10,9 @@ const DiscoverCategories = (props) => {
 			<div className={styles.Title}>Categories</div>
 			<div className={styles.Clearfix}></div>
 				<DiscoverCategory activeCategory={props.activeCategory} category={{name: 'trending'}} categoryClick={props.categoryClick}/>
-			{props.categories.map((categoryData) => {
-				return <DiscoverCategory key={categoryData.id} activeCategory={props.activeCategory} category={categoryData} categoryClick={props.categoryClick}/>
-			})}
+				{props.categories.map((categoryData) => {
+					return <DiscoverCategory key={categoryData.id} activeCategory={props.activeCategory} category={categoryData} categoryClick={props.categoryClick}/>;
+				})}
 		</div>
 	)
 };
