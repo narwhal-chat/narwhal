@@ -79,12 +79,13 @@ export const editProfileFail = (error, message, errorType) => {
 	};
 };
 
-export const editProfile = (username, newUsername, email, password, token) => {
+export const editProfile = (username, newUsername, email, avatar, password, token) => {
     return {
         type: actionTypes.EDIT_PROFILE,
         username: username,
         newUsername: newUsername,
         email: email,
+        avatar: avatar,
         password: password,
         token: token
     }

@@ -126,7 +126,7 @@ class Create extends Component {
 					this.state.avatar
 				);
 			} else {
-				upload.post('/upload')
+				upload.post('/uploadPod')
 				.attach('image', image)
 				.end((err, res) => {
 					if (err) console.log(err);

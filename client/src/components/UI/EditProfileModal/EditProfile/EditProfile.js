@@ -28,7 +28,8 @@ class EditProfile extends Component {
 		confirmpwError: {
 			error: false,
 			message: ''
-		}
+		},
+		avatar: ''
 	};
 
 	componentWillReceiveProps(nextProps) {
@@ -152,7 +153,31 @@ class EditProfile extends Component {
 				confirmpw: ''
 			})
 		} else {
-			this.props.editProfile(this.props.userData.username, this.state.username, this.state.email, this.state.password, this.props.token);
+			let image = this.state.files[0];
+			let uploadedImage = null;
+			if (this.state.avatar === '') {
+				this.props.editProfile(
+					this.props.userData.username,
+					this.state.username,
+					this.state.email,
+					this.state.password,
+					this.props.token
+				);
+			} else {
+				upload.post('/uploadUser')
+				.attach('image', image)
+				.end((err, res) => {
+					if (err) console.log(err);
+					uploadedImage = res.text;
+					this.props.editProfile(
+						this.props.userData.username,
+						this.state.username,
+						this.state.email,
+						this.state.password,
+						this.props.token
+					)
+				})
+			}
 		}
 	};
 

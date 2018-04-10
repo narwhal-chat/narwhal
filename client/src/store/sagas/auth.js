@@ -58,6 +58,7 @@ export function* editProfile(action) {
 		username: action.username,
 		newUsername: action.newUsername,
 		email: action.email,
+		avatar: action.avatar,
 		password: action.password,
 		token: action.token
 	}
