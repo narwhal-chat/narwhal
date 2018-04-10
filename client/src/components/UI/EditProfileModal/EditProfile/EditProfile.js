@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Dropzone from 'react-dropzone';
+import upload from 'superagent';
 
 import styles from './EditProfile.css';
 import * as actions from '../../../../store/actions/index';
 
 class EditProfile extends Component {
 	state = {
+		files: [],
 		username: this.props.userData.username,
 		usernameError: {
 			error: false,
@@ -43,6 +46,13 @@ class EditProfile extends Component {
 		if (this.props.error === false) {
 			this.props.closeModal();
 		}
+	}
+
+	onDrop = (files) => {
+		this.setState({
+			files: files,
+			avatar: files[0].preview
+		})
 	}
 
 
@@ -166,35 +176,44 @@ class EditProfile extends Component {
 					</div>
 				</div>
 				<div className={styles.Content}>
-					<div>
-						<label>USERNAME</label>
-						<input className={styles.InputForm} type="text" autoFocus="autofocus" value={this.state.username} placeholder="" name="username" onChange={this.handleChange} />
-						{this.state.usernameError.error ? <div className={styles.ErrorMessage}>
-								{this.state.usernameError.message}
-							</div> : null}
-						{this.props.errorType === 'username' ? <div className={styles.ErrorMessage}>
-								{this.props.message}
-							</div> : null}
+					<div className={styles.ProfileLeft}>
+						<div>
+							<label>USERNAME</label>
+							<input className={styles.InputForm} type="text" autoFocus="autofocus" value={this.state.username} placeholder="" name="username" onChange={this.handleChange} />
+							{this.state.usernameError.error ? <div className={styles.ErrorMessage}>
+									{this.state.usernameError.message}
+								</div> : null}
+							{this.props.errorType === 'username' ? <div className={styles.ErrorMessage}>
+									{this.props.message}
+								</div> : null}
+						</div>
+						<div>
+							<label>EMAIL ADDRESS</label>
+							<input className={styles.InputForm} type="email" value={this.state.email} placeholder="" name="email" onChange={this.handleChange} />
+							{this.state.emailError.error ? <div className={styles.ErrorMessage}>
+									{this.state.emailError.message}
+								</div> : null}
+							{this.props.errorType === 'email' ? <div className={styles.ErrorMessage}>
+									{this.props.message}
+								</div> : null}
+						</div>
+						<div>
+							<label>CURRENT PASSWORD</label>
+							<input className={styles.InputForm} type="password" value={this.state.password} placeholder="" name="password" onChange={this.handleChange} />
+							{this.state.passwordError.error ? <div className={styles.ErrorMessage}>
+									{this.state.passwordError.message}
+								</div> : null}
+							{this.props.errorType === 'password' ? <div className={styles.ErrorMessage}>
+									{this.props.message}
+								</div> : null}
+						</div>
 					</div>
 					<div>
-						<label>EMAIL ADDRESS</label>
-						<input className={styles.InputForm} type="email" value={this.state.email} placeholder="" name="email" onChange={this.handleChange} />
-						{this.state.emailError.error ? <div className={styles.ErrorMessage}>
-								{this.state.emailError.message}
-							</div> : null}
-						{this.props.errorType === 'email' ? <div className={styles.ErrorMessage}>
-								{this.props.message}
-							</div> : null}
-					</div>
-					<div>
-						<label>CURRENT PASSWORD</label>
-						<input className={styles.InputForm} type="password" value={this.state.password} placeholder="" name="password" onChange={this.handleChange} />
-						{this.state.passwordError.error ? <div className={styles.ErrorMessage}>
-								{this.state.passwordError.message}
-							</div> : null}
-						{this.props.errorType === 'password' ? <div className={styles.ErrorMessage}>
-								{this.props.message}
-							</div> : null}
+						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
+							{/* {this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : avatar} */}
+						</Dropzone>
+						<br />
+						<div className={styles.UploadText}>Click to upload image</div>
 					</div>
 					{/* <div>
 						<label>CONFIRM PASSWORD</label>
