@@ -34,6 +34,10 @@ class Create extends Component {
 		}
 	};
 
+	componentDidMount() {
+		console.log(this.props.category);
+	}
+
 	onDrop = (files) => {
 		this.setState({
 			files: files,
@@ -165,14 +169,19 @@ class Create extends Component {
 		}
 
 		let category = 'Select a category';
+		let avatar = '';
 		if (this.state.category !== '') {
 			category = this.state.category;
+			let categoryAvatar = this.props.category.filter(avatar => {
+				return category == avatar.id
+			})
+			avatar = <img className={styles.Image} src={categoryAvatar[0].default_category_avatar} />
 		}
 
-		let avatar = '';
-		if (this.state.podName !== '') {
-			avatar = this.state.podName.charAt(0).toUpperCase();
-		}
+		// let avatar = '';
+		// if (this.state.podName !== '') {
+		// 	avatar = this.state.podName.charAt(0).toUpperCase();
+		// }
 
 		let categories = this.props.categories.map(category => {
 			return <option key={category.id} className={styles.DropdownValue} value={category.id}>{category.name}</option>
@@ -215,11 +224,10 @@ class Create extends Component {
 					</div>
 					<div>
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
-							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview}/> : avatar}
+							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : avatar}
 						</Dropzone>
-						<br/>
+						<br />
 						<div className={styles.UploadText}>Click to upload image</div>
-						{/* {avatar} */}
 					</div>
 				</div>
 				<div className={styles.Footer}>
@@ -237,7 +245,7 @@ class Create extends Component {
 
 const mapStateToProps = state => {
 	return {
-		// categories: state.chat.categories
+		category: state.chat.categories
 	};
 };
 
