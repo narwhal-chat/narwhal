@@ -152,7 +152,6 @@ class EditProfile extends Component {
 				.end((err, res) => {
 					if (err) console.log(err);
 					uploadedImage = res.text;
-					console.log(uploadedImage);
 					this.props.editProfile(
 						this.props.userData.username,
 						this.state.username,
@@ -221,20 +220,12 @@ class EditProfile extends Component {
 						</div>
 					</div>
 					<div>
-						{console.log(this.props.userData)}
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
 							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : <img className={styles.Image} src={this.props.userData.avatar} />}
 						</Dropzone>
 						<br />
 						<div className={styles.UploadText}>Click to upload image</div>
 					</div>
-					{/* <div>
-						<label>CONFIRM PASSWORD</label>
-						<input className={styles.InputForm} type="password" value={this.state.confirmpw} placeholder="" name="confirmpw" onChange={this.handleChange} />
-						{this.state.confirmpwError.error ? <div className={styles.ErrorMessage}>
-								{this.state.confirmpwError.message}
-							</div> : null}
-					</div> */}
 				</div>
 				<div className={styles.Footer}>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
