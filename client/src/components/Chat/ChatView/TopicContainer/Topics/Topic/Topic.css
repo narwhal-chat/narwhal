@@ -10,6 +10,10 @@
 .Topic .TopicName {
   padding: 0 8px;
   text-align: left;
+  -webkit-user-select: none;    
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .Topic:hover {
