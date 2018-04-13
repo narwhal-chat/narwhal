@@ -46,12 +46,6 @@ export const fetchTopics = (podId, initialTopicId) => {
   };
 };
 
-export const fetchTopicsStarted = () => {
-  return {
-    type: actionTypes.FETCH_TOPICS_STARTED
-  };
-};
-
 export const fetchTopicsSuccess = (topics) => {
   return {
       type: actionTypes.FETCH_TOPICS_SUCCESS,
@@ -63,12 +57,6 @@ export const fetchTopicsFail = (error) => {
   return {
       type: actionTypes.FETCH_TOPICS_FAIL,
       error: error
-  };
-};
-
-export const fetchTopicsFinished = () => {
-  return {
-    type: actionTypes.FETCH_TOPICS_FINISHED
   };
 };
 

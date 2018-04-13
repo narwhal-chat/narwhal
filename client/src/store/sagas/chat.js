@@ -94,8 +94,6 @@ export function* createPod(action) {
 
 export function* fetchTopics(action) {
   try {
-    yield put(actions.fetchTopicsStarted());
-
     const token = yield select(selectors.token);
     const results = yield axios.get('/pods/' + action.podId + '/topics', {
         params: {
