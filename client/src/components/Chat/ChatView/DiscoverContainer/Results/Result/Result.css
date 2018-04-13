@@ -10,13 +10,11 @@
 }
 
 .Result .PodAvatar {
-  width: 3em;
-  height: 3em;
-  background-size: 3em 3em;
-  background-color: #DADADA;
-  background-repeat: no-repeat;
+  width: 58px;
+  height: 58px;
+  background-size: 58px 58px;
   border-radius: 50%;
-  background-color: rgb(99, 99, 99);
+  background-color: rgba(87, 98, 194, 0.1);
   margin-right: 10px;
 }
 

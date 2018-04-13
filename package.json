@@ -4,6 +4,7 @@
   "description": "",
   "main": "./server/server.js",
   "scripts": {
+    "test": "node test.js",
     "start": "node server/server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },

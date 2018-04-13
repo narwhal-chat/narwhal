@@ -1,6 +1,7 @@
-import { put } from 'redux-saga/effects';
+import { call, put, take, select, fork, cancel } from 'redux-saga/effects';
 import axios from 'axios';
 import * as actions from '../actions/index';
+import * as selectors from './selectors'
 
 export function* authCheckState(action) {
 	try {
@@ -35,7 +36,7 @@ export function* auth(action) {
 		const response = yield axios.post('/register', authData)
 
 		yield localStorage.setItem('token', response.data.token);
-		yield localStorage.setItem('userData', response.data.user);
+		yield localStorage.setItem('userData', JSON.stringify(response.data.user));
 		yield put(actions.authSuccess(response.data.token, response.data.user));
 	} catch (error) {
 		yield put(actions.authFail(error.response.data));
@@ -54,19 +55,23 @@ export function* login(action) {
 }
 
 export function* editProfile(action) {
-	let editProfile = {
-		username: action.username,
-		newUsername: action.newUsername,
-		email: action.email,
-		password: action.password,
-		token: action.token
-	}
 	try {
-		const response = yield axios.post('/editProfile', editProfile)
+		const token = yield select(selectors.token);
+		const response = yield axios.post('/editProfile', {
+			username: action.username,
+			newUsername: action.newUsername,
+			email: action.email,
+			avatar: action.avatar,
+			password: action.password,
+			token: token
+		})
 		// yield put(actions.editProfileReset());
+		yield localStorage.setItem('token', response.data.token);
+		yield localStorage.setItem('userData', JSON.stringify(response.data.user));
 		yield put(actions.editProfileSuccess(response.data.token, response.data.user));
 		yield put(actions.editProfileReset());
 	} catch(error) {
+		console.log(error);
 		yield put(actions.editProfileReset());
 		yield put(actions.editProfileFail(error.response.data.error, error.response.data.message, error.response.data.errorType));
 		

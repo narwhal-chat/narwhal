@@ -68,11 +68,43 @@
 
 .EditProfile .Content {
   display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.EditProfile .ProfileLeft {
+  display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   margin: 0px 40px;
   font-weight: 600;
   color: #414141;
   font-size: 70%;
+}
+
+.EditProfile .Avatar {
+  display: grid;
+  margin-right: 40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: #DADADA;
+  justify-items: center;
+  align-items: center;
+  /* border: 1px solid #888888; */
+  color: rgb(80, 89, 178);
+  font-size: 600%;
+}
+
+.EditProfile .Image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+.EditProfile .UploadText {
+  font-size: 60%;
+  text-align: center;
+  margin-right: 40px;
+  background-color: #FFF
 }
 
 .EditProfile .InputForm {

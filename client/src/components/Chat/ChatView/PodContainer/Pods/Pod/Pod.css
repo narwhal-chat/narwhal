@@ -6,20 +6,11 @@
   width: 58px;
   height: 58px;
   background-size: 58px 58px;
-  background-color: #DADADA;
+  background-color: rgb(255, 255, 255);
   background-repeat: no-repeat;
   border-radius: 50%;
   transition: 0.2s;
   cursor: pointer;
-}
-
-.Pod .AvatarLetter {
-  -webkit-user-select: none;    
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: 200%;
-  color: rgb(80, 89, 178);
 }
 
 .Pod:hover {

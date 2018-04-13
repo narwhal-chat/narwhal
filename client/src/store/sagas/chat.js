@@ -151,26 +151,28 @@ export function* createTopic(action) {
 
 export function* podClicked(action) {
   try {
-    yield put(actions.authCheckState());
-
-    // If the socket hasn't already been established, create the socket and wait for a success action before continuing
-    const socket = yield(select(selectors.socket));
-    if (!socket) {
-      yield put(actions.connectSocket());
-      yield take(actionTypes.CONNECT_SOCKET_SUCCESS);
+    // Prevent render when a user selects the currently active pod
+    const previousPod = yield select(selectors.activePod);
+    if (!previousPod || previousPod.id !== action.pod.id) {
+      // If the socket hasn't already been established, create the socket and wait for a success action before continuing
+      const socket = yield(select(selectors.socket));
+      if (!socket) {
+        yield put(actions.connectSocket());
+        yield take(actionTypes.CONNECT_SOCKET_SUCCESS);
+      }
+  
+      // If a pod was previously selected, first leave the socket room associated with the previous active topic
+      const previousTopic = yield(select(selectors.activeTopic));
+      if (previousTopic && socket) {
+        socket.emit('LEAVE_ROOM', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
+      }
+      
+      yield put(actions.setActivePod(action.pod));
+      yield put(actions.fetchTopics(action.pod.id));
+      yield take(actionTypes.FETCH_TOPICS_FINISHED);
+      const activeTopic = yield select(selectors.activeTopic);
+      yield put(push(`/topics/${action.pod.id}/${activeTopic.id}`));
     }
-
-    // If a pod was previously selected, first leave the socket room associated with the previous active topic
-    const previousTopic = yield(select(selectors.activeTopic));
-    if (previousTopic && socket) {
-      socket.emit('LEAVE_ROOM', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
-    }
-    
-    yield put(actions.setActivePod(action.pod));
-    yield put(actions.fetchTopics(action.pod.id));
-    yield take(actionTypes.FETCH_TOPICS_FINISHED);
-    const activeTopic = yield select(selectors.activeTopic);
-    yield put(push(`/topics/${action.pod.id}/${activeTopic.id}`));
   } catch (e) {
 
   }
@@ -178,15 +180,18 @@ export function* podClicked(action) {
 
 export function* topicClicked(action) {
   try {
-    // Leave the previous topic's socket room
+    // Prevent render when a user selects the currently active topic
     const previousTopic = yield(select(selectors.activeTopic));
-    const socket = yield(select(selectors.socket));
-    if (previousTopic && socket) {
-      socket.emit('LEAVE_ROOM', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
+    if (previousTopic.id !== action.topic.id) {
+      // Leave the previous topic's socket room
+      const socket = yield(select(selectors.socket));
+      if (previousTopic && socket) {
+        socket.emit('LEAVE_ROOM', `ROOM_${previousTopic.pod_id}_${previousTopic.id}`);
+      }
+  
+      yield put(actions.setActiveTopic(action.topic));
+      yield put(push(`/topics/${action.topic.pod_id}/${action.topic.id}`));
     }
-
-    yield put(actions.setActiveTopic(action.topic));
-    yield put(push(`/topics/${action.topic.pod_id}/${action.topic.id}`));
   } catch (e) {
 
   }

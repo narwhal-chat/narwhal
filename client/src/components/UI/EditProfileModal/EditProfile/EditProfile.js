@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Dropzone from 'react-dropzone';
+import upload from 'superagent';
 
 import styles from './EditProfile.css';
 import * as actions from '../../../../store/actions/index';
 
 class EditProfile extends Component {
 	state = {
+		files: [],
 		username: this.props.userData.username,
 		usernameError: {
 			error: false,
@@ -25,24 +28,30 @@ class EditProfile extends Component {
 		confirmpwError: {
 			error: false,
 			message: ''
-		}
+		},
+		avatar: ''
 	};
 
-	componentWillReceiveProps(nextProps) {
-		if (this.props.error !== nextProps.error) {
-			this.setState({
-				username: '',
-				email: '',
-				password: '',
-				confirmpw: ''
-			})
-		}
-	}
+	// componentWillReceiveProps(nextProps) {
+	// 	if (this.props.error !== nextProps.error) {
+	// 		this.setState({
+	// 			files: [],
+	// 			password: ''
+	// 		})
+	// 	}
+	// }
 
-	componentDidUpdate() {
-		if (this.props.error === false) {
-			this.props.closeModal();
-		}
+	// componentDidUpdate() {
+	// 	if (this.props.error === false) {
+	// 		this.props.closeModal();
+	// 	}
+	// }
+
+	onDrop = (files) => {
+		this.setState({
+			files: files,
+			avatar: files[0].preview
+		})
 	}
 
 
@@ -54,16 +63,6 @@ class EditProfile extends Component {
 				passwordError: {
 					error: true,
 					message: 'Password is required'
-				}
-			});
-		}
-
-		if (this.state.confirmpw !== this.state.password) {
-			isError = true;
-			this.setState({
-				confirmpwError: {
-					error: true,
-					message: 'Password does not match'
 				}
 			});
 		}
@@ -125,24 +124,44 @@ class EditProfile extends Component {
 			passwordError: {
 				error: false,
 				message: ''
-			},
-			confirmpwError: {
-				error: false,
-				message: ''
 			}
 		});
 
 		let err = this.validate()
 
 		if (err) {
+			console.log(err);
 			this.setState({
-				username: '',
-				email: '',
-				password: '',
-				confirmpw: ''
+				password: ''
 			})
 		} else {
-			this.props.editProfile(this.props.userData.username, this.state.username, this.state.email, this.state.password, this.props.token);
+			let image = this.state.files[0];
+			console.log('image', image);
+			let uploadedImage = null;
+			if (this.state.avatar === '') {
+				this.props.editProfile(
+					this.props.userData.username,
+					this.state.username,
+					this.state.email,
+					this.state.password,
+					this.props.userData.avatar
+				);
+			} else {
+				upload.post('/uploadUser')
+				.attach('image', image)
+				.end((err, res) => {
+					if (err) console.log(err);
+					uploadedImage = res.text;
+					this.props.editProfile(
+						this.props.userData.username,
+						this.state.username,
+						this.state.email,
+						uploadedImage,
+						this.state.password
+					)
+				})
+			}
+			this.props.closeModal();
 		}
 	};
 
@@ -156,6 +175,8 @@ class EditProfile extends Component {
 	}
 
 	render() {
+		let avatar = this.props.userData.avatar;
+
 		return <form onSubmit={this.verifyOnSubmit} className={styles.EditProfile}>
 				<div className={styles.Header}>
 					<div className={styles.HeaderTitle}>EDIT PROFILE</div>
@@ -166,43 +187,45 @@ class EditProfile extends Component {
 					</div>
 				</div>
 				<div className={styles.Content}>
-					<div>
-						<label>USERNAME</label>
-						<input className={styles.InputForm} type="text" autoFocus="autofocus" value={this.state.username} placeholder="" name="username" onChange={this.handleChange} />
-						{this.state.usernameError.error ? <div className={styles.ErrorMessage}>
-								{this.state.usernameError.message}
-							</div> : null}
-						{this.props.errorType === 'username' ? <div className={styles.ErrorMessage}>
-								{this.props.message}
-							</div> : null}
+					<div className={styles.ProfileLeft}>
+						<div>
+							<label>USERNAME</label>
+							<input className={styles.InputForm} type="text" autoFocus="autofocus" value={this.state.username} placeholder="" name="username" onChange={this.handleChange} />
+							{this.state.usernameError.error ? <div className={styles.ErrorMessage}>
+									{this.state.usernameError.message}
+								</div> : null}
+							{this.props.errorType === 'username' ? <div className={styles.ErrorMessage}>
+									{this.props.message}
+								</div> : null}
+						</div>
+						<div>
+							<label>EMAIL ADDRESS</label>
+							<input className={styles.InputForm} type="email" value={this.state.email} placeholder="" name="email" onChange={this.handleChange} />
+							{this.state.emailError.error ? <div className={styles.ErrorMessage}>
+									{this.state.emailError.message}
+								</div> : null}
+							{this.props.errorType === 'email' ? <div className={styles.ErrorMessage}>
+									{this.props.message}
+								</div> : null}
+						</div>
+						<div>
+							<label>CURRENT PASSWORD</label>
+							<input className={styles.InputForm} type="password" value={this.state.password} placeholder="" name="password" onChange={this.handleChange} />
+							{this.state.passwordError.error ? <div className={styles.ErrorMessage}>
+									{this.state.passwordError.message}
+								</div> : null}
+							{this.props.errorType === 'password' ? <div className={styles.ErrorMessage}>
+									{this.props.message}
+								</div> : null}
+						</div>
 					</div>
 					<div>
-						<label>EMAIL ADDRESS</label>
-						<input className={styles.InputForm} type="email" value={this.state.email} placeholder="" name="email" onChange={this.handleChange} />
-						{this.state.emailError.error ? <div className={styles.ErrorMessage}>
-								{this.state.emailError.message}
-							</div> : null}
-						{this.props.errorType === 'email' ? <div className={styles.ErrorMessage}>
-								{this.props.message}
-							</div> : null}
+						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
+							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : <img className={styles.Image} src={this.props.userData.avatar} />}
+						</Dropzone>
+						<br />
+						<div className={styles.UploadText}>Click to upload image</div>
 					</div>
-					<div>
-						<label>CURRENT PASSWORD</label>
-						<input className={styles.InputForm} type="password" value={this.state.password} placeholder="" name="password" onChange={this.handleChange} />
-						{this.state.passwordError.error ? <div className={styles.ErrorMessage}>
-								{this.state.passwordError.message}
-							</div> : null}
-						{this.props.errorType === 'password' ? <div className={styles.ErrorMessage}>
-								{this.props.message}
-							</div> : null}
-					</div>
-					{/* <div>
-						<label>CONFIRM PASSWORD</label>
-						<input className={styles.InputForm} type="password" value={this.state.confirmpw} placeholder="" name="confirmpw" onChange={this.handleChange} />
-						{this.state.confirmpwError.error ? <div className={styles.ErrorMessage}>
-								{this.state.confirmpwError.message}
-							</div> : null}
-					</div> */}
 				</div>
 				<div className={styles.Footer}>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
@@ -219,7 +242,6 @@ class EditProfile extends Component {
 const mapStateToProps = state => {
 	return {
 		userData: state.auth.userData,
-		token: state.auth.token,
 		error: state.auth.error,
 		message: state.auth.message,
 		errorType: state.auth.errorType
@@ -228,7 +250,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		editProfile: (username, newUsername, email, password, token) => dispatch(actions.editProfile(username, newUsername, email, password, token)),
+		editProfile: (username, newUsername, email, avatar, password) => dispatch(actions.editProfile(username, newUsername, email, avatar, password)),
 		authLogout: () => dispatch(actions.authLogout())
 	};
 };
