@@ -16,7 +16,7 @@
   height: 46px;
   border: 2px solid rgba(68, 68, 68, 0.4);
   border-radius: 5px;
-  font-size: 72%;
+  font-size: 74%;
   font-weight: 300;
   outline: none;
 }
@@ -42,9 +42,10 @@
   font-weight: 600;
   border: none;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .DiscoverSearch .Button:hover {
-    background-color: #38b09a;
-    transition: 0.2s;
+  background-color: #38b09a;
+  transition: 0.2s;
 }

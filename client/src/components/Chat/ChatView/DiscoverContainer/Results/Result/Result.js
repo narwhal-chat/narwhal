@@ -33,7 +33,7 @@ const result = (props) => {
 					<div className={styles.PodName}>{props.result.display_name}</div>
 					<div className={styles.PodCategory}>{props.result.pod_category_name}</div>
 				</div>
-				<div className={styles.UserCount}>{props.result.user_count} {styles.UserCount > 1 || styles.UserCount === 0 ? 'users' : 'user'}</div>
+				<div className={styles.UserCount}>{props.result.user_count} {props.result.user_count > 1 || props.result.user_count === 0 ? 'users' : 'user'}</div>
 				<div className={styles.PodDescription}>
 					{props.result.description}
 				</div>
