@@ -10,7 +10,7 @@ class DiscoverSearch extends Component {
     
     return(
       <div className={styles.DiscoverSearch}>
-        <SearchInput className={styles.SearchBar} onChange={this.props.changeSearch} placeholder="Enter a name, reference name, or keyword"/>
+        <SearchInput className={styles.SearchBar} onChange={this.props.changeSearch} placeholder="Search for a pod, reference name or description"/>
         <button className={styles.Button}>Search</button>
       </div>
     )

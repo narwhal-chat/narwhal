@@ -1,7 +1,7 @@
 .DiscoverContainer {
   display: grid;
-  grid-template-rows: 50px 65px 20px 1fr;
   grid-template-columns: 1fr;
+  grid-template-rows: 50px 65px 1fr;
   /* height: 100vh; */
 }
 
