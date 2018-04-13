@@ -60,12 +60,6 @@ export const fetchTopicsFail = (error) => {
   };
 };
 
-export const fetchTopicsFinished = () => {
-  return {
-    type: actionTypes.FETCH_TOPICS_FINISHED
-  };
-};
-
 export const createTopic = (topicName) => {
   return {
       type: actionTypes.CREATE_TOPIC,

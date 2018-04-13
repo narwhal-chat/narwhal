@@ -100,9 +100,9 @@ export function* fetchTopics(action) {
           token: token
         }
     });
+
     yield put(actions.fetchTopicsSuccess(results.data));
     const topics = yield select(selectors.topics);
-
     let newActiveTopic = topics[0];
 
     // If an initialTopicId was supplied
@@ -122,6 +122,7 @@ export function* fetchTopics(action) {
     // Send a final action to notify any calling sagas
     yield put(actions.fetchTopicsFinished());
   } catch (e) {
+    console.log(e);
     yield put(actions.fetchTopicsFail());
   }
 }
