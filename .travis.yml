@@ -2,10 +2,20 @@ language: node_js
 node_js:
 - '7'
 deploy:
-  provider: heroku
-  api_key:
-    secure: helMJbLykGXLlSPCeeUO+sk6vR53316oXBUSe/9lrd+rmAflcW//ZpCHbCtg/Kyei6ZHrOJD/xRsdlqHPMFYZ9gogzy8e/Xrv+AkOEyve2K1SH8x1mT6XKhUJy2JpcqmDDOX3EFnFOrP3Sgv2tpRzuyLMzNGIHuqtatgEmoCZ/kUiJ1ye2hVjSjghlslUH2snT/hL/5b9wu5mUlyXRcWjhozS9y6gzLudnAxRsIfy6U9KPZCS+uxmDZO420vQZMtd5qroyLGzui5Nx8tZMP3iZ+BWxT1JZHVHqC3TyfuFQ04yqiWkKm3r1XcFq4MgGGkxqf2VyftzucGWFplkI77iZaQIRqHw4G8pYsgzeY2ze114EC6XynEwhufh+y0V4Gu2QzqN3KyttzhHcYwuFjxe9M/vCWVGMRt+1qBoRiRQP6ykWXvZ5RJacAU32nHOCLmtvihJ8kYSVRUDBrJQuUgfFmmrNRj+Jsft6XiWZHwA/GGXgFuEkmCSgNkvQCUSub1Xx04nDqJ4QWC+1esrKb8wrRa0n0bJbwZ+2/tnQ42JNrI7RX77kGwV0xV9BvGS2Ar/UlheBElzlf68nb7oKp164XdMPzHBPmspuT3IVPq4DnK9jdINDCqYiqVORio7t4R+UAhhDWBpOd0D0QT76PZlHbdEvZrU96NjgiHX4FEATg=
-  app: narwhal-chat-staging
-  on:
-    repo: narwhal-chat/narwhal
-    branch: staging
+  # Staging environment
+  - provider: heroku
+    api_key:
+      secure: helMJbLykGXLlSPCeeUO+sk6vR53316oXBUSe/9lrd+rmAflcW//ZpCHbCtg/Kyei6ZHrOJD/xRsdlqHPMFYZ9gogzy8e/Xrv+AkOEyve2K1SH8x1mT6XKhUJy2JpcqmDDOX3EFnFOrP3Sgv2tpRzuyLMzNGIHuqtatgEmoCZ/kUiJ1ye2hVjSjghlslUH2snT/hL/5b9wu5mUlyXRcWjhozS9y6gzLudnAxRsIfy6U9KPZCS+uxmDZO420vQZMtd5qroyLGzui5Nx8tZMP3iZ+BWxT1JZHVHqC3TyfuFQ04yqiWkKm3r1XcFq4MgGGkxqf2VyftzucGWFplkI77iZaQIRqHw4G8pYsgzeY2ze114EC6XynEwhufh+y0V4Gu2QzqN3KyttzhHcYwuFjxe9M/vCWVGMRt+1qBoRiRQP6ykWXvZ5RJacAU32nHOCLmtvihJ8kYSVRUDBrJQuUgfFmmrNRj+Jsft6XiWZHwA/GGXgFuEkmCSgNkvQCUSub1Xx04nDqJ4QWC+1esrKb8wrRa0n0bJbwZ+2/tnQ42JNrI7RX77kGwV0xV9BvGS2Ar/UlheBElzlf68nb7oKp164XdMPzHBPmspuT3IVPq4DnK9jdINDCqYiqVORio7t4R+UAhhDWBpOd0D0QT76PZlHbdEvZrU96NjgiHX4FEATg=
+    app: narwhal-chat-staging
+    on:
+      repo: narwhal-chat/narwhal
+      branch: staging
+      
+  # Production environment
+  - provider: heroku
+    api_key:
+      secure: helMJbLykGXLlSPCeeUO+sk6vR53316oXBUSe/9lrd+rmAflcW//ZpCHbCtg/Kyei6ZHrOJD/xRsdlqHPMFYZ9gogzy8e/Xrv+AkOEyve2K1SH8x1mT6XKhUJy2JpcqmDDOX3EFnFOrP3Sgv2tpRzuyLMzNGIHuqtatgEmoCZ/kUiJ1ye2hVjSjghlslUH2snT/hL/5b9wu5mUlyXRcWjhozS9y6gzLudnAxRsIfy6U9KPZCS+uxmDZO420vQZMtd5qroyLGzui5Nx8tZMP3iZ+BWxT1JZHVHqC3TyfuFQ04yqiWkKm3r1XcFq4MgGGkxqf2VyftzucGWFplkI77iZaQIRqHw4G8pYsgzeY2ze114EC6XynEwhufh+y0V4Gu2QzqN3KyttzhHcYwuFjxe9M/vCWVGMRt+1qBoRiRQP6ykWXvZ5RJacAU32nHOCLmtvihJ8kYSVRUDBrJQuUgfFmmrNRj+Jsft6XiWZHwA/GGXgFuEkmCSgNkvQCUSub1Xx04nDqJ4QWC+1esrKb8wrRa0n0bJbwZ+2/tnQ42JNrI7RX77kGwV0xV9BvGS2Ar/UlheBElzlf68nb7oKp164XdMPzHBPmspuT3IVPq4DnK9jdINDCqYiqVORio7t4R+UAhhDWBpOd0D0QT76PZlHbdEvZrU96NjgiHX4FEATg=
+    app: narwhal-chat-prod
+    on:
+      repo: narwhal-chat/narwhal
+      branch: master
