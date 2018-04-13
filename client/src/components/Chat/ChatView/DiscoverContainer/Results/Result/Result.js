@@ -3,7 +3,7 @@ import styles from './Result.css';
 
 const result = (props) => {
 	let button = null;
-	if(props.currentPods.filter(pod => pod.id === props.result.id).length > 0) {
+	if (props.currentPods.filter(pod => pod.id === props.result.id).length > 0) {
 		button = <button onClick={() => props.joinPod(props.result.id)} disabled className={styles.DisabledButton}>Joined</button>
 	} else {
 		button = <button onClick={() => props.joinPod(props.result.id)} className={styles.Button}>Join</button>;
@@ -12,7 +12,7 @@ const result = (props) => {
   // Set the avatar styling
   let avatar = {
 		backgroundImage: `url('${props.result.avatar}')`
-  }
+  };
 
   let avatarLetter = null;
 

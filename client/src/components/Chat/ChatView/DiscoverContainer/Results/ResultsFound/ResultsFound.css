@@ -1,6 +1,6 @@
-.resultsFound {
-  margin-top: 20px;
-  margin-left: 30px;
+.ResultsFound {
+  align-self: center;
+  margin-left: 34px;
   color: #414141;
   font-size: 70%;
 }

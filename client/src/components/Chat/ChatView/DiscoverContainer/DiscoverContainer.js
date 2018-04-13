@@ -57,10 +57,8 @@ class DiscoverContainer extends Component {
 			<div className={styles.DiscoverContainer}>
 				<DiscoverContainerHeader />
 				<DiscoverSearch results={this.props.discover} changeSearch={this.changeSearch.bind(this)}/>
-				<div>
-					<ResultsFound resultCount={this.getResultsCount.bind(this)}/>
-					<Results activeCategory={this.props.activeCategory} joinPod={this.joinPod.bind(this)} currentPods={this.props.pods} results={searchResults} />
-				</div>
+				<ResultsFound resultCount={this.getResultsCount.bind(this)}/>
+				<Results activeCategory={this.props.activeCategory} joinPod={this.joinPod.bind(this)} currentPods={this.props.pods} results={searchResults} />
 			</div>
 		);
 	}
