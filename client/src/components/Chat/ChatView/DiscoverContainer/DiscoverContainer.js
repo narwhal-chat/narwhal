@@ -23,23 +23,24 @@ class DiscoverContainer extends Component {
 		let count = null;
 		if (this.props.search === '') {
 			count = this.props.discover.filter(result => {
-				if (this.props.activeCategory !== 'trending') {
-					return result.pod_category_name === this.props.activeCategory;
+				if (this.props.activeCategory !== 'Trending') {
+					return result.pod_category_name === this.props.activeCategory
 				} else {
 					return result;
 				}
-			});
+			})
 		} else {
-			count = this.props.searchResults;
+			count = this.props.searchResults
 		}
-		return count.length;
+		return count.length
 	}
 
 	joinPod(podId) {
-		this.props.onJoinPod(podId);
+		this.props.onJoinPod(podId)
 	}
 
 	changeSearch(search) {
+		this.props.fetchDiscover();
 		this.props.searchDiscover(search);
 		const filteredResults = this.props.discover.filter(createFilter(this.props.search, KEYS_TO_FILTER));
 		this.props.updateSearchResults(filteredResults);
@@ -48,9 +49,9 @@ class DiscoverContainer extends Component {
 	render() {
 		let searchResults = null;
 		if (this.props.search === '') {
-			searchResults = this.props.discover;
+			searchResults = this.props.discover
 		} else {
-			searchResults = this.props.searchResults;
+			searchResults = this.props.searchResults
 		}
 
 		return (
@@ -73,8 +74,8 @@ const mapStateToProps = state => {
 		pods: state.chat.pods,
 		search: state.chat.search,
 		searchResults: state.chat.searchResults
-	};
-};
+	}
+}
 
 const mapDispatchToProps = dispatch => {
 	return {
@@ -83,7 +84,7 @@ const mapDispatchToProps = dispatch => {
 		fetchPods: () => dispatch(actions.fetchPods()),
 		searchDiscover: (term) => dispatch(actions.searchDiscover(term)),
 		updateSearchResults: (data) => dispatch(actions.updateSearchResults(data))
-	};
-};
+	}
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(DiscoverContainer);
