@@ -100,7 +100,6 @@ export function* fetchTopics(action) {
           token: token
         }
     });
-
     yield put(actions.fetchTopicsSuccess(results.data));
     const topics = yield select(selectors.topics);
     let newActiveTopic = topics[0];
