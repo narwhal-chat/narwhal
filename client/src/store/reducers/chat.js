@@ -5,7 +5,6 @@ const initialState = {
     pods: [],
     discover: [],
     topics: [],
-    topicsLoading: false,
     messages: [],
     categories: [],
     search: '',
