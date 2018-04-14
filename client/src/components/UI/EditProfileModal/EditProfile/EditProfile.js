@@ -180,11 +180,6 @@ class EditProfile extends Component {
 		return <form onSubmit={this.verifyOnSubmit} className={styles.EditProfile}>
 				<div className={styles.Header}>
 					<div className={styles.HeaderTitle}>EDIT PROFILE</div>
-					<div className={styles.Logout}>
-						<div className={styles.Link} onClick={this.logout}>
-							Logout
-						</div>
-					</div>
 				</div>
 				<div className={styles.Content}>
 					<div className={styles.ProfileLeft}>
@@ -223,11 +218,15 @@ class EditProfile extends Component {
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
 							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : <img className={styles.Image} src={this.props.userData.avatar} />}
 						</Dropzone>
-						<br />
-						<div className={styles.UploadText}>Click to upload image</div>
+						<div className={styles.UploadText}>Click to an upload image!</div>
 					</div>
 				</div>
 				<div className={styles.Footer}>
+					<div className={styles.Logout}>
+						<div className={styles.Link} onClick={this.logout}>
+							Logout
+						</div>
+					</div>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
 						Cancel
 					</div>
