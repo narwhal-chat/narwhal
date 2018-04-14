@@ -1,7 +1,7 @@
 .Result {
   display: grid;
-  grid-template-columns: 100px 200px 100px 400px 200px 1fr;
-  grid-auto-flow: column;
+  grid-template-columns: 100px 200px 140px 400px 200px 1fr;
+  grid-gap: 20px;
   margin: 0 0 12px 0;
   color: #414141;
 }
@@ -28,7 +28,7 @@
 }
 
 .Result .PodCategory {
-  font-size: 75%;
+  font-size: 72%;
 }
 
 .Result .UserCount {
@@ -87,7 +87,6 @@
   height: 40px;
   display: inline-block;
   border-radius: 5px;
-  /* border: 2px solid rgb(45, 51, 107); */
   background-color: rgb(68, 68, 68);
   color: #FFFFFF;
   font-size: 70%;
