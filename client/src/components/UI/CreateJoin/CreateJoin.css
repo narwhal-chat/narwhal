@@ -1,6 +1,6 @@
 .CreateJoin {
   display: grid;
-  grid-template-columns: 300px 300px;
+  grid-template-columns: 320px 320px;
   grid-template-rows: 400px;
   align-self: center;
   justify-self: center;

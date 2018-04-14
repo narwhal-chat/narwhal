@@ -152,7 +152,6 @@ class Create extends Component {
 	};
 
 	render() {
-
 		if (this.state.showModal) {
 			return <ChooseCategory chooseCategory={this.chooseCategory} />;
 		}
@@ -164,17 +163,12 @@ class Create extends Component {
 			let categoryAvatar = this.props.category.filter(avatar => {
 				return category == avatar.id
 			})
-			avatar = <img className={styles.Image} src={categoryAvatar[0].default_category_avatar} />
+			avatar = <img className={styles.Image} src={categoryAvatar[0].default_category_avatar} alt="Pod Avatar" />;
 		}
 
-		// let avatar = '';
-		// if (this.state.podName !== '') {
-		// 	avatar = this.state.podName.charAt(0).toUpperCase();
-		// }
-
 		let categories = this.props.categories.map(category => {
-			return <option key={category.id} className={styles.DropdownValue} value={category.id}>{category.name}</option>
-		})
+			return <option key={category.id} className={styles.DropdownValue} value={category.id}>{category.name}</option>;
+		});
 
 		return <form onSubmit={this.onSubmit} className={styles.Create}>
 				<div className={styles.Header}>CREATE A POD</div>
@@ -215,7 +209,7 @@ class Create extends Component {
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
 							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : avatar}
 						</Dropzone>
-						<div className={styles.UploadText}>Click to an upload image!</div>
+						<div className={styles.UploadText}>Click to an upload image</div>
 					</div>
 				</div>
 				<div className={styles.Footer}>
@@ -240,7 +234,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		createPod: (podName, category, description, avatar) => dispatch(actions.createPod(podName, category, description, avatar)),
-		// fetchCategories: () => dispatch(actions.fetchCategories())
 	};
 };
 
