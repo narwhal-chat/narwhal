@@ -1,6 +1,6 @@
 .Result {
   display: grid;
-  grid-template-columns: 74px 200px 100px 240px 200px 1fr;
+  grid-template-columns: 100px 200px 100px 400px 200px 1fr;
   grid-auto-flow: column;
   margin: 0 0 12px 0;
   color: #414141;
@@ -44,6 +44,7 @@
   display: inline-block;
   margin: 5px 10px;
   word-wrap: break-word;
+  max-width: 440px;
   min-width: 120px;
   font-size: 75%;
   color: #000000;
@@ -69,6 +70,7 @@
   font-size: 70%;
   font-weight: 600;
   transition: 0.2s;
+  border: none;
   cursor: pointer;
 }
 
@@ -85,9 +87,9 @@
   height: 40px;
   display: inline-block;
   border-radius: 5px;
-  border: 2px solid rgb(45, 51, 107);
-  background-color: #FFFFFF;
-  color: rgb(45, 51, 107);
+  /* border: 2px solid rgb(45, 51, 107); */
+  background-color: rgb(68, 68, 68);
+  color: #FFFFFF;
   font-size: 70%;
   font-weight: 600;
   transition: 0.2s;
