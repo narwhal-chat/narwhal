@@ -35,7 +35,7 @@ class Create extends Component {
 	};
 
 	componentDidMount() {
-		console.log(this.props.category);
+
 	}
 
 	onDrop = (files) => {
