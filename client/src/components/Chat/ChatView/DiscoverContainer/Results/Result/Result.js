@@ -5,7 +5,7 @@ import moment from 'moment';
 const result = (props) => {
 	let button = null;
 	if (props.currentPods.filter(pod => pod.id === props.result.id).length > 0) {
-		button = <button onClick={() => props.joinPod(props.result.id)} disabled className={styles.DisabledButton}>Joined</button>
+		button = <button onClick={() => props.joinPod(props.result.id)} disabled className={styles.DisabledButton}>Member</button>
 	} else {
 		button = <button onClick={() => props.joinPod(props.result.id)} className={styles.Button}>Join</button>;
 	}
