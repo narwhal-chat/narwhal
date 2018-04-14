@@ -1,7 +1,7 @@
 .Create {
   display: grid;
   grid-template-columns: 600px;
-  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 4.4fr 1fr;
   min-height: 400px;
   max-height: 400px;
   align-self: center;
@@ -131,6 +131,7 @@
 
 .Create .Avatar {
   display: grid;
+  margin-top: 20px;
   margin-right: 40px;
   width: 180px;
   height: 180px;
@@ -138,22 +139,31 @@
   background-color: #DADADA;
   justify-items: center;
   align-items: center;
-  border: 1px solid #888888;
+  border: 2px solid rgba(175, 175, 175, 0.2);
   color: rgb(80, 89, 178);
   font-size: 600%;
-}
-
-.Create .UploadText {
-  font-size: 60%;
-  text-align: center;
-  margin-right: 40px;
-  background-color: #FFF
 }
 
 .Create .Image {
   width: 180px;
   height: 180px;
+  border: 2px solid rgba(175, 175, 175, 0.2);
   border-radius: 50%;
+  transition: 0.2s;
+}
+
+.Create .UploadText {
+  margin-right: 40px;
+  margin-top: 10px;
+  font-size: 65%;
+  text-align: center;
+  color: rgba(34, 34, 34, 0.9);
+  background-color: #FFF
+}
+
+.Create .UploadText:hover {
+  border: 2px solid #888888;
+  transition: 0.2s;
 }
 
 .Create .Footer {

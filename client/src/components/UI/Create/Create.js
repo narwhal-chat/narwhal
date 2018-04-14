@@ -135,24 +135,13 @@ class Create extends Component {
 				.end((err, res) => {
 					if (err) console.log(err);
 					uploadedImage = res.text;
-					// this.setState({
-					// 	avatar: uploadedImage
-					// })
 					this.props.createPod(
 						this.state.podName,
 						this.state.category,
 						this.state.description,
 						uploadedImage
 					);
-			})
-			
-
-			// this.props.createPod(
-			// 	this.state.podName,
-			// 	this.state.category,
-			// 	this.state.description,
-			// 	this.state.avatar
-			// );
+				});
 			}
 			this.props.onRequestClose();
 		}
@@ -226,8 +215,7 @@ class Create extends Component {
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
 							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : avatar}
 						</Dropzone>
-						<br />
-						<div className={styles.UploadText}>Click to upload image</div>
+						<div className={styles.UploadText}>Click to an upload image!</div>
 					</div>
 				</div>
 				<div className={styles.Footer}>
