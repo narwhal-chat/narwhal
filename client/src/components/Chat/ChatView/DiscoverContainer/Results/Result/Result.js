@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Result.css';
+import moment from 'moment';
 
 const result = (props) => {
 	let button = null;
@@ -27,7 +28,6 @@ const result = (props) => {
 			<div className={styles.Result}>
 				<div className={styles.PodAvatar} style={avatar}>
 					{avatarLetter}
-					{console.log(props.result.avatar)}
 				</div>
 				<div className={styles.PodInfo}>
 					<div className={styles.PodName}>{props.result.display_name}</div>
@@ -36,6 +36,9 @@ const result = (props) => {
 				<div className={styles.UserCount}>{props.result.user_count} {props.result.user_count > 1 || props.result.user_count === 0 ? 'users' : 'user'}</div>
 				<div className={styles.PodDescription}>
 					{props.result.description}
+				</div>
+				<div className={styles.PodCreateDate}>
+				{'Created ' + moment(props.result.create_date).format('MMMM Do, YYYY')}
 				</div>
 				{button}
 			</div>
