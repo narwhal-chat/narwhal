@@ -23,7 +23,7 @@ class DiscoverContainer extends Component {
 		let count = null;
 		if (this.props.search === '') {
 			count = this.props.discover.filter(result => {
-				if (this.props.activeCategory !== 'Trending') {
+				if (this.props.activeCategory !== 'trending') {
 					return result.pod_category_name === this.props.activeCategory
 				} else {
 					return result;
