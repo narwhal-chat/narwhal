@@ -1,6 +1,6 @@
 .DiscoverSearch {
   display: grid;
-  grid-template-columns: 470px 250px;
+  grid-template-columns: 470px;
   align-content: center;
 }
 
@@ -12,40 +12,23 @@
 .DiscoverSearch .SearchBar > input {
   margin-left: 30px;
   padding: 4px 12px;
-  width: 400px;
+  width: 200px;
   height: 46px;
   border: 2px solid rgba(68, 68, 68, 0.4);
   border-radius: 5px;
   font-size: 74%;
   font-weight: 300;
   outline: none;
+  transition: 0.2s;
 }
 
 .DiscoverSearch .SearchBar > input:focus {
   border: 2px solid rgba(82, 82, 82, 0.74);
+  width: 500px;
+  transition: 0.2s;
 }
 
 .DiscoverSearch .SearchBar > input::placeholder {
   font-weight: 300;
   color: rgba(122, 122, 122, 0.8);
-}
-
-
-.DiscoverSearch .Button {
-  align-self: center;
-  margin-left: 20px;
-  height: 48px;
-  background-color: #44DBC0;
-  border-radius: 4px;
-  color: #fff;
-  font-size: 70%;
-  font-weight: 600;
-  border: none;
-  transition: 0.2s;
-  cursor: pointer;
-}
-
-.DiscoverSearch .Button:hover {
-  background-color: #38b09a;
-  transition: 0.2s;
 }
