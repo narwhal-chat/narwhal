@@ -12,7 +12,10 @@ class Results extends Component {
 		if (this.props.activeCategory === 'trending') {
 			results = this.props.results.sort((a, b) => b.user_count - a.user_count).map(result => {
 				return (
-					<Result key={result.id} currentPods={this.props.currentPods} result={result} joinPod={this.props.joinPod}/>
+					<React.Fragment>
+						<Result key={result.id} currentPods={this.props.currentPods} result={result} joinPod={this.props.joinPod}/>
+						<div className={styles.ResultSeparator}></div>
+					</React.Fragment>
 				)
 			});
 		} else {
@@ -20,7 +23,10 @@ class Results extends Component {
 				return filterResults.pod_category_name === this.props.activeCategory
 			}).sort((a, b) => b.user_count - a.user_count).map(result => {
 				return (
-					<Result key={result.id} currentPods={this.props.currentPods} result={result} joinPod={this.props.joinPod}/>
+					<React.Fragment>
+						<Result key={result.id} currentPods={this.props.currentPods} result={result} joinPod={this.props.joinPod}/>
+						<div className={styles.ResultSeparator}></div>
+					</React.Fragment>
 				)
 			})
 		}

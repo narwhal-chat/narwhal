@@ -45,6 +45,7 @@ class TopicContainer extends Component {
 const mapStateToProps = state => {
   return {
     topics: state.chat.topics,
+    topicsLoading: state.chat.topicsLoading,
     activePod: state.chat.activePod,
     activeTopic: state.chat.activeTopic
   };

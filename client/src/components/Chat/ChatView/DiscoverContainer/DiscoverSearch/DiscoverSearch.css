@@ -1,32 +1,30 @@
 .DiscoverSearch {
-  width: 50%;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 460px;
+  grid-template-rows: 46px;
+  align-content: center;
 }
 
 .DiscoverSearch .SearchBar > input {
   margin-left: 30px;
-  margin-top: 15px;
+  padding: 4px 12px;
   width: 100%;
-  height: 50px;
-  border-width: 1px;
-  border-style: solid;
-  padding: 15px;
-  font-weight: 600;
+  height: 100%;
+  border: 2px solid rgba(68, 68, 68, 0.4);
+  border-radius: 5px;
+  font-size: 72%;
+  font-weight: 300;
+  outline: none;
+  transition: 0.4s;
 }
 
-.DiscoverSearch .Button {
-    width: 100%;
-    height: 50px;
-    margin-left: 15px;
-    display: inline-block;
-    background-color: #44DBC0;
-    color: #fff;
-    font-weight: 600;
-    border: none;
-    -webkit-transition: background-color 0.5s;
+.DiscoverSearch .SearchBar > input:focus {
+  border: 2px solid rgba(82, 82, 82, 0.74);
+  width: 640px;
+  transition: 0.4s;
 }
 
-.DiscoverSearch .Button:hover {
-    background-color: rgb(56, 176, 154);
+.DiscoverSearch .SearchBar > input::placeholder {
+  font-weight: 300;
+  color: rgba(122, 122, 122, 0.8);
 }

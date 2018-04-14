@@ -5,15 +5,13 @@ import Message from './Message/Message';
 
 class Messages extends Component {
   componentDidMount() {
-    this.scrollToBottom();
+    let messagesElement = document.getElementById('messagesScrollDiv');
+    messagesElement.scrollTop = messagesElement.scrollHeight;
   }
 
   componentDidUpdate() {
-    this.scrollToBottom();
-  }
-
-  scrollToBottom() {
-    this.el.scrollIntoView({ behavior: 'smooth' });
+    let messagesElement = document.getElementById('messagesScrollDiv');
+    messagesElement.scrollTop = messagesElement.scrollHeight;
   }
 
   render() {
@@ -30,9 +28,8 @@ class Messages extends Component {
     });
 
     return (
-      <div className={styles.Messages}>
+      <div id="messagesScrollDiv" className={styles.Messages}>
         {messages}
-        <div ref={el => { this.el = el; }} />
       </div>
     );
   }
