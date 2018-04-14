@@ -1,6 +1,6 @@
 .DiscoverSearch {
   display: grid;
-  grid-template-columns: 320px;
+  grid-template-columns: 460px;
   grid-template-rows: 46px;
   align-content: center;
 }
@@ -20,7 +20,7 @@
 
 .DiscoverSearch .SearchBar > input:focus {
   border: 2px solid rgba(82, 82, 82, 0.74);
-  width: 580px;
+  width: 640px;
   transition: 0.4s;
 }
 
