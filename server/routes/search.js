@@ -9,7 +9,6 @@ const MESSAGE_SEARCH_MICROSERVICE_URL = process.env.MESSAGE_SEARCH_MICROSERVICE_
 router.get('/:query/:topicId', async (req, res, next) => {
   try {
     const results = await axios.get(MESSAGE_SEARCH_MICROSERVICE_URL + '/' + req.params.query + '/' + req.params.topicId);
-    console.log(MESSAGE_SEARCH_MICROSERVICE_URL + '/' + req.params.query + '/' + req.params.topicId);
     res.json(results.data);
   } catch (e) {
     res.sendStatus(400);

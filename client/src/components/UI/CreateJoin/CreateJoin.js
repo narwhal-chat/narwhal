@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { CSSTransition } from 'react-transition-group';
 
 import styles from './CreateJoin.css';
 import Create from '../Create/Create';

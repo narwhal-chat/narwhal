@@ -32,28 +32,12 @@ class EditProfile extends Component {
 		avatar: ''
 	};
 
-	// componentWillReceiveProps(nextProps) {
-	// 	if (this.props.error !== nextProps.error) {
-	// 		this.setState({
-	// 			files: [],
-	// 			password: ''
-	// 		})
-	// 	}
-	// }
-
-	// componentDidUpdate() {
-	// 	if (this.props.error === false) {
-	// 		this.props.closeModal();
-	// 	}
-	// }
-
 	onDrop = (files) => {
 		this.setState({
 			files: files,
 			avatar: files[0].preview
 		})
 	}
-
 
 	validate = () => {
 		let isError = false;
@@ -66,10 +50,6 @@ class EditProfile extends Component {
 				}
 			});
 		}
-
-		// if (this.state.password.length > 1 && (this.state.confirmpw === this.state.password)) {
-		// 	this.props.editProfile(this.props.userData.username, this.state.username, this.state.email, this.state.password, this.props.token);
-		// }
 
 		if (this.state.username.length >= 1) {
 			if (this.state.username.length < 4 || this.state.username.length > 28) {
@@ -130,13 +110,11 @@ class EditProfile extends Component {
 		let err = this.validate()
 
 		if (err) {
-			console.log(err);
 			this.setState({
 				password: ''
 			})
 		} else {
 			let image = this.state.files[0];
-			console.log('image', image);
 			let uploadedImage = null;
 			if (this.state.avatar === '') {
 				this.props.editProfile(
@@ -150,7 +128,6 @@ class EditProfile extends Component {
 				upload.post('/uploadUser')
 				.attach('image', image)
 				.end((err, res) => {
-					if (err) console.log(err);
 					uploadedImage = res.text;
 					this.props.editProfile(
 						this.props.userData.username,
@@ -175,8 +152,6 @@ class EditProfile extends Component {
 	}
 
 	render() {
-		let avatar = this.props.userData.avatar;
-
 		return <form onSubmit={this.verifyOnSubmit} className={styles.EditProfile}>
 				<div className={styles.Header}>
 					<div className={styles.HeaderTitle}>EDIT PROFILE</div>
@@ -216,7 +191,7 @@ class EditProfile extends Component {
 					</div>
 					<div>
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
-							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : <img className={styles.Image} src={this.props.userData.avatar} />}
+							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} alt="Avatar" /> : <img className={styles.Image} src={this.props.userData.avatar} alt="Avatar" />}
 						</Dropzone>
 						<div className={styles.UploadText}>Click avatar to upload an image</div>
 					</div>

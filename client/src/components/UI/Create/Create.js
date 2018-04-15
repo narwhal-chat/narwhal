@@ -92,7 +92,8 @@ class Create extends Component {
 
 	onSubmit = event => {
 		event.preventDefault();
-		//check for errors
+
+		// Check for errors
 		this.setState({
 			podNameError: {
 				error: false,
@@ -107,7 +108,9 @@ class Create extends Component {
 				message: '',
 			},
 		});
+
 		const err = this.validate();
+
 		if (err) {
 			this.setState({
 				podName: '',
@@ -127,23 +130,57 @@ class Create extends Component {
 				);
 			} else {
 				upload.post('/uploadPod')
-				.attach('image', image)
-				.end((err, res) => {
-					if (err) console.log(err);
-					uploadedImage = res.text;
-					this.props.createPod(
-						this.state.podName,
-						this.state.category,
-						this.state.description,
-						uploadedImage
-					);
+					.attach('image', image)
+					.end((err, res) => {
+						uploadedImage = res.text;
+						this.props.createPod(
+							this.state.podName[this.state.podName.length - 1] === '-' ? this.state.podName.substring(0, this.state.podName.length - 1) : this.state.podName,
+							this.state.category,
+							this.state.description,
+							uploadedImage
+						);
 				});
 			}
 			this.props.onRequestClose();
 		}
 	};
 
-	handleChange = event => {
+	handlePodNameChange = event => {
+		// Set the incoming string and make it lowercase
+		let value = event.target.value.toLowerCase();
+
+		// Remove all puncutation and special characters, excluding hyphens
+		value = value.replace(/[^A-Za-z0-9/-]/g, '');
+
+		// Return nothing if the first and only character is a space
+		if (event.target.value[event.target.value.length - 1] === ' ' && event.target.value.length === 1) {
+			return;
+		// If the last character in the string is a space
+		} else if (event.target.value[event.target.value.length - 1] === ' ') {
+			// If the second to last character is a hyphen, remove the last character in the string
+			if (event.target.value[event.target.value.length - 2] === '-') {
+				value = event.target.value.substring(0, event.target.value.length - 1);
+			// Else append a hyphen
+			} else {
+				value = event.target.value.substring(0, event.target.value.length - 1) + '-';
+			}
+		// Return nothing if the first and only character is a hyphen
+		} else if (event.target.value[event.target.value.length - 1] === '-' && event.target.value.length === 1) {
+			return;
+		// Prevent repeating hyphens
+		} else if (event.target.value[event.target.value.length - 1] === '-' && event.target.value[event.target.value.length - 2] === '-') {
+			value = event.target.value.substring(0, event.target.value.length - 1);
+		}
+
+		// Restrict the name length to 25 characters
+		if (value.length > 25) {
+			value = value.substring(0, 25);
+		}
+
+		this.setState({ [event.target.name]: value });
+	};
+
+	handleDescriptionChange = event => {
 		this.setState({ [event.target.name]: event.target.value });
 	};
 
@@ -157,7 +194,7 @@ class Create extends Component {
 		if (this.state.category !== '') {
 			category = this.state.category;
 			let categoryAvatar = this.props.category.filter(avatar => {
-				return category == avatar.id
+				return category === avatar.id
 			})
 			avatar = <img className={styles.Image} src={categoryAvatar[0].default_category_avatar} alt="Pod Avatar" />;
 		}
@@ -173,7 +210,15 @@ class Create extends Component {
 						<div>
 							<label>NAME</label>
 							<div className={styles.PodForm}>
-								<input className={styles.PodInputForm} type="text" autoFocus="autofocus" placeholder="Enter a pod name here" name="podName" value={this.state.podName} onChange={this.handleChange} />
+								<input
+									className={styles.PodInputForm}
+									type="text"
+									autoFocus="autofocus"
+									placeholder="Enter a pod name here"
+									name="podName" 
+									value={this.state.podName}
+									onChange={this.handlePodNameChange}
+								/>
 								{this.state.podNameError.error ? <div className={styles.ErrorMessage}>
 										{this.state.podNameError.message}
 									</div> : null}
@@ -195,7 +240,7 @@ class Create extends Component {
 						</div>
 						<div>
 							<label>DESCRIPTION</label>
-							<input className={styles.DescriptionInputForm} type="text" placeholder="Enter a description here" name="description" value={this.state.description} onChange={this.handleChange} />
+							<input className={styles.DescriptionInputForm} type="text" placeholder="Enter a description here" name="description" value={this.state.description} onChange={this.handleDescriptionChange} />
 							{this.state.descriptionError.error ? <div className={styles.ErrorMessage}>
 									{this.state.descriptionError.message}
 								</div> : null}
@@ -203,7 +248,7 @@ class Create extends Component {
 					</div>
 					<div>
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
-							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : avatar}
+							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} alt="Avatar" /> : avatar}
 						</Dropzone>
 						<div className={styles.UploadText}>Click avatar to upload an image</div>
 					</div>

@@ -35,7 +35,6 @@ class ChatView extends Component {
 	}
 
   openEditProfileModal() {
-    console.log('opened');
 		this.setState({ showEditProfileModal: true });
 	}
 

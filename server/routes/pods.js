@@ -66,7 +66,6 @@ router.get('/get/all', async (req, res, next) => {
 router.post('/join/:userId/:podId', async (req, res, next) => {
   try {
     const results = await axios.post(`${POD_MICROSERVICE_URL}/join/${req.params.userId}/${req.params.podId}`);
-    console.log('results in pod route', results);
     res.json(results.data);
   } catch (e) {
     res.sendStatus(400);

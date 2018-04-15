@@ -28,7 +28,6 @@ class ProfileHeader extends Component {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     error: state.auth.error,
     token: state.auth.token,
