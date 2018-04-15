@@ -17,7 +17,7 @@
 }
 
 .Result .PodInfo {
-  margin: 5px 10px;
+  margin: 0 10px;
   min-width: 50x;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .Result .UserCount {
-  margin: 5px 20px 5px 20px;
+  margin: 0 20px 0 20px;
   min-width: 50px;
   font-size: 75%;
   padding-right: 8px;
@@ -41,8 +41,9 @@
 }
 
 .Result .PodDescription {
-  margin: 5px 10px;
+  margin: 0 10px 0 10px;
   min-width: 50px;
+  word-wrap: break-word;
   font-size: 75%;
   color: #000000;
 }
