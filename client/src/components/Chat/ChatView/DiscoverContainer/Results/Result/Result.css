@@ -87,8 +87,8 @@
   height: 40px;
   display: inline-block;
   border-radius: 5px;
-  background-color: rgb(97, 97, 97);
-  color: #FFFFFF;
+  background-color: rgba(68, 68, 68, 0.35);
+  color: rgb(255, 255, 255);
   font-size: 70%;
   font-weight: 600;
   border: none;

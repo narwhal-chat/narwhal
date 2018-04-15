@@ -218,7 +218,7 @@ class EditProfile extends Component {
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
 							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : <img className={styles.Image} src={this.props.userData.avatar} />}
 						</Dropzone>
-						<div className={styles.UploadText}>Click to an upload image</div>
+						<div className={styles.UploadText}>Click avatar to upload an image</div>
 					</div>
 				</div>
 				<div className={styles.Footer}>
