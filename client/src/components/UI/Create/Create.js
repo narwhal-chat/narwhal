@@ -157,7 +157,7 @@ class Create extends Component {
 		}
 
 		let category = 'Select a category';
-		let avatar = '';
+		let avatar = <div className={styles.Image}></div>;
 		if (this.state.category !== '') {
 			category = this.state.category;
 			let categoryAvatar = this.props.category.filter(avatar => {
