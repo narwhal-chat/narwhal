@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const pods = require('./routes/pods');
 const categories = require('./routes/categories');
 const messages = require('./routes/messages');
+const search = require('./routes/search');
 
 // Define a single source of route paths
 const routes = {
@@ -31,7 +32,8 @@ const routes = {
   editProfile: USER_MICROSERVICE_URL + '/editProfile',
   pods: '/pods',
   categories: '/categories',
-  messages: '/messages'
+  messages: '/messages',
+  search: '/search'
 };
 
 // Set static path
@@ -233,6 +235,9 @@ app.use(routes.categories, categories);
 
 // Messages route
 app.use(routes.messages, messages);
+
+// Search route
+app.use(routes.search, search);
 
 // Start server
 http.listen(PORT);
