@@ -1,7 +1,7 @@
 .Create {
   display: grid;
-  grid-template-columns: 600px;
-  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-columns: 640px;
+  grid-template-rows: 1fr 4.4fr 1fr;
   min-height: 400px;
   max-height: 400px;
   align-self: center;
@@ -41,7 +41,7 @@
 
 .Create .PodInfo .PodLeft {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1.2fr 1fr;
   margin-left: 40px;
   font-weight: 600;
   color: #414141;
@@ -78,7 +78,7 @@
 
 .Create .PodCategoryContainer {
   width: 250px;
-  height: 40px;
+  height: 50px;
   background-color: #FFFFFF;
 }
 
@@ -86,7 +86,7 @@
   margin-top: 10px;
   padding: 10px 6px;
   width: 250px;
-  height: 40px;
+  height: 44px;
   background: transparent;
   color: #505AB2;
   font-size: 104%;
@@ -131,29 +131,39 @@
 
 .Create .Avatar {
   display: grid;
+  margin-top: 20px;
   margin-right: 40px;
   width: 180px;
   height: 180px;
   border-radius: 50%;
   background-color: #DADADA;
+  border: 2px solid rgba(175, 175, 175, 0.2);
   justify-items: center;
   align-items: center;
-  border: 1px solid #888888;
   color: rgb(80, 89, 178);
   font-size: 600%;
-}
-
-.Create .UploadText {
-  font-size: 60%;
-  text-align: center;
-  margin-right: 40px;
-  background-color: #FFF
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .Create .Image {
   width: 180px;
   height: 180px;
   border-radius: 50%;
+}
+
+.Create .Avatar:hover {
+  border: 2px solid #888888;
+  transition: 0.2s;
+}
+
+.Create .UploadText {
+  margin-right: 40px;
+  margin-top: 10px;
+  font-size: 65%;
+  text-align: center;
+  color: rgba(34, 34, 34, 0.9);
+  background-color: #FFFFFF;
 }
 
 .Create .Footer {
