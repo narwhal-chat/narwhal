@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { headShake } from 'react-animations';
 import Radium, { StyleRoot } from 'radium';
 
 import styles from './PodContainer.css';
 import narwhalLogo from '../../../../assets/images/narwhal.svg';
 import Pods from './Pods/Pods';
 import * as actions from '../../../../store/actions/index';
-
-// const animationStyles = {
-//   headShake: {
-//     animation: 'x 1.25s',
-//     animationName: Radium.keyframes(headShake, 'headShake')
-//   }
-// };
 
 class PodContainer extends Component {
   componentDidMount() {
@@ -28,7 +20,6 @@ class PodContainer extends Component {
           <StyleRoot>
             <img
               className={styles.Logo}
-              // style={narwhalLogoAnimation}
               src={narwhalLogo} alt="Discover"
               onClick={this.props.onDiscoverClicked}
               draggable="false"

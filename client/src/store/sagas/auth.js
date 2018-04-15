@@ -1,4 +1,4 @@
-import { call, put, take, select, fork, cancel } from 'redux-saga/effects';
+import { put, select} from 'redux-saga/effects';
 import axios from 'axios';
 import * as actions from '../actions/index';
 import * as selectors from './selectors'

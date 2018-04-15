@@ -175,7 +175,7 @@ class Create extends Component {
 		if (this.state.category !== '') {
 			category = this.state.category;
 			let categoryAvatar = this.props.category.filter(avatar => {
-				return category == avatar.id
+				return category === avatar.id
 			})
 			avatar = <img className={styles.Image} src={categoryAvatar[0].default_category_avatar} alt="Pod Avatar" />;
 		}
@@ -191,7 +191,14 @@ class Create extends Component {
 						<div>
 							<label>NAME</label>
 							<div className={styles.PodForm}>
-								<input className={styles.PodInputForm} type="text" autoFocus="autofocus" placeholder="Enter a pod name here" name="podName" value={this.state.podName} onChange={this.handlePodNameChange} />
+								<input
+									className={styles.PodInputForm}
+									type="text"
+									autoFocus="autofocus"
+									placeholder="Enter a pod name here"
+									name="podName" value={this.state.podName}
+									onChange={this.handlePodNameChange}
+								/>
 								{this.state.podNameError.error ? <div className={styles.ErrorMessage}>
 										{this.state.podNameError.message}
 									</div> : null}
@@ -221,7 +228,7 @@ class Create extends Component {
 					</div>
 					<div>
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
-							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : avatar}
+							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} alt="Avatar" /> : avatar}
 						</Dropzone>
 						<div className={styles.UploadText}>Click avatar to upload an image</div>
 					</div>
