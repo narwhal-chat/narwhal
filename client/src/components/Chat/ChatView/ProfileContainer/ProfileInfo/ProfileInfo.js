@@ -56,7 +56,6 @@ class ProfileInfo extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state in profile info', state);
   return {
     error: state.auth.error,
     token: state.auth.token,

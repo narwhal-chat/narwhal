@@ -130,13 +130,11 @@ class EditProfile extends Component {
 		let err = this.validate()
 
 		if (err) {
-			console.log(err);
 			this.setState({
 				password: ''
 			})
 		} else {
 			let image = this.state.files[0];
-			console.log('image', image);
 			let uploadedImage = null;
 			if (this.state.avatar === '') {
 				this.props.editProfile(
@@ -150,7 +148,6 @@ class EditProfile extends Component {
 				upload.post('/uploadUser')
 				.attach('image', image)
 				.end((err, res) => {
-					if (err) console.log(err);
 					uploadedImage = res.text;
 					this.props.editProfile(
 						this.props.userData.username,

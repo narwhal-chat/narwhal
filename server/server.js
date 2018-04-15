@@ -59,12 +59,6 @@ const upload = multer({
 
 // Socket.IO config
 io.on('connection', socket => {
-  console.log('User connected');
-
-  socket.on('disconnect', () => {
-    console.log('User disconnected');
-  });
-
   socket.on('JOIN_ROOM', (payload) => {
     socket.join(payload.room);
   });
@@ -80,14 +74,12 @@ io.on('connection', socket => {
         io.to(payload.room).emit('RECEIVE_MESSAGE', { message: results.data });
       })
       .catch((e) => {
-        console.log(e);
       });
   });
 });
 
 // Register account route
 app.post('/register', (req, res, next) => {
-  console.log('HELLO');
   axios.post(routes.register, req.body)
     .then(user => {
       res.status(200).json({
@@ -113,7 +105,6 @@ app.post('/login', (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log('Error logging in', err)
         return res.status(404).json({
           error: err.response.data.error,
           message: err.response.data.message
@@ -143,7 +134,6 @@ app.post('/uploadPod', upload.single('image'), (req, res, next) => {
     ACL: 'public-read'
   }, (err, data) => {
     if (err) {
-      console.log(err);
       return res.status(400).send(err);
     }
     return res.status(200).send(data.Location);
@@ -176,7 +166,6 @@ app.post('/uploadUser', upload.single('image'), (req, res, next) => {
 		},
 		(err, data) => {
 			if (err) {
-				console.log('error in upload', err);
 				return res.status(400).send(err);
 			}
 			return res.status(200).send(data.Location);
@@ -211,20 +200,18 @@ app.use((req, res, next) => {
 app.post('/editProfile', (req, res, next) => {
   axios.post(routes.editProfile, req.body)
     .then(user => {
-      console.log('succesfully edited the profile', user);
       res.status(200).json({
         token: user.data.token,
         user: user.data.user
       });
     })
     .catch(err => {
-      console.log('ERROR IN EDIT PROFILE', err.response.data)
       res.status(401).json({
         error: err.response.data.error,
         message: err.response.data.message,
         errorType: err.response.data.errorType
       })
-    })
+    });
 })
 
 // Pods route

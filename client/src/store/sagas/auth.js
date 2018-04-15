@@ -71,7 +71,6 @@ export function* editProfile(action) {
 		yield put(actions.editProfileSuccess(response.data.token, response.data.user));
 		yield put(actions.editProfileReset());
 	} catch(error) {
-		console.log(error);
 		yield put(actions.editProfileReset());
 		yield put(actions.editProfileFail(error.response.data.error, error.response.data.message, error.response.data.errorType));
 		

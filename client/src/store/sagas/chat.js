@@ -121,7 +121,6 @@ export function* fetchTopics(action) {
     // Send a final action to notify any calling sagas
     yield put(actions.fetchTopicsFinished());
   } catch (e) {
-    console.log(e);
     yield put(actions.fetchTopicsFail());
   }
 }

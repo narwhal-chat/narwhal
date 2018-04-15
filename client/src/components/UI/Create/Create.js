@@ -132,7 +132,6 @@ class Create extends Component {
 				upload.post('/uploadPod')
 					.attach('image', image)
 					.end((err, res) => {
-						if (err) console.log(err);
 						uploadedImage = res.text;
 						this.props.createPod(
 							this.state.podName[this.state.podName.length - 1] === '-' ? this.state.podName.substring(0, this.state.podName.length - 1) : this.state.podName,
