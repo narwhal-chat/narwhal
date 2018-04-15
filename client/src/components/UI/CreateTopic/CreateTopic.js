@@ -63,17 +63,43 @@ class CreateTopic extends Component {
 				}
 			});
 
-			this.props.onCreateTopic(this.state.topicName);
+			this.props.onCreateTopic(this.state.topicName[this.state.topicName.length - 1] === '-' ? this.state.topicName.substring(0, this.state.topicName.length - 1) : this.state.topicName,
+		);
 			this.props.closeModal();
 		}
 	};
 
 	handleChange = event => {
-		this.setState({ [event.target.name]: event.target.value });
+		// Set the incoming string and make it lowercase
+		let value = event.target.value.toLowerCase();
+
+		// Remove all puncutation and special characters, excluding hyphens
+		value = value.replace(/[^A-Za-z0-9/-]/g, '');
+
+		// Return nothing if the first and only character is a space
+		if (event.target.value[event.target.value.length - 1] === ' ' && event.target.value.length === 1) {
+			return;
+		// If the last character in the string is a space
+		} else if (event.target.value[event.target.value.length - 1] === ' ') {
+			// If the second to last character is a hyphen, remove the last character in the string
+			if (event.target.value[event.target.value.length - 2] === '-') {
+				value = event.target.value.substring(0, event.target.value.length - 1);
+			// Else append a hyphen
+			} else {
+				value = event.target.value.substring(0, event.target.value.length - 1) + '-';
+			}
+		// Return nothing if the first and only character is a hyphen
+		} else if (event.target.value[event.target.value.length - 1] === '-' && event.target.value.length === 1) {
+			return;
+		// Prevent repeating hyphens
+		} else if (event.target.value[event.target.value.length - 1] === '-' && event.target.value[event.target.value.length - 2] === '-') {
+			value = event.target.value.substring(0, event.target.value.length - 1);
+		}
+
+		this.setState({ [event.target.name]: value });
 	};
 
 	render() {
-
 		return (
 			<form onSubmit={this.onSubmit}className={styles.CreateTopic}>
 				<div className={styles.Header}>
@@ -88,6 +114,7 @@ class CreateTopic extends Component {
 							autoFocus="autofocus"
 							placeholder="Enter topic name here"
 							name="topicName"
+							value={this.state.topicName}
 							onChange={this.handleChange}
 						/>
 						{this.state.topicNameError.error ? (<div className={styles.ErrorMessage}>{this.state.topicNameError.message}</div>) : null}

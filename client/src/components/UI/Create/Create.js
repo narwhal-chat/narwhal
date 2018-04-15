@@ -146,16 +146,30 @@ class Create extends Component {
 	};
 
 	handlePodNameChange = event => {
+		// Set the incoming string and make it lowercase
 		let value = event.target.value.toLowerCase();
 
+		// Remove all puncutation and special characters, excluding hyphens
+		value = value.replace(/[^A-Za-z0-9/-]/g, '');
+
+		// Return nothing if the first and only character is a space
 		if (event.target.value[event.target.value.length - 1] === ' ' && event.target.value.length === 1) {
-			value = '';
+			return;
+		// If the last character in the string is a space
 		} else if (event.target.value[event.target.value.length - 1] === ' ') {
+			// If the second to last character is a hyphen, remove the last character in the string
 			if (event.target.value[event.target.value.length - 2] === '-') {
 				value = event.target.value.substring(0, event.target.value.length - 1);
+			// Else append a hyphen
 			} else {
 				value = event.target.value.substring(0, event.target.value.length - 1) + '-';
 			}
+		// Return nothing if the first and only character is a hyphen
+		} else if (event.target.value[event.target.value.length - 1] === '-' && event.target.value.length === 1) {
+			return;
+		// Prevent repeating hyphens
+		} else if (event.target.value[event.target.value.length - 1] === '-' && event.target.value[event.target.value.length - 2] === '-') {
+			value = event.target.value.substring(0, event.target.value.length - 1);
 		}
 
 		this.setState({ [event.target.name]: value });
@@ -196,7 +210,8 @@ class Create extends Component {
 									type="text"
 									autoFocus="autofocus"
 									placeholder="Enter a pod name here"
-									name="podName" value={this.state.podName}
+									name="podName" 
+									value={this.state.podName}
 									onChange={this.handlePodNameChange}
 								/>
 								{this.state.podNameError.error ? <div className={styles.ErrorMessage}>
