@@ -137,22 +137,22 @@
   height: 180px;
   border-radius: 50%;
   background-color: #DADADA;
-  border: 2px solid rgba(175, 175, 175, 0.2);
   justify-items: center;
   align-items: center;
   color: rgb(80, 89, 178);
   font-size: 600%;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 .Create .Image {
   width: 180px;
   height: 180px;
+  border: 2px solid rgba(175, 175, 175, 0.2);
   border-radius: 50%;
+  transition: 0.2s;
 }
 
-.Create .Avatar:hover {
+.Create .Image:hover {
   border: 2px solid #888888;
   transition: 0.2s;
 }

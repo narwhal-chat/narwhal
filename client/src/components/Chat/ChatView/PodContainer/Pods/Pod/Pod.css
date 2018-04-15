@@ -6,9 +6,9 @@
   width: 58px;
   height: 58px;
   background-size: 58px 58px;
-  background-color: rgb(255, 255, 255);
   background-repeat: no-repeat;
   border-radius: 50%;
+  background-color: rgba(218, 218, 218, 0.75);
   transition: 0.2s;
   cursor: pointer;
 }
@@ -20,11 +20,11 @@
 
 .Active {
   border-radius: 32%;
-  opacity: 1;
+  background-color: rgb(233, 233, 233);
   transition: 0.2s;
 }
 
 .Inactive {
-  opacity: 0.5;
+  background-color: rgba(218, 218, 218, 0.75);
   transition: 0.2s;
 }
