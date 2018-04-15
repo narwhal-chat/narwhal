@@ -172,6 +172,11 @@ class Create extends Component {
 			value = event.target.value.substring(0, event.target.value.length - 1);
 		}
 
+		// Restrict the name length to 25 characters
+		if (value.length > 25) {
+			value = value.substring(0, 25);
+		}
+
 		this.setState({ [event.target.name]: value });
 	};
 

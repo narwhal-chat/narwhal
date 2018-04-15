@@ -96,6 +96,11 @@ class CreateTopic extends Component {
 			value = event.target.value.substring(0, event.target.value.length - 1);
 		}
 
+		// Restrict the name length to 20 characters
+		if (value.length > 20) {
+			value = value.substring(0, 20);
+		}
+
 		this.setState({ [event.target.name]: value });
 	};
 
