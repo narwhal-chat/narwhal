@@ -34,10 +34,6 @@ class Create extends Component {
 		}
 	};
 
-	componentDidMount() {
-
-	}
-
 	onDrop = (files) => {
 		this.setState({
 			files: files,
