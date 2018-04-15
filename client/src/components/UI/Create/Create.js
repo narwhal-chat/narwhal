@@ -92,7 +92,8 @@ class Create extends Component {
 
 	onSubmit = event => {
 		event.preventDefault();
-		//check for errors
+
+		// Check for errors
 		this.setState({
 			podNameError: {
 				error: false,
@@ -107,7 +108,9 @@ class Create extends Component {
 				message: '',
 			},
 		});
+
 		const err = this.validate();
+
 		if (err) {
 			this.setState({
 				podName: '',
@@ -127,23 +130,39 @@ class Create extends Component {
 				);
 			} else {
 				upload.post('/uploadPod')
-				.attach('image', image)
-				.end((err, res) => {
-					if (err) console.log(err);
-					uploadedImage = res.text;
-					this.props.createPod(
-						this.state.podName,
-						this.state.category,
-						this.state.description,
-						uploadedImage
-					);
+					.attach('image', image)
+					.end((err, res) => {
+						if (err) console.log(err);
+						uploadedImage = res.text;
+						this.props.createPod(
+							this.state.podName[this.state.podName.length - 1] === '-' ? this.state.podName.substring(0, this.state.podName.length - 1) : this.state.podName,
+							this.state.category,
+							this.state.description,
+							uploadedImage
+						);
 				});
 			}
 			this.props.onRequestClose();
 		}
 	};
 
-	handleChange = event => {
+	handlePodNameChange = event => {
+		let value = event.target.value.toLowerCase();
+
+		if (event.target.value[event.target.value.length - 1] === ' ' && event.target.value.length === 1) {
+			value = '';
+		} else if (event.target.value[event.target.value.length - 1] === ' ') {
+			if (event.target.value[event.target.value.length - 2] === '-') {
+				value = event.target.value.substring(0, event.target.value.length - 1);
+			} else {
+				value = event.target.value.substring(0, event.target.value.length - 1) + '-';
+			}
+		}
+
+		this.setState({ [event.target.name]: value });
+	};
+
+	handleDescriptionChange = event => {
 		this.setState({ [event.target.name]: event.target.value });
 	};
 
@@ -173,7 +192,7 @@ class Create extends Component {
 						<div>
 							<label>NAME</label>
 							<div className={styles.PodForm}>
-								<input className={styles.PodInputForm} type="text" autoFocus="autofocus" placeholder="Enter a pod name here" name="podName" value={this.state.podName} onChange={this.handleChange} />
+								<input className={styles.PodInputForm} type="text" autoFocus="autofocus" placeholder="Enter a pod name here" name="podName" value={this.state.podName} onChange={this.handlePodNameChange} />
 								{this.state.podNameError.error ? <div className={styles.ErrorMessage}>
 										{this.state.podNameError.message}
 									</div> : null}
@@ -195,7 +214,7 @@ class Create extends Component {
 						</div>
 						<div>
 							<label>DESCRIPTION</label>
-							<input className={styles.DescriptionInputForm} type="text" placeholder="Enter a description here" name="description" value={this.state.description} onChange={this.handleChange} />
+							<input className={styles.DescriptionInputForm} type="text" placeholder="Enter a description here" name="description" value={this.state.description} onChange={this.handleDescriptionChange} />
 							{this.state.descriptionError.error ? <div className={styles.ErrorMessage}>
 									{this.state.descriptionError.message}
 								</div> : null}
