@@ -97,9 +97,7 @@ class Create extends Component {
 					}
 				})
 			}
-		})
-
-		console.log(this.props.discover)
+		});
 
 		return isError;
 	};
