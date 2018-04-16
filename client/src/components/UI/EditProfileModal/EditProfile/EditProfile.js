@@ -51,6 +51,7 @@ class EditProfile extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (this.props.errorType !== nextProps.errorType) {
+			console.log(nextProps.errorType);
 			if (nextProps.errorType.username !== '') {
 				this.setState({
 					usernameError: {
@@ -105,7 +106,6 @@ class EditProfile extends Component {
 
 	validate = () => {
 		let isError = false;
-		console.log('state in validate', this.state);
 		if (this.state.password.length < 1) {
 			isError = true;
 			this.setState({
@@ -159,21 +159,6 @@ class EditProfile extends Component {
 
 	verifyOnSubmit = event => {
 		event.preventDefault();
-		
-		this.setState({
-			usernameError: {
-				error: false,
-				message: '',
-			},
-			emailError: {
-				error: false,
-				message: '',
-			},
-			passwordError: {
-				error: false,
-				message: ''
-			}
-		});
 
 		let err = this.validate()
 
@@ -185,7 +170,6 @@ class EditProfile extends Component {
 			let image = this.state.files[0];
 			let uploadedImage = null;
 			if (this.state.avatar === '') {
-				console.log('sending to props', this.state)
 				this.props.editProfile(
 					this.props.userData.username,
 					this.state.username,
@@ -212,7 +196,7 @@ class EditProfile extends Component {
 	};
 
 	handleChange = event => {
-		this.setState({ [event.target.name]: event.target.value }, () => {console.log(this.state)});
+		this.setState({ [event.target.name]: event.target.value });
 	};
 
 	logout = event => {
@@ -286,6 +270,7 @@ const mapStateToProps = state => {
 	return {
 		userData: state.auth.userData,
 		error: state.auth.error,
+		message: state.auth.message,
 		errorType: state.auth.errorType
 	};
 };
