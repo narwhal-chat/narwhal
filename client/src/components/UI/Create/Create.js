@@ -208,7 +208,7 @@ class Create extends Component {
 		if (this.state.category !== '') {
 			category = this.state.category;
 			let categoryAvatar = this.props.category.filter(avatar => {
-				return category === avatar.id;
+				return parseInt(category) === avatar.id;
 			})
 			avatar = <img className={styles.Image} src={categoryAvatar[0].default_category_avatar} alt="Pod Avatar" />;
 		}
