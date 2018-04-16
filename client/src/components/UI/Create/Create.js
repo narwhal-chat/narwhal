@@ -87,6 +87,20 @@ class Create extends Component {
 			});
 		}
 
+		this.props.discover.forEach(pod => {
+			if(this.state.podName === pod.reference_name) {
+				isError = true;
+				this.setState({
+					podNameError: {
+						error: true,
+						message: 'Pod already exists'
+					}
+				})
+			}
+		})
+
+		console.log(this.props.discover)
+
 		return isError;
 	};
 
@@ -268,7 +282,8 @@ class Create extends Component {
 
 const mapStateToProps = state => {
 	return {
-		category: state.chat.categories
+		category: state.chat.categories,
+		discover: state.chat.discover
 	};
 };
 
