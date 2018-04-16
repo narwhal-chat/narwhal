@@ -1,7 +1,6 @@
 .Result {
   display: grid;
-  /* grid-template-columns: 100px 200px 140px 400px 200px 1fr; */
-  grid-template-columns: 58px 100px 0.2fr 0.8fr 0.3fr 1.2fr;
+  grid-template-columns: 58px 100px 0.2fr 0.8fr 0.45fr 1.2fr;
   grid-gap: 30px;
   margin: 0 0 12px 0;
   color: #414141;
@@ -17,7 +16,6 @@
 }
 
 .Result .PodInfo {
-  margin: 0 10px;
   min-width: 50x;
 }
 
@@ -29,36 +27,30 @@
 }
 
 .Result .PodCategory {
-  font-size: 72%;
+  font-size: 70%;
 }
 
 .Result .UserCount {
-  margin: 0 20px 0 20px;
   min-width: 50px;
-  font-size: 75%;
-  padding-right: 8px;
+  font-size: 70%;
   color: #000000;
 }
 
 .Result .PodDescription {
-  margin: 0 10px 0 10px;
   min-width: 50px;
   word-wrap: break-word;
-  font-size: 75%;
+  font-size: 70%;
   color: #000000;
 }
 
 .Result .PodCreateDate {
-  margin: 5px 20px 5px 20px;
-  min-width: 160px;
-  font-size: 75%;
+  min-width: 50px;
+  font-size: 70%;
   color: #000000;
 }
 
 .Result .Button {
   justify-self: end;
-  margin-left: 15px;
-  max-width: 530px;
   min-width: 330px;
   height: 40px;
   display: inline-block;
