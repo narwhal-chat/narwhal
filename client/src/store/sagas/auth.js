@@ -1,4 +1,4 @@
-import { put, select} from 'redux-saga/effects';
+import { call, put, take, select, fork, cancel } from 'redux-saga/effects';
 import axios from 'axios';
 import * as actions from '../actions/index';
 import * as selectors from './selectors'
@@ -56,6 +56,7 @@ export function* login(action) {
 
 export function* editProfile(action) {
 	try {
+		console.log('ACTION', action);
 		const token = yield select(selectors.token);
 		const response = yield axios.post('/editProfile', {
 			username: action.username,
@@ -71,8 +72,8 @@ export function* editProfile(action) {
 		yield put(actions.editProfileSuccess(response.data.token, response.data.user));
 		yield put(actions.editProfileReset());
 	} catch(error) {
-		yield put(actions.editProfileReset());
-		yield put(actions.editProfileFail(error.response.data.error, error.response.data.message, error.response.data.errorType));
+		// yield put(actions.editProfileReset());
+		yield put(actions.editProfileFail(error.response.data.error, error.response.data.errorType));
 		
 	}
 }

@@ -5,8 +5,11 @@ const initialState = {
     token: null,
 		userData: null,
 		error: null,
-		message: null,
-		errorType: null,
+		errorType: {
+			username: '',
+			password: '',
+			email: ''
+		},
     isAuthenticating: true,
     authRedirectPath: '/'
 };
@@ -45,24 +48,32 @@ const authLogout = (state, action) => {
 const editProfileReset = (state, action) => {
 	return updateObject(state, {
 		error: null,
-		message: null,
-		errorType: null
+		errorType: {
+			username: '',
+			password: '',
+			email: ''
+		}
 	})
 }
 
 const editProfileSuccess = (state, action) => {
+	console.log('success', action)
 	return updateObject(state, {
 		token: action.idToken,
 		userData: action.userData,
 		error: false,
-		message: null,
+		errorType: {
+			username: '',
+			password: '',
+			email: '',
+		}
 	});
 };
 
 const editProfileFail = (state, action) => {
+	console.log('fail action', action);
   return updateObject(state, {
 		error: true,
-		message: action.message,
 		errorType: action.errorType
   });
 };
