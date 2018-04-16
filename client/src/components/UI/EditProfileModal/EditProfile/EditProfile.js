@@ -50,8 +50,8 @@ class EditProfile extends Component {
 	// }
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.error !== nextProps.error) {
-			if (nextProps.errorType === 'username') {
+		if (this.props.errorType !== nextProps.errorType) {
+			if (nextProps.errorType.username !== '') {
 				this.setState({
 					usernameError: {
 						error: true,
@@ -59,7 +59,7 @@ class EditProfile extends Component {
 					}
 				})
 			}
-			if (nextProps.errorType === 'password') {
+			if (nextProps.errorType.password !== '') {
 				this.setState({
 					passwordError: {
 						error: true,
@@ -67,7 +67,7 @@ class EditProfile extends Component {
 					}
 				})
 			}
-			if (nextProps.errorType === 'email') {
+			if (nextProps.errorType.email !== '') {
 				this.setState({
 					emailError: {
 						error: true,
@@ -105,6 +105,7 @@ class EditProfile extends Component {
 
 	validate = () => {
 		let isError = false;
+		console.log('state in validate', this.state);
 		if (this.state.password.length < 1) {
 			isError = true;
 			this.setState({
@@ -129,7 +130,7 @@ class EditProfile extends Component {
 			if (this.state.username.includes(' ')) {
 				isError = true;
 				this.setState({
-					topicNameError: {
+					usernameError: {
 						error: true,
 						message: 'Username must not contain any spaces',
 					},
@@ -158,6 +159,21 @@ class EditProfile extends Component {
 
 	verifyOnSubmit = event => {
 		event.preventDefault();
+		
+		this.setState({
+			usernameError: {
+				error: false,
+				message: '',
+			},
+			emailError: {
+				error: false,
+				message: '',
+			},
+			passwordError: {
+				error: false,
+				message: ''
+			}
+		});
 
 		let err = this.validate()
 
@@ -169,6 +185,7 @@ class EditProfile extends Component {
 			let image = this.state.files[0];
 			let uploadedImage = null;
 			if (this.state.avatar === '') {
+				console.log('sending to props', this.state)
 				this.props.editProfile(
 					this.props.userData.username,
 					this.state.username,
@@ -195,7 +212,7 @@ class EditProfile extends Component {
 	};
 
 	handleChange = event => {
-		this.setState({ [event.target.name]: event.target.value });
+		this.setState({ [event.target.name]: event.target.value }, () => {console.log(this.state)});
 	};
 
 	logout = event => {
@@ -269,7 +286,6 @@ const mapStateToProps = state => {
 	return {
 		userData: state.auth.userData,
 		error: state.auth.error,
-		message: state.auth.message,
 		errorType: state.auth.errorType
 	};
 };
