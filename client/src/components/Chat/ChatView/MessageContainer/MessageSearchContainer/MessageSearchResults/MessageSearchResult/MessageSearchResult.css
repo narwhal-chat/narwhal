@@ -1,0 +1,8 @@
+.MessageSearchResult {
+  padding: 10px 12px;
+  font-size: 80%;
+  color: black;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(226, 225, 225, 0.7);
+  border-radius: 5px;
+}

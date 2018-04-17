@@ -1,7 +1,7 @@
 .MessageSearchHeader {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: 12px 12px 10px 12px;
+  padding: 12px 12px 14px 12px;
 }
 
 .MessageSearchHeader .HeaderText {
@@ -17,10 +17,10 @@
   font-size: 80%;
   color: rgba(77, 77, 77, 0.8);
   cursor: pointer;
-  transition: 0.1s;
+  transition: 0.02s;
 }
 
 .MessageSearchHeader .CloseIcon:hover {
-  color: rgb(75, 75, 75);
-  transition: 0.1s;
+  color: #44DBC0;
+  transition: 0.02s;
 }

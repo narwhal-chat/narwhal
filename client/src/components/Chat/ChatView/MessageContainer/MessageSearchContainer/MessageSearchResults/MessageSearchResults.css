@@ -1,0 +1,13 @@
+.MessageSearchResults {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 14px 12px 0 12px;
+  background-color: rgba(228, 228, 228, 0.2);
+}
+
+.MessageSearchResults .ResultsHeader {
+  margin-bottom: 12px;
+  font-size: 90%;
+  font-weight: 600;
+}

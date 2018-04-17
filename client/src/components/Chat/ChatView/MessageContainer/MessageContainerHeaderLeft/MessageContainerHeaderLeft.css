@@ -1,5 +1,5 @@
-.MessageContainerHeader {
-  grid-area: messageContainerHeader;
+.MessageContainerHeaderLeft {
+  grid-area: messageContainerHeaderLeft;
   display: flex;
   justify-content: space-between;
   align-items: center;
