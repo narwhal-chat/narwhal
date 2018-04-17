@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import styles from './CreateJoinModal.css';
 import CreateJoin from '../CreateJoin/CreateJoin';
 
-Modal.setAppElement('#root');
+// Modal.setAppElement('#root');
 
 const customStyles = {
   content: {
