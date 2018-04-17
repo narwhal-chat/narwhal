@@ -6,6 +6,7 @@ const initialState = {
     discover: [],
     topics: [],
     messages: [],
+    messageSearchResults: [],
     categories: [],
     search: '',
     searchResults: [],

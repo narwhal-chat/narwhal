@@ -1,7 +1,22 @@
 import { takeEvery, takeLatest, all, fork } from 'redux-saga/effects';
 
 import * as actionTypes from '../actions/actionTypes';
-import { fetchPods, createPod, fetchTopics, createTopic, podClicked, topicClicked, discoverClicked, fetchDiscover, fetchCategories, categoryClicked, joinPod, connectSocketFlow, joinSocketRoom } from './chat';
+import {
+  fetchPods, 
+  createPod, 
+  fetchTopics, 
+  createTopic, 
+  podClicked, 
+  topicClicked, 
+  discoverClicked, 
+  fetchDiscover, 
+  fetchCategories, 
+  categoryClicked, 
+  joinPod, 
+  connectSocketFlow, 
+  joinSocketRoom, 
+  fetchMessageSearchResults
+} from './chat';
 import { authCheckState, authLogout, auth, login, editProfile } from './auth';
 
 export function* watchChat() {
@@ -18,7 +33,8 @@ export function* watchChat() {
     takeEvery(actionTypes.CATEGORY_CLICKED, categoryClicked),
     takeEvery(actionTypes.JOIN_POD, joinPod),
     fork(connectSocketFlow),
-    fork(joinSocketRoom)
+    fork(joinSocketRoom),
+    takeEvery(actionTypes.FETCH_MESSAGE_SEARCH_RESULTS, fetchMessageSearchResults)
   ]);
 }
 

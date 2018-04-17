@@ -219,7 +219,7 @@ export function* fetchDiscover(action) {
         params: {
           token: token
         }
-    })
+    });
     yield put(actions.fetchDiscoverSuccess(results.data));
   } catch (e) {
     yield put(actions.fetchDiscoverFail())
@@ -322,8 +322,14 @@ export function* joinSocketRoom(socket) {
   }
 }
 
-export function* fetchMessageResults() {
-  const activeTopic = yield select(selectors.activePod);
+export function* fetchMessageSearchResults() {
+  const token = yield select(selectors.token);
+  const activeTopic = yield select(selectors.activeTopic, );
+  const query = 'yo';
 
-  
+  const messages = yield axios.get(`/search/${query}/${activeTopic.id}`, {
+    params: {
+      token: token
+    }
+  });
 }
