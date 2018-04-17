@@ -1,0 +1,26 @@
+.MessageSearchHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 12px 12px 10px 12px;
+}
+
+.MessageSearchHeader .HeaderText {
+  justify-self: start;
+  align-self: center;
+  font-size: 90%;
+  font-weight: 600;
+}
+
+.MessageSearchHeader .CloseIcon {
+  justify-self: end;
+  align-self: center;
+  font-size: 80%;
+  color: rgba(77, 77, 77, 0.8);
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.MessageSearchHeader .CloseIcon:hover {
+  color: rgb(75, 75, 75);
+  transition: 0.1s;
+}
