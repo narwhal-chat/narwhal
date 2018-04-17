@@ -321,3 +321,9 @@ export function* joinSocketRoom(socket) {
     });
   }
 }
+
+export function* fetchMessageResults() {
+  const activeTopic = yield select(selectors.activePod);
+
+  
+}

@@ -132,6 +132,12 @@ export const connectSocketSuccess = () => {
   };
 };
 
+export const diconnectSocket = () => {
+  return {
+    type: actionTypes.DISCONNECT_SOCKET
+  };
+};
+
 export const setSocket = (socket) => {
   return {
     type: actionTypes.SET_SOCKET,
@@ -151,6 +157,30 @@ export const messagesReceived = (messages) => {
     type: actionTypes.MESSAGES_RECEIVED,
     messages: messages
   };
+};
+
+export const fetchMessageSearchResults = () => {
+  return {
+    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS
+  }
+};
+
+export const fetchMessageSearchResultsStart = () => {
+  return {
+    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_START
+  }
+};
+
+export const fetchMessageSearchResultsSuccess = () => {
+  return {
+    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_SUCCESS
+  }
+};
+
+export const fetchMessageSearchResultsFail = () => {
+  return {
+    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_FAIL
+  }
 };
 
 export const fetchDiscover = () => {
