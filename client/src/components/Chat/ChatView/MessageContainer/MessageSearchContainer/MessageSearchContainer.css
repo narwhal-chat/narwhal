@@ -1,0 +1,6 @@
+.MessageSearchContainer {
+  grid-area: messageSearchContainer;
+  width: 440px;
+  color: black;
+  border-left: 1px solid rgba(226, 225, 225, 0.7);
+}

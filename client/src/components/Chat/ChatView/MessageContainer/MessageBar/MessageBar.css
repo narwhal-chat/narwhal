@@ -1,4 +1,5 @@
 .MessageBar {
+  grid-area: messageBar;
   margin: 16px auto 16px auto;
   width: 97%;
 }
