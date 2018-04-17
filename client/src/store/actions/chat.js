@@ -132,12 +132,6 @@ export const connectSocketSuccess = () => {
   };
 };
 
-export const diconnectSocket = () => {
-  return {
-    type: actionTypes.DISCONNECT_SOCKET
-  };
-};
-
 export const setSocket = (socket) => {
   return {
     type: actionTypes.SET_SOCKET,

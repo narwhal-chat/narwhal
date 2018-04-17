@@ -22,10 +22,6 @@ class MessageContainer extends Component {
     this.props.onConnectSocket();
   }
 
-  componentWillUnmount() {
-    this.props.onDisconnectSocket();
-  }
-
   onMessageChange = (message) => {
     this.setState({
       message: message
@@ -83,7 +79,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onConnectSocket: () => dispatch(actions.connectSocket()),
-    onDisconnectSocket: () => dispatch(actions.diconnectSocket()),
     onSendMessage: (message) => dispatch(actions.messageSent(message))
   };
 };

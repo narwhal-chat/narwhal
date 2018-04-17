@@ -32,7 +32,6 @@ export {
   discoverActive,
   connectSocket,
   connectSocketSuccess,
-  diconnectSocket,
   setSocket,
   messageSent,
   messagesReceived,
