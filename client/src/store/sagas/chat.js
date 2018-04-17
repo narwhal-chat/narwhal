@@ -323,13 +323,23 @@ export function* joinSocketRoom(socket) {
 }
 
 export function* fetchMessageSearchResults() {
-  const token = yield select(selectors.token);
-  const activeTopic = yield select(selectors.activeTopic, );
-  const query = 'yo';
+  try {
+    yield put(actions.fetchMessageSearchResultsStart());
 
-  const messages = yield axios.get(`/search/${query}/${activeTopic.id}`, {
-    params: {
-      token: token
-    }
-  });
+    const token = yield select(selectors.token);
+    const activeTopic = yield select(selectors.activeTopic, );
+    const query = 'yo';
+  
+    const messages = yield axios.get(`/search/${query}/${activeTopic.id}`, {
+      params: {
+        token: token
+      }
+    });
+
+    console.log('results search', messages);
+  
+    yield put(actions.fetchMessageSearchResultsSuccess(messages.data));
+  } catch(e) {
+
+  }
 }

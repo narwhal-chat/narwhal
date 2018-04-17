@@ -159,9 +159,10 @@ export const messagesReceived = (messages) => {
   };
 };
 
-export const fetchMessageSearchResults = () => {
+export const fetchMessageSearchResults = (query) => {
   return {
-    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS
+    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS,
+    query: query
   }
 };
 
@@ -171,9 +172,10 @@ export const fetchMessageSearchResultsStart = () => {
   }
 };
 
-export const fetchMessageSearchResultsSuccess = () => {
+export const fetchMessageSearchResultsSuccess = (messages) => {
   return {
-    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_SUCCESS
+    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_SUCCESS,
+    messages: messages
   }
 };
 
