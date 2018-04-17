@@ -17,6 +17,7 @@ class MessageSearchContainer extends Component {
         <MessageSearchHeader
         />
         <MessageSearchResults
+          messageSearchResults={this.props.messageSearchResults}
         />
       </div>
     );
@@ -25,8 +26,7 @@ class MessageSearchContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    messages: state.chat.messages,
-    activeTopic: state.chat.activeTopic
+    messageSearchResults: state.chat.messageSearchResults
   };
 };
 
