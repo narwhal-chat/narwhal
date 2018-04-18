@@ -70,6 +70,7 @@ const editProfileFail = (state, action) => {
 };
 
 const reducer = (state = initialState, action) => {
+	console.log('I AM THE ACTION', action)
     switch (action.type) {
 		case actionTypes.AUTH_START:
 		  return authStart(state, action);
