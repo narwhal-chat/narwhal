@@ -4,28 +4,28 @@ import styles from './MessageSearchResults.css';
 import MessageSearchResult from './MessageSearchResult/MessageSearchResult';
 
 const messageSearchResults = (props) => {
+  let messageSearchHeader = null;
   let messageSearchResults = null;
 
   if (!props.messageSearchResults.length) {
-    return (
-      <React.Fragment>
-        <div>^_^</div>
-      </React.Fragment>
+    messageSearchResults = (
+      <div className={styles.NoResults}>Nothin' found</div>
     );
+  } else {
+    messageSearchHeader = <div className={styles.ResultsHeader}>{props.messageSearchResults.length} Results</div>;
+    messageSearchResults = props.messageSearchResults.map((result) => {
+      return (
+        <MessageSearchResult
+          key={result.id}
+          messageSearchResult={result}
+        />
+      );
+    });
   }
-
-  messageSearchResults = props.messageSearchResults.map((result) => {
-    return (
-      <MessageSearchResult
-        key={result.id}
-        messageSearchResult={result}
-      />
-    );
-  });
 
   return (
     <div className={styles.MessageSearchResults}>
-      <div className={styles.ResultsHeader}>{props.messageSearchResults.length} Results</div>
+      {messageSearchHeader}
       {messageSearchResults}
     </div>
   );
