@@ -7,10 +7,6 @@ import MessageSearchResults from './MessageSearchResults/MessageSearchResults';
 import * as actions from '../../../../../store/actions/index';
 
 class MessageSearchContainer extends Component {
-  componentDidMount() {
-    this.props.onfetchMessageSearchResults();
-  }
-
   render() {
     return (
       <div className={styles.MessageSearchContainer}>
@@ -31,9 +27,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    onfetchMessageSearchResults: (query) => dispatch(actions.fetchMessageSearchResults(query))
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageSearchContainer);

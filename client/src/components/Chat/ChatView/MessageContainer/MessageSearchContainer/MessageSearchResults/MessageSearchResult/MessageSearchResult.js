@@ -4,7 +4,6 @@ import moment from 'moment';
 import styles from './MessageSearchResult.css';
 
 const messageSearchResult = (props) => {
-  console.log(props.messageSearchResult);
   let avatar = {
     backgroundImage: `url('${props.messageSearchResult.avatar}')`
   }
