@@ -159,6 +159,9 @@ export function* podClicked(action) {
         yield put(actions.connectSocket());
         yield take(actionTypes.CONNECT_SOCKET_SUCCESS);
       }
+
+      // Reset the message search results
+      yield put(actions.clearMessageSearchResults());
   
       // If a pod was previously selected, first leave the socket room associated with the previous active topic
       const previousTopic = yield(select(selectors.activeTopic));

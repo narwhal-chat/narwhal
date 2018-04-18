@@ -1,5 +1,5 @@
 .MessageSearchBar {
-  width: 320px;
+  width: 380px;
   padding: 7px 4px 7px 10px;
   border: 1px solid rgba(139, 139, 139, 0.8);
   border-radius: 3px;
@@ -11,13 +11,12 @@
 }
 
 .MessageSearchBar:hover {
-  border: 1px solid rgb(110, 110, 110);
+  border: 1px solid rgb(88, 88, 88);
   transition: 0.05s;
 }
 
 .MessageSearchBar:focus {
-  width: 400px;
-  transition: 0.4s;
+  border: 1px solid rgb(88, 88, 88);
 }
 
 .MessageSearchBar::placeholder {

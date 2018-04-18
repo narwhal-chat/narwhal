@@ -185,6 +185,12 @@ export const fetchMessageSearchResultsFail = () => {
   }
 };
 
+export const clearMessageSearchResults = () => {
+  return {
+    type: actionTypes.CLEAR_MESSAGE_SEARCH_RESULTS
+  };
+};
+
 export const fetchDiscover = () => {
   return {
     type: actionTypes.FETCH_DISCOVER

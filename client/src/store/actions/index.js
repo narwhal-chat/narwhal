@@ -40,6 +40,7 @@ export {
   fetchMessageSearchResultsStart,
   fetchMessageSearchResultsSuccess,
   fetchMessageSearchResultsFail,
+  clearMessageSearchResults,
   fetchDiscover,
   fetchDiscoverSuccess,
   fetchDiscoverFail,
