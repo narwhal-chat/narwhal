@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import styles from './CreateTopicModal.css';
 import CreateTopic from '../CreateTopic/CreateTopic';
 
-Modal.setAppElement('#root');
+// Modal.setAppElement('#root');
 
 const createTopicModal = (props) => {
   return (

@@ -10,35 +10,26 @@ const initialState = {
 			password: '',
 			email: ''
 		},
-    isAuthenticating: true,
     authRedirectPath: '/'
 };
 
 const authStart = (state, action) => {
-    return updateObject(state, { error: null, isAuthenticating: true });
+    return updateObject(state, { error: null });
 };
 
 const authSuccess = (state, action) => {
     return updateObject(state, {
         token: action.idToken,
         userData: action.userData,
-        error: null,
-        isAuthenticating: false
+        error: null
     });
 };
 
 const authFail = (state, action) => {
     return updateObject(state, {
 				error: action.error,
-				message: action.message,
-        isAuthenticating: false
+				message: action.message
     });
-};
-
-const authCheckStateFinished = (state, action) => {
-	return updateObject(state, {
-		isAuthenticating: false
-	});
 };
 
 const authLogout = (state, action) => {
@@ -86,8 +77,6 @@ const reducer = (state = initialState, action) => {
 		  return authSuccess(state, action);
 		case actionTypes.AUTH_FAIL:
 		  return authFail(state, action);
-		case actionTypes.AUTH_CHECK_STATE_FINISHED:
-		  return authCheckStateFinished(state, action);
 		case actionTypes.AUTH_LOGOUT:
 			return authLogout(state, action);
 		case actionTypes.EDIT_PROFILE_RESET:
