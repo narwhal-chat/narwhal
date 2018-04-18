@@ -10,11 +10,13 @@ class MessageSearchContainer extends Component {
   render() {
     return (
       <div className={styles.MessageSearchContainer}>
-        <MessageSearchHeader
-        />
-        <MessageSearchResults
-          messageSearchResults={this.props.messageSearchResults}
-        />
+        <React.Fragment>
+          <MessageSearchHeader
+          />
+          <MessageSearchResults
+            messageSearchResults={this.props.messageSearchResults}
+          />
+        </React.Fragment>
       </div>
     );
   }
@@ -22,6 +24,7 @@ class MessageSearchContainer extends Component {
 
 const mapStateToProps = state => {
   return {
+    messageSearchContainerOpen: state.chat.messageSearchContainerOpen,
     messageSearchResults: state.chat.messageSearchResults
   };
 };

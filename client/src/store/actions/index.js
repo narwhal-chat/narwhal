@@ -41,6 +41,7 @@ export {
   fetchMessageSearchResultsSuccess,
   fetchMessageSearchResultsFail,
   clearMessageSearchResults,
+  messageSearchContainerClosed,
   fetchDiscover,
   fetchDiscoverSuccess,
   fetchDiscoverFail,

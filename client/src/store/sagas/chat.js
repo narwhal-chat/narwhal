@@ -327,7 +327,7 @@ export function* joinSocketRoom(socket) {
 
 export function* fetchMessageSearchResults(action) {
   try {
-    yield put(actions.fetchMessageSearchResultsStart());
+    yield put(actions.fetchMessageSearchResultsStart(true));
 
     const token = yield select(selectors.token);
     const activeTopic = yield select(selectors.activeTopic, );

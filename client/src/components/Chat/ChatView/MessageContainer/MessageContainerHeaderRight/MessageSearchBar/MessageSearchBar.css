@@ -6,8 +6,7 @@
   font-size: 67%;
   color: rgba(39, 39, 39, 0.8);
   outline: none;
-  transition: border 0.05, width 0.4s;
-  -webkit-transition: width 0.4s;
+  /* transition: border 0.05; */
 }
 
 .MessageSearchBar:hover {

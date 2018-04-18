@@ -166,9 +166,10 @@ export const fetchMessageSearchResults = (query) => {
   }
 };
 
-export const fetchMessageSearchResultsStart = () => {
+export const fetchMessageSearchResultsStart = (visible) => {
   return {
-    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_START
+    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_START,
+    visible: visible
   }
 };
 
@@ -188,6 +189,12 @@ export const fetchMessageSearchResultsFail = () => {
 export const clearMessageSearchResults = () => {
   return {
     type: actionTypes.CLEAR_MESSAGE_SEARCH_RESULTS
+  };
+};
+
+export const messageSearchContainerClosed = () => {
+  return {
+    type: actionTypes.MESSAGE_SEARCH_CONTAINER_CLOSED
   };
 };
 
