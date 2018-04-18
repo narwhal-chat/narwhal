@@ -15,7 +15,7 @@
   font-weight: 600;
 }
 
-.MessageSearchResults::-webkit-scrollbar-track
+/* .MessageSearchResults::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
@@ -33,9 +33,12 @@
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
 	background-color: rgba(102, 102, 102, 0.4);
-}
+} */
 
 .MessageSearchResults .NoResults {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
   align-self: center;
   margin-top: 30px;
   padding: 10px 12px;
