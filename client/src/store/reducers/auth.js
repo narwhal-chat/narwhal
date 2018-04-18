@@ -77,8 +77,6 @@ const reducer = (state = initialState, action) => {
 		  return authSuccess(state, action);
 		case actionTypes.AUTH_FAIL:
 		  return authFail(state, action);
-		case actionTypes.AUTH_CHECK_STATE_FINISHED:
-		  return authCheckStateFinished(state, action);
 		case actionTypes.AUTH_LOGOUT:
 			return authLogout(state, action);
 		case actionTypes.EDIT_PROFILE_RESET:
