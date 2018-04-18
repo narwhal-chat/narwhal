@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
 import styles from './DiscoverSearch.css';
-import SearchIcon from 'react-icons/lib/io/android-search';
-import SearchInput, { createFilter } from 'react-search-input';
-import * as actions from '../../../../../store/actions/index';
+import SearchInput from 'react-search-input';
 
 
 class DiscoverSearch extends Component {

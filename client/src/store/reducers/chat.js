@@ -17,8 +17,7 @@ const initialState = {
 
 const fetchPodsSuccess = (state, action) => {
   return updateObject(state, {
-    pods: action.pods,
-    inDiscover: false
+    pods: action.pods
   });
 };
 

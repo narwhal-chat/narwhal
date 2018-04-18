@@ -32,20 +32,70 @@ class EditProfile extends Component {
 		avatar: ''
 	};
 
-	// componentWillReceiveProps(nextProps) {
-	// 	if (this.props.error !== nextProps.error) {
-	// 		this.setState({
-	// 			files: [],
-	// 			password: ''
-	// 		})
-	// 	}
+	// componentDidMount() {
+	// 	this.setState({
+	// 		usernameError: {
+	// 			error: false,
+	// 			message: '',
+	// 		},
+	// 		emailError: {
+	// 			error: false,
+	// 			message: '',
+	// 		},
+	// 		passwordError: {
+	// 			error: false,
+	// 			message: ''
+	// 		}
+	// 	});
 	// }
 
-	// componentDidUpdate() {
-	// 	if (this.props.error === false) {
-	// 		this.props.closeModal();
-	// 	}
-	// }
+	componentWillReceiveProps(nextProps) {
+		if (this.props.errorType !== nextProps.errorType) {
+			console.log(nextProps.errorType);
+			if (nextProps.errorType.username !== '') {
+				this.setState({
+					usernameError: {
+						error: true,
+						message: 'Username already exists'
+					}
+				})
+			}
+			if (nextProps.errorType.password !== '') {
+				this.setState({
+					passwordError: {
+						error: true,
+						message: 'Incorrect password'
+					}
+				})
+			}
+			if (nextProps.errorType.email !== '') {
+				this.setState({
+					emailError: {
+						error: true,
+						message: 'E-mail address already exists'
+					}
+				})
+			}
+
+			if (this.props.error === false) {
+				this.props.closeModal();
+			}
+			// this.setState({
+			// 	files: [],
+			// 	username: '',
+			// 	email: '',
+			// 	password: '',
+			// 	avatar: ''
+			// })
+		}
+	}
+
+	componentDidUpdate() {
+		// console.log('hello');
+		// if (this.props.error === false) {
+		// 	this.props.closeModal();
+		// }
+	}
 
 	onDrop = (files) => {
 		this.setState({
@@ -53,7 +103,6 @@ class EditProfile extends Component {
 			avatar: files[0].preview
 		})
 	}
-
 
 	validate = () => {
 		let isError = false;
@@ -66,10 +115,6 @@ class EditProfile extends Component {
 				}
 			});
 		}
-
-		// if (this.state.password.length > 1 && (this.state.confirmpw === this.state.password)) {
-		// 	this.props.editProfile(this.props.userData.username, this.state.username, this.state.email, this.state.password, this.props.token);
-		// }
 
 		if (this.state.username.length >= 1) {
 			if (this.state.username.length < 4 || this.state.username.length > 28) {
@@ -85,7 +130,7 @@ class EditProfile extends Component {
 			if (this.state.username.includes(' ')) {
 				isError = true;
 				this.setState({
-					topicNameError: {
+					usernameError: {
 						error: true,
 						message: 'Username must not contain any spaces',
 					},
@@ -107,51 +152,37 @@ class EditProfile extends Component {
 			}
 		}
 
+
+
 		return isError;
 	};
 
 	verifyOnSubmit = event => {
 		event.preventDefault();
-		this.setState({
-			usernameError: {
-				error: false,
-				message: '',
-			},
-			emailError: {
-				error: false,
-				message: '',
-			},
-			passwordError: {
-				error: false,
-				message: ''
-			}
-		});
 
 		let err = this.validate()
 
 		if (err) {
-			console.log(err);
 			this.setState({
 				password: ''
 			})
 		} else {
 			let image = this.state.files[0];
-			console.log('image', image);
 			let uploadedImage = null;
 			if (this.state.avatar === '') {
 				this.props.editProfile(
 					this.props.userData.username,
 					this.state.username,
 					this.state.email,
-					this.state.password,
-					this.props.userData.avatar
+					this.props.userData.avatar,
+					this.state.password
 				);
 			} else {
 				upload.post('/uploadUser')
 				.attach('image', image)
 				.end((err, res) => {
-					if (err) console.log(err);
 					uploadedImage = res.text;
+					console.log(uploadedImage);
 					this.props.editProfile(
 						this.props.userData.username,
 						this.state.username,
@@ -161,7 +192,6 @@ class EditProfile extends Component {
 					)
 				})
 			}
-			this.props.closeModal();
 		}
 	};
 
@@ -175,16 +205,9 @@ class EditProfile extends Component {
 	}
 
 	render() {
-		let avatar = this.props.userData.avatar;
-
 		return <form onSubmit={this.verifyOnSubmit} className={styles.EditProfile}>
 				<div className={styles.Header}>
 					<div className={styles.HeaderTitle}>EDIT PROFILE</div>
-					<div className={styles.Logout}>
-						<div className={styles.Link} onClick={this.logout}>
-							Logout
-						</div>
-					</div>
 				</div>
 				<div className={styles.Content}>
 					<div className={styles.ProfileLeft}>
@@ -194,9 +217,9 @@ class EditProfile extends Component {
 							{this.state.usernameError.error ? <div className={styles.ErrorMessage}>
 									{this.state.usernameError.message}
 								</div> : null}
-							{this.props.errorType === 'username' ? <div className={styles.ErrorMessage}>
+							{/* {this.props.errorType === 'username' ? <div className={styles.ErrorMessage}>
 									{this.props.message}
-								</div> : null}
+								</div> : null} */}
 						</div>
 						<div>
 							<label>EMAIL ADDRESS</label>
@@ -204,9 +227,9 @@ class EditProfile extends Component {
 							{this.state.emailError.error ? <div className={styles.ErrorMessage}>
 									{this.state.emailError.message}
 								</div> : null}
-							{this.props.errorType === 'email' ? <div className={styles.ErrorMessage}>
+							{/* {this.props.errorType === 'email' ? <div className={styles.ErrorMessage}>
 									{this.props.message}
-								</div> : null}
+								</div> : null} */}
 						</div>
 						<div>
 							<label>CURRENT PASSWORD</label>
@@ -214,20 +237,24 @@ class EditProfile extends Component {
 							{this.state.passwordError.error ? <div className={styles.ErrorMessage}>
 									{this.state.passwordError.message}
 								</div> : null}
-							{this.props.errorType === 'password' ? <div className={styles.ErrorMessage}>
+							{/* {this.props.errorType === 'password' ? <div className={styles.ErrorMessage}>
 									{this.props.message}
-								</div> : null}
+								</div> : null} */}
 						</div>
 					</div>
 					<div>
 						<Dropzone accept="image/*" className={styles.Avatar} onDrop={this.onDrop.bind(this)}>
-							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} /> : <img className={styles.Image} src={this.props.userData.avatar} />}
+							{this.state.files.length > 0 ? <img className={styles.Image} src={this.state.files[0].preview} alt="Avatar" /> : <img className={styles.Image} src={this.props.userData.avatar} alt="Avatar" />}
 						</Dropzone>
-						<br />
-						<div className={styles.UploadText}>Click to upload image</div>
+						<div className={styles.UploadText}>Click avatar to upload an image</div>
 					</div>
 				</div>
 				<div className={styles.Footer}>
+					<div className={styles.Logout}>
+						<div className={styles.Link} onClick={this.logout}>
+							Logout
+						</div>
+					</div>
 					<div onClick={this.props.closeModal} className={styles.BackButton}>
 						Cancel
 					</div>

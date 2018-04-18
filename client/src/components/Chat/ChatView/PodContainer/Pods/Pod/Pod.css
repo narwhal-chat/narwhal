@@ -6,9 +6,9 @@
   width: 58px;
   height: 58px;
   background-size: 58px 58px;
-  background-color: rgb(255, 255, 255);
   background-repeat: no-repeat;
   border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
   transition: 0.2s;
   cursor: pointer;
 }

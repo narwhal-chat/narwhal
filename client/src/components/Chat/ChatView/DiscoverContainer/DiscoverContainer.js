@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SearchInput, { createFilter } from 'react-search-input';
+import { createFilter } from 'react-search-input';
 
 import styles from './DiscoverContainer.css';
 import DiscoverContainerHeader from './DiscoverContainerHeader/DiscoverContainerHeader';

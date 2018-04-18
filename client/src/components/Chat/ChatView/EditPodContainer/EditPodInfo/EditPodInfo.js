@@ -67,7 +67,6 @@ class EditPodInfo extends Component {
 }
 
 const mapStateToProps = state => {
-	console.log('this is state.chat', state.chat)
 	return {
 		pods: state.chat.pods,
 	};
