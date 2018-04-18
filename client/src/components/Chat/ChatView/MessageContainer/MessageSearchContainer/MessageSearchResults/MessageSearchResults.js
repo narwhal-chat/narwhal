@@ -4,7 +4,17 @@ import styles from './MessageSearchResults.css';
 import MessageSearchResult from './MessageSearchResult/MessageSearchResult';
 
 const messageSearchResults = (props) => {
-  let messageSearchResults = props.messageSearchResults.map((result) => {
+  let messageSearchResults = null;
+
+  if (!props.messageSearchResults.length) {
+    return (
+      <React.Fragment>
+        <div>^_^</div>
+      </React.Fragment>
+    );
+  }
+
+  messageSearchResults = props.messageSearchResults.map((result) => {
     return (
       <MessageSearchResult
         key={result.id}
