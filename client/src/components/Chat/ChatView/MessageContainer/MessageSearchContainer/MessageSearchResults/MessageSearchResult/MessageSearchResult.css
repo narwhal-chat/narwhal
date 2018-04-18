@@ -1,9 +1,51 @@
 .MessageSearchResult {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
   margin-bottom: 12px;
   padding: 10px 12px;
-  font-size: 80%;
   color: black;
   background-color: #FFFFFF;
   border: 1px solid rgba(226, 225, 225, 0.7);
   border-radius: 5px;
+}
+
+.MessageSearchResult:hover {
+  border: 1px solid rgba(179, 179, 179, 0.8);
+}
+
+.MessageSearchResult .Avatar {
+  flex-shrink: 0;
+  margin-top: 6px;
+  width: 44px;
+  height: 44px;
+  background-size: 44px 44px;
+  background-color: #DADADA;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+}
+
+.MessageSearchResult .MessageContent {
+  padding-left: 16px;
+  padding-right: 10px;
+}
+
+.MessageSearchResult .MessageContent .Username {
+  display: inline;
+  padding-right: 8px;
+  font-size: 70%;
+  font-weight: 600;
+  color: #000000;
+}
+
+.MessageSearchResult .MessageContent .Time {
+  display: inline;
+  font-size: 63%;
+  color: rgba(99, 99, 99, 0.6);
+}
+
+.MessageSearchResult .MessageContent .MessageText {
+  font-size: 74%;
+  color: #000000;
 }
