@@ -1,6 +1,6 @@
 # Narwhal
 
-Welcome! Narwhal is an open-source project aimed at providing a responsive, real-time chat experience with a strong focus on open communities. Easily find new communities by using the Discover feature.
+Narwhal is an open-source project aimed at providing a responsive, real-time chat experience with a strong focus on open communities. Easily find new communities by using the Discover feature.
 
 ## Current Feature Set
 
