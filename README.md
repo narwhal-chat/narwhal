@@ -44,7 +44,7 @@ cd client
 npm install
 ```
 
-To start the Node.js server, open up another terminal and run the following command from the root folder of the repo:
+To start the Node.js server, open up another terminal and run the following command from the root folder of the directory:
 
 ```sh
 nodemon
