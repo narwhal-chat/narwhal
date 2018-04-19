@@ -88,7 +88,7 @@ Clone each of the microservice repos.
 - [Message microservice](https://github.com/narwhal-chat/narwhal-message-microservice)
 - [Message search microservice](https://github.com/narwhal-chat/narwhal-message-search-microservice)
 
-For each of the cloned microservice repos, install the dependencies.
+Install the dependencies for each of the cloned microservice directories.
 
 ```sh
 npm install
