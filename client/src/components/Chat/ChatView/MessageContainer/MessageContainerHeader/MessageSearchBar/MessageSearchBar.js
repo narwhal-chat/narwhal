@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import styles from './MessageSearchBar.css';
+import searchIcon from '../../../../../../assets/images/search-icon.svg';
 import * as actions from '../../../../../../store/actions/index';
 
 class MessageSearchBar extends Component {
@@ -22,15 +23,22 @@ class MessageSearchBar extends Component {
   }
 
   render() {
+    let searchIconStyling = {
+      backgroundImage: `url('${searchIcon}')`
+    }
+
     return (
-      <input
-        className={styles.MessageSearchBar}
-        type="text"
-        value={this.state.messageSearchQuery}
-        placeholder="Search"
-        onChange={this.onMessageSearchChange}
-        onKeyPress={this.onMessageSearchKeypress}
-      />
+      <div className={styles.MessageSearchBar}>
+        <input
+          className={styles.Input}
+          type="text"
+          value={this.state.messageSearchQuery}
+          placeholder="Search"
+          onChange={this.onMessageSearchChange}
+          onKeyPress={this.onMessageSearchKeypress}
+        />
+        <div className={styles.SearchIcon} style={searchIconStyling}></div>
+      </div>
     );
   }
 };

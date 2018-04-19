@@ -1,8 +1,12 @@
 .MessageSearchBar {
+  position: relative;
   justify-self: end;
+}
+
+.MessageSearchBar .Input {
   width: 400px;
   margin-right: 40px;
-  padding: 7px 4px 7px 10px;
+  padding: 7px 4px 7px 30px;
   border: 1px solid rgba(139, 139, 139, 0.8);
   border-radius: 3px;
   font-size: 67%;
@@ -11,15 +15,27 @@
   transition: border 0.05;
 }
 
-.MessageSearchBar:hover {
+.MessageSearchBar .Input:hover {
   border: 1px solid rgb(88, 88, 88);
   transition: 0.05s;
 }
 
-.MessageSearchBar:focus {
+.MessageSearchBar .Input:focus {
   border: 1px solid rgb(88, 88, 88);
 }
 
-.MessageSearchBar::placeholder {
+.MessageSearchBar .Input::placeholder {
   color: rgba(122, 122, 122, 0.6);
+}
+
+.SearchIcon {
+  position:absolute;
+  bottom:8px;
+  left:10px;
+  width: 15px;
+  height: 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
+  opacity: 0.3;
 }
