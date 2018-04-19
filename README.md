@@ -9,6 +9,9 @@ Narwhal is an open-source project aimed at providing a responsive, real-time cha
 1. [Under the Hood](#under-the-hood)
 1. [Development](#development)
     1. [Getting Started](#getting-started)
+        1.[Main Narwhal Repo](#main-narwhal-repo)
+        1.[Databases](#databases)
+        1.[Microservices](#microservices)
 1. [Contributing](#contributing)
 
 ## Team
