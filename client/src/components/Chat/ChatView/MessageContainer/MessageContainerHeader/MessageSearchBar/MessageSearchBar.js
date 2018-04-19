@@ -17,7 +17,7 @@ class MessageSearchBar extends Component {
   }
 
   onMessageSearchKeypress = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && this.state.messageSearchQuery !== '') {
       this.props.onfetchMessageSearchResults(this.state.messageSearchQuery);
     }
   }
