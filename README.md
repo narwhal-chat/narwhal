@@ -12,9 +12,9 @@ Narwhal is an open-source project aimed at providing a responsive, real-time cha
 
 ## Team
 
-- Sam Lee
-- Rory Well
-- Jonathan Weinstein
+- [Sam Lee](https://github.com/sleex89)
+- [Rory Well](https://github.com/roryewell)
+- [Jonathan Weinstein](https://github.com/JonathanWeinstein)
 
 ## Current Feature Set
 
