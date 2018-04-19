@@ -21,12 +21,11 @@ Narwhal is an open-source project aimed at providing a responsive, real-time cha
 
 - Log in and register a new account
 - Edit user profile
-- Upload a custom user avatar
 - Find new communities on the Discover page
 - Create and join pods (communities)
-- Upload a custom pod avatar
 - Create and join topics (channels)
 - Persistent, real-time chat for each topic
+- Upload custom pod and user avatars
 - Search for messages
 
 ## Under the Hood
