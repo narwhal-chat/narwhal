@@ -59,7 +59,7 @@ To start the Node.js server, open up another terminal and run the following comm
 nodemon
 ```
 
-Start the React development server by first going to the root folder of the repo and then running the following commands:
+Start the React development server by first going to the root folder of the directory and then running the following commands:
 ```sh
 cd client
 npm start
