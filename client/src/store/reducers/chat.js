@@ -6,6 +6,8 @@ const initialState = {
     discover: [],
     topics: [],
     messages: [],
+    messageSearchResults: [],
+    mesageSearchContainerOpen: false,
     categories: [],
     search: '',
     searchResults: [],
@@ -84,6 +86,31 @@ const messagesReceived = (state, action) => {
   });
 };
 
+const fetchMessageSearchResultsStart = (state, action) => {
+  return updateObject(state, {
+    messageSearchContainerOpen: action.visible
+  });
+};
+
+const fetchMessageSearchResultsSuccess = (state, action) => {
+  return updateObject(state, {
+    messageSearchResults: action.messages
+  });
+};
+
+const clearMessageSearchResults = (state, action) => {
+  return updateObject(state, {
+    messageSearchResults: [],
+    messageSearchContainerOpen: false
+  });
+};
+
+const messageSearchContainerClosed = (state, action) => {
+  return updateObject(state, {
+    messageSearchContainerOpen: false
+  });
+};
+
 const fetchDiscoverSuccess = (state, action) => {
   return updateObject(state, {
     discover: action.discover
@@ -140,6 +167,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_SOCKET: return setSocket(state, action);
     case actionTypes.DISCONNECT_SOCKET: return disconnectSocket(state, action);
     case actionTypes.MESSAGES_RECEIVED: return messagesReceived(state, action);
+    case actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_START: return fetchMessageSearchResultsStart(state, action);
+    case actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_SUCCESS: return fetchMessageSearchResultsSuccess(state, action);
+    case actionTypes.CLEAR_MESSAGE_SEARCH_RESULTS: return clearMessageSearchResults(state, action);
+    case actionTypes.MESSAGE_SEARCH_CONTAINER_CLOSED: return messageSearchContainerClosed(state, action);
     case actionTypes.FETCH_DISCOVER_SUCCESS: return fetchDiscoverSuccess(state, action);
     case actionTypes.FETCH_DISCOVER_FAIL: return fetchDiscoverFail(state, action);
     case actionTypes.FETCH_CATEGORIES_SUCCESS: return fetchCategoriesSuccess(state, action);

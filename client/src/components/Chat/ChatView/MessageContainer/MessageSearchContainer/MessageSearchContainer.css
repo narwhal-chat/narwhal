@@ -1,0 +1,10 @@
+.MessageSearchContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 1fr;
+  grid-area: messageSearchContainer;
+  width: 440px;
+  color: black;
+  border-left: 1px solid rgba(226, 225, 225, 0.7);
+  overflow: auto;
+}

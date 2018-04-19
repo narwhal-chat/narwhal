@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './MessageContainerHeader.css';
 import TopicHeader from './TopicHeader/TopicHeader';
-import MessageSearchBar from './MessageSearchBar/MessageSearchBar';
+import MessageBar from './MessageSearchBar/MessageSearchBar';
 
 const messageContainerHeader = (props) => {
   return (
@@ -10,7 +10,8 @@ const messageContainerHeader = (props) => {
       <TopicHeader
         topicName={props.topicName}
       />
-      {/* <MessageSearchBar /> */}
+      <MessageBar
+      />
     </div>
   );
 };

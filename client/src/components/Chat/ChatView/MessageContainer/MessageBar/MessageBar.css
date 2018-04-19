@@ -1,6 +1,9 @@
 .MessageBar {
-  margin: 16px auto 16px auto;
-  width: 97%;
+  grid-area: messageBar;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  margin: 16px 20px 16px 20px;
 }
 
 .MessageBar .TextContainer {

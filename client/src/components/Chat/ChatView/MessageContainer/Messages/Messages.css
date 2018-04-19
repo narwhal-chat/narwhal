@@ -1,10 +1,52 @@
 .Messages {
+	grid-area: messages;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 10px 30px 0 30px;
   overflow-x: hidden;
   overflow-y: auto;
+  word-break: break-all;
+}
+
+.Messages::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 0px #FFFFFF;
+	border-radius: 10px;
+	background-color: #FFFFFF;
+}
+
+.Messages::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #FFFFFF;
+}
+
+.Messages::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 0px #FFFFFF;
+	background-color: #FFFFFF;
+}
+
+.Messages:hover::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.Messages:hover::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.Messages:hover::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+	background-color: rgba(102, 102, 102, 0.3);
 }
 
 .Messages .MessageSeparator {

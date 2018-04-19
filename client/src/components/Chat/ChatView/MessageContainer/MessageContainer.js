@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import styles from './MessageContainer.css';
-import MessageContainerHeader from './MessageContainerHeader/MessagerContainerHeader';
+import MessageContainerHeader from './MessageContainerHeader/MessageContainerHeader';
 import Messages from './Messages/Messages';
 import MessageBar from './MessageBar/MessageBar';
+import MessageSearchContainer from './MessageSearchContainer/MessageSearchContainer';
 import * as actions from '../../../../store/actions/index';
 
 class MessageContainer extends Component {
@@ -60,6 +61,7 @@ class MessageContainer extends Component {
             onMessageChange={this.onMessageChange}
             onSendMessage={this.onSendMessage}
           />
+          <MessageSearchContainer />
         </div>
       );
     }
