@@ -8,16 +8,21 @@ const pods = (props) => {
   let pods = null;
 
   if (props.pods.length) {
-    pods = props.pods.map((pod) => {
-      return (
-        <Pod
-          key={pod.id}
-          pod={pod}
-          clicked={props.podClicked}
-          activePod={props.activePod}
-        />
-      );
-    });
+    pods = props.pods
+      .sort((a, b) => {
+        return a.id - b.id;
+      })
+      .map((pod) => {
+        return (
+          <Pod
+            key={pod.id}
+            pod={pod}
+            clicked={props.podClicked}
+            activePod={props.activePod}
+          />
+        );
+      });
+
   }
   
   return (
