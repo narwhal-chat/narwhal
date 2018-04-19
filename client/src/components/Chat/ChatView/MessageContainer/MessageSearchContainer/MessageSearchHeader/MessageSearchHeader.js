@@ -9,6 +9,7 @@ const messageSearchHeader = (props) => {
       <div className={styles.HeaderText}>Search Results</div>
       <CloseIcon
         className={styles.CloseIcon}
+        onClick={props.closeIconClicked}
       />
     </div>
   );

@@ -8,15 +8,22 @@ import * as actions from '../../../../../store/actions/index';
 
 class MessageSearchContainer extends Component {
   render() {
+    let messageSearchContainerStyling = {
+      width: '0'
+    };
+  
+    if (this.props.messageSearchContainerOpen) {
+      messageSearchContainerStyling.width = '440px';
+    }
+
     return (
-      <div className={styles.MessageSearchContainer}>
-        <React.Fragment>
-          <MessageSearchHeader
-          />
-          <MessageSearchResults
-            messageSearchResults={this.props.messageSearchResults}
-          />
-        </React.Fragment>
+      <div className={styles.MessageSearchContainer} style={messageSearchContainerStyling}>
+        <MessageSearchHeader
+          closeIconClicked={this.props.onMessageSearchContainerClose}
+        />
+        <MessageSearchResults
+          messageSearchResults={this.props.messageSearchResults}
+        />
       </div>
     );
   }
@@ -30,7 +37,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    onMessageSearchContainerClose: () => dispatch(actions.messageSearchContainerClosed())
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageSearchContainer);
