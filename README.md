@@ -93,6 +93,12 @@ For each of the cloned microservice repos, install the dependencies.
 npm install
 ```
 
+To start a microservice, navigate to the root folder of the directory and run the following command:
+
+```sh
+nodemon
+```
+
 ## Contributing
 
-Want to help make Narwhal an amazing product? Please see the [Development](#development) guide.
+Want to help make Narwhal an amazing product? Review the [Development](#development) guide and start submitting pull requests ^_^
