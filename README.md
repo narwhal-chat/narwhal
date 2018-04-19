@@ -56,13 +56,21 @@ npm start
 ```
 
 #### Microservices
-Clone the user microservice repo and cd to the new directory.
+Clone each of the microservice repos.
+
+- [User microservice](https://github.com/narwhal-chat/narwhal-user-microservice)
+- [Pod microservice](https://github.com/narwhal-chat/narwhal-pod-microservice)
+- [Message microservice](https://github.com/narwhal-chat/narwhal-message-microservice)
+- [Message search microservice](https://github.com/narwhal-chat/narwhal-message-search-microservice)
+
+For each of the cloned microservice repos, install the dependencies.
 
 ```sh
 npm install
 ```
 
-Perform the same
+#### Databases
+
 
 ## Contributing
 
