@@ -27,6 +27,7 @@ Narwhal is a Node.js application built with Express.js and React. We take pride 
 - Redux
 - Redux-Saga
 - Socket.IO
+- CSS Grid / Flexbox
 - Postgres
 - Postgres Full Text Search
 
