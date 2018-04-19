@@ -95,4 +95,4 @@ npm install
 
 ## Contributing
 
-Want to help make Narwhal an amazing product? Submit a pull request ^_^
+Want to help make Narwhal an amazing product? Please see the [Development](#development) guide.
