@@ -60,19 +60,19 @@ npm start
 
 Narhwal uses Postgres as the main back-end database. All databases must be created before using the application. Below is a list of scripts to create the databases and their tables.
 
-- narwhal_users
+##### narwhal_users
 
 ```sql
 -- update later
 ```
 
-- narwhal_pods
+##### narwhal_pods
 
 ```sql
 -- update later
 ```
 
-- narwhal_messages
+##### narwhal_messages
 
 ```sql
 -- update later
