@@ -35,6 +35,7 @@ Narwhal is a Node.js application built with Express.js and React. We take pride 
 ### Getting Started
 
 #### Main Narwhal Repo
+
 Clone the main Narwhal repo and cd to the new directory.
 
 ```sh
@@ -55,7 +56,30 @@ cd client
 npm start
 ```
 
+#### Databases
+
+Narhwal uses Postgres as the main back-end database. All databases must be created before using the application. Below is a list of scripts to create the databases and their tables.
+
+- narwhal_users
+
+```sql
+-- update later
+```
+
+- narwhal_pods
+
+```sql
+-- update later
+```
+
+- narwhal_messages
+
+```sql
+-- update later
+```
+
 #### Microservices
+
 Clone each of the microservice repos.
 
 - [User microservice](https://github.com/narwhal-chat/narwhal-user-microservice)
@@ -68,9 +92,6 @@ For each of the cloned microservice repos, install the dependencies.
 ```sh
 npm install
 ```
-
-#### Databases
-
 
 ## Contributing
 
