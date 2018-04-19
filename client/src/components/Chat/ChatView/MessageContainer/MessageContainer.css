@@ -1,8 +1,8 @@
 .MessageContainer {
   display: grid;
-  grid-template-columns: 9fr 1fr;
+  grid-template-columns: 1fr auto;
   grid-template-rows: 60px 1fr 74px;
-  grid-template-areas: "messageContainerHeaderLeft messageContainerHeaderRight"
+  grid-template-areas: "messageContainerHeader messageContainerHeader"
                        "messages messageSearchContainer"
                        "messageBar messageSearchContainer";
 }

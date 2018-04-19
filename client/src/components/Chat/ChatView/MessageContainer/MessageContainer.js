@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import styles from './MessageContainer.css';
-import MessageContainerHeaderLeft from './MessageContainerHeaderLeft/MessagerContainerHeaderLeft';
-import MessageContainerHeaderRight from './MessageContainerHeaderRight/MessageContainerHeaderRight';
+import MessageContainerHeader from './MessageContainerHeader/MessageContainerHeader';
 import Messages from './Messages/Messages';
 import MessageBar from './MessageBar/MessageBar';
 import MessageSearchContainer from './MessageSearchContainer/MessageSearchContainer';
@@ -50,10 +49,8 @@ class MessageContainer extends Component {
     if (this.props.activeTopic) {
       messageContainer = (
         <div className={styles.MessageContainer}>
-          <MessageContainerHeaderLeft
+          <MessageContainerHeader
             topicName={this.props.activeTopic.name}
-          />
-          <MessageContainerHeaderRight
           />
           <Messages
             messages={this.props.messages}

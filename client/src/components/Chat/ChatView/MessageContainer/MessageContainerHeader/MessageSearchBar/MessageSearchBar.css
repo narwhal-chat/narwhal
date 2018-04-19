@@ -1,12 +1,14 @@
 .MessageSearchBar {
-  width: 380px;
+  justify-self: end;
+  width: 400px;
+  margin-right: 40px;
   padding: 7px 4px 7px 10px;
   border: 1px solid rgba(139, 139, 139, 0.8);
   border-radius: 3px;
   font-size: 67%;
   color: rgba(39, 39, 39, 0.8);
   outline: none;
-  /* transition: border 0.05; */
+  transition: border 0.05;
 }
 
 .MessageSearchBar:hover {

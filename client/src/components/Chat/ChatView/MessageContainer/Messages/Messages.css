@@ -1,5 +1,5 @@
 .Messages {
-  grid-area: messages;
+	grid-area: messages;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
