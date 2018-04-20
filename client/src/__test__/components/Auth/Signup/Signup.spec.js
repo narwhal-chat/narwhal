@@ -17,7 +17,7 @@ describe('Component: Signup', () => {
     const wrapper = shallow(<Signup />);
     expect(
       wrapper.find('NavLink').prop('to')
-    ).toEqual('/register')
+    ).toEqual('/login')
   });
 
   it('should have three input fields', () => {
