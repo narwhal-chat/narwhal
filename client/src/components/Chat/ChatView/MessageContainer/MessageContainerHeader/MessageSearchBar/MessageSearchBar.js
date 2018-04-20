@@ -25,7 +25,7 @@ class MessageSearchBar extends Component {
   render() {
     let searchIconStyling = {
       backgroundImage: `url('${searchIcon}')`
-    }
+    };
 
     return (
       <div className={styles.MessageSearchBar}>
