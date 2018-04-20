@@ -1,6 +1,6 @@
-# Narwhal [![Travis CI Status](https://travis-ci.org/narwhal-chat/narwhal.svg?branch=master)](https://travis-ci.org/narwhal-chat)
+# narwhal [![Travis CI Status](https://travis-ci.org/narwhal-chat/narwhal.svg?branch=master)](https://travis-ci.org/narwhal-chat)
 
-Narwhal is an open-source project aimed at providing a responsive, real-time chat app with a strong focus on open communities. Imagine Slack but with an easy way to discover new communities built right into the app!
+narwhal is an open-source project aimed at providing a responsive, real-time chat app with a strong focus on open communities. Imagine Slack but with an easy way to discover new communities built right into the app!
 
 ## Table of Contents
 
@@ -24,13 +24,13 @@ Narwhal is an open-source project aimed at providing a responsive, real-time cha
 - Find new communities on the Discover page
 - Create and join pods (communities)
 - Create and join topics (channels)
-- Persistent, real-time chat for each topic
+- Real-time group chat for each topic
 - Upload custom pod and user avatars
-- Search for messages
+- Message searching
 
 ## Under the Hood
 
-Narwhal is a Node.js application built with Express.js and React. We take pride in our modern tech stack. Here's a brief list of other technologies we've implemented in our app:
+narwhal is a Node.js application built with Express.js and React. We take pride in our modern tech stack. Here's a brief list of other technologies we've implemented in our app:
 
 - Redux
 - Redux-Saga
@@ -43,9 +43,9 @@ Narwhal is a Node.js application built with Express.js and React. We take pride 
 
 ### Getting Started
 
-#### Main Narwhal Repo
+#### Main narwhal Repo
 
-Clone the main Narwhal repo and cd to the new directory.
+Clone the main narwhal repo and cd to the new directory.
 
 ```sh
 npm install
@@ -67,24 +67,117 @@ npm start
 
 #### Databases
 
-Narhwal uses Postgres as the main back-end database. All databases must be created before using the application. Below is a list of scripts to create the databases and their tables.
+narhwal uses Postgres as the main back-end database. All databases must be created before using the application. Below is a list of scripts to create the databases and their tables.
 
 ##### narwhal_users
 
 ```sql
--- update later
+-- Table: users
+CREATE TABLE users (
+    id serial  NOT NULL,
+    username varchar(20)  NOT NULL,
+    password varchar(100)  NOT NULL,
+    email_address varchar(320)  NOT NULL,
+    avatar varchar(500)  NOT NULL,
+    create_date timestamp  NOT NULL DEFAULT now(),
+    CONSTRAINT user_ak_email_address UNIQUE (email_address) NOT DEFERRABLE  INITIALLY IMMEDIATE,
+    CONSTRAINT user_ak_username UNIQUE (username) NOT DEFERRABLE  INITIALLY IMMEDIATE,
+    CONSTRAINT users_pk PRIMARY KEY (id)
+);
 ```
 
 ##### narwhal_pods
 
 ```sql
--- update later
+-- Table: pod_user
+CREATE TABLE pod_user (
+    id serial  NOT NULL,
+    pod_id int  NOT NULL,
+    user_id int  NOT NULL,
+    is_admin boolean  NOT NULL,
+    CONSTRAINT pod_user_ak_pod_id_user_id UNIQUE (pod_id, user_id) NOT DEFERRABLE  INITIALLY IMMEDIATE,
+    CONSTRAINT pod_user_pk PRIMARY KEY (id)
+);
+
+-- Table: pod_category
+CREATE TABLE pod_category (
+    id serial  NOT NULL,
+    name varchar(50)  NOT NULL,
+    default_category_avatar varchar(500)  NOT NULL,
+    CONSTRAINT pod_category_ak_name UNIQUE (name) NOT DEFERRABLE  INITIALLY IMMEDIATE,
+    CONSTRAINT pod_category_pk PRIMARY KEY (id)
+);
+
+-- Table: pod
+CREATE TABLE pod (
+    id serial  NOT NULL,
+    reference_name varchar(25)  NOT NULL,
+    display_name varchar(25)  NOT NULL,
+    description varchar(100)  NOT NULL,
+    avatar varchar(500)  NOT NULL,
+    pod_category_id int  NOT NULL,
+    author_id int  NOT NULL,
+    create_date timestamp  NOT NULL DEFAULT now(),
+    is_deleted boolean  NOT NULL DEFAULT false,
+    delete_date timestamp  NULL,
+    CONSTRAINT pod_ak_reference_name UNIQUE (reference_name) NOT DEFERRABLE  INITIALLY IMMEDIATE,
+    CONSTRAINT pod_pk PRIMARY KEY (id)
+);
+
+-- Table: topic
+CREATE TABLE topic (
+    id serial  NOT NULL,
+    name varchar(20)  NOT NULL,
+    pod_id int  NOT NULL,
+    author_id int  NOT NULL,
+    create_date timestamp  NOT NULL DEFAULT now(),
+    is_deleted boolean  NOT NULL DEFAULT false,
+    delete_date timestamp  NULL,
+    CONSTRAINT topic_pk PRIMARY KEY (id)
+);
+
+-- Foreign keys
+-- Reference: pod_category_id (table: pod)
+ALTER TABLE pod ADD CONSTRAINT pod_category_id
+    FOREIGN KEY (pod_category_id)
+    REFERENCES pod_category (id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: pod_user_pod (table: pod_user)
+ALTER TABLE pod_user ADD CONSTRAINT pod_user_pod
+    FOREIGN KEY (pod_id)
+    REFERENCES pod (id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: topic_pod_id (table: topic)
+ALTER TABLE topic ADD CONSTRAINT topic_pod_id
+    FOREIGN KEY (pod_id)
+    REFERENCES pod (id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
 ```
 
 ##### narwhal_messages
 
 ```sql
--- update later
+-- Table: topic_message
+CREATE TABLE topic_message (
+    id serial  NOT NULL,
+    message_text varchar(500)  NOT NULL,
+    message_text_tokens tsvector  NOT NULL,
+    topic_id int  NOT NULL,
+    author_id int  NOT NULL,
+    create_date timestamp  NOT NULL DEFAULT now(),
+    is_deleted boolean  NOT NULL DEFAULT false,
+    delete_date timestamp  NULL,
+    last_update_date timestamp  NOT NULL DEFAULT now(),
+    CONSTRAINT topic_message_pk PRIMARY KEY (id)
+);
 ```
 
 #### Microservices
@@ -110,4 +203,4 @@ nodemon
 
 ## Contributing
 
-Want to help make Narwhal an amazing product? Review the [Development](#development) guide and start submitting pull requests ^_^
+Want to help make narwhal an amazing product? Review the [Development](#development) guide and start submitting pull requests ^_^

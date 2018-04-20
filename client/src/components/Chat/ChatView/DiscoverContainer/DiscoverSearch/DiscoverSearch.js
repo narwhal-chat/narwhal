@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-
-import styles from './DiscoverSearch.css';
 import SearchInput from 'react-search-input';
 
+import styles from './DiscoverSearch.css';
+import searchIcon from '../../../../../assets/images/search-icon.svg';
 
 class DiscoverSearch extends Component {
   render() {
+    let searchIconStyling = {
+      backgroundImage: `url('${searchIcon}')`
+    };
+
     return(
       <div className={styles.DiscoverSearch}>
         <SearchInput
@@ -13,6 +17,7 @@ class DiscoverSearch extends Component {
           onChange={this.props.changeSearch}
           placeholder="Search for a pod or description"
         />
+        <div className={styles.SearchIcon} style={searchIconStyling}></div>
       </div>
     )
   }

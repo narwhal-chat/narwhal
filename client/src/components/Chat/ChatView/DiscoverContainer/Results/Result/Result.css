@@ -1,13 +1,12 @@
 .Result {
   display: grid;
-  grid-template-columns: 58px 100px 0.2fr 0.8fr 0.45fr 1.2fr;
-  grid-gap: 30px;
+  grid-template-columns: 80px 130px 0.2fr 0.8fr 0.45fr 1.2fr;
+  grid-gap: 36px;
   margin: 0 0 12px 0;
   color: #414141;
 }
 
 .Result .PodAvatar {
-  margin-right: 10px;
   width: 58px;
   height: 58px;
   background-size: 58px 58px;
@@ -16,7 +15,7 @@
 }
 
 .Result .PodInfo {
-  min-width: 50x;
+  min-width: 60x;
 }
 
 .Result .PodName {
@@ -59,14 +58,14 @@
   border-radius: 5px;
   font-size: 70%;
   font-weight: 600;
-  transition: 0.2s;
+  transition: 0.1s;
   border: none;
   cursor: pointer;
 }
 
 .Result .Button:hover {
   background-color: rgb(57, 64, 133);
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .Result .DisabledButton {
@@ -82,5 +81,5 @@
   color: rgba(80, 90, 178, 0.5);
   font-size: 70%;
   font-weight: 600;
-  transition: 0.2s;
+  transition: 0.1s;
 }

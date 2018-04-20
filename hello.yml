@@ -1,0 +1,12 @@
+# Testing to get pods
+
+config:
+  target: 'http://localhost:3334'
+  phases:
+    - duration: 60
+      arrivalRate: 20
+scenarios:
+  - flow:
+    - get:
+        url: "/pods/1"
+

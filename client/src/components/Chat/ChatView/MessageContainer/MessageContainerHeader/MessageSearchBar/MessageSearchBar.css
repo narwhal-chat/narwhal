@@ -8,7 +8,7 @@
   margin-right: 40px;
   padding: 7px 4px 7px 30px;
   border: 1px solid rgba(139, 139, 139, 0.8);
-  border-radius: 3px;
+  border-radius: 5px;
   font-size: 67%;
   color: rgba(39, 39, 39, 0.8);
   outline: none;
@@ -37,5 +37,5 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 15px 15px;
-  opacity: 0.3;
+  opacity: 0.55;
 }
