@@ -58,14 +58,14 @@
   border-radius: 5px;
   font-size: 70%;
   font-weight: 600;
-  transition: 0.2s;
+  transition: 0.1s;
   border: none;
   cursor: pointer;
 }
 
 .Result .Button:hover {
   background-color: rgb(57, 64, 133);
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .Result .DisabledButton {
@@ -81,5 +81,5 @@
   color: rgba(80, 90, 178, 0.5);
   font-size: 70%;
   font-weight: 600;
-  transition: 0.2s;
+  transition: 0.1s;
 }
