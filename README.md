@@ -1,6 +1,6 @@
-# Narwhal [![Travis CI Status](https://travis-ci.org/narwhal-chat/narwhal.svg?branch=master)](https://travis-ci.org/narwhal-chat)
+# narwhal [![Travis CI Status](https://travis-ci.org/narwhal-chat/narwhal.svg?branch=master)](https://travis-ci.org/narwhal-chat)
 
-Narwhal is an open-source project aimed at providing a responsive, real-time chat app with a strong focus on open communities. Imagine Slack but with an easy way to discover new communities built right into the app!
+narwhal is an open-source project aimed at providing a responsive, real-time chat app with a strong focus on open communities. Imagine Slack but with an easy way to discover new communities built right into the app!
 
 ## Table of Contents
 
@@ -30,7 +30,7 @@ Narwhal is an open-source project aimed at providing a responsive, real-time cha
 
 ## Under the Hood
 
-Narwhal is a Node.js application built with Express.js and React. We take pride in our modern tech stack. Here's a brief list of other technologies we've implemented in our app:
+narwhal is a Node.js application built with Express.js and React. We take pride in our modern tech stack. Here's a brief list of other technologies we've implemented in our app:
 
 - Redux
 - Redux-Saga
@@ -43,9 +43,9 @@ Narwhal is a Node.js application built with Express.js and React. We take pride 
 
 ### Getting Started
 
-#### Main Narwhal Repo
+#### Main narwhal Repo
 
-Clone the main Narwhal repo and cd to the new directory.
+Clone the main narwhal repo and cd to the new directory.
 
 ```sh
 npm install
@@ -67,7 +67,7 @@ npm start
 
 #### Databases
 
-Narhwal uses Postgres as the main back-end database. All databases must be created before using the application. Below is a list of scripts to create the databases and their tables.
+narhwal uses Postgres as the main back-end database. All databases must be created before using the application. Below is a list of scripts to create the databases and their tables.
 
 ##### narwhal_users
 
@@ -203,4 +203,4 @@ nodemon
 
 ## Contributing
 
-Want to help make Narwhal an amazing product? Review the [Development](#development) guide and start submitting pull requests ^_^
+Want to help make narwhal an amazing product? Review the [Development](#development) guide and start submitting pull requests ^_^
