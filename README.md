@@ -24,7 +24,7 @@ narwhal is an open-source project aimed at providing a responsive, real-time cha
 - Find new communities on the Discover page
 - Create and join pods (communities)
 - Create and join topics (channels)
-- Persistent, real-time chat for each topic
+- Real-time group chat for each topic
 - Upload custom pod and user avatars
 - Search for messages
 
