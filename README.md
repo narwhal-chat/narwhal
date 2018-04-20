@@ -1,4 +1,4 @@
-# Narwhal
+# Narwhal [![Travis CI Status](https://travis-ci.org/narwhal-chat/narwhal.svg?branch=master)](https://travis-ci.org/narwhal-chat)
 
 Narwhal is an open-source project aimed at providing a responsive, real-time chat app with a strong focus on open communities. Imagine Slack but with an easy way to discover new communities built right into the app!
 
