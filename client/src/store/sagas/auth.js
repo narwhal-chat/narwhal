@@ -25,6 +25,7 @@ export function* authLogout(action) {
 }
 
 export function* auth(action) {
+	
 	const authData = {
 		username: action.username,
 		password: action.password,
