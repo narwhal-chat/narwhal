@@ -34,7 +34,7 @@ const authFail = (state, action) => {
     return updateObject(state, {
 				error: action.error,
 				message: action.message,
-				isAuthenticating: true
+				isAuthenticating: false
     });
 };
 

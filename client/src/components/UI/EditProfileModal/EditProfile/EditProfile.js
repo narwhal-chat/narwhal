@@ -161,12 +161,17 @@ class EditProfile extends Component {
 		event.preventDefault();
 
 		let err = this.validate()
+		console.log(
+			'Im in submit'
+		)
 
 		if (err) {
+			console.log("i got an error in submit")
 			this.setState({
 				password: ''
 			})
 		} else {
+			console.log("no error submit");
 			let image = this.state.files[0];
 			let uploadedImage = null;
 			if (this.state.avatar === '') {
@@ -181,6 +186,9 @@ class EditProfile extends Component {
 				upload.post('/uploadUser')
 				.attach('image', image)
 				.end((err, res) => {
+					if(err){
+						console.log('error uploading', err)
+					}
 					uploadedImage = res.text;
 					console.log(uploadedImage);
 					this.props.editProfile(

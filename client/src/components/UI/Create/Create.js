@@ -126,7 +126,6 @@ class Create extends Component {
 		if (err) {
 			this.setState({
 				podName: '',
-				category: '',
 				description: '',
 			});
 		} else {

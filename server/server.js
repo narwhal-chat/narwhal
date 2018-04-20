@@ -218,6 +218,7 @@ app.post('/editProfile', (req, res, next) => {
       });
     })
     .catch(err => {
+      console.log('ERR', err.response)
       res.status(401).json({
         error: err.response.data.error,
         message: err.response.data.message,
