@@ -12,7 +12,7 @@ const messageSearchResults = (props) => {
       <div className={styles.NoResults}>Nothin' found</div>
     );
   } else {
-    messageSearchHeader = <div className={styles.ResultsHeader}>{props.messageSearchResults.length} Results</div>;
+    messageSearchHeader = <div className={styles.ResultsHeader}>{props.messageSearchResults.length} {props.messageSearchResults.length === 1 ? 'Result' : 'Results'}</div>;
     messageSearchResults = props.messageSearchResults.map((result) => {
       return (
         <MessageSearchResult
