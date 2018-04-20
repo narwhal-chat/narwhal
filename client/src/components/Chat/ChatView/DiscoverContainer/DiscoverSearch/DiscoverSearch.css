@@ -1,4 +1,5 @@
 .DiscoverSearch {
+  position: relative;
   display: grid;
   grid-template-columns: 420px;
   grid-template-rows: 46px;
@@ -7,7 +8,7 @@
 
 .DiscoverSearch .SearchBar > input {
   margin-left: 30px;
-  padding: 4px 12px;
+  padding: 4px 12px 4px 34px;
   width: 100%;
   height: 100%;
   border: 2px solid rgba(68, 68, 68, 0.4);
@@ -27,4 +28,16 @@
 .DiscoverSearch .SearchBar > input::placeholder {
   font-weight: 300;
   color: rgba(122, 122, 122, 0.8);
+}
+
+.SearchIcon {
+  position:absolute;
+  bottom:10px;
+  left:40px;
+  width: 18px;
+  height: 18px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  opacity: 0.55;
 }
