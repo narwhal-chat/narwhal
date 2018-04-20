@@ -15,6 +15,8 @@ const PORT = process.env.PORT || 5000;
 const USER_MICROSERVICE_URL = process.env.USER_MICROSERVICE_URL || 'http://localhost:3033';
 const MESSAGE_MICROSERVICE_URL = process.env.MESSAGE_MICROSERVICE_URL ? process.env.MESSAGE_MICROSERVICE_URL + '/messages' : 'http://localhost:3335/messages';
 
+// *** SERVER CONFIGURATION ***
+
 // body-parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -50,6 +52,7 @@ AWS.config.update({
 });
 const s3 = new AWS.S3();
 
+
 // Multer config
 // Memory storage keeps file data in a buffer
 const upload = multer({
@@ -77,6 +80,10 @@ io.on('connection', socket => {
       });
   });
 });
+
+// ****************************
+
+// *** UNPROTECTED ROUTES ***
 
 // Register account route
 app.post('/register', (req, res, next) => {
@@ -112,6 +119,7 @@ app.post('/login', (req, res, next) => {
     });
 });
 
+// Route to upload a pod avatar
 app.post('/uploadPod', upload.single('image'), (req, res, next) => {
   var today = new Date();
   var dd = today.getDate();
@@ -140,6 +148,7 @@ app.post('/uploadPod', upload.single('image'), (req, res, next) => {
   })
 })
 
+// Route to upload a user avatar
 app.post('/uploadUser', upload.single('image'), (req, res, next) => {
 	var today = new Date();
 	var dd = today.getDate();
@@ -173,6 +182,8 @@ app.post('/uploadUser', upload.single('image'), (req, res, next) => {
 	);
 });
 
+// ****************************
+
 // Enable authentication middleware
 app.use((req, res, next) => {
   let token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -194,7 +205,8 @@ app.use((req, res, next) => {
   }
 });
 
-// *** ALL PROTECTED ROUTES GO BELOW HERE ***
+
+// *** PROTECTED ROUTES ***
 
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
@@ -225,6 +237,8 @@ app.use(routes.messages, messages);
 
 // Search route
 app.use(routes.search, search);
+
+// ****************************
 
 // Start server
 http.listen(PORT);
