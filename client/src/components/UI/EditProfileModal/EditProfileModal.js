@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import styles from './EditProfileModal.css';
 import EditProfile from './EditProfile/EditProfile';
 
-Modal.setAppElement('#root');
+// Modal.setAppElement('#root');
 
 const editProfileModal = (props) => {
   return (

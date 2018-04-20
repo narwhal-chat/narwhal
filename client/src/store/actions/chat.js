@@ -159,6 +159,45 @@ export const messagesReceived = (messages) => {
   };
 };
 
+export const fetchMessageSearchResults = (query) => {
+  return {
+    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS,
+    query: query
+  }
+};
+
+export const fetchMessageSearchResultsStart = (visible) => {
+  return {
+    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_START,
+    visible: visible
+  }
+};
+
+export const fetchMessageSearchResultsSuccess = (messages) => {
+  return {
+    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_SUCCESS,
+    messages: messages
+  }
+};
+
+export const fetchMessageSearchResultsFail = () => {
+  return {
+    type: actionTypes.FETCH_MESSAGE_SEARCH_RESULTS_FAIL
+  }
+};
+
+export const clearMessageSearchResults = () => {
+  return {
+    type: actionTypes.CLEAR_MESSAGE_SEARCH_RESULTS
+  };
+};
+
+export const messageSearchContainerClosed = () => {
+  return {
+    type: actionTypes.MESSAGE_SEARCH_CONTAINER_CLOSED
+  };
+};
+
 export const fetchDiscover = () => {
   return {
     type: actionTypes.FETCH_DISCOVER

@@ -1,7 +1,7 @@
 .MessageContainerHeader {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-area: messageContainerHeader;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  background-color: rgb(255, 255, 255);
   border-bottom: 1px solid rgba(226, 225, 225, 0.7);
 }

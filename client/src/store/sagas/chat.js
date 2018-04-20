@@ -159,6 +159,9 @@ export function* podClicked(action) {
         yield put(actions.connectSocket());
         yield take(actionTypes.CONNECT_SOCKET_SUCCESS);
       }
+
+      // Reset the message search results
+      yield put(actions.clearMessageSearchResults());
   
       // If a pod was previously selected, first leave the socket room associated with the previous active topic
       const previousTopic = yield(select(selectors.activeTopic));
@@ -219,7 +222,7 @@ export function* fetchDiscover(action) {
         params: {
           token: token
         }
-    })
+    });
     yield put(actions.fetchDiscoverSuccess(results.data));
   } catch (e) {
     yield put(actions.fetchDiscoverFail())
@@ -319,5 +322,24 @@ export function* joinSocketRoom(socket) {
       topicId: payload.topic.id,
       room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
     });
+  }
+}
+
+export function* fetchMessageSearchResults(action) {
+  try {
+    yield put(actions.fetchMessageSearchResultsStart(true));
+
+    const token = yield select(selectors.token);
+    const activeTopic = yield select(selectors.activeTopic, );
+  
+    const messages = yield axios.get(`/search/${action.query}/${activeTopic.id}`, {
+      params: {
+        token: token
+      }
+    });
+  
+    yield put(actions.fetchMessageSearchResultsSuccess(messages.data));
+  } catch(e) {
+
   }
 }
