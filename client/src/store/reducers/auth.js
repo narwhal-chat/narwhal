@@ -34,7 +34,7 @@ const authFail = (state, action) => {
     return updateObject(state, {
 				error: action.error,
 				message: action.message,
-				isAuthenticating: true
+				isAuthenticating: false
     });
 };
 
@@ -60,7 +60,6 @@ const editProfileReset = (state, action) => {
 }
 
 const editProfileSuccess = (state, action) => {
-	console.log('success', action)
 	return updateObject(state, {
 		token: action.idToken,
 		userData: action.userData,
@@ -74,7 +73,6 @@ const editProfileSuccess = (state, action) => {
 };
 
 const editProfileFail = (state, action) => {
-	console.log('fail action', action);
   return updateObject(state, {
 		error: true,
 		errorType: action.errorType

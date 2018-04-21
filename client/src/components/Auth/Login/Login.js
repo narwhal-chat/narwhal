@@ -45,6 +45,7 @@ class Login extends Component {
 
 	submitHandler = event => {
 		event.preventDefault();
+		console.log('submitting in login');
 
 			this.props.onLogin(
 				this.state.controls.password.value,

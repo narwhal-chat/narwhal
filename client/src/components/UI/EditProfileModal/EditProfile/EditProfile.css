@@ -19,7 +19,9 @@
 }
 
 .EditProfile .ErrorMessage {
+  padding-top: 5px;
   color: #d53b3b;
+  font-size: 85%;
 }
 
 .EditProfile .Header {

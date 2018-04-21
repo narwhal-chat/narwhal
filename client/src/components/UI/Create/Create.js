@@ -82,7 +82,7 @@ class Create extends Component {
 			this.setState({
 				descriptionError: {
 					error: true,
-					message: 'Description must be at least 5 words long.',
+					message: 'Description must be at least 5 words long',
 				},
 			});
 		}
@@ -123,13 +123,7 @@ class Create extends Component {
 
 		const err = this.validate();
 
-		if (err) {
-			this.setState({
-				podName: '',
-				category: '',
-				description: '',
-			});
-		} else {
+		if (!err) {
 			let image = this.state.files[0]
 			let uploadedImage = null;
 

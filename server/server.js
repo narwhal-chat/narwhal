@@ -15,6 +15,8 @@ const PORT = process.env.PORT || 5000;
 const USER_MICROSERVICE_URL = process.env.USER_MICROSERVICE_URL || 'http://localhost:3033';
 const MESSAGE_MICROSERVICE_URL = process.env.MESSAGE_MICROSERVICE_URL ? process.env.MESSAGE_MICROSERVICE_URL + '/messages' : 'http://localhost:3335/messages';
 
+// *** SERVER CONFIGURATION ***
+
 // body-parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -43,12 +45,13 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
   app.use(express.static(__dirname + '/../client/build'));
 }
 
-// Amazon s3 config
+// Amazon S3 config
 AWS.config.update({
 	accessKeyId: process.env.AWS_ACCESS_KEY,
 	secretAccessKey: process.env.AWS_SECRET_KEY,
 });
 const s3 = new AWS.S3();
+console.log(process.env);
 
 // Multer config
 // Memory storage keeps file data in a buffer
@@ -77,6 +80,10 @@ io.on('connection', socket => {
       });
   });
 });
+
+// ****************************
+
+// *** UNPROTECTED ROUTES ***
 
 // Register account route
 app.post('/register', (req, res, next) => {
@@ -112,6 +119,7 @@ app.post('/login', (req, res, next) => {
     });
 });
 
+// Route to upload a pod avatar
 app.post('/uploadPod', upload.single('image'), (req, res, next) => {
   var today = new Date();
   var dd = today.getDate();
@@ -140,6 +148,7 @@ app.post('/uploadPod', upload.single('image'), (req, res, next) => {
   })
 })
 
+// Route to upload a user avatar
 app.post('/uploadUser', upload.single('image'), (req, res, next) => {
 	var today = new Date();
 	var dd = today.getDate();
@@ -165,13 +174,18 @@ app.post('/uploadUser', upload.single('image'), (req, res, next) => {
 			ACL: 'public-read',
 		},
 		(err, data) => {
+      console.log(data);
 			if (err) {
+        console.log('error uploading image to s3', err);
 				return res.status(400).send(err);
-			}
+      }
+      console.log('success s3', data.Location);
 			return res.status(200).send(data.Location);
 		}
 	);
 });
+
+// ****************************
 
 // Enable authentication middleware
 app.use((req, res, next) => {
@@ -194,7 +208,8 @@ app.use((req, res, next) => {
   }
 });
 
-// *** ALL PROTECTED ROUTES GO BELOW HERE ***
+
+// *** PROTECTED ROUTES ***
 
 // Edit profile route
 app.post('/editProfile', (req, res, next) => {
@@ -206,6 +221,7 @@ app.post('/editProfile', (req, res, next) => {
       });
     })
     .catch(err => {
+      console.log('ERR', err.response)
       res.status(401).json({
         error: err.response.data.error,
         message: err.response.data.message,
@@ -225,6 +241,8 @@ app.use(routes.messages, messages);
 
 // Search route
 app.use(routes.search, search);
+
+// ****************************
 
 // Start server
 http.listen(PORT);
