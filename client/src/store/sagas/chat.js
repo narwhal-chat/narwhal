@@ -310,18 +310,21 @@ export function* connectSocketFlow() {
 export function* joinSocketRoom(socket) {
   while (true) {
     const payload = yield take(actionTypes.SET_ACTIVE_TOPIC);
-    const token = yield select(selectors.token);
-    const socket = yield select(selectors.socket);
-    const results = yield axios.get(`/messages/history/${payload.topic.id}`, {
-      params: {
-        token: token
-      }
-    });
-    yield put(actions.messagesReceived(results.data));
-    yield socket.emit('JOIN_ROOM', {
-      topicId: payload.topic.id,
-      room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
-    });
+    if (payload.activeTopic) {
+      console.log('payload', payload);
+      const token = yield select(selectors.token);
+      const socket = yield select(selectors.socket);
+      const results = yield axios.get(`/messages/history/${payload.topic.id}`, {
+        params: {
+          token: token
+        }
+      });
+      yield put(actions.messagesReceived(results.data));
+      yield socket.emit('JOIN_ROOM', {
+        topicId: payload.topic.id,
+        room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
+      });
+    }
   }
 }
 
