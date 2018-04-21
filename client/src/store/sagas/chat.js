@@ -61,9 +61,13 @@ export function* fetchPods(action) {
         }
       }
     }
+
+    // If a pod match was found
     if (foundPod) {
+      // Set the active pod
       yield put(actions.setActivePod(newActivePod));
     } else {
+      // Go back to the Discover page
       yield put(actions.discoverClicked());
       return;
     }
@@ -130,10 +134,13 @@ export function* fetchTopics(action) {
           break;
         }
       }
-      // If the topic was not supplied by the GET request, default to the first topic in the pod
+      
+      // If a topic match was found
       if (foundTopic) {
+        // Set the active topic
         yield put(actions.setActiveTopic(newActiveTopic));
       } else {
+        // Go back to the Discover page
         yield put(actions.discoverClicked());
         return;
       }
