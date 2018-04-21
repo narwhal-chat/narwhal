@@ -51,7 +51,6 @@ class EditProfile extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (this.props.errorType !== nextProps.errorType) {
-			console.log(nextProps.errorType);
 			if (nextProps.errorType.username !== '') {
 				this.setState({
 					usernameError: {
@@ -80,21 +79,7 @@ class EditProfile extends Component {
 			if (this.props.error === false) {
 				this.props.closeModal();
 			}
-			// this.setState({
-			// 	files: [],
-			// 	username: '',
-			// 	email: '',
-			// 	password: '',
-			// 	avatar: ''
-			// })
 		}
-	}
-
-	componentDidUpdate() {
-		// console.log('hello');
-		// if (this.props.error === false) {
-		// 	this.props.closeModal();
-		// }
 	}
 
 	onDrop = (files) => {
@@ -197,7 +182,6 @@ class EditProfile extends Component {
 				.attach('image', image)
 				.end((err, res) => {
 					uploadedImage = res.text;
-					console.log(uploadedImage);
 					this.props.editProfile(
 						this.props.userData.username,
 						this.state.username,
@@ -212,7 +196,6 @@ class EditProfile extends Component {
 
 	handleChange = event => {
 		this.setState({ [event.target.name]: event.target.value });
-		console.log(this.state);
 	};
 
 	logout = event => {
