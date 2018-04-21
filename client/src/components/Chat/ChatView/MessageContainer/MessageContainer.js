@@ -21,10 +21,6 @@ class MessageContainer extends Component {
     this.props.onConnectSocket();
   }
 
-  componentWillUnmount() {
-    this.props.onDisconnectSocket();
-  }
-
   onMessageChange = (message) => {
     this.setState({
       message: message
