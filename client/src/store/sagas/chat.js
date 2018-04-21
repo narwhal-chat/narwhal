@@ -50,13 +50,22 @@ export function* fetchPods(action) {
     }
 
     // Check if an initial pod id was passed in from the route params
+    let newActivePod = {};
+    let foundPod = false;
     if (action.initialPodId) {
       for (let pod of results.data) {
         if (pod.id === +action.initialPodId) {
-          yield put(actions.setActivePod(pod));
+          foundPod = true;
+          newActivePod = pod;
           break;
         }
       }
+    }
+    if (foundPod) {
+      yield put(actions.setActivePod(newActivePod));
+    } else {
+      yield put(actions.discoverClicked());
+      return;
     }
   } catch (e) {
     yield put(actions.fetchPodsFail());
@@ -111,15 +120,23 @@ export function* fetchTopics(action) {
     let newActiveTopic = topics[0];
 
     // If an initialTopicId was supplied
+    let foundTopic = false;
     if (action.initialTopicId) {
       // If the topic id matches one of the newly fetched topics, set that topic as the active topic
       for (let topic of topics) {
         if (topic.id === +action.initialTopicId) {
+          foundTopic = true;
           newActiveTopic = topic;
+          break;
         }
       }
       // If the topic was not supplied by the GET request, default to the first topic in the pod
-      yield put(actions.setActiveTopic(newActiveTopic));
+      if (foundTopic) {
+        yield put(actions.setActiveTopic(newActiveTopic));
+      } else {
+        yield put(actions.discoverClicked());
+        return;
+      }
     } else {
       // If an initialTopicId was not supplied, default to the first topic in the pod
       yield put(actions.setActiveTopic(topics[0]));
@@ -316,21 +333,18 @@ export function* connectSocketFlow() {
 export function* joinSocketRoom(socket) {
   while (true) {
     const payload = yield take(actionTypes.SET_ACTIVE_TOPIC);
-    if (payload.activeTopic) {
-      console.log('payload', payload);
-      const token = yield select(selectors.token);
-      const socket = yield select(selectors.socket);
-      const results = yield axios.get(`/messages/history/${payload.topic.id}`, {
-        params: {
-          token: token
-        }
-      });
-      yield put(actions.messagesReceived(results.data));
-      yield socket.emit('JOIN_ROOM', {
-        topicId: payload.topic.id,
-        room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
-      });
-    }
+    const token = yield select(selectors.token);
+    const socket = yield select(selectors.socket);
+    const results = yield axios.get(`/messages/history/${payload.topic.id}`, {
+      params: {
+        token: token
+      }
+    });
+    yield put(actions.messagesReceived(results.data));
+    yield socket.emit('JOIN_ROOM', {
+      topicId: payload.topic.id,
+      room: `ROOM_${payload.topic.pod_id}_${payload.topic.id}`
+    });
   }
 }
 
