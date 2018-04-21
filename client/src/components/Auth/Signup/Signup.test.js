@@ -1,5 +1,5 @@
 import React from 'react';
-import { Signup } from '../../../../components/Auth/Signup/Signup'
+import { Signup } from './Signup';
 import Enzyme from 'enzyme';
 import { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
