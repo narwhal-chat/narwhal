@@ -4,8 +4,8 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.05s ease-in-out;
+    transition: all 0.05s ease-in-out;
 }
 
 .ModalAfterOpen  {

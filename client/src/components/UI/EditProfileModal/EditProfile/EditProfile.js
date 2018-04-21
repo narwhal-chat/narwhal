@@ -51,7 +51,6 @@ class EditProfile extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (this.props.errorType !== nextProps.errorType) {
-			console.log(nextProps.errorType);
 			if (nextProps.errorType.username !== '') {
 				this.setState({
 					usernameError: {
@@ -80,21 +79,7 @@ class EditProfile extends Component {
 			if (this.props.error === false) {
 				this.props.closeModal();
 			}
-			// this.setState({
-			// 	files: [],
-			// 	username: '',
-			// 	email: '',
-			// 	password: '',
-			// 	avatar: ''
-			// })
 		}
-	}
-
-	componentDidUpdate() {
-		// console.log('hello');
-		// if (this.props.error === false) {
-		// 	this.props.closeModal();
-		// }
 	}
 
 	onDrop = (files) => {
@@ -160,18 +145,28 @@ class EditProfile extends Component {
 	verifyOnSubmit = event => {
 		event.preventDefault();
 
+		this.setState({
+			usernameError: {
+				error: false,
+				message: '',
+			},
+			emailError: {
+				error: false,
+				message: '',
+			},
+			passwordError: {
+				error: false,
+				message: ''
+			}
+		});
+
 		let err = this.validate()
-		console.log(
-			'Im in submit'
-		)
 
 		if (err) {
-			console.log("i got an error in submit")
 			this.setState({
 				password: ''
 			})
 		} else {
-			console.log("no error submit");
 			let image = this.state.files[0];
 			let uploadedImage = null;
 			if (this.state.avatar === '') {
@@ -186,11 +181,7 @@ class EditProfile extends Component {
 				upload.post('/uploadUser')
 				.attach('image', image)
 				.end((err, res) => {
-					if(err){
-						console.log('error uploading', err)
-					}
 					uploadedImage = res.text;
-					console.log(uploadedImage);
 					this.props.editProfile(
 						this.props.userData.username,
 						this.state.username,
@@ -205,7 +196,6 @@ class EditProfile extends Component {
 
 	handleChange = event => {
 		this.setState({ [event.target.name]: event.target.value });
-		console.log(this.state);
 	};
 
 	logout = event => {
