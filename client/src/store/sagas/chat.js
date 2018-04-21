@@ -288,7 +288,7 @@ export function* joinPod(action) {
     yield axios.post(`/pods/join/${userId}/${action.podId}`, {
       token: token
     })
-    yield put(actions.fetchPods(userId));
+    yield put(actions.fetchPods());
     yield put(actions.fetchDiscover());
   } catch (e) {
     yield put(actions.joinPodFail())
