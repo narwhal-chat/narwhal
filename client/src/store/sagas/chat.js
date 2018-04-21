@@ -60,16 +60,15 @@ export function* fetchPods(action) {
           break;
         }
       }
-    }
-
-    // If a pod match was found
-    if (foundPod) {
-      // Set the active pod
-      yield put(actions.setActivePod(newActivePod));
-    } else {
-      // Go back to the Discover page
-      yield put(actions.discoverClicked());
-      return;
+      // If a pod match was found
+      if (foundPod) {
+        // Set the active pod
+        yield put(actions.setActivePod(newActivePod));
+      } else {
+        // Go back to the Discover page
+        yield put(actions.discoverClicked());
+        return;
+      }
     }
   } catch (e) {
     yield put(actions.fetchPodsFail());
@@ -134,11 +133,11 @@ export function* fetchTopics(action) {
           break;
         }
       }
-      
       // If a topic match was found
       if (foundTopic) {
         // Set the active topic
         yield put(actions.setActiveTopic(newActiveTopic));
+        yield put(push(`/topics/${newActiveTopic.pod_id}/${newActiveTopic.id}`));
       } else {
         // Go back to the Discover page
         yield put(actions.discoverClicked());
