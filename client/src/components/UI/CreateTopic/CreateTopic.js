@@ -50,11 +50,7 @@ class CreateTopic extends Component {
 		});
 
 		const err = this.validate();
-		if (err) {
-			this.setState({
-				topicName: ''
-			});
-		} else {
+		if (!err) {
 			this.setState({
 				topicName: '',
 				topicNameError: {
