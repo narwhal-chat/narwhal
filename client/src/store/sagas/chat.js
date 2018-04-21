@@ -274,6 +274,7 @@ export function* fetchCategories(action) {
 
 export function* categoryClicked(action) {
   try {
+    yield put(actions.fetchDiscover());
     yield put(actions.setActiveCategory(action.activeCategory))
   } catch (e) {
 
