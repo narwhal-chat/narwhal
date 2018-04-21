@@ -43,14 +43,33 @@ export function* fetchPods(action) {
     });
     yield put(actions.fetchPodsSuccess(results.data));
 
+    // If no pods were found, default back to the Discover page
+    if (!results.data.length) {
+      yield put(actions.discoverClicked());
+      return;
+    }
+
     // Check if an initial pod id was passed in from the route params
+    let newActivePod = {};
+    let foundPod = false;
     if (action.initialPodId) {
       for (let pod of results.data) {
         if (pod.id === +action.initialPodId) {
-          yield put(actions.setActivePod(pod));
+          foundPod = true;
+          newActivePod = pod;
           break;
         }
       }
+    }
+
+    // If a pod match was found
+    if (foundPod) {
+      // Set the active pod
+      yield put(actions.setActivePod(newActivePod));
+    } else {
+      // Go back to the Discover page
+      yield put(actions.discoverClicked());
+      return;
     }
   } catch (e) {
     yield put(actions.fetchPodsFail());
@@ -105,15 +124,26 @@ export function* fetchTopics(action) {
     let newActiveTopic = topics[0];
 
     // If an initialTopicId was supplied
+    let foundTopic = false;
     if (action.initialTopicId) {
       // If the topic id matches one of the newly fetched topics, set that topic as the active topic
       for (let topic of topics) {
         if (topic.id === +action.initialTopicId) {
+          foundTopic = true;
           newActiveTopic = topic;
+          break;
         }
       }
-      // If the topic was not supplied by the GET request, default to the first topic in the pod
-      yield put(actions.setActiveTopic(newActiveTopic));
+      
+      // If a topic match was found
+      if (foundTopic) {
+        // Set the active topic
+        yield put(actions.setActiveTopic(newActiveTopic));
+      } else {
+        // Go back to the Discover page
+        yield put(actions.discoverClicked());
+        return;
+      }
     } else {
       // If an initialTopicId was not supplied, default to the first topic in the pod
       yield put(actions.setActiveTopic(topics[0]));
