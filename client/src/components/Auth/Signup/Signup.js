@@ -8,7 +8,7 @@ import * as actions from '../../../store/actions/index'
 import LogoAuth from '../LogoAuth/LogoAuth'
 import { NavLink } from 'react-router-dom';
 
-class Signup extends Component {
+export class Signup extends Component {
 	state = {
 		//Form input fields
 		controls: {

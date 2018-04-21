@@ -1,18 +1,7 @@
-import auth from '../../store/reducers/auth';
-import { AUTH_LOGOUT, AUTH_SUCCESS, AUTH_FAIL } from '../../store/actions/actionTypes'
+import auth from './auth';
+import { AUTH_LOGOUT, AUTH_SUCCESS, AUTH_FAIL } from '../actions/actionTypes'
 
 describe('Auth Reducer', () => {
-	let defaultState = {
-    token: null,
-		userData: null,
-		error: null,
-		errorType: {
-			username: '',
-			password: '',
-			email: ''
-		},
-    authRedirectPath: '/'
-	};
   it('has a default state', () => {
     expect(auth(undefined, {})).toEqual({
 			token: null,
@@ -23,6 +12,7 @@ describe('Auth Reducer', () => {
 				password: '',
 				email: '',
 			},
+			isAuthenticating: true,
 			authRedirectPath: '/',
 		});
 	})
@@ -34,7 +24,8 @@ describe('Auth Reducer', () => {
 			userData: {
 					userId: 'asdf'
 				},
-			error: null
+			error: null,
+			isAuthenticating: false
 		}
 
 		expect(auth({}, authSuccess)).toEqual({
@@ -42,7 +33,8 @@ describe('Auth Reducer', () => {
 			userData: {
 				userId: 'asdf'
 			},
-			error: null
+			error: null,
+			isAuthenticating: false
 		});
 	})
 
@@ -50,12 +42,14 @@ describe('Auth Reducer', () => {
 		const authFail = {
 			type: AUTH_FAIL,
 			error: true,
-			message: 'Error message: AUTH_FAIL'
+			message: 'Error message: AUTH_FAIL',
+			isAuthenticating: false
 		}
 
 		expect(auth({}, authFail)).toEqual({
 			error: true,
-			message: 'Error message: AUTH_FAIL'
+			message: 'Error message: AUTH_FAIL',
+			isAuthenticating: false
 		})
 	})
 	

@@ -1,4 +1,4 @@
-import * as actions from '../../store/actions/auth';
+import * as actions from './auth';
 
 describe('Auth Actions', () => {
   it('should create an action on auth success', () => {
