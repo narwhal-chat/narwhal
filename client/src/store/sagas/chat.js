@@ -43,6 +43,12 @@ export function* fetchPods(action) {
     });
     yield put(actions.fetchPodsSuccess(results.data));
 
+    // If no pods were found, default back to the Discover page
+    if (!results.data.length) {
+      yield put(actions.discoverClicked());
+      return;
+    }
+
     // Check if an initial pod id was passed in from the route params
     if (action.initialPodId) {
       for (let pod of results.data) {
