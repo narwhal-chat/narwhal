@@ -95,6 +95,7 @@ CREATE TABLE pod_user (
     pod_id int  NOT NULL,
     user_id int  NOT NULL,
     is_admin boolean  NOT NULL,
+    join_date timestamp  NOT NULL DEFAULT now(),
     CONSTRAINT pod_user_ak_pod_id_user_id UNIQUE (pod_id, user_id) NOT DEFERRABLE  INITIALLY IMMEDIATE,
     CONSTRAINT pod_user_pk PRIMARY KEY (id)
 );

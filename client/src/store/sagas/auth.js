@@ -57,7 +57,6 @@ export function* login(action) {
 
 export function* editProfile(action) {
 	try {
-		console.log('ACTION', action);
 		const token = yield select(selectors.token);
 		const response = yield axios.post('/editProfile', {
 			username: action.username,
