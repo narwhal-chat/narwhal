@@ -51,7 +51,6 @@ AWS.config.update({
 	secretAccessKey: process.env.AWS_SECRET_KEY,
 });
 const s3 = new AWS.S3();
-console.log(process.env);
 
 // Multer config
 // Memory storage keeps file data in a buffer
@@ -174,12 +173,10 @@ app.post('/uploadUser', upload.single('image'), (req, res, next) => {
 			ACL: 'public-read',
 		},
 		(err, data) => {
-      console.log(data);
 			if (err) {
         console.log('error uploading image to s3', err);
 				return res.status(400).send(err);
       }
-      console.log('success s3', data.Location);
 			return res.status(200).send(data.Location);
 		}
 	);

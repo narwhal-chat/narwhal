@@ -1,4 +1,5 @@
 import React from 'react';
+import firstBy from 'thenby';
 
 import styles from './Pods.css';
 import Pod from './Pod/Pod';
@@ -9,9 +10,10 @@ const pods = (props) => {
 
   if (props.pods.length) {
     pods = props.pods
-      .sort((a, b) => {
-        return a.id - b.id;
-      })
+      .sort(
+        firstBy((a, b) => new Date(a.join_date) - new Date(b.join_date))
+          .thenBy((a, b) => a.id - b.id)
+      )
       .map((pod) => {
         return (
           <Pod
@@ -22,7 +24,6 @@ const pods = (props) => {
           />
         );
       });
-
   }
   
   return (
