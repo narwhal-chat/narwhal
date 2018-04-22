@@ -23,6 +23,7 @@
   font-weight: 600;
   font-size: 75%;
   color: #000000;
+  word-break: break-word;
 }
 
 .Result .PodCategory {

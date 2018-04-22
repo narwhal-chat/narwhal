@@ -85,7 +85,6 @@ export class Signup extends Component {
     
 	//updating the form fields for each input form.
 	inputChangedHandler = (event, controlName) => {
-		console.log(event, controlName)
 		const updatedControl = {
 			...this.state.controls,
 			[controlName]: {
