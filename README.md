@@ -9,6 +9,7 @@ narwhal is an open-source project aimed at providing a responsive, real-time cha
 1. [Under the Hood](#under-the-hood)
 1. [Development](#development)
     1. [Getting Started](#getting-started)
+1. [Screenshots](#screenshots)
 1. [Contributing](#contributing)
 
 ## Team
@@ -30,7 +31,7 @@ narwhal is an open-source project aimed at providing a responsive, real-time cha
 
 ## Under the Hood
 
-narwhal is a Node.js application built with Express.js and React. We take pride in our modern tech stack. Here's a brief list of other technologies we've implemented in our app:
+narwhal is a Node.js application built with Node.js and React. We take pride in our modern tech stack. Here's a brief list of other technologies we've implemented in our app:
 
 - Redux
 - Redux-Saga
@@ -201,6 +202,17 @@ To start a microservice, navigate to the root folder of the directory and run th
 ```sh
 nodemon
 ```
+
+## Screenshots
+
+### Login
+![Login](https://dzwonsemrish7.cloudfront.net/items/0Y2P3K0b132p0n1h2g2k/Image%202018-04-22%20at%205.59.08%20PM.png "Login")
+
+### Discover
+![Discover](https://dzwonsemrish7.cloudfront.net/items/2X3v3L1k2H012d1U2m0Z/Image%202018-04-22%20at%2011.00.00%20PM.png "Discover")
+
+### Chat
+![Chat](https://dzwonsemrish7.cloudfront.net/items/0y0k3W112M3x1r0U1m1L/Image%202018-04-22%20at%2011.18.01%20PM.png "Chat")
 
 ## Contributing
 
