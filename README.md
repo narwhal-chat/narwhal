@@ -42,7 +42,7 @@ narwhal is an open-source project aimed at providing a responsive, real-time cha
 
 ## Under the Hood
 
-narwhal is a Node.js application built with Node.js and React. We take pride in our modern tech stack. Here's a brief list of other technologies we've implemented in our app:
+narwhal is a Node.js application built with Express and React. We take pride in our modern tech stack. Here's a brief list of other technologies we've implemented in our app:
 
 - Redux
 - Redux-Saga
