@@ -32,13 +32,13 @@ narwhal is an open-source project aimed at providing a responsive, real-time cha
 ## Demo
 
 #### Login
-![Login](https://ibb.co/4SmWZT2)
+![Login](https://user-images.githubusercontent.com/29443034/110736177-116dd480-81e0-11eb-8777-21265650b3ca.png)
 
 #### Discover
-![Discover](https://ibb.co/fY7rs1G)
+![Discover](https://user-images.githubusercontent.com/29443034/110736198-16cb1f00-81e0-11eb-956b-bec66eff0e25.png)
 
 #### Chat
-![Chat](https://ibb.co/3BYJjmT)
+![Chat](https://user-images.githubusercontent.com/29443034/110736181-13d02e80-81e0-11eb-962e-f8edf3d19c25.png)
 
 ## Under the Hood
 
